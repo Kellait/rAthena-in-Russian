@@ -1,0 +1,534 @@
+//===== Fenrir  Script ======================================= 
+//===== rAthena Script ======================================= 
+//= Mercenary related NPCs
+//===== By: ================================================== 
+//= L0ne_W0lf
+//===== Current Version: ===================================== 
+//= 1.3
+//===== Compatible With: ===================================== 
+//= rAthena SVN
+//===== Description: ========================================= 
+//= [Aegis Conversion]
+//= Sells Lancer, Sword, and Archer, mercenaries
+//= Sells related mercenary items.
+//===== Additional Comments: ================================= 
+//= 1.0 First version. [L0ne_W0lf]
+//= 1.1 Optimization. [Zephyrus]
+//= 1.2 Removed redundent input. [L0ne_W0lf]
+//= 1.3 Duplicates now spawned from floating NPCs. [L0ne_W0lf]
+//============================================================ 
+// Переведён для проекта RO Frntit
+// Xsoid
+//============================================================
+
+prontera,41,337,5	script	Mercenary Manager#Spear	105,{
+	set .@faith_lancer, mercenary_get_faith(SPEAR_MERC_GUILD);
+	mes "[Mercenary Manager]";
+	mes "Добро пожаловать, я представитель гильдии наёмников. В моём распоряжении находятся лучшие копейщики Rune-Midgarte. Чем я могу тебе помочь?";
+	next;
+	switch( select("Аренда Наёмника:Информация о наёмниках:Ничего:Наемники 10-го класса") )
+	{
+	case 1:
+		mes "[Mercenary Manager]";
+		mes "Вы хотите нанять копейщика? Какой класс вас интересует?";
+		next;
+		set .@Grade, select("Копейщик 1-ого класса:Копейщик 2-ого класса:Копейщик 3-ого класса:Копейщик 4-ого класса:Копейщик 5-ого класса:Копейщик 6-ого класса:Копейщик 7-ого класса:Копейщик 8-ого класса:Копейщик 9-ого класса");
+		set .@BaseLevel, 5 + (.@Grade * 10);
+		if( .@BaseLevel > 90 )
+			set .@BaseLevel, 90;
+		
+		set .@ZenyCost, 7 * .@Grade;
+
+		if( .@Grade == 7 )
+			set .@FaithCost, 25;
+		else if( .@Grade == 8 )
+			set .@FaithCost, 50;
+		else if( .@Grade == 9 )
+			set .@FaithCost, 150;
+		else
+			set .@FaithCost, 0;
+
+		mes "[Mercenary Manager]";
+		if( .@Grade == 1 )
+			mes "Твой выбор 1-ого";
+		else if( .@Grade == 2 )
+			mes "Твой выбор 2-ого";
+		else if( .@Grade == 3 )
+			mes "Твой выбор 3-ого";
+		else
+			mes "Твой выбор " + .@Grade + "-ого";
+
+		mes "Grade Spear Mercenary?";
+		mes "Ты должен иметь";
+		mes "" + .@BaseLevel + " базовый уровень и выше,";
+		mes "и " + .@ZenyCost + ",000 zeny для оплаты.";
+		next;
+		if( select("Да:Нет") == 2 )
+		{
+			mes "[Mercenary Manager]";
+			mes "Oh, really? Well, now";
+			mes "might not be a good time";
+			mes "for you to consider hiring";
+			mes "a Mercenary, but please feel";
+			mes "free to come back if your";
+			mes "needs change. Thank you~";
+		}
+		else if( .@FaithCost && .@faith_lancer < .@FaithCost )
+		{
+			mes "[Mercenary Manager]";
+			mes "Прошу прощения но гильдия наёмников оценивает вашу лояльность ниже требуемой. Мы не готовы рисковать своими лучшими кадрами ради вас.  Вам следует повысить лояльность хотя бы до " + .@FaithCost + ".";
+		}
+		else if( BaseLevel < .@BaseLevel )
+		{
+			mes "[Mercenary Manager]";
+			mes "Очень жаль но твой базовый уровень слишком низок для найма этого класса. Его вы можете нанять только по достижению " + .@BaseLevel + " базового уровня.";
+		}
+		else if( Zeny < .@ZenyCost * 1000 )
+		{
+			mes "[Mercenary Manager]";
+			mes "У тебя не хватает денег. Для найма необходимо " + .@ZenyCost + ",000 zeny.";
+		}
+		else
+		{
+			mes "[Mercenary Manager]";
+			mes "Отлично! Наш Наёмники искренни преданы своим клиентам. После вызова он будет защищать тебя в течение 30 минут. Удачи.";
+			set Zeny, Zeny - (.@ZenyCost * 1000);
+			getitem 12172 + .@Grade, 1;
+		}
+		close;
+	case 2:
+		mes "[Mercenary Manager]";
+		mes "Наемники солдат, которые будут сражаться на твоей стороне на поле боя, но есть несколько условий для их найма.";
+		next;
+		mes "[Mercenary Manager]";
+		mes "Уровень наёмника не может превышать твои более чем на пять. Для того что бы мы могли предоставить вам свои лучшие кадры ты должен заслужить наше доверие.";
+		next;
+		mes "[Mercenary Manager]";
+		mes "Контракты не могут быть переданы другим людям.";
+		next;
+		mes "[Mercenary Manager]";
+		mes "Детали ты сможешь узнать при оформлении контракта. Ты получишь свиток с помощью которого сможешь вызвать Наёмника.";
+		next;
+		mes "[Mercenary Manager]";
+		mes "Свиток передавать нельзя. Вызванный наёмник будет служить в течении 30 минут, после чего покинет вас.";
+		close;
+	case 3:
+		mes "[Mercenary Manager]";
+		mes "Нет? Тебе не нужна помощь? Не будь таким скромным, обращайся если тебе потребуются Наёмники.";
+		close;
+	case 4:
+		mes "[Mercenary Manager]";
+		mes "Наёмники 10-ого класса, это наша элита. Их мы предоставляем только лучшим из наших клиентов. Никаких денег, всё на доверии и взаимоуважении. Для получения такого наёмника тебе нужно 350 очков лояльности.";
+		next;
+		mes "[Mercenary Manager]";
+		mes "Не в обиду будет. Но при заключении контракта с наёмником 10-ого уровня, твой рейтинг лояльности будет урезан на 300 пунктов.";
+		next;
+		mes "[Mercenary Manager]";
+		mes "Так же для заключение этого контракта ты должен быть 90-ого базового уровня и выше. Ну так что, подписываем контракт?";
+		next;
+		if( select("Да:Нет") == 2 )
+		{
+			mes "[Mercenary Manager]";
+			mes "I understand... It takes";
+			mes "hard work and sacrifice to";
+			mes "even reach the point where";
+			mes "you can hire a 10th Grade";
+			mes "Mercenary. Have you considered";
+			mes "hiring a lower grade Mercenary?";
+		}
+		else if( .@faith_lancer < 350 )
+		{
+			mes "[Mercenary Manager]";
+			mes "Мне очень жаль партнёр но ты ещё не настолько убедили нас в своей надёжности. Для найма элитных бойцов тебе необходимо 350 пунктов лояльности.";
+		}
+		else if( BaseLevel < 90 )
+		{
+			mes "[Mercenary Manager]";
+			mes "Твой базовый уровень должен быть равен или превышать 90-ый.";
+		}
+		else
+		{
+			mes "[Mercenary Manager]";
+			mes "Грац! Похоже ты собрался на опасное дельце раз тебе понадобились лучшие из лучших. Желаю удачи.";
+
+			mercenary_set_faith SPEAR_MERC_GUILD,-300;
+			getitem 12182,1;
+		}
+		close;
+	}
+}
+
+izlude,47,139,5	script	Mercenary Manager#Sword	734,{
+	set .@faith_sword, mercenary_get_faith(SWORD_MERC_GUILD);
+	mes "[Mercenary Manager]";
+	mes "Добро пожаловать, я представитель гильдии наёмников. В моём распоряжении находятся лучшие мечники Rune-Midgarte. Чем я могу тебе помочь?";
+	next;
+	switch( select("Аренда Наёмника:Информация о наёмниках:Ничего:Наемники 10-го класса") )
+	{
+	case 1:
+		mes "[Mercenary Manager]";
+		mes "Вы хотите нанять мечника? Какой класс вас интересует?";
+		next;
+		set .@Grade, select("Мечник 1-ого класса:Мечник 2-ого класса:Мечник 3-ого класса:Мечник 4-ого класса:Мечник 5-ого класса:Мечник 6-ого класса:Мечник 7-ого класса:Мечник 8-ого класса:Мечник 9-ого класса");
+		set .@BaseLevel, 5 + (.@Grade * 10);
+		if( .@BaseLevel > 90 )
+			set .@BaseLevel, 90;
+
+		set .@ZenyCost, 7 * .@Grade;
+
+		if( .@Grade == 7 )
+			set .@FaithCost, 25;
+		else if( .@Grade == 8 )
+			set .@FaithCost, 50;
+		else if( .@Grade == 9 )
+			set .@FaithCost, 150;
+		else
+			set .@FaithCost, 0;
+
+		mes "[Mercenary Manager]";
+		if( .@Grade == 1 )
+			mes "Твой выбор 1-ого";
+		else if( .@Grade == 2 )
+			mes "Твой выбор 2-ого";
+		else if( .@Grade == 3 )
+			mes "Твой выбор 3-ого";
+		else
+			mes "Твой выбор " + .@Grade + "-ого";
+
+		mes "Grade Sword Mercenary?";
+		mes "Ты должен иметь";
+		mes "" + .@BaseLevel + " базовый уровень и выше,";
+		mes "и " + .@ZenyCost + ",000 zeny для оплаты.";
+		next;
+		if( select("Да:Нет") == 2 )
+		{
+			mes "[Mercenary Manager]";
+			mes "Oh, really? Well, now";
+			mes "might not be a good time";
+			mes "for you to consider hiring";
+			mes "a Mercenary, but please feel";
+			mes "free to come back if your";
+			mes "needs change. Thank you~";
+		}
+		else if( .@FaithCost && .@faith_sword < .@FaithCost )
+		{
+			mes "[Mercenary Manager]";
+			mes "Прошу прощения но гильдия наёмников оценивает вашу лояльность ниже требуемой. Мы не готовы рисковать своими лучшими кадрами ради вас.  Вам следует повысить лояльность хотя бы до " + .@FaithCost + ".";
+		}
+		else if( BaseLevel < .@BaseLevel )
+		{
+			mes "[Mercenary Manager]";
+			mes "Очень жаль но твой базовый уровень слишком низок для найма этого класса. Его вы можете нанять только по достижению " + .@BaseLevel + " базового уровня.";
+		}
+		else if( Zeny < .@ZenyCost * 1000 )
+		{
+			mes "[Mercenary Manager]";
+			mes "У тебя не хватает денег. Для найма необходимо " + .@ZenyCost + ",000 zeny.";
+		}
+		else
+		{
+			mes "[Mercenary Manager]";
+			mes "Отлично! Наш Наёмники искренни преданы своим клиентам. После вызова он будет защищать тебя в течение 30 минут. Удачи.";
+			set Zeny, Zeny - (.@ZenyCost * 1000);
+			getitem 12162 + .@Grade, 1;
+		}
+		close;		
+	case 2:
+		mes "[Mercenary Manager]";
+		mes "Наемники солдат, которые будут сражаться на твоей стороне на поле боя, но есть несколько условий для их найма.";
+		next;
+		mes "[Mercenary Manager]";
+		mes "Уровень наёмника не может превышать твои более чем на пять. Для того что бы мы могли предоставить вам свои лучшие кадры ты должен заслужить наше доверие.";
+		next;
+		mes "[Mercenary Manager]";
+		mes "Контракты не могут быть переданы другим людям.";
+		next;
+		mes "[Mercenary Manager]";
+		mes "Детали ты сможешь узнать при оформлении контракта. Ты получишь свиток с помощью которого сможешь вызвать Наёмника.";
+		next;
+		mes "[Mercenary Manager]";
+		mes "Свиток передавать нельзя. Вызванный наёмник будет служить в течении 30 минут, после чего покинет вас.";
+		close;
+	case 3:
+		mes "[Mercenary Manager]";
+		mes "Нет? Тебе не нужна помощь? Не будь таким скромным, обращайся если тебе потребуются Наёмники.";
+		close;
+	case 4:
+		mes "[Mercenary Manager]";
+		mes "Наёмники 10-ого класса, это наша элита. Их мы предоставляем только лучшим из наших клиентов. Никаких денег, всё на доверии и взаимоуважении. Для получения такого наёмника тебе нужно 350 очков лояльности.";
+		next;
+		mes "[Mercenary Manager]";
+		mes "Не в обиду будет. Но при заключении контракта с наёмником 10-ого уровня, твой рейтинг лояльности будет урезан на 300 пунктов.";
+		next;
+		mes "[Mercenary Manager]";
+		mes "Так же для заключение этого контракта ты должен быть 90-ого базового уровня и выше. Ну так что, подписываем контракт?";
+		next;
+		if( select("Да:Нет") == 2 )
+		{
+			mes "[Mercenary Manager]";
+			mes "I understand... It takes";
+			mes "hard work and sacrifice to";
+			mes "even reach the point where";
+			mes "you can hire a 10th Grade";
+			mes "Mercenary. Have you considered";
+			mes "hiring a lower grade Mercenary?";
+		}
+		else if( .@faith_sword < 350 )
+		{
+			mes "[Mercenary Manager]";
+			mes "Мне очень жаль партнёр но ты ещё не настолько убедили нас в своей надёжности. Для найма элитных бойцов тебе необходимо 350 пунктов лояльности.";
+		}
+		else if( BaseLevel < 90 )
+		{
+			mes "[Mercenary Manager]";
+			mes "Твой базовый уровень должен быть равен или превышать 90-ый.";
+		}
+		else
+		{
+			mes "[Mercenary Manager]";
+			mes "Грац! Похоже ты собрался на опасное дельце раз тебе понадобились лучшие из лучших. Желаю удачи.";
+
+			mercenary_set_faith SWORD_MERC_GUILD,-300;
+			getitem 12172,1;
+		}
+		close;		
+	}
+}
+
+pay_arche,99,167,4	script	Mercenary Manager#Bow	732,{
+	set .@faith_archer,  mercenary_get_faith(ARCH_MERC_GUILD);
+	mes "[Mercenary Manager]";
+	mes "Добро пожаловать, я представитель гильдии наёмников. В моём распоряжении находятся лучшие лучники Rune-Midgarte. Чем я могу тебе помочь?";
+	next;
+	switch( select("Аренда Наёмник:Информация о наёмниках:Ничего:Наемники 10-го класса") )
+	{
+	case 1:
+		mes "[Mercenary Manager]";
+		mes "Вы хотите нанять лучника? Какой класс вас интересует?";
+		next;
+
+		set .@Grade, select("Лучник 1-ого класса:Лучник 2-ого класса:Лучник 3-ого класса:Лучник 4-ого класса:Лучник 5-ого класса:Лучник 6-ого класса:Лучник 7-ого класса:Лучник 8-ого класса:Лучник 9-ого класса");
+		set .@BaseLevel, 5 + (.@Grade * 10);
+		if( .@BaseLevel > 90 )
+			set .@BaseLevel, 90;
+
+		set .@ZenyCost, 7 * .@Grade;
+
+		if( .@Grade == 7 )
+			set .@FaithCost, 25;
+		else if( .@Grade == 8 )
+			set .@FaithCost, 50;
+		else if( .@Grade == 9 )
+			set .@FaithCost, 150;
+		else
+			set .@FaithCost, 0;
+
+		mes "[Mercenary Manager]";
+		if( .@Grade == 1 )
+			mes "Твой выбор 1-ого";
+		else if( .@Grade == 2 )
+			mes "Твой выбор 2-ого";
+		else if( .@Grade == 3 )
+			mes "Твой выбор 3-ого";
+		else
+			mes "Твой выбор " + .@Grade + "-ого";
+
+		mes "Grade Bow Mercenary?";
+
+		mes "Ты должен иметь";
+		mes "" + .@BaseLevel + " базовый уровень и выше,";
+		mes "и " + .@ZenyCost + ",000 zeny для оплаты.";
+		next;
+		if( select("Yes:No") == 2 )
+		{
+			mes "[Mercenary Manager]";
+			mes "Oh, really? Well, now";
+			mes "might not be a good time";
+			mes "for you to consider hiring";
+			mes "a Mercenary, but please feel";
+			mes "free to come back if your";
+			mes "needs change. Thank you~";
+		}
+		else if( .@FaithCost && .@faith_archer < .@FaithCost )
+		{
+			mes "[Mercenary Manager]";
+			mes "Прошу прощения но гильдия наёмников оценивает вашу лояльность ниже требуемой. Мы не готовы рисковать своими лучшими кадрами ради вас.  Вам следует повысить лояльность хотя бы до " + .@FaithCost + ".";
+		}
+		else if( BaseLevel < .@BaseLevel )
+		{
+			mes "[Mercenary Manager]";
+			mes "Очень жаль но твой базовый уровень слишком низок для найма этого класса. Его вы можете нанять только по достижению " + .@BaseLevel + " базового уровня.";
+		}
+		else if( Zeny < .@ZenyCost * 1000 )
+		{
+			mes "[Mercenary Manager]";
+			mes "У тебя не хватает денег. Для найма необходимо " + .@ZenyCost + ",000 zeny.";
+		}
+		else
+		{
+			mes "[Mercenary Manager]";
+			mes "Отлично! Наш Наёмники искренни преданы своим клиентам. После вызова он будет защищать тебя в течение 30 минут. Удачи.";
+			set Zeny, Zeny - (.@ZenyCost * 1000);
+			getitem 12152 + .@Grade, 1;
+		}
+		close;
+	case 2:
+		mes "[Mercenary Manager]";
+		mes "Наемники солдат, которые будут сражаться на твоей стороне на поле боя, но есть несколько условий для их найма.";
+		next;
+		mes "[Mercenary Manager]";
+		mes "Уровень наёмника не может превышать твои более чем на пять. Для того что бы мы могли предоставить вам свои лучшие кадры ты должен заслужить наше доверие.";
+		next;
+		mes "[Mercenary Manager]";
+		mes "Контракты не могут быть переданы другим людям.";
+		next;
+		mes "[Mercenary Manager]";
+		mes "Детали ты сможешь узнать при оформлении контракта. Ты получишь свиток с помощью которого сможешь вызвать Наёмника.";
+		next;
+		mes "[Mercenary Manager]";
+		mes "Свиток передавать нельзя. Вызванный наёмник будет служить в течении 30 минут, после чего покинет вас.";
+		close;
+	case 3:
+		mes "[Mercenary Manager]";
+		mes "Нет? Тебе не нужна помощь? Не будь таким скромным, обращайся если тебе потребуются Наёмники.";
+		close;
+	case 4:
+		mes "[Mercenary Manager]";
+		mes "Наёмники 10-ого класса, это наша элита. Их мы предоставляем только лучшим из наших клиентов. Никаких денег, всё на доверии и взаимоуважении. Для получения такого наёмника тебе нужно 350 очков лояльности.";
+		next;
+		mes "[Mercenary Manager]";
+		mes "Не в обиду будет. Но при заключении контракта с наёмником 10-ого уровня, твой рейтинг лояльности будет урезан на 300 пунктов.";
+		next;
+		mes "[Mercenary Manager]";
+		mes "Так же для заключение этого контракта ты должен быть 90-ого базового уровня и выше. Ну так что, подписываем контракт?";
+		next;
+		if( select("Да:Нет") == 2 )
+		{
+			mes "[Mercenary Manager]";
+			mes "I understand... It takes";
+			mes "hard work and sacrifice to";
+			mes "even reach the point where";
+			mes "you can hire a 10th Grade";
+			mes "Mercenary. Have you considered";
+			mes "hiring a lower grade Mercenary?";
+		}
+		else if( .@faith_archer < 350 )
+		{
+			mes "[Mercenary Manager]";
+			mes "Мне очень жаль партнёр но ты ещё не настолько убедили нас в своей надёжности. Для найма элитных бойцов тебе необходимо 350 пунктов лояльности.";
+		}
+		else if( BaseLevel < 90 )
+		{
+			mes "[Mercenary Manager]";
+			mes "Твой базовый уровень должен быть равен или превышать 90-ый.";
+		}
+		else
+		{
+			mes "[Mercenary Manager]";
+			mes "Грац! Похоже ты собрался на опасное дельце раз тебе понадобились лучшие из лучших. Желаю удачи.";
+
+			mercenary_set_faith ARCH_MERC_GUILD,-300;
+			getitem 12162,1;
+		}
+		close;
+	}
+}
+
+// Mercenary Merchant NPCs
+//============================================================
+-	script	Mercenary Merchant#dummy::MercMerchant	-1,{
+	mes "[Mercenary Goods Merchant]";
+	mes "Здравствуйте, я продаю товар, для наёмников. Что вы ищете?";
+	next;
+	switch(select("Mercenary Red Potion:Mercenary Blue Potion:Mercenary Concentration Potion:Mercenary Awakening Potion:Mercenary Berserk Potion")) {
+	case 1: 
+		mes "[Mercenary Goods Merchant]";
+		mes "Mercenary Red Potions стоит 1,750 zeny за штуку. Сколько бы вы хотели?";
+		next;
+		callfunc "F_PurchaseMercItem",12184,1750;
+	case 2:
+		mes "[Mercenary Goods Merchant]";
+		mes "Mercenary Blue Potions стоит 3,500 zeny за штуку. Сколько бы вы хотели?";
+		next;
+		callfunc "F_PurchaseMercItem",12185,3000;
+	case 3:
+		mes "[Mercenary Goods Merchant]";
+		mes "Mercenary Concentration Potions стоит 560 zeny за штуку. Сколько бы вы хотели?";
+		next;
+		callfunc "F_PurchaseMercItem",12241,560;
+	case 4:
+		mes "[Mercenary Goods Merchant]";
+		mes "Mercenary Awakening Potions стоит 1,050 zeny за штуку. Сколько бы вы хотели?";
+		next;
+		callfunc "F_PurchaseMercItem",12242,1050;
+	case 5:
+		mes "[Mercenary Goods Merchant]";
+		mes "Mercenary Beserk Potions стоит 2,100 zeny за штуку. Сколько бы вы хотели?";
+		next;
+		callfunc "F_PurchaseMercItem",12243,2100;
+	}
+	close;
+}
+
+prontera,30,337,4	duplicate(MercMerchant)	Mercenary Merchant#Spear	700
+izlude,56,139,4	duplicate(MercMerchant)	Mercenary Merchant#Sword	892
+pay_arche,102,167,5	duplicate(MercMerchant)	Mercenary Merchant#Bow	879
+
+// Function for selling items.
+//============================================================
+function	script	F_PurchaseMercItem	{
+	input .@input;
+	if( .@input == 0 )
+	{
+		mes "[Mercenary Goods Merchant]";
+		mes "Вы передумали? Как скажете, возвращайтесь как только вам понадобятся зелья для наёмников.";
+	}
+	else if( .@input < 0 || .@input > 10000 )
+	{
+		mes "[Mercenary Goods Merchant]";
+		mes "Мне очень жаль но вы не сможете купить больше 10,000 зелий единовременно. Введите число от 1 до 10,000.";
+	}
+	else if( set(.@total_po, .@input * getarg(1)) > Zeny )
+	{
+		mes "[Mercenary Goods Merchant]";
+		mes "Мне очень жаль но у вас не хватает денег, я буду ждать вас здесь, приходите когда сможете со мной расплатиться.";
+	}
+	else if( checkweight(getarg(0), .@input) == 0 )
+	{
+		mes "[Mercenary Goods Merchant]";
+		mes "Вы просите слишком много и не сможете просто напросто их поднять.";
+	}
+	else
+	{
+		mes "[Mercenary Goods Merchant]";
+		if( .@input == 1 )
+		{
+			mes "Вот ваш Mercenary";
+			switch( getarg(0) )
+			{
+			case 12148: mes "Red Potion. Спасибо, и"; break;
+			case 12149: mes "Blue Potion. Спасибо, и"; break;
+			case 12241: mes "Concentration Potion."; break;
+			case 12242: mes "Awakening Potion."; break;
+			case 12243: mes "Berserk Potion. Спасибо"; break;
+			}
+			mes "приходите ещё.";
+		}
+		else
+		{
+			mes "Вот ваш";
+			switch( getarg(0) )
+			{
+			case 12148: mes "" + .@input + " Mercenary Red Potions."; mes "Спасибо"; break;
+			case 12149: mes "" + .@input + " Mercenary Blue Potions."; mes "Спасибо"; break;
+			case 12241: mes "" + .@input + " Mercenary Concentration"; mes "Potions. Спасибо"; break;
+			case 12242: mes "" + .@input + " Mercenary Awakening"; mes "Potions. Спасибо"; break;
+			case 12243: mes "" + .@input + " Mercenary Berserk Potions."; mes "Спасибо"; break;
+			}
+			mes ", приходите ещё.";
+		}
+		set Zeny, Zeny - .@total_po;
+		getitem getarg(0), .@input;
+	}
+	close;
+}
