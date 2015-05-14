@@ -1,0 +1,191 @@
+//===== rAthena Script ======================================= 
+//= Renewal Thief Job Quest
+//===== By: ================================================== 
+//= Kisuka
+//===== Current Version: ===================================== 
+//= 1.1
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= Job Change to Thief Class
+//===== Additional Comments: ================================= 
+//= 1.0 First Version. [Kisuka]
+//= 1.1 Added support for Baby classes. [Euphy]
+//============================================================ 
+moc_prydb1,39,129,2	script	Thief Guide#thief	69,{
+	if (Upper == 1) {
+		if (ADVJOB == Job_Assassin_Cross || ADVJOB == Job_Stalker) {
+			if (Class == Job_Novice_High) {
+				mes "[Thief Guide]";
+				mes "Ммм? Я тебя знаю? У тебя случайно нет двойника?";
+				next;
+				if (getskilllv("NV_BASIC") < 9) {
+					mes "[Thief Guide]";
+					mes "Тебе следует подтянуть свои основные навыки.";
+					mes "Возвращайся как будешь готов.";
+					close;
+				}
+				mes "[Thief Guide]";
+				mes "Как только ты вошёл я понял всё, ты далеко новичок и нет смысла затягивать твоё продвижение по карьерной лестницею. Ты достоин, быть вором.";
+				next;
+				skill "NV_TRICKDEAD",0,0;
+				jobchange Job_Thief_High;
+				skill "TF_SPRINKLESAND",1,0;
+				skill "TF_BACKSLIDING",1,0;
+				skill "TF_PICKSTONE",1,0;
+				skill "TF_THROWSTONE",1,0;
+				mes "[Thief Guide]";
+				mes "Ты стал вором.  Мне больше нечему тебя учить, ступай! Следующий ~";
+				close;
+			}else{
+				mes "[Thief Guide]";
+				if (sex)
+					mes "Эй, чувак.";
+				else
+					mes "Эй, детка~";
+				close;
+			}
+		}else{
+			mes "[Thief Guide]";
+			if (sex)
+				mes "Эй, чувак.";
+			else
+				mes "Эй, детка.";
+			mes "…Эй! Ты выглядишь слишком сентиментальным, все хотят стать Ворами!! Катись отсюда, я занят. Следующий!";
+			close;
+		}
+	}
+	if(q_job_thief == 1) {
+		mes "[Thief Guildsman]";
+		mes "Ehh... Seems like a beloved "+(Sex?"son":"daughter")+" of a rich family, but why are you here in this dirty place?";
+		next;
+		mes "[Thief Guildsman]";
+		mes "Well, I'm not in charge of making you a Thief. I just accept applications, get it?";
+		mes "If you want to become a Thief, ask the sharp-eyed guy next to me.";
+		close;	
+	}
+	mes "[Thief Guildsman]";
+	if(BaseJob != Job_Novice) {
+		if(BaseJob == Job_Thief) {
+			mes "Hey~ if you have any trouble, get it out to me anytime, huh?";
+			close;
+		}else{
+			mes "What the heck...?";
+			if(Sex) {
+				mes "Huh... you are a "+jobname(Class)+", blockhead!";
+				next;
+				mes "[Thief Guildsman]";
+				mes "Hey, brother.";
+			}else{
+				next;
+				mes "[Thief Guildsman]";
+				mes "Hey, lady.";
+			}
+			mes "Why are you here? Go back to your place~ go back~~";
+			close;
+		}
+	}
+	mes "Выглядишь как любимое дитя из богатенькой семьи... Но что ты делаешь в этом грязном местечке?";
+	next;
+	if(select("Хочу стать вором!:Не подскажете как отсюда выйти?") == 2) {
+		mes "[Thief Guildsman]";
+		mes "За дверью налево и прямо по коридору...";
+		mes "...и никому не говори о своём визите сюда.";
+		close;
+	}
+	mes "[Thief Guildsman]";
+	mes "Well, are you that proud of it?";
+	mes "Ты с такой гордостью заявляешь что хочешь стать вором! Почему бы тебе не пройтись по городам и представиться вором?";
+	mes "Даааа! Выйди с табличкой 'Я ответственно отнесусь в делу воровства и оберу всех вас до нитки!'";
+	next;
+	mes "[Thief Guildsman]";
+	mes "Ты уже передумал?";
+	next;
+	switch(select("Нет.:Да.:Ну а как же ты?")) {
+	case 1:
+		mes "[Thief Guildsman]";
+		mes "Ох, сколько живу и всё никак не привыкну к таким странным типам вроде тебя.";
+		next;
+		break;
+	case 2:
+		mes "[Thief Guildsman]";
+		mes "Тогда что ты до сих пор тут делаешь? Думаешь стать вором так легко?";
+		next;
+		break;
+	case 3:
+		mes "[Thief Guildsman]";
+		mes "А я то что?";
+		mes "Ну... Я вобщем-то гожусь в воры, по своим характеристикам... Да и не против вобщем-то, но речь не об этом сейчас.";
+		next;
+		break;
+	}
+	mes "[Thief Guildsman]";
+	mes "Как бы там ни было, за пределами этой комнаты никто никогда не расскажет о твоём желании стать вором.";
+	next;
+	mes "[Thief Guildsman]";
+	mes "Итак, ты готов вступить в партию жуликов и воров?";
+	next;
+	if(select("Конечно!:Я передумал...") == 2) {
+		mes "[Thief Guildsman]";
+		mes "Ну что ж, поступай как знаешь, иди своей дорогой.";
+		close;
+	}
+	mes "[Thief Guildsman]";
+	mes "Хорошо, называй своё имя.";
+	mes ""+strcharinfo(0)+". "+strcharinfo(0)+", верно?";
+	next;
+	if (getskilllv("NV_BASIC") < 9) {
+		mes "[Thief Guildsman]";
+		mes "Тебе следует подтянуть свои основные навыки.";
+		mes "Возвращайся как будешь готов.";
+		close;		
+	}
+	mes "[Thief Guildsman]";
+	mes "Хмм.... Мне попадались интересные записи о тебе в криминальных сводках местной полиции. Неплохое начало для перспективного вора.";
+	mes ""+strcharinfo(0)+", я оставил свою пометку в вашем резюме!";
+	next;
+	mes "[Thief Guildsman]";
+	mes "Обратитесь ко второму сотруднику, он оформит нужные документы.";
+	set q_job_thief,1;
+	close;
+}
+
+moc_prydb1,42,133,2	script	Thief Guildsman#thief	118,{
+	if(q_job_thief == 1) {
+		mes "[Thief Guildsman]";
+		mes "Отлично. Ты успешно прошёл наше собеседование.";
+		mes "Начнём, пожалуй, обряд вступления в нашу партию.";
+		next;
+		mes "[Commander of Thief Guild]";
+		mes "'"+strcharinfo(0)+".'";
+		mes "'Для тех кто готов, осыпется золотом дорога. Теперь ты несомненно готов и прямо сейчас я официально принимаю тебя в нашу партию - партию жуликов и воров.'";
+		callfunc "Job_Change",Job_Thief;
+		set q_job_thief,0;
+		getitem 13041,1;	// N_Main_Gauche
+		next;
+		mes "[Commander of Thief Guild]";
+		mes "'Мои поздравления, коллега.'";
+		mes "'Отныне, соблюдай наши правила и не очерни честь нашей организации.'";
+		mes "'Если ты когда-нибудь нарушишь наши законы, то лучше тебе будет почаще оглядываться, гуляя по улицам городов.'";
+		mes "'Мы ждём от тебя великих дел.'";
+		next;
+		mes "[Brad]";
+		mes "Дааа! Поздравляю, дружище!";
+		mes "Ещё увидимся.";
+		close;
+	}
+	if(BaseJob != Job_Novice) {
+		if(BaseJob == Job_Thief) {
+			mes "[Brad]";
+			mes "У партии на данный момент нет для тебя особых поручений.";
+		}else{
+			mes "[Thief Guildsman]";
+			mes "Ты кажется ошибся дверью. Тебе явно не сюда...";
+			mes "Убирайся!";
+		}
+		close;
+	}
+	mes "[Thief Guildsman]";
+	mes "Если ты для того чтобы записаться в партию жуликов и воров, то тебе к вот той милой девушке...";
+	close;
+}

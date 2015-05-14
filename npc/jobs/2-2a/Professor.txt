@@ -1,0 +1,92 @@
+//===== rAthena Script ======================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== By: ==================================================
+//= Nana
+//= finished, optimized and tested by Lupus
+//===== Current Version: ===================================== 
+//= 1.3
+//===== Compatible With: ===================================== 
+//= rAthena 1.0 +
+//===== Description: ========================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== Additional Comments: ================================= 
+//= v1.1 Made all into functions, additional checks, etc. [Lupus]
+//= v1.2 Made numbers into constants. [Vicious]
+//= 1.3 Now saves/restores all the quest skills [Lupus]
+//============================================================
+//= Translated en -> ru [Akaineko]
+//============================================================ 
+
+valkyrie,53,47,3	script	Scholar#Valkyrie	743,{
+	if (ADVJOB == 0 || Upper != 1) {
+		set .@karma_d,rand(1,10);
+		if (.@karma_d > 4) {
+			mes "[Профессор]";
+			mes "Мои поздравления.";
+			mes "Слава воинам!";
+			close;
+		}
+		mes "[Профессор]";
+		mes "На освоение массива знаний,";
+		mes "необходимого, чтобы";
+		mes "стать Профессором,";
+		mes "уходит целая жизнь...";
+		next;
+		mes "[Профессор]";
+		mes "Это ошеломляюще.";
+		mes "Чем больше мы ";
+		mes "знаем, тем больше ";
+		mes "неизведанного ";
+		mes "нам открывается. ";
+		mes "Процесс познания ";
+		mes "бесконечен...";
+		close;
+	}
+	else if (ADVJOB == Job_Professor && Class == Job_Mage_High && JobLevel > 39) {
+		mes "[Профессор]";
+		mes "В этот просвещёный век ";
+		mes "Рун-Мидгарду нужно ";
+		mes "больше способных учёных.";
+		mes "Мир нуждается в тебе...";
+		next;
+		mes "[Профессор]";
+		mes "Готов" + (Sex?"":"а") + " ли ты взять на себя";
+		mes "такую ответственность?";
+		mes "Будешь ли ты служить Рун-Мидгарду";
+		mes "как Профессор?";
+		next;
+		if (select("Нет.:Да.") == 1) {
+			mes "[Профессор]";
+			mes "Когда будешь готов" + (Sex?"":"а") + ",";
+			mes "возвращайся.";
+			mes "Слава воинам!";
+			close;
+		}
+		if (SkillPoint) {
+			mes "[Профессор]";
+			mes "Ты ещё можешь изучать новые умения. Пожалуйста,";
+			mes "используй все свободные очки умений.";
+			close;
+		}
+		jobchange Job_Professor;
+		set ADVJOB,0;
+		mes "[Профессор]";
+		mes "Мои поздравления!";
+		mes "Принимай активное";
+		mes "участие в";
+		mes "распространении";
+		mes "света знания.";
+		close;
+	}
+	mes "[Профессор]";
+	mes "Добро пожаловать";
+	mes "в Вальхаллу,";
+	mes "Зал Славы.";
+	next;
+	mes "[Профессор]";
+	mes "Наслаждайся своим";
+	mes "пребыванием здесь.";
+	mes "Слава воинам!";
+	close;
+}
+

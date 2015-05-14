@@ -1,0 +1,124 @@
+//===== eAthena Script ======================================= 
+//= Renewal Archer Job Change
+//===== By: ================================================== 
+//= Kisuka
+//===== Current Version: ===================================== 
+//= 1.1
+//===== Compatible With: ===================================== 
+//= rAthena SVN
+//===== Description: ========================================= 
+//= Job Change to Archer Class
+//===== Additional Comments: ================================= 
+//= 1.0 First Version. [Kisuka]
+//= 1.1 Added support for Baby classes. [Euphy]
+//============================================================ 
+payon_in02,64,71,4	script	Archer Guildsman#archer	85,{
+	if (Upper == 1) {
+		if (Class == Job_Novice_High && (ADVJOB == Job_Sniper || ADVJOB == Job_Clown || ADVJOB == Job_Gypsy)) {
+			mes "[Archer Guildsman]";
+			mes "Эй! Да я тебя знаю!.";
+			mes "Ты уже бы тут раньше,";
+			mes "так ведь?";
+			next;
+			mes "[Archer Guildsman]";
+			mes "Ты наверное только что от Валгаллы";
+			mes "и был перерожден.";
+			mes "Это так круто!";
+			next;
+			if (getskilllv("NV_BASIC") < 9) {
+				mes "[Archer Guildsman]";
+				mes "Брр...";
+				mes "Лучше бы тебе изучить основные навыки перед тем как стать лучником.";
+				next;
+				mes "[Archer Guildsman]";
+				mes "Увидимся позже.";
+				close;
+			}
+			mes "[Archer Guildsman]";
+			mes "Что ж, отлично.";
+			mes "Не думаю что нужны лишние слова.";
+			mes "Знаю что станешь хорошим лучником...";
+			next;
+			skill 143,0,0;
+			jobchange Job_Archer_high;
+			skill 147,1,0;
+			skill 148,1,0;
+			mes "[Archer Guildsman]";
+			mes "Удачи в новой жизни!";
+			close;
+		}else{
+			mes "[Archer Guildsman]";
+			mes "А?";
+			mes "Что забыл тут?";
+			next;
+			mes "[Archer Guildsman]";
+			mes "Не быть тебе лучником, уж мне то ты поверь.";
+			mes "Освободи-ка помещение.";
+			close;
+		}
+	}
+	mes "[Archer Guildsman]";
+	mes "Привет-привет. Чем помочь?";
+	next;
+	switch(select("Хочу быть лучником.:Какие требования, чувак?.:Кто тут??.")) {
+	case 1:
+		mes "[Archer Guildsman]";
+		if(BaseJob != Job_Novice) {
+			if(BaseJob == Job_Archer)
+				mes "Haha, you are kidding me...";
+			else {
+				mes "I feel sorry but only Novices can change their job.";
+				mes "You already have your own decent job, don't you?";
+			}
+			close;
+		}else{
+			mes "Звать тебя... "+strcharinfo(0)+". Так?";
+			next;
+			if (getskilllv("NV_BASIC") < 9) {
+				mes "[Archer Guildsman]";
+				mes "Брр...";
+				mes "Лучше бы тебе изучить основные навыки перед тем как стать лучником.";
+				next;
+				mes "[Archer Guildsman]";
+				mes "Слабачкам тут не место. Иди тренируйся.";
+				close;
+			}
+			mes "[Archer Guildsman]";
+			mes "И натренирован, смотри-ка ты.";
+			mes "Ну что ж, ты готов. Продолжим.";
+			next;
+			mes "[Archer Guildsman]";
+			mes "Поздравляю. Как там в песне было - you in the army now.";
+			mes "И захвати шмотки, теперь это твоё!";
+			callfunc "Job_Change",Job_Archer;
+			getitem 1742,1;	// N_Composite_Bow
+			getitem 12004,1;	// Arrow_Container
+			getitem 12009,1;	// Silver_Arrow_Container
+			getitem 12008,1;	// Fire_Arrow_Container
+			next;
+			mes "[Archer Guildsman]";
+			mes "Удачи.";
+			close;
+		}
+	case 2:
+		mes "[Archer Guildsman]";
+		mes "An Archer has skills using a bow and has various talents.";
+		mes "The greatest ability of an Archer is attacking enemies from a long distance.";
+		next;
+		mes "[Archer Guildsman]";
+		mes "Although an Archer has weaker HP, he or she can shoot enemies at a long range,";
+		mes "so an Archer is safer in a real battle.";
+		next;
+		mes "[Archer Guildsman]";
+		mes "Although an Archer in Ragnarok has lower HP, he or she has high accuracy and attack rate so that the archer can kill monsters before they get close to an Archer.";
+		next;
+		mes "[Archer Guildsman]";
+		mes "^8C2121An Archer can change jobs to a Hunter.^000000";
+		mes "^8C2121Other than Hunter, if you are a man, you can change your job to Bard and if you are a woman, you can change your job to Dancer.^000000";
+		close;
+	case 3:
+		mes "[Archer Guildsman]";
+		mes "If you have any questions, feel free to come and ask me.";
+		close;
+	}
+}

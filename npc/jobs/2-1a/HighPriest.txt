@@ -1,0 +1,78 @@
+//===== rAthena Script ======================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== By: ==================================================
+//= Nana
+//= finished, optimized and tested by Lupus
+//===== Current Version: ===================================== 
+//= 1.3
+//===== Compatible With: ===================================== 
+//= rAthena 1.0 +
+//===== Description: ========================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== Additional Comments: ================================= 
+//= v1.1 Made all into functions, additional checks, etc. [Lupus]
+//= v1.2 Made numbers into constants. [Vicious]
+//= 1.3 Now saves/restores all the quest skills [Lupus]
+//============================================================
+//= Translated en -> ru [Akaineko]
+//============================================================ 
+
+valkyrie,44,42,5	script	High Priest#Valkyrie	60,{
+	if (ADVJOB == 0 || Upper != 1) {
+		set .@karma_d,rand(1,10);
+		if (.@karma_d > 4) {
+			mes "[Епископ]";
+			mes "Мои поздравления.";
+			mes "Слава воинам!";
+			close;
+		}
+		mes "[Епископ]";
+		mes "Властью Света,";
+		mes "да обретём мы";
+		mes "мир, силу и";
+		mes "защиту. И да";
+		mes "минует нас зло...";
+		close;
+	}
+	else if (ADVJOB == Job_High_Priest && Class == Job_Acolyte_High && JobLevel > 39) {
+		mes "[Епископ]";
+		mes "Наш Мир нуждается в таких людях, как ты: сочетающих в себе одарённость и правильные воззрения. Готов" + (Sex?"":"а") + " ли ты ступить на путь ещё большей добродетели?";
+		next;
+		mes "[Епископ]";
+		mes "Хочешь ли ты";
+		mes "стать Епископом?";
+		next;
+		if (select("Нет.:Да.") == 1) {
+			mes "[Епископ]";
+			mes "Когда будешь готов" + (Sex?"":"а") + ",";
+			mes "возвращайся сюда.";
+			mes "Слава воинам!";
+			close;
+		}
+		if (SkillPoint) {
+			mes "[Епископ]";
+			mes "Ты ещё можешь изучать новые умения. Пожалуйста,";
+			mes "используй все свободные очки умений.";
+			close;
+		}
+		jobchange Job_High_Priest;
+		set ADVJOB,0;
+		mes "[Епископ]";
+		mes "Поздравляю.";
+		mes "Я предвижу в тебе";
+		mes "велик" + (Sex?"ого":"ую") + " священни" + (Sex?"ка":"цу") + ",";
+		mes "ведущ" + (Sex?"его":"ую") + " людей";
+		mes "по истинному пути...";
+		close;
+	}
+	mes "[Епископ]";
+	mes "Добро пожаловать";
+	mes "в Вальхаллу,";
+	mes "Зал Славы.";
+	next;
+	mes "[Епископ]";
+	mes "Наслаждайся";
+	mes "пребыванием здесь.";
+	mes "Слава воинам!";
+	close;
+}

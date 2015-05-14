@@ -1,0 +1,86 @@
+//===== rAthena Script ======================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== By: ==================================================
+//= Nana
+//= finished, optimized and tested by Lupus
+//===== Current Version: ===================================== 
+//= 1.3
+//===== Compatible With: ===================================== 
+//= rAthena 1.0 +
+//===== Description: ========================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== Additional Comments: ================================= 
+//= v1.1 Made all into functions, additional checks, etc. [Lupus]
+//= v1.2 Made numbers into constants. [Vicious]
+//= 1.3 Now saves/restores all the quest skills [Lupus]
+//============================================================
+//= Translated en -> ru [Akaineko]
+//============================================================ 
+
+valkyrie,44,50,5	script	MasterSmith#Valkyrie	731,{
+	if (ADVJOB == 0 || Upper != 1) {
+		set .@karma_d,rand(1,10);
+		if (.@karma_d > 4) {
+			mes "[Оружейник]";
+			mes "Мои поздравления.";
+			mes "Слава воинам!";
+			close;
+		}
+		mes "[Оружейник]";
+		mes "Ах...";
+		mes "Вершина мастерства.";
+		mes "Вот удел";
+		mes "Оружейника.";
+		next;
+		mes "[Оружейник]";
+		mes "Однажды, став";
+		mes "лучшим из лучших,";
+		mes "начинаешь оттачивать";
+		mes "технологии...";
+		close;
+	}
+	else if (ADVJOB == Job_WhiteSmith && Class == Job_Merchant_High && JobLevel > 39) {
+		mes "[Оружейник]";
+		mes "Время пришло!";
+		mes "Нашему Миру нужны ";
+		mes "храбрые, трудолюбивые ";
+		mes "герои, такие, как ты...";
+		next;
+		mes "[Оружейник]";
+		mes "Хочешь ли ты";
+		mes "стать Оружейни" + (Sex?"ком":"цей") + "?";
+		next;
+		if (select("Нет.:Да.") == 1) {
+			mes "[Оружейник]";
+			mes "Когда будешь готов" + (Sex?"":"а") + ",";
+			mes "возвращайся.";
+			mes "Слава воинам!";
+			close;
+		}
+		if (SkillPoint) {
+			mes "[Оружейник]";
+			mes "Ты ещё можешь изучать новые умения. Пожалуйста,";
+			mes "используй все свободные очки умений.";
+			close;
+		}
+		jobchange Job_Whitesmith;
+		set ADVJOB,0;
+		mes "[Оружейник]";
+		mes "Мои поздравления!";
+		mes "Быть может, именно ";
+		mes "ты скуёшь для Рун-";
+		mes "Мидгарда путь в ";
+		mes "светлое будущее.";
+		close;
+	}
+	mes "[Оружейник]";
+	mes "Добро пожаловать";
+	mes "в Вальхаллу,";
+	mes "Зал Славы.";
+	next;
+	mes "[Оружейник]";
+	mes "Наслаждайся";
+	mes "пребыванием здесь.";
+	mes "Слава воинам!";
+	close;
+}

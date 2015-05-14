@@ -1,0 +1,98 @@
+//===== rAthena Script ======================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== By: ==================================================
+//= Nana
+//= finished, optimized and tested by Lupus
+//===== Current Version: ===================================== 
+//= 1.3
+//===== Compatible With: ===================================== 
+//= rAthena 1.0 +
+//===== Description: ========================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== Additional Comments: =================================
+//= v1.1 Made all into functions, additional checks, etc. [Lupus]
+//= v1.2 Made numbers into constants. [Vicious]
+//= 1.3 Now saves/restores all the quest skills [Lupus]
+//============================================================
+//= Translated en -> ru [Akaineko]
+//============================================================
+
+valkyrie,44,58,5	script	Assassin Cross#Valkyrie	725,{
+	if (ADVJOB == 0 || Upper != 1) {
+		set .@karma_d,rand(1,10);
+		if (.@karma_d > 4) {
+			mes "[Ассасин-кросс]";
+			mes "Поздравляю...";
+			next;
+			mes "[Ассасин-кросс]";
+			mes "...";
+			next;
+			mes "[Ассасин-кросс]";
+			mes "...";
+			mes "......";
+			next;
+			mes "[Ассасин-кросс]";
+			mes "...";
+			mes "......";
+			mes "Честь и слава воинам.";
+			close;
+		}
+		mes "[Ассасин-кросс]";
+		mes "Мы воины пустыни.";
+		mes "Никто не смеет смотреть на нас свысока.";
+		mes "Никто...";
+		close;
+	}
+	else if (ADVJOB == Job_Assassin_Cross && Class == Job_Thief_High && JobLevel > 39) {
+		mes "[Ассасин-кросс]";
+		mes "Время пришло.";
+		mes "Мир нуждается в тебе...";
+		mes "Больше чем когда-либо.";
+		next;
+		mes "[Ассасин-кросс]";
+		mes "Я прошу тебя продолжить жить в тенях, но в ином, более могущественном качестве.";
+		next;
+		mes "[Ассасин-кросс]";
+		mes "Хочешь ли ты стать";
+		mes "Ассасин-кроссом?";
+		next;
+		if (select("Нет.:Да.") == 1) {
+			mes "[Ассасин-кросс]";
+			mes "Когда будешь готов" + (Sex?"":"а") + ",";
+			mes "возвращайся.";
+			next;
+			mes "[Ассасин-кросс]";
+			mes "Честь и слава";
+			mes "воинам.";
+			close;
+		}
+		if (SkillPoint) {
+			mes "[Ассасин-кросс]";
+			mes "Ты ещё не";
+			mes "познал" + (Sex?"":"а") + " всё,";
+			mes "что можешь познать.";
+			next;
+			mes "[Ассасин-кросс]";
+			mes "Используй все свои";
+			mes "очки умений.";
+			close;
+		}
+		jobchange Job_Assassin_Cross;
+		set ADVJOB,0;
+		mes "[Ассасин-кросс]";
+		mes "Поздравляю.";
+		mes "Теперь, когда ты - Ассасин-кросс,";
+		mes "тебе предстоит бороться за светлое будущее, оставаясь в тени.";
+		close;
+	}
+	mes "[Ассасин-кросс]";
+	mes "Добро пожаловать";
+	mes "в Вальхаллу,";
+	mes "Зал Славы.";
+	next;
+	mes "[Ассасин-кросс]";
+	mes "Наслаждайся";
+	mes "пребыванием здесь.";
+	mes "Слава и честь воинам.";
+	close;
+}

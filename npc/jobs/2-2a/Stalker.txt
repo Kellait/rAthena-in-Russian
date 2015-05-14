@@ -1,0 +1,94 @@
+//===== rAthena Script ======================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== By: ==================================================
+//= Nana
+//= finished, optimized and tested by Lupus
+//===== Current Version: ===================================== 
+//= 1.3
+//===== Compatible With: ===================================== 
+//= rAthena 1.0 +
+//===== Description: ========================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== Additional Comments: ================================= 
+//= v1.1 Made all into functions, additional checks, etc. [Lupus]
+//= v1.2 Made numbers into constants. [Vicious]
+//= 1.3 Now saves/restores all the quest skills [Lupus]
+//============================================================
+//= Translated en -> ru [Akaineko]
+//============================================================ 
+
+valkyrie,53,58,3	script	Stalker#Valkyrie	747,{
+	if (ADVJOB == 0 || Upper != 1) {
+		set .@karma_d,rand(1,10);
+		if (.@karma_d > 4) {
+			mes "[Сталкер]";
+			mes "Мои поздравления.";
+			mes "Слава воинам!";
+			close;
+		}
+		mes "[Сталкер]";
+		mes "Хех...";
+		mes "Быть героем - и ";
+		mes "быть подозрительным, ";
+		mes "ненадёжным, ";
+		mes "коварным... ";
+		mes "Жесть, да?";
+		next;
+		mes "[Сталкер]";
+		mes "Но когда дело ";
+		mes "пахнет керосином, ";
+		mes "ребята и не думают ";
+		mes "сбрасывать меня ";
+		mes "со счетов. Они ";
+		mes "нужны мне, а я - им.";
+		close;
+	}
+	else if (ADVJOB == Job_Stalker && Class == Job_Thief_High && JobLevel > 39) {
+		mes "[Сталкер]";
+		mes "Этот Мир нуждается в ";
+		mes "героях, готовых ";
+		mes "пройти по грани ";
+		mes "между порядком и ";
+		mes "беззаконием.";
+		next;
+		mes "[Сталкер]";
+		mes "Готов" + (Sex?"":"а") +  " ли ты";
+		mes "вступить в ряды";
+		mes "самых коварных";
+		mes "воинов? Хочешь ли";
+		mes "ты стать Сталкером?";
+		next;
+		if (select("Нет.:Да.") == 1) {
+			mes "[Сталкер]";
+			mes "Когда будешь готов" + (Sex?"":"а") + ",";
+			mes "возвращайся.";
+			mes "Слава воинам!";
+			close;
+		}
+		if (SkillPoint) {
+			mes "[Сталкер]";
+			mes "Ты ещё можешь изучить новые умения. Пожалуйста,";
+			mes "используй все свободные очки умений.";
+			close;
+		}
+		jobchange Job_Stalker;
+		set ADVJOB,0;
+		mes "[Сталкер]";
+		mes "Поздравляю! Выбирай ";
+		mes "правильную цель для ";
+		mes "удара в спину. ";
+		mes "Отправляй подлецов ";
+		mes "в ад их же методами!";
+		close;
+	}
+	mes "[Сталкер]";
+	mes "Добро пожаловать";
+	mes "в Вальхаллу,";
+	mes "Зал Славы.";
+	next;
+	mes "[Сталкер]";
+	mes "Наслаждайся своим";
+	mes "пребыванием здесь.";
+	mes "Слава воинам!";
+	close;
+}

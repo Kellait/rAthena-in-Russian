@@ -1,0 +1,87 @@
+//===== rAthena Script ======================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== By: ==================================================
+//= Nana
+//= finished, optimized and tested by Lupus
+//===== Current Version: ===================================== 
+//= 1.3
+//===== Compatible With: ===================================== 
+//= rAthena 1.0 +
+//===== Description: ========================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== Additional Comments: ================================= 
+//= v1.1 Made all into functions, additional checks, etc. [Lupus]
+//= v1.2 Made numbers into constants. [Vicious]
+//= 1.3 Now saves/restores all the quest skills [Lupus]
+//============================================================
+//= Translated en -> ru [Akaineko]
+//============================================================ 
+
+valkyrie,44,55,5	script	Sniper#Valkyrie	727,{
+	if (ADVJOB == 0 || Upper != 1) {
+		set .@karma_d,rand(1,10);
+		if (.@karma_d > 4) {
+			mes "[Снайпер]";
+			mes "Мои поздравления.";
+			mes "Слава воинам!";
+			close;
+		}
+		mes "[Снайпер]";
+		mes "Один выстрел -";
+		mes "Один труп.";
+		mes "Это не трудно,";
+		mes "если научиться";
+		mes "такому стилю";
+		mes "ведения боя.";
+		close;
+	}
+	else if (ADVJOB == Job_Sniper && Class == Job_Archer_High && JobLevel > 39) {
+		mes "[Снайпер]";
+		mes "Мир нуждатся в таких";
+		mes "умелых Лучниках, как";
+		mes "ты. Готов" + (Sex?"":"а") + " ли ты";
+		mes "принять ещё большую";
+		mes "ответственность?";
+		next;
+		mes "[Снайпер]";
+		mes "Хочешь ли ты";
+		mes "сделать следующий шаг";
+		mes "и стать Снайпером?";
+		next;
+		if (select("Нет.:Да.") == 1) {
+			mes "[Снайпер]";
+			mes "Возвращайся, когда ";
+			mes "будешь готов" + (Sex?"":"а") + ".";
+			mes "Слава воинам!";
+			close;
+		}
+		if (SkillPoint) {
+			mes "[Снайпер]";
+			mes "Ты ещё можешь изучать новые умения. Пожалуйста,";
+			mes "используй все свободные очки умений.";
+			close;
+		}
+		jobchange Job_Sniper;
+		set ADVJOB,0;
+		mes "[Снайпер]";
+		mes "Мои поздравления!";
+		mes "Надеюсь, что";
+		mes "прислужники зла ";
+		mes "никогда не будут ";
+		mes "чувствовать себя ";
+		mes "в безопасности,";
+		mes "находясь в поле";
+		mes "твоего зрения!";
+		close;
+	}
+	mes "[Снайпер]";
+	mes "Добро пожаловать";
+	mes "в Вальхаллу,";
+	mes "Зал Славы.";
+	next;
+	mes "[Снайпер]";
+	mes "Наслаждайся";
+	mes "пребыванием здесь.";
+	mes "Слава воинам!";
+	close;
+}
