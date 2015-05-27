@@ -1,0 +1,85 @@
+//===== rAthena Script =======================================
+//= Acolyte Skill Quest
+//===== By: ==================================================
+//= kobra_k88
+//===== Current Version: =====================================
+//= 1.8
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= Quest for skills: Holy Light
+//===== Additional Comments: ================================= 
+//= 1.5 Rescripted to Aegis 10.3 stadards. [L0ne_W0lf]
+//= 1.6 Fixed a typo in job check. (Bugreport:1531) [L0ne_W0lf]
+//= 1.7 Updated to latest available official file. [Masao]
+//= 1.8 Fixed JobLevel requirements. [Euphy]
+//============================================================
+//= Перевод Xsoid
+//============================================================
+
+prt_church,173,23,4	script	Cleric	79,{
+	mes "[Acolyte Klift]";
+	mes "Ахх. Братья! Забота о божьих овцах утомляет вас? Я могу помочь вам.";
+	next;
+	switch (select("^3355FF' Про скрытые способности Послушника '^000000 ..: Изучить ^3355FF' Holy light '^000000 :Уйти")) {
+	case 1:
+		mes "[Acolyte Klift]";
+		mes "Члены нашего духовенства обучаются основным навыкам. Поскольку они приближаются к своим старшим собратьям, им приходится обучаться специальным умениям.";
+		next;
+		mes "[Acolyte Klift]";
+		mes "Сталкиваясь с большой опасностью в бесконечной борьбе со злом, наши братья очень часто нуждаются в помощи. ^3355FF' Holy Light '^000000 то что нужно. Чтобы получить эту способность, придется потрудиться.";
+		next;
+		mes "[Acolyte Klift]";
+		mes "Чтобы получить умение, вам нужно принести некоторые вещи:";
+		mes "^FF33551 Opal^000000";
+		mes "^FF33551 Crystal Blue^000000";
+		mes "^FF33551 Rosary^000000 ";
+		next;
+		mes "[Acolyte Klift]";
+		mes "И ещё. Чтобы освоить этот навык, необходимо иметь ^FF3355 30-ый проф уровень^000000.";
+		next;
+		mes "[Acolyte Klift]";
+		mes "Что касается священников. Из-за их огромного опыта они в состоянии получить это умение на любом проф уровне.";
+		close;
+	case 2:
+		if (getskilllv("AL_HOLYLIGHT") == 1) {
+			mes "[Acolyte Klift]";
+			mes "Брат, ты уже обладаете умением 'Holy Light'. Ты не можешь получить умение, которым уже обладаешь.. Надеюсь ты используешь это умение во благо.";
+			close;
+		}
+		if ((countitem(727) > 0) && (countitem(991) > 0) && (countitem(2608) > 0) && (JobLevel > 29 || (BaseJob == Job_Priest || BaseJob == Job_Monk)) && (BaseClass == Job_Acolyte)) {
+			mes "[Acolyte Klift]";
+			mes "Ты достоин получить навык ' Holy Light '. Твой уровень соответствует чтобы освоить его. Используй его мудро.";
+			next;
+			delitem 727,1; //White_Jewel
+			delitem 991,1; //Crystal_Blue
+			delitem 2608,1; //Rosary
+			skill "AL_HOLYLIGHT",1,SKILL_PERM;
+			mes "[Acolyte Klift]";
+			mes "Теперь ' Holy Light ' твой навык. Можешь его использовать.";
+			close;
+		}
+		mes "[Acolyte Klift]";
+		mes "О, понятно... Ты ещё не готов получить навык ' Holy Light '.";
+		next;
+		mes "[Acolyte Klift]";
+		mes "Вникай в мои слова, чтобы выполнить все условия для получения этого благословенного навыка.";
+		close;
+	case 3:
+		mes "[Acolyte Klift]";
+		mes ". . . . .";
+		mes "Я помню твоё рвение. Но у тебя ещё много времени для обучения. Благословляю твой путь...";
+		close;
+	}
+}
+
+//============================================================ 
+// Old changelog
+//============================================================ 
+//= 1.0a Now using functions found in "Global_Functions.txt"
+//=     for class checks.
+//= 1.2 Added Baby Class Support [Lupus]
+//= 1.3 Removed callfunc Is_####_Class in favor of baseClass [Silentdragon]
+//= 1.4 Fixed an exploit [Lupus]
+//= 1.4a changed perm. variables to temp ones [Lupus]
+//============================================================
