@@ -26,9 +26,9 @@
 //callfunc "F_CoolEventCorp","<menu>","<location>","<save map>",<x>,<y>,"<warp map>";
 function	script	F_CoolEventCorp	{
 	cutin "zonda_01",2;
-	mes "[Сотрудник Компании ''За горизонт'']";
+	mes "[Сотрудник Компании 'За горизонт']";
 	mes "Добро пожаловать в ";
-	mes "Компанию ''За горизонт''. ";
+	mes "Компанию 'За горизонт'. ";
 	mes "Наши сотрудники работают, ";
 	mes "чтобы превосходить ";
 	mes "ваши ожидания. Чем я могу ";
@@ -36,7 +36,7 @@ function	script	F_CoolEventCorp	{
 	next;
 	switch(select(getarg(0))) {
 	case 1:
-		mes "[Сотрудник Компании ''За горизонт'']";
+		mes "[Сотрудник Компании 'За горизонт']";
 		mes "Ваша точка сохранения ";
 		mes "зарегистрирована";
 		mes getarg(1)+".";
@@ -46,7 +46,7 @@ function	script	F_CoolEventCorp	{
 		close2;
 		break;
 	case 2:
-		mes "[Сотрудник Компании ''За горизонт'']";
+		mes "[Сотрудник Компании 'За горизонт']";
 		if(basicskillcheck() && getskilllv("NV_BASIC") < 6){
 			mes "Извините, но, чтобы пользоваться ";
 			mes "складом, вам нужно обладать ";
@@ -93,7 +93,7 @@ function	script	F_CoolEventCorp	{
 				end;
 			}
 			else {
-				mes "[Сотрудник Компании ''За горизонт'']";
+				mes "[Сотрудник Компании 'За горизонт']";
 				mes "Извините, у вас недостаточно ";
 				mes "средств. Телепортация в ";
 				mes "указанный пункт назначения ";
@@ -103,7 +103,7 @@ function	script	F_CoolEventCorp	{
 		close2;
 		break;
 	case 4:
-		mes "[Сотрудник Компании ''За горизонт'']";
+		mes "[Сотрудник Компании 'За горизонт']";
 		if(BaseClass != Job_Merchant){
 			mes "Извините, но аренда телеги";
 			if (checkre(0))
@@ -142,7 +142,7 @@ function	script	F_CoolEventCorp	{
 		next;
 		if(select("Взять телегу:Отмена") == 1){
 			if(Zeny < 800){
-				mes "[Сотрудник Компании ''За горизонт'']";
+				mes "[Сотрудник Компании 'За горизонт']";
 				mes "Извините, но у вас ";
 				mes "недостаточно средств. ";
 				mes "Плата за аренду телеги";
@@ -155,12 +155,12 @@ function	script	F_CoolEventCorp	{
 		close2;
 		break;
 	case 5:
-		callfunc("F_SetKafCode","[Сотрудник Компании ''За горизонт'']","Cool Event Corp.");
+		callfunc("F_SetKafCode","[Сотрудник Компании 'За горизонт']","Компания 'За горизонт'");
 		//the function closes msg and removes cutins
 	case 6:
 	default:
-		mes "[Сотрудник Компании ''За горизонт'']";
-		mes "Компания ''За горизонт'' работает";
+		mes "[Сотрудник Компании 'За горизонт']";
+		mes "Компания 'За горизонт' работает";
 		mes "над улучшением своего обслуживания.";
 		mes "Помогите нам стать лучше путём";
 		mes "отзывов и комментариев. Спасибо.";
