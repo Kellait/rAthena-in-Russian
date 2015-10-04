@@ -5,23 +5,23 @@
 
 prontera,169,176,1	script	Сергей Зверев#533	122,{
 	mes "[^FF8000Сергей Зверев^000000]";
-	mes "Приветствую, моё имя говорит само за себя";
-	mes "Чего ты хочеш?";
+	mes "Приветствую, моё имя говорит само за себя...";
+	mes "Чего ты хочешь?";
 	next;
-	menu "Причёска",Lstyle,"Hair color",Lcolor,"Цвет одежды",Lcloth,"Nothing",LCancel;
+	menu "Причёска",Lstyle,"Цвет волос",Lcolor,"Цвет одежды",Lcloth,"Ничего",LCancel;
 
 	Lstyle:
 		mes "[^FF8000Сергей Зверев^000000]";
-		mes "Вы хотите что-то посмотреть или уже знаете чего хотите?";
+		mes "Хочешь посмотреть варианты или уже знаешь, чего хочешь?";
 		next;
-		menu "Посмотреть",Lbrowsesty,"Я знаю чего хочу",Lwantsty;
+		menu "Посмотреть",Lbrowsesty,"Я знаю, чего хочу",Lwantsty;
 
 	Lwantsty:
 		mes "[^FF8000Сергей Зверев^000000]";
-		mes "Отлично! Тогда просто выберите стиль, и я приступлю к работе!";
+		mes "Отлично! Тогда просто выбери стиль, и я приступлю к работе!";
  		next;
 		mes "[^FF8000Сергей Зверев^000000]";
-		mes "Пожалуйста, выберите номер стиля ^0000FFот 1 до 27^000000.";
+		mes "Выбери номер стиля ^0000FFот 1 до 27^000000.";
  		next;
 		input @sty;
 		if (@sty>27) close;
@@ -29,87 +29,87 @@ prontera,169,176,1	script	Сергей Зверев#533	122,{
 		setlook 1,@sty;
 		next;
 		mes "[^FF8000Сергей Зверев^000000]";
-		mes "Подойдёт, или вы хотите другой стиль?";
+		mes "Подойдёт, или хочешь другую причёску?";
 		next;
-		menu "Это хорошо",-,"Подберем что нибудь другое",Lwantsty;
+		menu "Это хорошо",-,"Подберем что-нибудь другое",Lwantsty;
 		next;
 		mes "[^FF8000Сергей Зверев^000000]";
-		mes "Ты выглядишь великолепно! Надоест причёска возвращайся?";
+		mes "Ты выглядишь великолепно! Надоест причёска -- возвращайся!";
 		close;
 
 	Lbrowsesty:
 		set @look, 0;
 		mes "[^FF8000Сергей Зверев^000000]";
-		mes "Хорошо, тогда начнем! Просто останови меня, когда увидишь то что тебе понравится, хорошо?";
+		mes "Хорошо, тогда начнем! Просто останови меня, когда увидишь то, что тебе понравится.";
 		next;
 
 	Lbrowserep:
 		set @look,@look+1;
 		setlook 1,@look;
-		mes "This is Pallete Number^FF9009 "+@look+" ^000000!"; 
+		mes "Стиль номер ^FF9009 "+@look+" ^000000!"; 
 		if(@look == 27) menu "Дальше",Lbrowsesty,"Стоп! Мне нравится",Lstop;
 		if(@look != 27)	menu "Дальше",Lbrowserep,"Стоп! Мне нравится",Lstop;
 		
 	Lcolor:
 		mes "[^FF8000Сергей Зверев^000000]";
-		mes "Вы хотите что-то посмотреть или уже знаете чего хотите?";
+		mes "Хочешь посмотреть варианты или уже знаешь, чего хочешь?";
 		next;
 		menu "Посмотреть",Lbrowsecolor,"Я знаю, чего хочу",Lwantcolor;
 
 	Lwantcolor:
 		mes "[^FF8000Сергей Зверев^000000]";
-		mes "Just pick a color and we can get started.";
+		mes "Выбери цвет, и я приступлю к работе.";
 		next;
 		mes "[^FF8000Сергей Зверев^000000]";
-		mes "Please pick a style number ^0000FFbetween 0 and 251^000000.";
-		mes "Number 0, by the way, is the default color for your character.";
+		mes "Введи номер стиля ^0000FFот 0 до 251^000000.";
+		mes "Ноль означает обычный цвет для твоей профессии.";
  		next;
 		mes "[^FF8000Сергей Зверев^000000]";
-		mes "0 is default...";
-		mes "1 is blonde...";
-		mes "2 is lavender...";
-		mes "3 is brown...";
-		mes "4 is green...";
-		mes "5 is blue...";
-		mes "6 is white...";
-		mes "7 is black...";
-		mes "8 is red...";
-		mes "and 9-251 are new colors.";
+		mes "0 -- обычный цвет...";
+		mes "1 -- блондин...";
+		mes "2 -- фиолетовый...";
+		mes "3 -- русый...";
+		mes "4 -- зелёный...";
+		mes "5 -- синий...";
+		mes "6 -- пепельный...";
+		mes "7 -- чёрный...";
+		mes "8 -- красный...";
+		mes "а 9-251 -- новые цвета.";
 		input @color;
 		if (@color>251) close;
 		if (@color<0) close;
 		setlook 6,@color;
 		next;
 		mes "[^FF8000Сергей Зверев^000000]";
-		mes "Is this good, or do you want a different color?";
+		mes "Нравится или ещё посмотрим?";
 		next;
-		menu "This is good",-,"Different color, please",Lwantcolor;
+		menu "Нравится",-,"Другой",Lwantcolor;
 		next;
 		mes "[^FF8000Сергей Зверев^000000]";
-		mes "You look great~!  Come back again, okay?";
+		mes "Отлично выглядишь~! Приходи ещё!";
 		close;
 
 	Lbrowsecolor:
 		set @look, -1;
 		mes "[^FF8000Сергей Зверев^000000]";
-		mes "Okay, here we go~!  Just stop me when you see something you like, okay?";
+		mes "Поехали~! Останови меня, когда посчитаешь нужным!";
 		next;
 
 	Lbrowsecolorrep:
 		set @look,@look+1;
 		setlook 6,@look;
-		mes "This is Pallete Number^FF9009 "+@look+" ^000000!"; 
-		if(@look == 251) menu "Back To The Begin",Lbrowsecolor,"I like this one",Lstop;
-		if(@look != 251) menu "Keep going",Lbrowsecolorrep,"I like this one",Lstop;
+		mes "Это цвет номер^FF9009 "+@look+" ^000000!"; 
+		if(@look == 251) menu "В начало",Lbrowsecolor,"Мне нравится",Lstop;
+		if(@look != 251) menu "дальше",Lbrowsecolorrep,"Мне нравится",Lstop;
 
 		Lstop:
 			mes "[^FF8000Сергей Зверев^000000]";
-			mes "You look great~!  I love it~! ^_^";
+			mes "Отлично выглядишь~! Тебе очень идёт~! ^_^";
 			close;
 
 	LCancel:
 		mes "[^FF8000Сергей Зверев^000000]";
-		mes "Well, come again.";
+		mes "Жду тебя снова.";
 		close;
 
 	Lcloth:
@@ -143,20 +143,20 @@ prontera,169,176,1	script	Сергей Зверев#533	122,{
 		input @look;
 		set @look, @look-1;
 		mes "[^FF8000Сергей Зверев^000000]";
-		mes "Хорошо. Остановишь меня когда посчитаешь нужным, ок?";
+		mes "Хорошо. Остановишь меня, когда посчитаешь нужным, ок?";
 		next;
 
 	Lbrowseclothrep:
 		set @look,@look+1;
 		setlook 7,@look;
 		mes "Покраска № ^FF9009 "+@look+" ^000000!"; 
-		if(@look == 553) menu "Сначала",Lbrowsecloth,"Назад",Lbrowseclothrepback,"I like this one",Lstop;
+		if(@look == 553) menu "Сначала",Lbrowsecloth,"Назад",Lbrowseclothrepback,"Оставим так",Lstop;
 		if(@look > 0) menu "Дальше",Lbrowseclothrep,"Назад",Lbrowseclothrepback,"Оставим так",Lstop;
 		if(@look == 0) menu "Дальше",Lbrowseclothrep,"Оставим так",Lstop;
 	Lbrowseclothrepback:
 		set @look,@look-1;
 		setlook 7,@look;
 		mes "Покраска № ^FF9009 "+@look+" ^000000!"; 
-		if(@look == 553) menu "Сначала",Lbrowsecloth,"Назад",Lbrowseclothrepback,"I like this one",Lstop;
+		if(@look == 553) menu "Сначала",Lbrowsecloth,"Назад",Lbrowseclothrepback,"Оставим так",Lstop;
 		if(@look != 553) menu "Дальше",Lbrowseclothrep,"Назад",Lbrowseclothrepback,"Оставим так",Lstop;
 }
