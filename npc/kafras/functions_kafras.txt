@@ -76,8 +76,11 @@
 //==========================================================================
 function	script	F_Kafra	{
 	callfunc "F_ClearGarbage"; // Clear outdated, unused variables
+	.@welcome = getarg(0);
+	.@menu_num = getarg(1);
+
 	// Display Kafra Welcome Message
-	switch(getarg(0)){
+	switch(.@welcome){
 		default:
 		case 0:
 			// Default message (obsolete)
@@ -128,11 +131,11 @@ function	script	F_Kafra	{
 	next;
 	while (1) {
 		deletearray @K_Menu0$[0],getarraysize(@K_Menu0$);
-		if (getarg(0) == 2) {
+		if (.@welcome == 2) {
 			// Guild Kafra Menu override (free Teleport, free Storage, Free Cart)
 			setarray @K_Menu0$[0],"Хранилище","Склад гильдии","Взять телегу","Телепортация","Отмена";
 		} else {
-			switch(getarg(1)){
+			switch(.@menu_num){
 				// Save and Storage only
 				case 1:	setarray @K_Menu0$[0],"Сохранение","Хранилище","Отмена"; break;
 				// Storage only
@@ -164,14 +167,14 @@ function	script	F_Kafra	{
 			return;
 		} else if (@K_Menu0$[.@j] == "Хранилище") {
 			// Do not charge for Guild Storage
-			if(getarg(0) == 2) 
+			if(.@welcome == 2) 
 				callfunc "F_KafStor",2,0,0;
 			else 
-				callfunc "F_KafStor",0,getarg(3),getarg(0);
+				callfunc "F_KafStor",0,getarg(3),.@welcome;
 			next;
 		} else if (@K_Menu0$[.@j] == "Телепортация") {
 			// Display Einbroch "No Teleport Service" notice.
-			if(getarg(1) != 4) callfunc "F_KafTele",getarg(0);
+			if(.@menu_num != 4) callfunc "F_KafTele",.@welcome;
 			else {
 				mes "[Сотрудница Кафры]";
 				mes "Ввиду ^FF0000Соглашения об ограничении ";
@@ -185,13 +188,13 @@ function	script	F_Kafra	{
 			}
 			next;
 		} else if (@K_Menu0$[.@j] == "Взять телегу") {
-			if(callfunc("F_KafCart",getarg(0),getarg(4)) == 1) 
+			if(callfunc("F_KafCart",.@welcome,getarg(4)) == 1) 
 				next;
 		} else if (@K_Menu0$[.@j] == "Другая информация") {
 			callfunc "F_KafInfo",getarg(2);
 			next;
 		} else if (@K_Menu0$[.@j] == "Отмена"){
-			callfunc "F_KafEnd",getarg(0),0;
+			callfunc "F_KafEnd",.@welcome,0;
 			end;
 		} else if (@K_Menu0$[.@j] == "Склад гильдии") {
 			callfunc "F_KafStor",1,0;
@@ -204,8 +207,11 @@ function	script	F_Kafra	{
 // Storage Function
 //===================================================
 function	script	F_KafStor	{
+	.@type = getarg(0);
+	.@fee = getarg(1);
+
 	// Unable to access Guild Storage (Busy)
-	if(getarg(0) == 1){
+	if(.@type == 1){
 		if(guildopenstorage()){
 			mes "[Сотрудница Кафры]";
 			mes "Мне очень жаль, но сейчас ";
@@ -239,11 +245,11 @@ function	script	F_KafStor	{
 		return;
 	}
 	// Accessing Normal Storage (Skipped if accessing Storage from Guild castle)
-	if(getarg(0) != 2){
+	if(.@type != 2){
 		// Consume "Free Ticket for Kafra Storage" if available.
 		if(countitem(7059)) delitem 7059,1;
 		else {
-			if(Zeny<getarg(1)){
+			if(Zeny<.@fee){
 				mes "[Сотрудница Кафры]";
 				// Niflheim Specific Message
 				if (getarg(2) == 1) {
@@ -257,16 +263,16 @@ function	script	F_KafStor	{
 				// Standard Message
 				mes "Мне очень жаль, но у Вас ";
 				mes "недостаточно зени для оплаты. ";
-				mes "Доступ к Хранилищу стоит "+getarg(1)+" зен.";
+				mes "Доступ к Хранилищу стоит "+.@fee+" зен.";
 				return;
 			}
-			set Zeny, Zeny-getarg(1);
-			set RESRVPTS, RESRVPTS + (getarg(1)/5);
+			set Zeny, Zeny-.@fee;
+			set RESRVPTS, RESRVPTS + (.@fee/5);
 		}
 	}
 
 	// Surpress the "End" message if in guild castle.
-	if (getarg(0) != 2) {
+	if (.@type != 2) {
 		// Niflheim specific Message
 		if (getarg(2) == 1) {
 			percentheal 0,-10;
@@ -491,14 +497,17 @@ function	script	F_CheckKafCode	{
 // getarg(1): Company Name
 //=======================================================
 function	script	F_SetKafCode	{
-	mes getarg(0);
+	.@npc_name$ = getarg(0);
+	.@comp_name$ = getarg(1);
+
+	mes .@npc_name$;
 	if(#kafra_code) {
 		mes "Ваш склад защищён паролем. ";
 		mes "Чем могу помочь?";
 		next;
 		switch (select("Изменить пароль -> 5000з:Отказаться от пароля -> 1000з:Отмена")) {
 			case 1:
-				mes getarg(0);
+				mes .@npc_name$;
 				mes "Пожалуйста, введите ^0000FFстарый пароль^000000.";
 				set @code,callfunc("F_EntKafCode");
 				if(!@code || @code != #kafra_code) {
@@ -507,10 +516,10 @@ function	script	F_SetKafCode	{
 					break;
 				}
 				next;
-				callsub S_SET,getarg(0),getarg(1);
+				callsub S_SET,.@npc_name$,.@comp_name$;
 				break;
 			case 2:
-				mes getarg(0);
+				mes .@npc_name$;
 				mes "Пожалуйста, введите пароль.";
 				set @code,callfunc("F_EntKafCode");
 				if(!@code) {
@@ -519,7 +528,7 @@ function	script	F_SetKafCode	{
 					break;
 				}
 				next;
-				mes getarg(0);
+				mes .@npc_name$;
 				if(Zeny < 1000) {
 					mes "У вас недостаточно зени.";
 					emotion e_cash;
@@ -529,7 +538,7 @@ function	script	F_SetKafCode	{
 				if(@code == #kafra_code) {
 					set #kafra_code,0;
 					mes "Вы успешно изменили пароль.";
-					mes "Благодарим за использование "+getarg(1)+".";
+					mes "Благодарим за использование "+.@comp_name$+".";
 					emotion e_thx;
 				} else {
 					mes "Неверный пароль. К сожалению, ";
@@ -543,12 +552,12 @@ function	script	F_SetKafCode	{
 				break;
 		}
 	} else {
-		mes getarg(1)+" рада сообщить о новой услуге:";
+		mes .@comp_name$+" рада сообщить о новой услуге:";
 		mes "Дополнительная защита хранилища ";
 		mes "с помощью пароля.";
 		next;
 		switch (select("Назначить пароль -> 5000з:Отмена")) {
-			case 1: callsub S_SET,getarg(0),getarg(1); break;
+			case 1: callsub S_SET,.@npc_name$,.@comp_name$; break;
 			case 2: break;		
 		}
 	}
@@ -557,7 +566,7 @@ function	script	F_SetKafCode	{
 	end;
 
 S_SET:
-	mes getarg(0);
+	mes .@npc_name$;
 	mes "Теперь введите ";
 	mes "^FF0000новый пароль^000000, ";
 	mes "и ваше хранилище ";
@@ -569,7 +578,7 @@ S_SET:
 		return;
 	}
 	next;
-	mes getarg(0);
+	mes .@npc_name$;
 	if(Zeny < 5000) {
 		mes "У Вас недостаточно зени.";
 		emotion e_cash;
@@ -578,7 +587,7 @@ S_SET:
 	set Zeny,Zeny-5000;
 	set #kafra_code,@code;
 	mes "Вы защитили свой склад паролем.";
-	mes "Благодарим за использование "+getarg(1)+".";
+	mes "Благодарим за использование "+.@comp_name$+".";
 	emotion e_thx;
 	return;
 }

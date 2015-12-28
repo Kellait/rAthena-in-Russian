@@ -79,7 +79,8 @@ function	script	F_CoolEventCorp	{
 			set .@cost,4400;
 		else
 			set .@cost,2200;
-		if (select(getarg(5)+" -> "+.@cost+" з:Отмена") == 1) {
+		.@destination$ = getarg(5);
+		if (select(.@destination$ +" -> "+ .@cost +" z:Отмена") == 1) {
 			if ((countitem(7060) != 0) || (Zeny >= .@cost)) {
 				if (countitem(7060) != 0) {
 					delitem 7060,1; //Warp_Free_Ticket
@@ -87,8 +88,8 @@ function	script	F_CoolEventCorp	{
 				else {
 					set Zeny,Zeny-.@cost;
 				}
-				if (getarg(5) == "Veins") warp "veins",205,101;
-				else if (getarg(5) == "Rachel") warp "rachel",115,125;
+				if (.@destination$ == "Veins") warp "veins",205,101;
+				else if (.@destination$ == "Rachel") warp "rachel",115,125;
 				cutin "",255;
 				end;
 			}
@@ -98,6 +99,7 @@ function	script	F_CoolEventCorp	{
 				mes "средств. Телепортация в ";
 				mes "указанный пункт назначения ";
 				mes "стоит "+.@cost+" зен.";
+
 			}
 		}
 		close2;
