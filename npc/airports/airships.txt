@@ -17,6 +17,8 @@
 //= ... -> Juno -> Einbroch -> Lighthalzen -> Einbroch
 //= -> Juno -> Hugel -> ...
 //============================================================ 
+//= Перевод Fenrir
+//============================================================ 
 
 airplane,243,73,0	script	#AirshipWarp-1	45,1,1,{
 	end;
@@ -49,124 +51,124 @@ OnInit:
 	initnpctimer;
 	end;
 OnTimer20000:
-	mapannounce "airplane","We are heading to Einbroch.",bc_map,"0x00ff00";
+	mapannounce "airplane","Мы идём к Einbroch.",bc_map,"0x00ff00";
 	end;
 OnTimer50000:
-	mapannounce "airplane","We will arrive in Einbroch shortly.",bc_map,"0x00ff00";
+	mapannounce "airplane","Мы скоро прибудет в Einbroch.",bc_map,"0x00ff00";
 	end;
 OnTimer60000:
 	set $@airplanelocation,1;
 	donpcevent "#AirshipWarp-1::OnUnhide";
 	donpcevent "#AirshipWarp-2::OnUnhide";
-	mapannounce "airplane","Welcome to Einbroch. Have a safe trip.",bc_map,"0x00ff00";
+	mapannounce "airplane","Добро пожаловать в Einbroch. Путешествуйте безопасно.",bc_map,"0x00ff00";
 	end;
 OnTimer70000:
-	mapannounce "airplane","Currently we are in Einbroch. The Airship will take off shortly.",bc_map,"0x00ff00";
+	mapannounce "airplane","В настоящее время мы находимся в Einbroch. Дирижабль снимается с якоря в ближайшее время.",bc_map,"0x00ff00";
 	end;
 OnTimer80000:
 	donpcevent "#AirshipWarp-1::OnHide";
 	donpcevent "#AirshipWarp-2::OnHide";
-	mapannounce "airplane","The Airship is now taking off. Our next destination is Lighthalzen.",bc_map,"0x70dbdb";
+	mapannounce "airplane","Дирижабль навзлёте. Наш следующий пункт назначения Lighthalzen.",bc_map,"0x70dbdb";
 	end;
 OnTimer100000:
-	mapannounce "airplane","We are heading to Lighthalzen.",bc_map,"0x70dbdb";
+	mapannounce "airplane","Мы направляемся в Lighthalzen.",bc_map,"0x70dbdb";
 	end;
 OnTimer130000:
-	mapannounce "airplane","We will arrive in Lighthalzen shortly.",bc_map,"0x70dbdb";
+	mapannounce "airplane","Мы прибудет в Lighthalzen в ближайшее время.",bc_map,"0x70dbdb";
 	end;
 OnTimer140000:
 	set $@airplanelocation,2;
 	donpcevent "#AirshipWarp-1::OnUnhide";
 	donpcevent "#AirshipWarp-2::OnUnhide";
-	mapannounce "airplane","Welcome to Lighthalzen. Have a safe trip.",bc_map,"0x70dbdb";
+	mapannounce "airplane","Добро пожаловать в Lighthalzen. Путешествуйте безопасно.",bc_map,"0x70dbdb";
 	end;
 OnTimer150000:
-	mapannounce "airplane","Currently we are in Lighthalzen. The Airship will leave shortly.",bc_map,"0x70dbdb";
+	mapannounce "airplane","В настоящее время мы находимся в Lighthalzen. Дирижабль снимается с якоря в ближайшее время.",bc_map,"0x70dbdb";
 	end;
 OnTimer160000:
 	donpcevent "#AirshipWarp-1::OnHide";
 	donpcevent "#AirshipWarp-2::OnHide";
-	mapannounce "airplane","The Airship is leaving the ground. Our next destination is Einbroch.",bc_map,"0x00ff00";
+	mapannounce "airplane","Дирижабль покидает землю. Наш следующий пункт назначения Einbroch.",bc_map,"0x00ff00";
 	end;
 OnTimer180000:
-	mapannounce "airplane","We are heading to Einbroch.",bc_map,"0x00ff00";
+	mapannounce "airplane","Мы направляемся в Einbroch.",bc_map,"0x00ff00";
 	end;
 OnTimer210000:
-	mapannounce "airplane","We will arrive in Einbroch shortly.",bc_map,"0x00FF00";
+	mapannounce "airplane","Мы прибудет в Einbroch в ближайшее время.",bc_map,"0x00FF00";
 	end;
 OnTimer220000:
 	set $@airplanelocation,1;
 	donpcevent "#AirshipWarp-1::OnUnhide";
 	donpcevent "#AirshipWarp-2::OnUnhide";
-	mapannounce "airplane","Welcome to Einbroch. Have a safe trip.",bc_map,"0x00ff00";
+	mapannounce "airplane","Добро пожаловать в Einbroch. Путешествуйте безопасно.",bc_map,"0x00ff00";
 	end;
 OnTimer230000:
-	mapannounce "airplane","Currently we are in Einbroch. The Airship will take off shortly.",bc_map,"0x00ff00";
+	mapannounce "airplane","В настоящее время мы находимся в Einbroch. Дирижабль снимается с якоря в ближайшее время.",bc_map,"0x00ff00";
 	end;
 OnTimer240000:
 	donpcevent "#AirshipWarp-1::OnHide";
 	donpcevent "#AirshipWarp-2::OnHide";
-	mapannounce "airplane","The Airship is now taking off. Our next destination is Juno.",bc_map,"0xff8200";
+	mapannounce "airplane","Дирижабль навзлёте. Наш следующий пункт назначения Juno.",bc_map,"0xff8200";
 	end;
 OnTimer260000:
-	mapannounce "airplane","We are heading to Juno.",bc_map,"0xff8200";
+	mapannounce "airplane","Мы направляемся в Juno.",bc_map,"0xff8200";
 	end;
 OnTimer290000:
-	mapannounce "airplane","We will arrive in Juno shortly.",bc_map,"0xff8200";
+	mapannounce "airplane","Мы прибудет в Juno в ближайшее время.",bc_map,"0xff8200";
 	end;
 OnTimer300000:
 	set $@airplanelocation,0;
 	donpcevent "#AirshipWarp-1::OnUnhide";
 	donpcevent "#AirshipWarp-2::OnUnhide";
-	mapannounce "airplane","Welcome to Juno. Have a safe trip.",bc_map,"0xff8200";
+	mapannounce "airplane","Добро пожаловать в Juno. Путешествуйте безопасно.",bc_map,"0xff8200";
 	end;
 OnTimer310000:
-	mapannounce "airplane","Currently we are in Juno. The Airship will leave shortly.",bc_map,"0xff8200";
+	mapannounce "airplane","В настоящее время мы находимся в Juno. Дирижабль отправляется в ближайшее время.",bc_map,"0xff8200";
 	end;
 OnTimer320000:
 	donpcevent "#AirshipWarp-1::OnHide";
 	donpcevent "#AirshipWarp-2::OnHide";
-	mapannounce "airplane","The Airship is leaving the ground. Our next destination is Hugel.",bc_map,"0xca4bf3";
+	mapannounce "airplane","Дирижабль покидает землю. Наш следующий пункт назначения Hugel.",bc_map,"0xca4bf3";
 	end;
 OnTimer340000:
-	mapannounce "airplane","We are heading to Hugel.",bc_map,"0xca4bf3";
+	mapannounce "airplane","Мы направляемся в Hugel.",bc_map,"0xca4bf3";
 	end;
 OnTimer370000:
-	mapannounce "airplane","We will arrive in Hugel shortly.",bc_map,"0xca4bf3";
+	mapannounce "airplane","Мы прибудет в Hugel в ближайшее время.",bc_map,"0xca4bf3";
 	end;
 OnTimer380000:
 	set $@airplanelocation,3;
 	donpcevent "#AirshipWarp-1::OnUnhide";
 	donpcevent "#AirshipWarp-2::OnUnhide";
-	mapannounce "airplane","Welcome to Hugel. Have a safe trip.",bc_map,"0xca4bf3";
+	mapannounce "airplane","Добро пожаловать в Hugel. Путешествуйте в безопасности.",bc_map,"0xca4bf3";
 	end;
 OnTimer390000:
-	mapannounce "airplane","Currently we are in Hugel. The Airship will leave shortly.",bc_map,"0xca4bf3";
+	mapannounce "airplane","В настоящее время мы находимся в Hugel. Дирижабль скоро отправляется.",bc_map,"0xca4bf3";
 	end;
 OnTimer400000:
 	donpcevent "#AirshipWarp-1::OnHide";
 	donpcevent "#AirshipWarp-2::OnHide";
-	mapannounce "airplane","The Airship is leaving the ground. Our next destination is Juno.",bc_map,"0xff8200";
+	mapannounce "airplane","Дирижабль покидает землю. Наш следующий пункт назначения Juno.",bc_map,"0xff8200";
 	end;
 OnTimer420000:
-	mapannounce "airplane","We are heading to Juno.",bc_map,"0xff8200";
+	mapannounce "airplane","Мы направляемся в Juno.",bc_map,"0xff8200";
 	end;
 OnTimer450000:
-	mapannounce "airplane","We will arrive in Juno shortly.",bc_map,"0xff8200";
+	mapannounce "airplane","Мы прибудет в Juno в ближайшее время.",bc_map,"0xff8200";
 	end;
 OnTimer460000:
 	set $@airplanelocation,0;
 	donpcevent "#AirshipWarp-1::OnUnhide";
 	donpcevent "#AirshipWarp-2::OnUnhide";
-	mapannounce "airplane","Welcome to Juno. Have a safe trip.",bc_map,"0xff8200";
+	mapannounce "airplane","Добро пожаловать в Juno. Путешествуйте в безопасности.",bc_map,"0xff8200";
 	end;
 OnTimer470000:
-	mapannounce "airplane","Currently we are in Juno. The Airship will leave shortly.",bc_map,"0xff8200";
+	mapannounce "airplane","В настоящее время мы находимся в Juno. Дирижабль скоро отправляется.",bc_map,"0xff8200";
 	end;
 OnTimer480000:
 	donpcevent "#AirshipWarp-1::OnHide";
 	donpcevent "#AirshipWarp-2::OnHide";
-	mapannounce "airplane","The Airship is leaving the ground. Our next destination is Einbroch.",bc_map,"0x00ff00";
+	mapannounce "airplane","Дирижабль покидает землю. Наш следующий пункт назначения Einbroch.",bc_map,"0x00ff00";
 	stopnpctimer;
 	initnpctimer;
 }
