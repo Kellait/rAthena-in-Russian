@@ -181,24 +181,16 @@ airplane,240,40,1	duplicate(ExitAirplane)	Exit#airplane2a	857
 airplane,247,40,1	duplicate(ExitAirplane)	Exit#airplane2b	857
 
 airplane,100,69,3	script	Airship Crew#ein-1	852,{
-	mes "[Airship Crew]";
-	mes "If we've landed at";
-	mes "your destination and";
-	mes "you'd like to leave the";
-	mes "Airship, please use the";
-	mes "stairs up ahead. Thank";
-	mes "you for your patronage.";
+	mes "[Экипаж дирижабля]";
+	mes "Когда мы приземляемся в пункте назначения и вы хотите выйти, используйте для этого лестницу перед вами. Благодарим вас за использование наших авиалиний.";
 	close;
 }
 
 airplane,64,94,1	script	Umbala Kid#ein_p	787,{
 	emotion e_swt2;
-	mes "[Kid]";
+	mes "[Киндер]";
 	if (event_umbala >= 3) {
-		mes "Wow, mom!";
-		mes "L-look at this!";
-		mes "We're flying! W-we're...";
-		mes "We're in the freakin' sky!";
+		mes "Воу! Только посмотри на это! Мы летим! Мы на седьмом небе!";
 	}
 	else {
 		mes "Makumalagu!";
@@ -213,11 +205,9 @@ airplane,66,93,3	script	Umbala Lady#ein_p	783,{
 	emotion e_dots;
 	mes "[Lady]";
 	if (event_umbala >= 3) {
-		mes "Shush...";
-		mes "Honey, behave~";
-		mes "Don't act so excited";
-		mes "when we're out in a";
-		mes "public place like this!";
+		mes "Ш-ш-ш...";
+		mes "Тише, малыш.";
+		mes "Веди себя спокойней на людях.";
 	}
 	else {
 		mes "Chooktu!";
@@ -690,64 +680,64 @@ OnEnable:
 	initnpctimer;
 	end;
 OnTimer25000:
-	mapannounce "airplane_01","We are heading to Izlude.",bc_map,"0x00ff00";
+	mapannounce "airplane_01","Мы направляемся в Izlude.",bc_map,"0x00ff00";
 	end;
 OnTimer50000:
-	mapannounce "airplane_01","We will arrive in Izlude shortly.",bc_map,"0x00ff00";
+	mapannounce "airplane_01","Мы скоро прибудем в Izlude.",bc_map,"0x00ff00";
 	end;
 OnTimer60000:
 	set $@airplanelocation2,1;
 	donpcevent "#AirshipWarp-3::OnUnhide";
 	donpcevent "#AirshipWarp-4::OnUnhide";
-	mapannounce "airplane_01","Welcome to Izlude. Have a safe trip.",bc_map,"0x00ff00";
+	mapannounce "airplane_01","Добро пожаловать в Izlude. Путешествуйте в безопасности.",bc_map,"0x00ff00";
 	end;
 OnTimer70000:
-	mapannounce "airplane_01","We are currently in Izlude. The Airship will take off shortly.",bc_map,"0x00ff00";
+	mapannounce "airplane_01","Мы находимся в Izlude. Дирижабль скоро отправляется в путь.",bc_map,"0x00ff00";
 	end;
 OnTimer80000:
 	donpcevent "#AirshipWarp-3::OnHide";
 	donpcevent "#AirshipWarp-4::OnHide";
-	mapannounce "airplane_01","The Airship is now taking off. Our next destination is Juno.",bc_map,"0x70dbdb";
+	mapannounce "airplane_01","Дирижабль на взлёте. Наш следующий пункт назначения Juno.",bc_map,"0x70dbdb";
 	end;
 OnTimer105000:
-	mapannounce "airplane_01","We are heading to Juno.",bc_map,"0x70dbdb";
+	mapannounce "airplane_01","Мы направляемся в Juno.",bc_map,"0x70dbdb";
 	end;
 OnTimer130000:
-	mapannounce "airplane_01","We will arrive in Juno shortly.",bc_map,"0x70dbdb";
+	mapannounce "airplane_01","Мы скоро прибудем в Juno.",bc_map,"0x70dbdb";
 	end;
 OnTimer140000:
 	set $@airplanelocation2,2;
 	donpcevent "#AirshipWarp-3::OnUnhide";
 	donpcevent "#AirshipWarp-4::OnUnhide";
-	mapannounce "airplane_01","Welcome to Juno. Have a safe trip.",bc_map,"0x70dbdb";
+	mapannounce "airplane_01","Добро пожаловать в Juno. Путешествуйте в безопасности.",bc_map,"0x70dbdb";
 	end;
 OnTimer150000:
-	mapannounce "airplane_01","We are currently in Juno. The Airship will leave shortly.",bc_map,"0x70dbdb";
+	mapannounce "airplane_01","Мы находимся в Juno. Дирижабль скоро отправляется в путь.",bc_map,"0x70dbdb";
 	end;
 OnTimer160000:
 	donpcevent "#AirshipWarp-3::OnHide";
 	donpcevent "#AirshipWarp-4::OnHide";
-	mapannounce "airplane_01","The Airship is leaving the ground. Our next destination is Rachel.",bc_map,"0xFF8200";
+	mapannounce "airplane_01","Дирижабль покидает землю. Наш следующий пункт назначения Rachel.",bc_map,"0xFF8200";
 	end;
 OnTimer185000:
-	mapannounce "airplane_01","We are heading to Rachel.",bc_map,"0xFF8200";
+	mapannounce "airplane_01","Мы направляемся в Rachel.",bc_map,"0xFF8200";
 	end;
 OnTimer210000:
-	mapannounce "airplane_01","We will arrive in Rachel shortly.",bc_map,"0xFF8200";
+	mapannounce "airplane_01","Мы скоро прибудем в Rachel.",bc_map,"0xFF8200";
 	end;
 OnTimer220000:
 	set $@airplanelocation2,0;
 	donpcevent "#AirshipWarp-3::OnUnhide";
 	donpcevent "#AirshipWarp-4::OnUnhide";
-	mapannounce "airplane_01","Welcome to Rachel. Have a safe trip.",bc_map,"0xFF8200";
+	mapannounce "airplane_01","Добро пожаловать в Rachel. Путешествуйте в безопасности.",bc_map,"0xFF8200";
 	end;
 OnTimer230000:
-	mapannounce "airplane_01","We are currently in Rachel. The Airship will take off shortly.",bc_map,"0xFF8200";
+	mapannounce "airplane_01","Мы находимся в Rachel. Дирижабль скоро отправляется в путь.",bc_map,"0xFF8200";
 	end;
 OnTimer240000:
 	donpcevent "#AirshipWarp-3::OnHide";
 	donpcevent "#AirshipWarp-4::OnHide";
-	mapannounce "airplane_01","The Airship is now taking off. Our next destination is Izlude.",bc_map,"0x00ff00";
+	mapannounce "airplane_01","Дирижабль покидает землю. Наш следующий пункт назначения Izlude.",bc_map,"0x00ff00";
 	stopnpctimer;
 	set .moninv, .moninv + 1;
 	if (.moninv == 7) {
