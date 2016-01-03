@@ -221,26 +221,16 @@ airplane,66,93,3	script	Umbala Lady#ein_p	783,{
 airplane,71,91,7	script	Umbala Man#ein_p	789,{
 	if (event_umbala >= 3) {
 		mes "[Chrmlim]";
-		mes "Hey there~";
-		mes "From that look on";
-		mes "your face, I see that";
-		mes "you can understand";
-		mes "me. ^333333*Whew...!*^000000";
+		mes "Эй ты~";
+		mes "Не отварачивайся. Судя по твоему лицу ты меня понимаешь.";
 		next;
 		emotion e_pif;
 		mes "[Chrmlim]";
-		mes "I've been helping the";
-		mes "Airship enterprise by";
-		mes "having the Airship Crewmen";
-		mes "train in Umbala to overcome";
-		mes "any acrophobia they might have through bungee jumping. Neat, eh?";
+		mes "Я помогаю членам экипажа преодалеть боязнь высоты.";
 		next;
 		mes "[Chrmlim]";
-		mes "But...";
-		mes "Some of them couldn't";
-		mes "overcome their fear of";
-		mes "heights. And a few even";
-		mes "ended up, um, ^333333in Nifflheim^000000.";
+		mes "Но...";
+		mes "Некоторым так и не удаётся преодалеть свои страхи и они... гм... Попадают ^333333в Nifflheim^000000.";
 	}
 	else {
 		mes "[Chrmlim]";
@@ -265,92 +255,58 @@ airplane,250,58,2	script	Airship Staff#airplane	67,{
 	// Hugel quest addition
 	if (hg_ma1 == 3) {
 		mes "[Airship Staff]";
-		mes "Welcome";
-		mes "to the Airship.";
-		mes "How may I help you?";
+		mes "Добро пожаловать на дирижабль.";
+		mes "Как я могу тебе помочь?";
 		next;
-		select("Do you have a passenger named Thierry?");
+		select("У вас есть пасажир по имени Thierry?");
 		mes "[Airship Staff]";
-		mes "I am sorry, but I do not think that we have a passenger by that name.";
+		mes "Извините, не думаю что у нас есть пассажир с таким именем.";
 		close;
 	}
 	// Hugel quest end
 	mes "[Airship Staff]";
-	mes "Welcome";
-	mes "to the Airship.";
-	mes "How may I help you?";
+	mes "Добро пожаловать на дирижабль.";
+	mes "Как я могу тебе помочь?";
 	next;
-	switch (select("Using the Airship:Captain's Cabin:Facilities:Cancel")) {
+	switch (select("Я хочу полететь:Мне нужна кают капитана:Как я могу провести время:Ничего")) {
 	case 1:
 		mes "[Airship Staff]";
-		mes "When you see a broadcast";
-		mes "announcing that we have";
-		mes "arrived at your destination,";
-		mes "please use one of the exits";
-		mes "located at the north and";
-		mes "south ends of the Airship.";
+		mes "Когда ты увидитешь объявление о посадке воспользуйся выходом в северной или южной части дирижабля.";
 		next;
 		mes "[Airship Staff]";
-		mes "If you happen to miss";
-		mes "your stop, don't worry.";
-		mes "The Airship is constantly";
-		mes "en route and you'll get";
-		mes "another chance to arrive";
-		mes "to your intended destination.";
+		mes "Если ты пропустишь свою остановку не переживай, дирижабль постоянно находится на маршруте и рано или поздно вернется к необходимой точке высадки.";
 		close;
 	case 2:
 		mes "[Airship Staff]";
-		mes "The Captain's Cabin";
-		mes "is located at the front";
-		mes "of the Airship. There, you";
-		mes "can meet the captain and";
-		mes "the pilot of the Airship.";
+		mes "Каюта капитана находится во фронтальной части дирижабля. Там вы сможете найти капитана и пилота.";
 		close;
 	case 3:
 		mes "[Airship Staff]";
-		mes "The Airship provides";
-		mes "various Mini Games for";
-		mes "the entertainment of all";
-		mes "our passengers. We invite";
-		mes "you to try your luck and skills";
-		mes "in the Airship's Mini Games~";
+		mes "На дирижабле есть небольшое казино в которое приглашаются все пасажиры. Там вы можете скоротать время за мини-играми и испытать свою удачу.";
 		close;
 	case 4:
 		mes "[Airship Staff]";
-		mes "Well, I hope you";
-		mes "your flight aboard";
-		mes "our Airships. Thank";
-		mes "you and have a good day.";
+		mes "Надеюсь полёт пройдёт приятно. Доброй дороги.";
 		close;
 	}
 }
 
 airplane,80,71,2	script	Zerta#01airplane	834,{
 	mes "[Zerta]";
-	mes "Oh, hello adventurer.";
-	mes "I am currently on a";
-	mes "sacred journey, offering";
-	mes "prayer for the sake of the";
-	mes "Rune-Midgard continent.";
+	mes "Привет, авантюрист.";
+	mes "В настоящее время я нахожусь в кристовом походе. Помолись со мной за Рун-Мидгард.";
 	close;
 }
 
 airplane,65,63,4	script	Maelin#01airplane	714,{
 	mes "[Maelin]";
-	mes "Um, this Airship is";
-	mes "to Lutie, isn't it? I've";
-	mes "waiting so long,";
-	mes "but I haven't heard any";
-	mes "broadcast about Lutie.";
+	mes "Этот дирижабль летит в Lutie? Я лечу так давно но не слышала ни одного объявления о Lutie.";
 	close;
 }
 
 airplane,72,34,6	script	Aanos#01airplane	702,{
 	mes "[Aanos]";
-	mes "Oh wooow~";
-	mes "The sky looks";
-	mes "so different and";
-	mes "pretty from up there!";
+	mes "Ох. Отсюда небо выглядит совершенно по-другому.";
 	close;
 }
 
@@ -358,21 +314,18 @@ airplane,221,158,2	script	Pilot#airplane	852,{
 	// Hugel quest addition
 	if (hg_ma1 == 3) {
 		mes "[Pilot]";
-		mes "I wish that I could go drink a cold fresh beer.";
-		mes "Drinking is the goal of my life! Drinking gives me energy!";
-		mes "I am nothing without drinks!";
+		mes "Как же я хочу злоупотребить свежим холодным пивком.";
+		mes "Цель моей жизни пить!";
+		mes "Только выпивка придаёт мне энергию!";
 		next;
 		mes "[Pilot]";
-		mes "But! Driving under the influence is not good.";
-		mes "But! That makes me want to drink more and more!";
+		mes "Но! Пить на работе непозволительно.";
+		mes "Но! Из-за этого мне только больше хочется выпиь!";
 		emotion e_sob;
 		next;
-		select("Do you know a passenger named Thierry?");
+		select("Знаете ли вы посажира по имени Thierry?");
 		mes "[Pilot]";
-		mes "This uniform is";
-		mes "really dapper, but";
-		mes "it's way too thick to";
-		mes "wear around the Airship.";
+		mes "Эта униформа действительно крутая, но слишком толстая и неудобная что бы носить её на дирижабле.";
 		next;
 		mes "[Pilot]";
 		mes "...";

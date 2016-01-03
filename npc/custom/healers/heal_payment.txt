@@ -95,7 +95,7 @@ aldebaran,134,123,5	duplicate(healer2)	Healer#alde	402
 amatsu,200,80,5	duplicate(healer2)	Healer#ama	402
 ayothaya,155,111,5	duplicate(healer2)	Healer#ayo	402
 comodo,188,162,5	duplicate(healer2)	Healer#com	402
-geffen,121,61,5	duplicate(healer2)	Healer#gef	402
+geffen,123,60,5	duplicate(healer2)	Healer#gef	402
 gonryun,164,130,5	duplicate(healer2)	Healer#gon	402
 izlude,125,118,5	duplicate(healer2)	Healer#izl	402
 louyang,225,103,5	duplicate(healer2)	Healer#lou	402
