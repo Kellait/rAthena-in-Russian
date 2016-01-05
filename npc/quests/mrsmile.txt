@@ -1,0 +1,117 @@
+//===== rAthena Script ======================================= 
+//= Mr. Smile Quest
+//===== By: ================================================== 
+//= kobra_k88, Akaru
+//===== Current Version: ===================================== 
+//= 1.4a
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= [Official Conversion]
+//= Trade Clover, Fluff and Jellopy for a Mr. Smile mask.
+//===== Additional Comments: ================================= 
+//= 1.4 Rescripted to Aegis 10.3 standards. [L0ne_W0lf]
+//= 1.4a Fixed a little Typo error in duplicates. (bugreport:749) [Samuray22]
+//============================================================ 
+//= Перевод: ucell-uz
+//= Источник: http://ea-support.ws/index.php?/topic/3205-nabor-skriptov-budit-popolnjatsja/page__st__20
+//============================================================
+
+-	script	Smile Assistance::SmileHelper	92,{
+	set $@npcnames$,"[^BC7F15Улыбчивая девушка^000000]";
+	mes $@npcnames$;
+	mes "Привет ~ привет! ~";
+	mes "Добро пожаловать в Smile Assistance";
+	mes "Я могу помочь тебе получить Маску";
+	mes "для лица Mr. Smile";
+	mes "Тебе помочь в этом?";
+	next;
+	switch(select("Расскажите о ^3355FFМаске Mr. Smile^000000 ?:Собрать Маску ^3355FFMr. Smile^000000 :Выход")) {
+	case 1:
+		mes $@npcnames$;
+		mes "Это мероприятие проводит команда ^5577FFЕго Величества Тристама Третьего^000000,";
+		mes "Я ^3355FF' Smile Assistance '^000000,";
+		mes "учавствую в этом мероприятии под девизом";
+		mes "^3355FFМы привнесём улыбки во все уголки Королевства Руна-Мидгарда..~^000000";
+		next;
+		mes $@npcnames$;
+		mes "С помощью вещей, которых,";
+		mes "так легко и просто достать,";
+		mes "я смогу сделать для тебя ^3355FF'Маску Mr. Smile '^000000.";
+		mes "Но для этого мне понадобится твоя помощь.";
+		next;
+		mes $@npcnames$;
+		mes "Мне нужны будут следующие вещи:";
+		mes "^3355FF10 Jellopy^000000";
+		mes "^3355FF10 Fluff^000000";
+		mes "^3355FF10 Clover^000000";
+		next;
+		mes $@npcnames$;
+		mes "Благодаря нашему мероприятию,";
+		mes "все люди станут более улыбчивыми,";
+		mes "счастливыми, и постараются сделать";
+		mes "Рагнарок самой приятной игрой в мире!";
+		close;
+	case 2:
+		if (countitem(909) > 9 && countitem(914) > 9 && countitem(705) > 9) {
+			mes $@npcnames$;
+			mes "Прими мои поздравления !";
+			mes "Держи свою Маску Mr.Smile.";
+			mes "Ты заработал его честным трудом!";
+			next;
+			delitem 909,10; //Jellopy
+			delitem 914,10; //Fluff
+			delitem 705,10; //Clover
+			getitem 2278,1; //Mr_Smile
+			mes $@npcnames$;
+			mes "Его Величество, Тристам Третий";
+			mes "обещал, что приложит все усилия, чтобы сделать Рагнарок лучше и более интереснее.";
+			next;
+			mes "То, о чём я упомянула выше, было";
+			mes "опубликованно Государственным";
+			mes "Информационным Бюро Короловства Рун-Мидгарда.";
+			close;
+		}
+		else {
+			mes $@npcnames$;
+			mes "Ой, к сожалению, у тебя не";
+			mes "хватает всего необходимого";
+			mes "Чтобы сделать Маску Mr. Smile.";
+			mes "^3355FF10 Jellopy^000000";
+			mes "^3355FF10 Fluff^000000";
+			mes "^3355FF10 Clover^000000";
+			mes "Пожалуйста проверь всё ещё разок.";
+			close;
+		}
+	case 3:
+		mes $@npcnames$;
+		mes "Спасибо, что зашли к нам.";
+		mes "Мы... в Королевстве Руна-Мидгарда";
+		mes "прикладываем все усилия, чтобы";
+		mes "сделать игру Рагнарок более";
+		mes "лучше, более интереснее и захватывающее.";
+		next;
+		mes $@npcnames$;
+		mes "Мы искренне просим вас о";
+		mes "содействии. То, о чём я";
+		mes "упомянула выше, было в паблике";
+		mes "Государственного Бюро Королевства Рун-Мидгарда.";
+		close;
+	}
+}
+
+// Additional Smile Assistance staff
+alberta,113,53,4	duplicate(SmileHelper)	Улыбчивая Девушка#alb	92
+aldebaran,136,135,4	duplicate(SmileHelper)	Улыбчивая Девушка#alde	92
+geffen,119,107,4	duplicate(SmileHelper)	Улыбчивая Девушка#gef	92
+moc_ruins,59,154,3	duplicate(SmileHelper)	Улыбчивая Девушка#moc	92
+payon,186,104,5	duplicate(SmileHelper)	Улыбчивая Девушка#pay	92
+prontera,157,187,4	duplicate(SmileHelper)	Улыбчивая Девушка#prt	92
+
+//============================================================ 
+// Old changelog
+//============================================================ 
+//= Fully working. 1.1 Optimized
+//= 1.2 updated Payon coords [Lupus]
+//= 1.3 fixed exploit [Lupus]
+//============================================================ 

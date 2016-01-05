@@ -330,69 +330,43 @@ airplane,221,158,2	script	Pilot#airplane	852,{
 		mes "[Pilot]";
 		mes "...";
 		mes "......";
-		mes "No one ever really";
-		mes "comes into this room.";
-		mes "And the captain IS a reindeer. I could just strip to my boxers.";
+		mes "Насамом деле сюда никто никогда не заходит.";
+		mes "Да и капитан северный олень.";
+		mes "Я вполне мог бы раздеться до трусов.";
 		next;
 		emotion e_omg;
 		mes "[Pilot]";
-		mes "Wah!? Who is it!";
+		mes "Вах! Кто тут?";
 		next;
-		mes "- ...He is not listening to you, at all. -";
+		mes "- ...Он ничего не слышал. -";
 		close;
 	}
 	// Hugel quest end
 	switch (rand(1,4)) {
 	case 1:
 		mes "[Pilot]";
-		mes "It's been sooo";
-		mes "long since I've";
-		mes "enjoyed a nice, cold";
-		mes "alcoholic brew. But the";
-		mes "job requires me to be as";
-		mes "clear headed as I can!";
+		mes "Это было ооочень давно. Я наслаждался прекрасным алкогольным напитком. Но работа требует ясного ума.";
 		next;
 		mes "[Pilot]";
-		mes "Always drink responsibly!";
-		mes "Still, I can't remember the";
-		mes "last time I had a real vacation";
-		mes "or even a day off. Yeap, some";
-		mes "booze, some chips, some TV";
-		mes "and serius R&R is in order.";
+		mes "Всегда пейте ответственно!";
+		mes "Тем не менее я немогу вспомнить когда у меня был реальный отпуск или хоты бы выходной.";
+		mes "Дааа, немного выпивки, азартных игр, немного телевизора и всё пришёл бы в полный порядок.";
 		emotion e_sob;
 		close;
 	case 2:
 		mes "[Pilot]";
-		mes "Man, the weather";
-		mes "is really nice today.";
-		mes "Bright, open skies make";
-		mes "for some good visibility";
-		mes "and safe, carefree flying.";
+		mes "Сегодня отличная погода и ясные небеса. Из некоторых окон и палубы открывается прекрасный вид.";
 		close;
 	case 3:
 		mes "[Pilot]";
-		mes "You know, our captain's a";
-		mes "respectable guy. Him and";
-		mes "his brother are actually well";
-		mes "known in the aircraft industry.";
-		mes "Who knew reindeer made";
-		mes "such good captains?";
+		mes "Вы знаете, наш капитан отличный парень. На самом деле он и его брат хорошо известны в авиации. Кто бы мог подумать что из оленей получаются такие хорошие капитаны?";
 		next;
 		mes "[Pilot]";
-		mes "Just between you";
-		mes "and me, I gotta tell";
-		mes "you, that Santa was onto";
-		mes "something, getting reindeers";
-		mes "and elves to work for him.";
-		mes "The man must be a genius!";
+		mes "Между нами говоря, Санта явно что-то знал когда брал на работу оленей и эльфов. Он либо гений либо чертовски удачлевый парень.";
 		close;
 	default:
 		mes "[Pilot]";
-		mes "You know, this whole";
-		mes "piloting thing in the air,";
-		mes "it's rather new, you know?";
-		mes "Yeah, they got this Airship";
-		mes "operation in a hurry.";
+		mes "Вы знаете? Всё это плавание в воздухе... Тоесть пилотирование кораблем. Всё это довольно нове. Я получил эту работу в ужасной спешке.";
 		next;
 		emotion e_omg;
 		mes "[Pilot]";

@@ -154,22 +154,15 @@ prt_in,234,133,4	script	Nami	66,{
 prt_in,73,87,4	script	Chivalry Member	65,{
 	if ((Class == Job_Novice || Class == Job_Baby) && (JobLevel > 6) && ((skill_nov >= 3) && (skill_nov <= 5))) {
 		mes "[Bulma]";
-		mes "Yeah. . . I look great. . .";
-		mes "I am a knight in the knight's";
-		mes "guild of Prontera! Kuhahhahhahah !!";
-		mes "It hasn't been long since I became a";
-		mes " knight, but I still look great huh?";
-		mes "What do you think? ? ?";
+		mes "Да... Я отлично смотрюсь...";
+		mes "Я рыцарь из гильдии рыцарей Пронтеры! Бугага!! Я стал рыцарем не так давно, но это не мешает мне выглядеть очень брутально. Как ты думаешь?";
 		next;
 		switch (skill_nov) {
 		case 3:
 			mes "[Bulma]";
-			mes "Hello my young friend -";
-			mes "You remind me of myself as young";
-			mes "sword man. . . ";
-			mes "Kekekkek, Oh I miss those days . .";
-			mes "Look at me acting like an old man.";
-			mes "Heh heh Sorry...";
+			mes "Привет мой юный друг -";
+			mes "Ты напоминаешь мне самого себя, маленького мальчика с мечом...";
+			mes "Эх... Я скучаю по тем временам... Чувствую себя стариком.";
 			next;
 			mes "[Bulma]";
 			mes "I'm still young!!! Aren't I???";
