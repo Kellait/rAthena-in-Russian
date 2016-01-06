@@ -1,0 +1,609 @@
+//===== rAthena Script ======================================= 
+//= Amatsu Town
+//===== By: ================================================== 
+//= rAthena Dev Team
+//===== Current Version: ===================================== 
+//= 1.4
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= [Official Conversion]
+//= Amatsu Town Script
+//===== Additional Comments: ================================= 
+//= 1.3 Rescripted to Aegis 10.3 Standards. [L0ne_W0lf]
+//=     Moved elemental stone trader to 'elemental_trader.txt'
+//= 1.4 Moved Alberta NPC to pre-re/re paths. [Euphy]
+//===== Translated into Russian:==============================
+//= 09.07.2008 в процессе перевода. [mad_max]
+//= 06.01.2016 Актуализация и продолжение перевода Fenrir
+//============================================================
+
+// Amatsu Transportation
+//============================================================
+-	script	::Sea_Captain_amatsu	-1,{
+	mes "[Вальтер Моерс]";
+	mes "Привет.";
+	mes "Вы когда-нибудь слышали о других";
+	mes "странах, находящихся за пределами";
+	mes "королевства Рун-Мидгард?";
+	next;
+	switch(select("Узнать об Аматсу...:Попасть в Аматсу:Отменить")) {
+	case 1:
+		mes "[Вальтер Моерс]";
+		mes "Я слышал, что его случайно";
+		mes "обнаружило дрейфующее судно...";
+		mes "Оно практически полностью было разрушено";
+		mes "бушующим штормом в густом тумане.";
+		mes " ";
+		next;
+		mes "[Вальтер Моерс]";
+		mes "Тем не менее, остатки судна";
+		mes "прибило к берегу. И вместе с ними";
+		mes "на пляж города Аматсу выбросило моряка.";
+		next;
+		mes "[Вальтер Моерс]";
+		mes "Горожане пожалели его";
+		mes "и позаботились о его ранах.";
+		mes "Он прожил там до тех пор, пока не закончил карту.";
+		next;
+		mes "[Вальтер Моерс]";
+		mes "По возврещении в Рун-Мидгард";
+		mes "он скончался. Но к счастью,";
+		mes "карта попала в руки короля, Тристана III.";
+		next;
+		mes "[Вальтер Моерс]";
+		mes "Король Тристан III объявил,";
+		mes "что наградит того, кто осмелится";
+		mes "добраться до Аматсу, и распространил копию карты.";
+		next;
+		mes "[Вальтер Моерс]";
+		mes "Многие храбрые капитаны";
+		mes "приняли этот вызов.";
+		mes "Торговля с Аматсу могла принести";
+		mes "большой доход, еще к тому же и вознаграждение от короля Тристана III...";
+		next;
+		mes "[Вальтер Моерс]";
+		mes "Но все они потерпели неудачу!";
+		mes "Для преодоления морских течений";
+		mes "и плохой погоды, требуется";
+		mes "много опыта. Но они все были ослеплены своей алчностью...";
+		next;
+		mes "[Вальтер Моерс]";
+		mes "И наконец, великий человек нашел";
+		mes "безопасный путь до Аматсу...";
+		mes "Верно! Этот человек я. Сэр Вальтер";
+		mes "Моерс. Я начал торговые отношения с Аматсу! Хахаха! Ну, вот пожалуй и все об Аматсу.";
+		next;
+		mes "[Вальтер Моерс]";
+		mes "Много лет я делаю деньги на торговле,";
+		mes "и теперь меня заинтересовал туризм.";
+		mes "Если хотите попасть в Аматсу, дайте мне знать~!";
+		close;
+	case 2:
+		mes "[Вальтер Моерс]";
+		mes "Что правда? Это долгий путь.";
+		mes "Именно по этому мы и берем деньги.";
+		mes "Вы же не думаете, что пересечь океан и течения так легко?";
+		next;
+		mes "[Вальтер Моерс]";
+		mes "10,000 зеней в оба конца! Я вам";
+		mes "предоставлю безопасную комнату";
+		mes "на прочном торговом судне. ";
+		mes "Это разумная плата за проезд,";
+		mes "когда другого пути не существует.";
+		next;
+		mes "[Вальтер Моерс]";
+		mes "Отправимся сейчас? Не забыли";
+		mes "тариф? Вперед.";
+		next;
+		if (select("Все на Борт!:Отменить") == 1) {
+			if (Zeny > 9999) {
+				mes "[Вальтер Моерс]";
+				mes "Отлично, запускаю двигатель!";
+				close2;
+				set Zeny, Zeny-10000;
+				warp "amatsu",197,83;
+				end;
+			}
+			mes "[Вальтер Моерс]";
+			mes "Вы слушали меня?";
+			mes "10,000 zeny. Если даже вы не";
+			mes "найдёте ничего, ища сокровища";
+			mes "где-либо, например на разрушенном корабле...Покажите мне деньги!";
+			close;
+		}
+		mes "[Вальтер Моерс]";
+		mes "Если вы путешественник,";
+		mes "то это хорошая возможность изучить";
+		mes "другую культуру...Хотя, всё зависит от вас.";
+		close;
+	case 3:
+		mes "[Вальтер Моерс]";
+		mes "Если вы устали от обыденной жизни,";
+		mes "посетите какую-нибудь далёкую страну";
+		mes "за океаном.";
+		mes "Ну например, даже не знаю, Аматсу~";
+		close;
+	}
+}
+
+amatsu,194,79,5	script	Sea Captain#ama2	709,{
+	mes "[Вальтер Моерс]";
+	mes "Вернулись... Вам понравилось";
+	mes "путешествие в Аматсу...?";
+	mes "Хорошо, я мог вернуть вас";
+	mes "в Альберту.";
+	next;
+	if (select("Вернуться в Альберту:Отменить") == 1) {
+		mes "[Вальтер Моерс]";
+		mes "Собираемся. Вы наверно о многом";
+		mes "хотите рассказать, верно?";
+		mes "Все на борт.";
+		close2;
+		if (checkre(0))
+			warp "alberta",244,72;
+		else
+			warp "alberta",243,91;
+		end;
+	}
+	mes "[Вальтер Моерс]";
+	mes "Приходите еще.";
+	mes "Корабль на Альберту";
+	mes "всегда готов отплыть...";
+	close;
+}
+
+// Generic Amatsu NPCs
+//============================================================
+amatsu,230,160,3	script	Well-side Maiden#ama	757,{
+	mes "[Юуко]";
+	mes "Обычно я прихожу сюда";
+	mes "набирать воду, но никогда не делаю этого";
+	mes "в туман или дождь. Потому, что";
+	mes "когда стоит такая погода";
+	mes "у меня возникает чувство...";
+	next;
+	mes "[Юуко]";
+	mes "...что кто-то...или что-то";
+	mes "поднимается на поверхность";
+	mes "со дна...";
+	mes "Это очень пугает меня.";
+	close;
+}
+	
+amatsu,179,107,4	script	John#ama	86,{
+	mes "[Джон]";
+	mes "Ё~";
+	mes "Вы не местный.";
+	mes "Ха, ещё один чужеземец.";
+	mes "Так же как и я...";
+	next;
+	mes "[Джон]";
+	mes "Я начал свой бизнес";
+	mes "здесь пять долгих лет";
+	mes "назад...";
+	next;
+	mes "[Джон]";
+	mes "Когда началась торговля";
+	mes "между королевством Рун-Мидгард";
+	mes "и Аматсу, я подумал, что это";
+	mes "будет отличным шансом для меня!";
+	next;
+	mes "[Джон]";
+	mes "Я хотел сделать что-то стоящее";
+	mes "и планировал использовать все";
+	mes "возможности для этого.";
+	next;
+	mes "[Джон]";
+	mes "И поэтому я решил поехать в Аматсу";
+	mes "и начал изучать их национальную";
+	mes "кухню. Потом, когда я вернулся";
+	mes "в родной город, я начал готовить";
+	mes "эту экзотическую еду для всех.";
+	next;
+	mes "[Джон]";
+	mes "Но я влюбился в Аматсу. И решил";
+	mes "Остаться здесь, вот уже как";
+	mes "целых пять лет. Все это время";
+	mes "я продолжал изучать их";
+	mes "национальную кухню,";
+	next;
+	mes "[Джон]";
+	mes "и готовил эти блюда для";
+	mes "горожан, и наслаждался";
+	mes "общением с ними,";
+	mes "на этом самом месте.";
+	next;
+	mes "[Джон]";
+	mes "Но недавно, на этой улице,";
+	mes "Открыл свой магазин Мастер Суши.";
+	mes "...";
+	mes "Теперь мои клиенты только мухи.";
+	next;
+	mes "[Джон]";
+	mes "Я надеялся исполнить свою мечту";
+	mes "и стать известным шеф-поваром";
+	mes "в Аматсу, но...";
+	mes "Похоже, это конец...";
+	close;
+}
+	
+amatsu,205,163,3	script	Mimi#ama	759,{
+	mes "[Мими]";
+	mes "Ухуху~!";
+	mes "Вы видели мисс Аматсу";
+	mes "недалеко от гавани? Она ведь";
+	mes "прекрасна?";
+	next;
+	mes "[Мими]";
+	mes "Я тоже буду участвовать в конкурсе";
+	mes "Мисс Аматсу, когда стану старше.";
+	next;
+	mes "[Мими]";
+	mes "Я уверенна, что я самая прекрасная";
+	mes "в этом городе, но...";
+	mes "Женщина всегда может использовать немного больше макияжа.";
+	close;
+}
+	
+amatsu,185,115,3	script	Drunken Man#ama	765,{
+	mes "[Косаке]";
+	mes "*Икает*...Моя жена похожа,";
+	mes "...похожа на мужика...*Икает*...";
+	mes "Сегодня я...*Икает*...домой не вернусь...Ик";
+	next;
+	if (select("Stop drinking and go home:Let's drink together") == 1) {
+		mes "[Косаке]";
+		mes "Что?! Хотите что бы я пострадал";
+		mes "от больших кулаков моей жены?";
+		mes "Верно! Я сказал 'от больших кулаков!'";
+		next;
+		mes "[Косаке]";
+		mes "Печально говорить, но я женат на";
+		mes "женщине с мужскими руками...";
+		mes "Большие, сильные руки, способные убить тигра.";
+		next;
+		mes "[Druken Man]";
+		mes "Это было в Ко...Коко-как-то там.";
+		mes "Она побила меня, потому что я потерял";
+		mes "некоторую сумму денег...*Ик*";
+		next;
+		mes "[Druken Man]";
+		mes "Жизнь~~~~ ни что~~~";
+		mes "Деньги все~~~~ ";
+		mes "*Икает*...... *Икает*.......";
+		mes ".......................";
+		mes "........Хр.хр..хр...хррр...";
+		close;
+	}
+	mes "[Косаке]";
+	mes "Отлично... да, давай...";
+	mes "Но знаешь, *Икает*";
+	mes "я не могу ничего тебе дать! Хахаха...";
+	next;
+	mes "[Косаке]";
+	mes "Если ты купишь мне выпивку, я подумаю об этом...Хехехе...*Икает*..";
+	close;
+}
+	
+amatsu,217,179,1	script	Grandma#ama	760,{
+	mes "[Хатсуи]";
+	mes "Я беспокоюсь за своего мужа.";
+	mes "Сегодня недалеко от города он потерял большую сумму денег.";
+	next;
+	mes "[Хатсуи]";
+	mes "Я была так груба с ним, что он в страхе";
+	mes "убежал! Я беспокоюсь...что если он";
+	mes "снова пошел в бар и напился? Человек не должен так поступать. *Вздыхает*";
+	close;
+}
+	
+amatsu,287,266,3	script	Jyaburo#ama	766,{
+	mes "[Джабуро]";
+	mes "Для меня это место особое.";
+	mes "Оно наполнено вопоминаниями о моей жене.";
+	next;
+	mes "[Джабуро]";
+	mes "Это было около того большого дерева,";
+	mes "когда я впервые ей сказал, что люблю её. At";
+	mes "В то время я действительно не знал, что и она имеет чувства ко мне.";
+	next;
+	mes "[Джабуро]";
+	mes "После того дня мы часто";
+	mes "бывали здесь. Тихо";
+	mes "и спокойно, это было";
+	mes "нашим любимым местом.";
+	next;
+	mes "[Джабуро]";
+	mes "Когда я закрываю свои глаза,";
+	mes "то вижу прекрасные картины прошлого,";
+	mes "и кажется, что это было вчера.";
+	mes "...";
+	next;
+	mes "[Джабуро]";
+	mes "Моя жена умерла...";
+	mes "Теперь сюда прихожу только я...";
+	mes "Но всякий раз чувствую, буд-то бы здесь я с ней.";
+	next;
+	mes "[Джабуро]";
+	mes "А в вашей жизни есть";
+	mes "кто-нибудь такой? Если есть";
+	mes "кто-то особый, не сомневайтесь";
+	mes "и не сдерживайтесь. Будьте";
+	mes "уверены, этот человек особый.";
+	next;
+	mes "[Джабуро]";
+	mes "Человеческая жизнь коротка.";
+	mes "Но в течении жизни мы";
+	mes "можем смеяться и забывать";
+	mes "грусть.";
+	mes "...Будьте счастливы.";
+	close;
+}
+
+// Legendary Tree
+//============================================================
+amatsu,269,221,1	script	Propose Girl#ama	758,{
+	set jap_tree,1;
+	mes "[Хутари Шиоко]";
+	mes "Очень рада встрече.";
+	mes "Моё имя Хутари Шиоко.";
+	mes "Моё хобби, слушать музыку.";
+	mes "Я являюсь поклонницей классической музыки.";
+	next;
+	mes "[Хутари Шиоко]";
+	mes "В нашем городе существует";
+	mes "легенда о Холме.";
+	mes "Вы слышали её прежде?";
+	next;
+	mes "[Хутари Шиоко]";
+	mes "В ней сказано. Если сделать предложение";
+	mes "под ветками дерева не холме, то вы и ваша";
+	mes "любимая будете счастливы вечно.";
+	next;
+	mes "[Хутари Шиоко]";
+	mes "Однако, предложение не может быть";
+	mes "сделано в любое время. В легенде сказано, что оно может быть сделано только субботним вечером.";
+	next;
+	mes "[Хутари Шиоко]";
+	mes "После предложения, ответ должен быть дан";
+	mes "не позднее воскресного вечера. Это наиболее важная часть.";
+	next;
+	emotion e_lv2;
+	mes "[Хутари Шиоко]";
+	mes "Если вам кто-то нравится...";
+	mes "Вы должны попытать счастье";
+	mes "под ветками этого дерева. Уверена ";
+	mes "вас ждет счастье, если попробуете.";
+	close;
+}
+	
+amatsu,243,202,3	script	Drama Teacher#ama	760,{
+	set jap_tree,2;
+	mes "[Учитель Гаракаме]";
+	mes "Это прекрасное место";
+	mes "с вечно цветущими вишнями.";
+	mes "К тому же, это родной город";
+	mes "легендарного театра, 'White Dryad.' ";
+	next;
+	if (Sex) {
+		mes "[Учитель Гаракаме]";
+		mes "Если вы знаете девушку";
+		mes "с талантом актрисы, пожалуйста";
+		mes "приводите её ко мне. Я ищу";
+		mes "девушек способных";
+		mes "играть роли в театре 'White Dryad.'";
+		next;
+		mes "[Учитель Гаракаме]";
+		mes "Театр 'White Dryad', это куклы";
+		mes "из вишневого дерева...";
+		mes "Трудно находить девушек";
+		mes "способных играть в нашем театре...'";
+		close;
+	}
+	emotion e_gasp;
+	mes "[Учитель Гаракаме]";
+	mes "Интересуетесь актёрством?";
+	mes "Мне нужны люди играющие";
+	mes "страстно и понимающие";
+	mes "моё видение вещей.";
+	next;
+	mes "[Учитель Гаракаме]";
+	mes "Находясь на сцене,";
+	mes "и играя роль, вы должны";
+	mes "коснуться сердца";
+	mes "каждого и всколыхнуть";
+	mes "их души.";
+	next;
+	mes "[Учитель Гаракаме]";
+	mes "Все в жизни подобно драмме,";
+	mes "верно? Наслаждайтесь жизнью,";
+	mes "а когда будете готовы";
+	mes "найдите меня.";
+	close;
+}
+	
+amatsu,283,203,1	script	Bonubonu#ama1	1323,{
+	end;
+}
+
+amatsu,283,203,1	script	Bonubonu#ama2	111,{
+	set jap_tree,3;
+	emotion e_swt2;
+	mes "[Bonubonu]";
+	mes "Это дерево на холме";
+	mes "очень старое. Это большое вишневое,";
+	mes "вечно-цветущее дерево.";
+	next;
+	emotion e_swt2;
+	mes "[Bonubonu]";
+	mes "Что-то есть в том дереве,";
+	mes "что заставляет забыть о всех бедах";
+	mes "в моей жизни, когда я сижу под ним.";
+	next;
+	emotion e_swt2;
+	mes "[Bonubonu]";
+	mes "Все в этом дереве";
+	mes "прекрасно...";
+	mes "Я действительно не могу описать";
+	mes "то, что чувствую смотря на него...";
+	mes "Оно заставляет затаить дыхание...";
+	next;
+	emotion e_swt2;
+	mes "[Bonubonu]";
+	mes "Вы должны потратить немного";
+	mes "времени и сходить к дереву.";
+	mes "Оно действительно чудесно и грациозно...";
+	close;
+}
+	
+amatsu,274,178,7	script	Veterinarian#ama	735,{
+	set jap_tree,4;
+	mes "[Sakura Seiichi]";
+	mes "Ах... Не паникуйте, я не человек";
+	mes "со странностями. Я обычный";
+	mes "ветеринар. Моя работа,";
+	mes "лечить больных животных.";
+	mes " ";
+	next;
+	mes "[Sakura Seiichi]";
+	mes "К стати... Вы знаете?";
+	mes "Легенду о вишневом дереве";
+	mes "на холме...Я думаю вы уже слышали о ней...";
+	next;
+	mes "[Sakura Seiichi]";
+	mes "Это дерево таит в себе секрет";
+	mes "сохранения красоты.";
+	mes "Секрет заключается...";
+	mes "В погребении тела...";
+	mes "под деревом...";
+	next;
+	if (select("Какой ужас!:Ты наверно шутишь.") == 1) {
+		mes "[Sakura Seiichi]";
+		mes "Kuhuhu... They could be...";
+		mes "By the way, do you want";
+		mes "make a bet on it...?";
+		next;
+		emotion e_dots;
+		mes "[Sakura Seiichi]";
+		mes "If I..........";
+		mes "............";
+		mes ".........";
+		next;
+		mes "^3355FFHis voice was getting lower";
+		mes "and lower as the wind blew.";
+		mes "Finally, I couldn't even hear his voice. I can't even recall what he was trying to tell me...^000000";
+		close;
+	}
+	mes "[Sakura Seiichi]";
+	mes "I can't help it if you think that way. But one day, you too could be buried underneath...";
+	next;
+	emotion e_dots;
+	mes "[Sakura Seiichi]";
+	mes "Haha... Hahaha.....";
+	mes "...............";
+	mes "...........";
+	next;
+	mes "^3355FFHis laugh was getting lower";
+	mes "and lower as the wind blew.";
+	mes "Finally, I couldn't even hear anything. I can't even recall what he was trying to tell me...^000000";
+	close;
+}
+	
+amatsu,262,197,1	script	Legendary Tree	111,{
+	if (jap_tree == 1) {
+		mes "^3355FFAs she mentioned, this tree";
+		mes "seems to be a famous place";
+		mes "for proposing lovers.";
+		mes "There were several carved symbols";
+		mes "of hearts and initials of lovers";
+		mes "on the bark.^000000";
+		next;
+		mes "^3355FFBesides proposals, people";
+		mes "gather under this tree when";
+		mes "they discuss important";
+		mes "matters. I could listen to";
+		mes "all kinds of stories";
+		mes "in this magnificent place.^000000";
+		close;
+	}
+	else if (jap_tree == 2) {
+		mes "^3355FFThe legendary play, 'White Dryad'.....";
+		mes "I never heard about that title but";
+		mes "it sounds familiar.";
+		mes "Nymph of cherry tree... What would";
+		mes "be her position in the play?^000000";
+		next;
+		if (Sex) {
+			mes "^3355FFI would like to find";
+			mes "a person who is talented";
+			mes "in acting and help her until";
+			mes "she performs the play. However,";
+			mes "it seems to be easier said than done.^000000";
+			close;
+		}
+		mes "^3355FFI might have talent in";
+		mes "acting which hasn't been discovered yet. I thought, 'If I dress up, I should perform as the 'White Dryad...'^000000";
+		close;
+	}
+	else if (jap_tree == 3) {
+		mes "^3355FFUnlike other cherry trees,";
+		mes "this tree has a strong fragnance.";
+		mes "I just fell into a relaxed";
+		mes "mood. The fragnance eased";
+		mes "my burdens and I felt";
+		mes "very comfortable.^000000";
+		next;
+		mes "^3355FFIt was just for a few moments";
+		mes "but I could forget the";
+		mes "burdens of life. I wish to";
+		mes "come back again and";
+		mes "sit under this tree...^000000";
+		close;
+	}
+	else if (jap_tree == 4) {
+		mes "^3355FFThis strong fragnance";
+		mes "is making me dizzy. Not like";
+		mes "other cherry trees, this tree's";
+		mes "shimmering white petals";
+		mes "felt strange.^000000";
+		next;
+		mes "^3355FFIt feels as if my soul is";
+		mes "being drained if I stay here";
+		mes "longer. After a glimpse of";
+		mes "the cherry tree, I thought to";
+		mes "mayself, 'I must get out of here quickly.'^000000";
+		close;
+	}
+	mes "^3355FFThere was a cherry tree";
+	mes "on the hill. It doesn't look";
+	mes "like the other trees.";
+	mes "This tree seems to have";
+	mes "a long history...^000000";
+	next;
+	mes "^3355FFAre there any people";
+	mes "who live here? I took";
+	mes "a look around and found";
+	mes "someone down the hill.";
+	mes "I better ask her about this tree.^000000";
+	close;
+}
+
+//============================================================ 
+// Old changelog
+//============================================================ 
+//= Amatsu Town NPCs : Revision 2 (Fox quest fix)
+//= Translated by Makenshi and dj
+//= Revisions and edits by Valaris and Darkchild
+//= 1.01 event_sushi -> ama_sushi fixed
+//=      and other fixes, thanks to Shinomori
+//= 1.02 Fixed & Spell Checked [massdriller]
+//= 1.03 Fixed 2 NPC names, slight optimization [Lupus]
+//= 1.04 Fixed a few typos [Nexon]
+//= 1.05 Changed all breaks to ends. [Skotlex]
+//= 1.06 The Captain now uses iRO dialog [MasterOfMuppets]
+//= 1.07 Implemented a missing NPC [MasterOfMuppets]
+//= 1.08 Removed Duplicates [Silent]
+//= 1.1 Split quests into quests/quests_amatsu.txt [Evera]
+//= 1.2	Fixed missing name [Evera]
+//============================================================

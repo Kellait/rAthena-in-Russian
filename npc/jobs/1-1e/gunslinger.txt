@@ -1,0 +1,413 @@
+//===== rAthena Script ======================================= 
+//= Gunslinger Job Quest
+//===== By: ================================================== 
+//= erKURITA, RockmanEXE, Kisuka
+//===== Current Version: ===================================== 
+//= 2.2
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= Gunslinger Job Change Quest
+//===== Additional Comments: ================================= 
+//= 1.0 Made the NPC [erKURITA]
+//= 1.5 Couple fixes to the npc, aswell as adding the missing
+//=     3 green herbs. [erKURITA]
+//= 1.6 job number->const, commonized variable name,
+//=     optimized [Lupus]
+//= 1.7 Now uses only ONE variable GUNS_Q [Lupus]
+//= 1.7a Grammar fixes, few spelling fixes, etc [CBMaster]
+//= 1.7b Parenthesis fixes [KarLaeda]
+//= 1.8 Fixed the reward you can get [Playtester]
+//= 1.9 Removed some 'clever' script constructs [ultramage]
+//= 2.0 Updated to official version - Thanks to Omega for
+//=     his first try [SinSloth] 1.10b - removed .GATs [Lupus]
+//= 2.1 Wise Bull Horn now deletes all items. Thanks to yyCC. [L0ne_W0lf]
+//= 2.1a Corrected a Typo error ";;". [Samuray22]
+//= 2.1b Corrected some typos errors. (bugreport:1549) [Samuray22]
+//= 2.1c Fixed some missing/messed up item checks. (bugreport:2693) [Kisuka]
+//= 2.2 Updated to match AEGIS script and Added Quest Log commands. [Kisuka]
+//===== Translated into Russian: =============================
+//= 15.11.2007 Полный перевод [Vorp]
+//= 05.06.2008 Корекция перевода [Vorp]
+//= 06.01.2016 Актуализация [Fenrir]
+//============================================================ 
+
+que_ng,152,167,3	script	Master Miller	901,{
+	if (Upper == 2) {
+		mes "[Master Miller]";
+		mes "Ой~";
+		mes "Какой малыш пришёл сюда~";
+		mes "Утипуси~";
+		mes "Где же твоя мамочка~";
+		mes "Хаха~";
+		mes "Это довольно опасное место.";
+		mes "Пойди поиграй где-нибудь ещё.";
+		close;
+	}
+	if (Class == Job_Novice) {
+		if (JobLevel < 10 || getskilllv("NV_BASIC") < 9) {
+			mes "[Master Miller]";
+			mes "Хмм, я думаю,";
+			mes "у вас есть потенциал,";
+			mes "но вы еще не достаточно сильны.";
+			mes "Продолжайте становится сильнее и";
+			mes "возвращайтесь позже.";
+			close;
+		}
+		if (GUNS_Q == 0) {
+			mes "[Master Miller]";
+			mes "Я начальник охраны, а также";
+				mes "Инструктор Стрелков (Gunslinger), вы можете называть меня Капитан Miller.";
+				mes "У меня совсем нет времени.";
+				mes "Чего же вы хотите?";
+			next;
+			if(select("Ничего не хочу.:Я хочу стать Ганслингером.") == 1) {
+				mes "[Master Miller]";
+				mes "Трата моего времени подобна трате золота.";
+				mes "Убирайтесь с глаз моих долой.";
+				close;
+			}
+			mes "[Master Miller]";
+			mes "Хмм.";
+			mes "Вы все еще молодо выглядите,";
+			mes "но взгляд в ваших глазах...";
+			mes "Я ощущаю большую силу.";
+			next;
+			mes "[Master Miller]";
+			mes "Хмм... Хорошо.";
+			mes "Для начала, если у вас имеется воля, чтобы стать Стрелком,";
+			mes "вам нужно будет пройти через несколько испытаний,";
+			mes "а также собеседование и учебные занятия.";
+			next;
+			mes "[Master Miller]";
+			mes "Хотите продолжить?";
+			next;
+			if(select("Мне нужно время подумать.","Конечно.") == 1) {
+				mes "[Master Miller]";
+				mes "Хмм.. Разве, что так.";
+				mes "Хорошо, это важно...";
+				mes "Подумайте внимательно, и если у вас есть дух,";
+				mes "пожалуйста, вернитеся позже.";
+				close;
+			}
+			mes "[Master Miller]";
+			mes "Хмм. Хорошо.";
+			mes "Для начала возьмите и доставьте это письмо Алхимику Пайона, 'Wise Bull Horn' и отдайте лично в руки.";
+			mes "Он оценит вас и сообщит нам, если вы подходите нашим стандартам.";
+			set GUNS_Q,1;
+			setquest 6020;
+			close;
+		}
+		else if (GUNS_Q == 1) {
+			mes "[Master Miller]";
+			mes "Поспеши и начни путешествие.";
+			mes "'Wise Bull Horn' в";
+			mes "настоящее время, в Пайоне.";
+			close;
+		}
+		else if (GUNS_Q == 2) {
+			mes "[Master Miller]";
+			mes "Хммм... Мудрый Bull Horn пропросил собрать вас ингридиенты? Я думаю это часть его квалификационного теста.";
+			close;
+		}
+		else if (GUNS_Q == 3) {
+			mes "[Master Miller]";
+			mes "Wise Bull Horn уже просил принести ему молока?";
+			mes "Должно быть ты ему понравился. Удачи друг.";
+			close;
+		}
+		else if (GUNS_Q == 4) {
+			mes "[Master Miller]";
+			mes "Я жду хороших новостей. Я не сомневаюсь что вы станете Ганслингером.";
+			close;
+		}
+		else if (GUNS_Q == 5) {
+			if (SkillPoint != 0) {
+				mes "[Master Miller]";
+				mes "Сначала изучи все базовые навыки.";
+				close;
+			}
+			mes "Охх, я вижу, вы получили что-то от старика,";
+			mes "это редкость.";
+			mes "В обычных условиях...";
+			mes "это не разрешается...";
+			mes "Хорошо, хорошо.";
+			next;
+			mes "[Master Miller]";
+			mes "Мм.. Хорошо.";
+			mes "Старик дал своё";
+			mes "благословение, так что я не имею никаких";
+			mes "причин отклонить вашу заявку.";
+			next;
+			mes "[Master Miller]";
+			mes "Хорошо, сейчас вы станете Стрелком.";
+			mes "С этого момента, вы стрелок.";
+			mes "После, в любой момент, который вы проживаете,";
+			mes "помните, вы не можете отставить в сторону";
+			mes "ваше оружие. Мы должны помнить, огнестрельное";
+			mes "оружие и даже каждая пуля,";
+			mes "имеет свой собственный номер изделия,";
+			mes "и могут быть проверены, кому принадлежат.";
+			next;
+			mes "[Master Miller]";
+			mes "Для приобретения оружия и боеприпасов,";
+			mes "единственное место, где вы можете купить их,";
+			mes "это наши специальные оружейные магазины";
+			mes "в гильдии, в ее разных местах.";
+			next;
+			mes "[Master Miller]";
+			mes "Конечно, это утомительно.";
+			mes "Но всё это...";
+			mes "чтобы это оружие попало не в те руки,";
+			mes "так что, пожалуйста,";
+			mes "прости нас за причиненные неудобства.";
+			next;
+			mes "[Master Miller]";
+			mes "Также есть";
+			mes "другие причины.";
+			mes "Вы, несомненно, найдете некоторые из них";
+			mes "позже.";
+			mes "Это - всё инструкции";
+			mes "от леди Celena, нашего";
+			mes "лидера гильдии.";
+			next;
+			mes "[Master Miller]";
+			mes "Через некоторое время";
+			mes "мы ознакомим вас с миссией.";
+			mes "Вы поймете больше";
+			mes "чуть позже.";
+			next;
+			mes "[Master Miller]";
+			mes "Я уверен, что мы увидим друг друга снова.";
+			mes "Так что, славного времени";
+			mes "для совместной работы.";
+			callfunc "Job_Change",Job_Gunslinger;
+			set GUNS_Q,6;
+			completequest 6024;
+			if (rand(1,2) == 1) {
+				getitem 13100,1; // Six_Shooter
+			} else {
+				getitem 13150,1; // Branch
+			}
+			close;
+		}
+	} else {
+		if (Class == Job_Gunslinger) {
+			mes "[Master Miller]";
+			mes "Ох~ Это прошло не мало времени~";
+			mes "Итак, как прошло ваше путешествие?";
+			mes "Помни, всегда заботься о своём";
+			mes "огнестрельном оружии.";
+			close;
+		} else {
+			mes "[Master Miller]";
+			mes "Не отвлекай меня.";
+			mes "продолжай своё путешествие.";
+			close;
+		}
+	}
+}
+
+payon,184,65,3	script	Wise Bull Horn	866,{
+	if (GUNS_Q == 1) {
+		mes "[Wise Bull Horn]";
+		mes "...Хмм... Одна молодежь";
+		mes "Что это такое, что вы хотите?";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Меня направил сюда Miller.";
+		next;
+		mes "[Wise Bull Horn]";
+		mes "Miller...";
+		mes "Мм...Хм. Этот Серый Лис";
+		mes "послал вас сюда...";
+		next;
+		mes "[Wise Bull Horn]";
+		mes "Он мудр и хитёр...";
+		mes "но и готов пожертвовать собой за своих товарищей.";
+		mes "мм... Если он послал вас..";
+		mes "Тогда вы должны быть способны...";
+		next;
+		mes "[Wise Bull Horn]";
+		mes "Подожди... подойди поближе...";
+		next;
+		mes "["+ strcharinfo(0) +"]";
+		mes "....";
+		next;
+		mes "[Wise Bull Horn]";
+		mes "ммм...";
+		mes "мммммм....";
+		next;
+		mes "[Wise Bull Horn]";
+		mes "ммм... Острые глаза и...";
+		mes "серьезные лицо... также...";
+		mes "очень хорошее отношение... здравый смысл...";
+		mes "ответственность...";
+		mes "Но этого недостаточно.";
+		next;
+		mes "[Wise Bull Horn]";
+		mes "Отсутствие опыта...";
+		mes "И у вас все еще нет благословения земли...";
+		mes "Вы будете обречены, в таком случае...";
+		next;
+		mes "[Wise Bull Horn]";
+		mes "Очень хорошо, я сделаю вам подарок...";
+		mes "Если вы хотите следовать по этому пути...";
+		next;
+		mes "[Wise Bull Horn]";
+		mes "Соберите:";
+		mes "^3355FF1 Trunk^000000,";
+		mes "^3355FF3 Fluffs^000000,";
+		mes "^3355FF3 Zargons^000000,";
+		mes "^3355FF10 Shells^000000,";
+		mes "^3355FF3 Green Herbs^000000, and";
+		mes "^3355FF3 Rainbow Shells^000000.";
+		mes "затем принесите их мне.";
+		next;
+		mes "[Wise Bull Horn]";
+		mes "Если покажете подарок, что вы получите";
+		mes "Серому Лису, он, безусловно...";
+		mes "примет вас.";
+		set GUNS_Q,2;
+		changequest 6020,6021;
+		close;
+	}
+	else if (GUNS_Q == 2) {
+		if (countitem(912) < 3 || countitem(914) < 3 || countitem(1019) < 1 || countitem(935) < 10 || countitem(511) < 3 || countitem(1013) < 3) {
+			mes "["+ strcharinfo(0) +"]";
+			mes "-Ему нужно-";
+			mes "-3 Rainbow Shells-";
+			mes "-10 Shells, 3 Feathers-";
+			mes "-1 Trunk, 3 Zargons,-";
+			mes "-и 3 Green Herbs.-";
+			close;
+		}
+		delitem 912,3; // Zargon
+		delitem 914,3; // Fluff
+		delitem 1019,1; // Wooden_Block
+		delitem 935,10; // Shell
+		delitem 511,3; // Green_Herb
+		delitem 1013,3; // Colorful_Shell
+		set GUNS_Q,3;
+		changequest 6021,6022;
+		mes "[Wise Bull Horn]";
+		mes "Ох... дайте их мне.";
+		mes "Настало время для обещания";
+		mes "сделать подарок, подожди немного.";
+		close;
+	}
+	else if (GUNS_Q == 3) {
+		mes "[Wise Bull Horn]";
+		mes "Мм... Прибыли обсалютно вовремя.";
+		mes "Подготовка, только что завершена.";
+		mes "Это, наверно, простой подарок.";
+		mes "Но это потому, что я не работал над ним достаточно долго.";
+		mes "Aх... я чувствую себя уставшим...";
+		next;
+		mes "[Wise Bull Horn]";
+		mes "В последний раз, когда я создал это...";
+		mes "Было больше десяти лет назад.";
+		mes "Я также следовал за этим путем однажды...";
+		mes "и я однажды сразился...";
+		mes "с таким предметом.";
+		next;
+		mes "[Wise Bull Horn]";
+		mes "Такое ощущение, что встреча,";
+		mes "с отцом Celena-ы, была только вчера,";
+		mes "время летит быстро.";
+		mes "Подобно мягкому, западному ветру.";
+		next;
+		mes "[Wise Bull Horn]";
+		mes "Хотя всегда будут болезненные";
+		mes "воспоминания... но мои последователи...";
+		mes "особенно люди подобно...";
+		mes "Celena и Серому Лису.";
+		mes "Ох, молодость, и мои соратники...";
+		mes "Спасибо им...";
+		next;
+		mes "[Wise Bull Horn]";
+		mes "Однако, я уже стар...";
+		mes "Скоротечное время...";
+		mes "Нужно вернуться... на землю";
+		next;
+		mes "[Wise Bull Horn]";
+		mes "Я чувствую, что устал...";
+		mes "Я так сожалею... но если бы вы смогли...";
+		mes "Обещайте мне кое-что...";
+		mes "Обещайте сделать.. кое-что для меня.";
+		next;
+		mes "[Wise Bull Horn]";
+		mes "Мне внезапно захотелось...";
+		mes "выпить стакан молока.";
+		next;
+		mes "[Wise Bull Horn]";
+		mes "Прими это, как просьбу... от старика.";
+		next;
+		mes "["+ strcharinfo(0) +"]";
+		mes "-Принести стакан молока-";
+		mes "-Для 'Wise Bull Horn'.-";
+		set GUNS_Q,4;
+		changequest 6022,6023;
+		close;
+	}
+	else if (GUNS_Q == 4) {
+		if (countitem(519) < 1) {
+			mes "[Wise Bull Horn]";
+			mes "Я старый человек который скоро встретится с матерью Землёй. Ты можешь мне принести стакан молока?";
+			close;
+		}
+		delitem 519,1; // Milk
+		set GUNS_Q,5;
+		changequest 6023,6024;
+		mes "[Wise Bull Horn]";
+		mes "Спасибо.";
+		mes "Вы действительно хороший молодой человек.";
+		mes "Ступайте.";
+		next;
+		mes "[Wise Bull Horn]";
+		mes "Взять этот подарок, сделаный для вас,";
+		mes "и показать его Серому Лису.";
+		mes "Вы получили благословение,";
+		mes "чтобы стать Стрелком.";
+		next;
+		mes "[Wise Bull Horn]";
+		mes "Ее~~Йе~Ее~~ Хама~ Раа~~Най~Еee";
+		mes "Ее~~Йе~Ее~~ Хама~ Раа~~Най~Еee";
+		next;
+		mes "["+ strcharinfo(0) +"]";
+		mes "-Странное пение-";
+		mes "-песня-";
+		mes "-'The Wise Bull Horn'. Я считаю странныой-";
+		mes "-Взять Подарок-";
+		mes "-для Miller сейчас же.-";
+		close;
+	}
+	else if (GUNS_Q == 5) {
+		mes "[Wise Bull Horn]";
+		mes "Ее~~Йе~Ее~~ Хама~ Раа~~Най~Еee";
+		mes "Ее~~Йе~Ее~~ Хама~ Раа~~Най~Еee";
+		next;
+		mes "["+ strcharinfo(0) +"]";
+		mes "-Странное пение-";
+		mes "-песня-";
+		mes "-'Wise Bull Horn'.-";
+		next;
+		mes "["+ strcharinfo(0) +"]";
+		mes "-Я считаю странной.-";
+		mes "-Взять Подарок-";
+		mes "-для Miller сейчас же.-";
+		close;
+	}
+	else if (GUNS_Q == 6) {
+		mes "[Wise Bull Horn]";
+		mes "Мм... Я вас помню.";
+		mes "Надеюсь, что вы стате сильным Стрелком.";
+		close;
+	}
+	else {
+		mes "[Wise Bull Horn]";
+		mes "Zzzzzz~";
+		mes "^333333*Phew*^000000";
+		close;
+	}
+}
