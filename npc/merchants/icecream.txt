@@ -1,0 +1,75 @@
+//===== rAthena Script =======================================
+//= Ice Cream Maker
+//===== By: ==================================================
+//= KOOK SWU, Kisuka
+//===== Current Version: =====================================
+//= 1.5
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= A man makes you ice-cream
+//===== Additional Comments: =================================
+//= 1.1 Optimized, changed overlapping coords in Alberta [Lupus]
+//= 1.2 According to the patch, IceCream seller has been removed from Morocc [Lupus]
+//= 1.3 No more label menu and updated to match AEGIS script. [Kisuka]
+//= 1.4 Duplicates now spawn from floating NPCs. [L0ne_W0lf]
+//= 1.5 Fixed small checkweight issue. [Kisuka]
+//===== Translated into Russian: =============================
+//= 12.11.2007 Первый перевод [Vorp]
+//= 08.01.2016 Актуализация [Fenrir]
+//============================================================
+
+-	script	Ice Cream Maker::IceCreamer	-1,{
+	mes "[Ice Cream Maker]";
+	mes "Свежее мороженое, из чистого снега Люти!";
+	mes "Наслаждайтесь, пока всё не раскупили!";
+	mes "Всего ^0000FF100 Zeny^000000 за порцию";
+	mes "отличного мороженого!";
+	next;
+	if(select("Дайте мне мороженое:Уйти") == 2) {
+		mes "Вы правда не хотите, даже несмотря на такую жару?";
+		mes "Ну смотрите сами, я не буду стоять тут вечность!!!";
+		close;
+	}
+	mes "[Ice Cream Maker]";
+	mes "Свежее мороженое из элитных снегов Люти!";
+	mes "Каждый хочет попробовать наше замечательное мороженое, но у нас его не так уж и много.";
+	mes "Поэтому Вы можете купить не больше 5 порций за раз!!";
+	next;
+	while(1) {
+		input .@input;
+		if(.@input < 1) {
+			mes "[Ice Cream Maker]";
+			mes "Если вы ничего не будете покупать, не закрывайте пожалуйста товар.";
+			close;
+		}
+		if(.@input > 5) {
+			mes "[Ice Cream Maker]";
+			mes "Это очень смело. Вынужден предупредить что при потреблении более пяти мороженых можно себе что нибудь отморозить.";
+			next;
+		}
+	}
+	if(Zeny<.@input*100) {
+		mes "[Ice Cream Maker]";
+		mes "Кажется твой кошелек легче чем вы думаете.";
+		mes "Цена за мороженое ^3355FF100 зен^000000.";
+		close;
+	}
+	if(checkweight(536,.@input) == 0) {
+		mes "[Ice Cream Maker]";
+		mes "Кажется у тебя слишком много вещей, мороженое просто не помещается.";
+		close;
+	}
+	set Zeny,Zeny-100*.@input;
+	getitem 536,.@input;	// Ice_Cream
+	close;
+}
+
+// Alberta
+alberta,120,45,2	duplicate(IceCreamer)	Ice Cream Maker#1	85
+
+// Morroc Field
+moc_fild16,88,304,4	duplicate(IceCreamer)	Ice Cream Maker#2	85
+
+// Morroc
+//morocc,160,144,4	duplicate(IceCreamer)	Ice Cream Maker#3	85

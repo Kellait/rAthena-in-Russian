@@ -1,0 +1,122 @@
+//===== rAthena Script ======================================= 
+//= Gemstone Trader
+//===== By: ================================================== 
+//= L0ne_W0lf
+//===== Current Version: ===================================== 
+//= 1.3
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= [Official Conversion]
+//= Trade various colors of gemstones for other color gemstones.
+//===== Additional Comments: ================================= 
+//= 1.0 Rescripted to Aegis 10.3 standards. [L0ne_W0lf]
+//=     Any notes pertaining to the prior trader may be found
+//=     in the cities/payon.txt
+//= 1.1 Corrected NPC names to fall within proper restrictions. [L0ne_W0lf]
+//= 1.2 Updated input with min/max values. [L0ne_W0lf]
+//=     Added a checkweight. 
+//= 1.3 Fixed checks. [Euphy]
+//===== Translated into Russian: =============================
+//= 12.11.2007 Первый перевод [Vorp]
+//= 08.01.2016 Актуализация Fenrir
+//============================================================ 
+
+payon,173,238,5	script	Джэйд#pay	754,{
+	if (checkweight(1201,1) == 0) {
+		mes "^3355FFОдну секунду! Прямо сейчас, Вы несете слишком много предметов с собой. Пожалйста, вернитесь ко мне после того, как сдатите некоторые вещи в хранилище Кафры.^000000";
+		close;
+	}
+	mes "[Джэйд]";
+	mes "Принеси мне два";
+	mes "драгоценных камня";
+	mes "одинакого цвета и я";
+	mes "поменяю их на камни";
+	mes "другого цвета.";
+	next;
+	switch(select("Blue Gemstones на один Red!:Red Gemstones на один Yellow!:Yellow Gemstones на один Blue!")) {
+	case 1: callsub S_TradeGems,717,716;
+	case 2: callsub S_TradeGems,716,715;
+	case 3: callsub S_TradeGems,715,717;
+	}
+
+S_TradeGems:
+	.@item_req = getarg(0);
+	.@item_id = getarg(1);
+
+	if (countitem(.@item_req) < 2) {
+		mes "[Джэйд]";
+		mes "Хаха...!";
+		mes "Ты что шутишь надо мной?";
+		mes "Я не смогу тебя обслужить";
+		mes "если ты не дашь мне";
+		mes "по крайней мере";
+		mes "2 "+getitemname(getarg(0))+"s!";
+		close;
+	}
+	else {
+		.@gems = countitem(.@item_req) /2;
+		mes "[Джэйд]";
+		mes "Я думаю, я смогу сделать это";
+		mes "итого "+ .@gems +" "+ getitemname(.@item_id) +"s";
+		mes "эм.... "+ getitemname(.@item_req) +"s";
+		mes "это все что у тебя есть.";
+		mes "Что будешь делать?";
+		next;
+		switch(select("Дай мне столько, сколько можешь.:Я хочу опеределенное количество.:Я ухожу.")) {
+		case 1:
+			delitem .@item_req,.@gems * 2;
+			getitem .@item_id,.@gems;
+			break;
+		case 2:
+			mes "[Джэйд]";
+			mes "Итак, сколько";
+			mes "ты хочешь?";
+			mes "Максимальное число";
+			mes "которое ты можешь ввести - 100.";
+			next;
+			while(1) {
+				input .@input,0,101;
+				if (.@input == 0) {
+					mes "[Джэйд]";
+					mes "Что? Совсем ничего???";
+					mes "Возможно ты";
+					mes "поменяешь свое мнение...";
+					close;
+				}
+				else if (.@input > 100) {
+					mes "[Джэйд]";
+					mes "Аргх...";
+					mes "Я просил тебя вводить";
+					mes "число не больше";
+					mes "чем 100, те помнишь?";
+					next;
+				}
+				else if (.@gems < .@input) {
+					// Custom dialogue
+					mes "[Джэйд]";
+					mes "Удачи.";
+					mes "Приходи в любое время";
+					mes "Рад был тебя видеть.";
+					mes "Хм, чтото ищете?";
+					mes "Что тебе от меня надо?";
+					next;
+				}
+				else break;
+			}
+			delitem .@item_req,.@input * 2;
+			getitem .@item_id,.@input;
+			break;
+		case 3:
+			mes "[Джэйд]";
+			mes "Без проблем.";
+			mes "Возвращайся в любое время...";
+			close;
+		}
+		mes "[Джэйд]";
+		mes "Если что, не стесняйтесь, приходите в любое время.";
+		mes "Что-то потеряли?";
+		mes "Что-то с моим лицом?";
+		close;
+	}
+}

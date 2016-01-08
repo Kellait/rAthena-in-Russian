@@ -1,0 +1,177 @@
+//===== rAthena Script ======================================= 
+//= Clothes Dyer
+//===== By: ================================================== 
+//= Usnul
+//===== Current Version: ===================================== 
+//= 2.5
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= Clothes dyer with standard palletes
+//===== Additional Comments: ================================= 
+//= Fully working
+//= 2.1 Shortened some labels to make this script loading,
+//= Added Black+White Colors desc [Lupus]
+//= 2.1a added adv classes + baby class support [Lupus]
+//= 2.2 Spell checked. [Nexon]
+//= 2.3 Fixed dis $hit! [Poki#3]
+//= 2.4 Disabled cloth dyeing since it's not implemented
+//	   on official servers and cause your client to crash
+//	   [Playtester]
+//= 2.5 Optimized. [Euphy]
+//===== Translated into Russian: =============================
+//= 12.11.2007 Первый перевод [Vorp]
+//= 08.01.2016 Актуализация [Fenrir]
+//============================================================
+
+prt_in,284,168,2	script	Dyer Ginedin Rephere	55,{
+function Dyes;
+
+	set .@EnableDyes,1;	// Disable (set to 0) if palettes cause errors [see note v2.4]
+
+	set .n$,"[Dyer Ginedin Rephere]";
+	mes .n$;
+	mes "11...12... Ммм... хорошо. Кажется я смогу закончить работу до сегодняшней вечеринки. О! Я не заметил, что вы здесь.";
+	while(1) {
+		next;
+		mes .n$;
+		mes "Могу я вам чем-то помочь?";
+		next;
+		switch(select("Поговорить:Покрасить одежду:Посмотреть прайс-лист:^777777Отмена^000000")) {
+		case 1:
+			mes .n$;
+			mes "Жизнь стала вроде бы получше... Но когда я смотрю на все заказы, которые я получил... Фу-х!";
+			mes "Кажется, что молодые женщины Рун Мидгарда в последние дни, должны быть довольны.";
+			next;
+			mes .n$;
+			mes "Не то, чтобы я думаю, что они потакают себе роскошью.";
+			mes "Я не думаю, что желание быть красивым и фешенебельным - это плохо.";
+			next;
+			mes .n$;
+			mes "Для нас, людей, отсутвие красивого меха или декоративной окраски, одежда - один из немногих способов, которым мы можем показать нашу индивидуальность, стиль, и красоту.";
+			next;
+			mes .n$;
+			mes "Ха-ха... Когда я думаю об этом, я чувствую, что моя работа действительно является стоящей. И полагаю, что делаю то, что нужно людям.";
+			next;
+			mes .n$;
+			mes "Вы тоже это чувствуете? Энергию, которая выходит, когда грубая ткань и кожа приведены в гармонию с цветом? ......";
+			next;
+			mes .n$;
+			mes "Хотя процесс очень утомительный и трудоемкий, но когда одежда готова, я испытываю, что по настоящему счастлив и рад.";
+			mes "Это лучшая награда за тяжелую работу.";
+			break;
+		case 2:
+			mes .n$;
+			if (!.@EnableDyes) {
+				mes "Сожалею, я очень занят.";
+				break;
+			}
+			mes "Ох ... вам нужна моя помощь? Ну... ладно, это приятно.";
+			next;
+			mes .n$;
+			mes "Скажи какой цвет тебя устроит.";
+			next;
+
+			// Dyes(<color value>,<dye number>{,...});
+			// Colors: [1]Оранжевый, [2]Фиолетовый, [3]Красный, [4]Чёрный, [5]Зелёный, [6]Синий, [7]Белый, [8]Жёлтый
+			switch(BaseJob) {
+			case Job_Novice:
+				if (Sex) Dyes(4,1,6,2,5,3); else Dyes(6,1,3,2,5,3,4,4);
+			case Job_Swordman:
+				if (Sex) Dyes(4,1,6,2,5,3); else Dyes(3,1,5,3,4,4);
+			case Job_Mage:
+				if (Sex) Dyes(3,1,2,2,1,3,7,4); else Dyes(3,1,2,2,7,3,4,4);
+			case Job_Archer:
+				if (Sex) Dyes(4,1,2,2,5,3); else Dyes(3,1,5,2,7,3,4,4);
+			case Job_Acolyte:
+				if (Sex) Dyes(6,1,3,2,7,3,4,4); else Dyes(3,1,5,3,4,4);
+			case Job_Merchant:
+				if (Sex) Dyes(4,1,6,2,5,3); else Dyes(2,1,5,3,4,4);
+			case Job_Thief:
+				if (Sex) Dyes(5,1,3,2,7,4); else Dyes(3,1,7,3,4,4);
+			case Job_Knight:
+			case Job_Crusader:
+				if (Sex) Dyes(2,1,3,3,4,4); else Dyes(6,1,7,3,4,4);
+			case Job_Priest:
+			case Job_Monk:
+				if (Sex) Dyes(6,1,5,2,3,3,7,4); else Dyes(3,1,5,2,7,3,4,4);
+			case Job_Wizard:
+			case Job_Sage:
+				if (Sex) Dyes(6,1,5,3,4,4); else Dyes(3,1,6,2,7,3,5,4);
+			case Job_Blacksmith:
+			case Job_Alchemist:
+				if (Sex) Dyes(4,4,5,2,7,3); else Dyes(3,1,5,2,2,3,4,4);
+			case Job_Hunter:
+			case Job_Bard:
+			case Job_Dancer:
+				if (Sex) Dyes(4,1,6,2,5,3); else Dyes(6,1,5,3,2,4);
+			case Job_Assassin:
+			case Job_Rogue:
+				if (Sex) Dyes(6,1); else Dyes(4,1,8,2,7,3);
+			case Job_SuperNovice:
+				if (Sex) Dyes(2,1,6,2,5,3,4,4); else Dyes(6,1,3,2,5,3,4,4);
+			default: 
+				mes "Я не уверен что смогу это сделать. Никогда не видел ничего подобного.";
+				close;
+			}
+		case 3:
+			mes .n$;
+			mes "Вот - список цветов, которые вы можете выбрать и их цены:";
+			mes " ";
+			mes "- ^FF4422Красный^000000: 10000 zeny, 1 Scarlet Dyestuff";
+			mes "- ^D5A500Желтый^000000: 10000 zeny, 1 Lemon Dyestuff";
+			mes "- ^AA00AAФиолетовый^000000: 10000 zeny, 1 Violet Dyestuff";
+			mes "- ^FF8800Оранжевый^000000: 10000 zeny, 1 Orange Dyestuff";
+			mes "- ^4422FFСиний^000000: 10000 zeny, 1 CobaltBlue Dyestuff";
+			mes "- ^009500Зеленый^000000: 10000 zeny, 1 DarkGreen Dyestuff";
+			mes "- Черный: 10000 zeny, 1 Black Dyestuff";
+			mes "- Белый: 10000 zeny, 1 White Dyestuff";
+			break;
+		case 4:
+			goto L_End;
+		}
+	}
+
+L_End:
+	mes .n$;
+	mes "Отправляйтесь домой. У меня нет веремени на вас.";
+	close;
+
+function Dyes {
+	setarray .@DyeName$[0],"Стандартная покраска","Оранжевый","Фиолетовый","Красный","Чёрный","Зелёный","Синий","Белый","Жёлтый";
+	setarray .@DyeItems[0],0,980,981,975,983,979,978,982,976;
+	set .@menu$,"- Default:";
+	for(set .@i,0; .@i<getargcount(); set .@i,.@i+2)
+		set .@menu$, .@menu$+"- "+.@DyeName$[getarg(.@i)]+":";
+	set .@menu$, .@menu$+"- ^777777Отмена^000000";
+	set .@s, select(.@menu$)-1;
+	if (.@s == (getargcount()/2)+1) goto L_End;
+	mes .n$;
+	if (.@s == 0) {
+		mes "Я могу вернуть одежду к обычному виду бесплатно. Сделать?";
+		next;
+		switch(select("Да:Нет")) {
+		case 1:
+			mes .n$;
+			setlook 7,0;
+			mes "Одежда была окрашена в "+.@DyeName$[0]+".";
+			close;
+		case 2:
+			goto L_End;
+		}
+	}
+	if (!countitem(.@DyeItems[getarg((.@s-1)*2)])) {
+		mes "Для покарски одежды, нужны соответствующие краситили. Проверь мой прайс.";
+		close;
+	}
+	if (Zeny < 10000) {
+		mes "Я извиняюсь, но у вас нет достаточно денег.";
+		close;
+	}
+	delitem .@DyeItems[getarg((.@s-1)*2)],1;
+	set Zeny, Zeny-10000;
+	setlook 7, ((.@s)?(getarg((.@s-1)*2+1)):0);
+	mes "Ваша одежда были окрашена "+((.@s)?.@DyeName$[getarg((.@s-1)*2)]:.@DyeName$[0])+".";
+	close;
+}
+}
