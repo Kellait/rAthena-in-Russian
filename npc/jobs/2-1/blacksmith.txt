@@ -1,0 +1,1639 @@
+//===== rAthena Script =======================================
+//= Blacksmith Job Quest
+//===== By: ==================================================
+//= EREMES THE CANIVALIZER(Aegis)
+//= Translated by: yoshiki.
+//= Converted by: Komurka.
+//= Optimized and further edited by kobra_k88.
+//= Further bugfixed and tested by Lupus
+//===== Current Version: =====================================
+//= 2.9
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= [Official Conversion]
+//= Job Change quest for Blacksmith class.
+//===== Additional Comments: =================================
+//= Changed some npc names to the iRO names. Changed some variable
+//= names and labels. Edited some text.[kobra_k88]
+//= Removed "if (JobLevel > 48) goto higher". It was a left over line.
+//= Thx to "Decker".[kobra_k88]
+//= Fixed some typos, thanks to Riotblade [celest]
+//= 1.3-1.5 Added Baby Class support [Lupus]
+//= 1.6 Added a func which prevent advanced classes passing
+//=     2nd Job Quests again. It also guides adv classes where
+//=     to go. [Lupus]
+//= 1.7 item quantity/ids typos fix
+//= 1.8 Moved the Quest to Einbroch [Poki#3]
+//= 2.0 Changed numbers to constants. [Vicious]
+//= 2.1 Removed Duplicates [Silent]
+//= 2.2 Merged Jfunc, changed job numbers to constants [Lupus]
+//= 2.3 Rescripted to Aegis 10.3 standards. [L0ne_W0lf]
+//= 2.4 Several bugfixes with the help of Barron-Monster. [L0ne_W0lf]
+//= 2.4a Changed a BaseJob to baseclass. [L0ne_W0lf]
+//= 2.4b Further bug fixes with teh hel of Barron-Monster. [L0ne_W0lf]
+//= 2.4c More fixes courtosy of Micktu. [L0ne_W0lf]
+//= 2.4d Fixed an incorrect answer in the quiz. (Trojal) [L0ne_W0lf]
+//= 2.4e Touched up a few issues as pointed out by Ultramage. [L0ne_W0lf]
+//= 2.5 Krongast is in Lighthalzen. (DarkValmir) [L0ne_W0lf]
+//= 2.6 Fixed 4 bugs [Lupus]
+//= 2.6a Typo fix [Yommy]
+//= 2.7 Added Quest Log commands. [Kisuka]
+//= 2.8 Removed the need for use of 'goto.' [L0ne_W0lf]
+//= 2.9 Updated with some extra conditions. [Euphy]
+//==============================================================
+//= Оригинальный перевод ruAthena
+//= Актуализация Fenrir
+//==============================================================
+
+ein_in01,18,28,4	script	Guildsman#BLS	731,{
+	if (Upper == 1) {
+		mes "[Altiregen]";
+		mes "Эй эй. У меня нет времени на пустую болтавню, я очень занятой мужик. Есть все эти Торговцы тяжело работающие для того что бы стать Кузнецами.";
+		next;
+		mes "[Altiregen]";
+		mes "Минуточку, я думаю я встречал тебя раньше.";
+		mes "Хмммм.....";
+		next;
+		mes "[Altiregen]";
+		mes "А ты не из тех кто ломает моё оружие и убегает? Или может быть ты из тех кто достаёт меня просьбами выковать оружие для тебя? Почему я не могу вспомнпить?";
+		next;
+		mes "[Altiregen]";
+		mes ".......";
+		mes "Я не могу вспомнить где я тебя видел. Может быть это дежа вю?";
+		next;
+		mes "[Altiregen]";
+		mes "Оох!! Это реально раздражает меня! Но всё же, я чувствую что-то особенное связанное с тобой. Ну чтож, не важно. Удачного дня~";
+		close;
+	}
+	mes "[Altiregen]";
+	mes "Добро пожаловать!";
+	mes "Мы Работяги Стали,";
+	mes "Гильдия Кузнецов.";
+	next;
+	mes "[Altiregen]";
+	mes "Мы преисполнены рвением и вкладываем душу в наше ремесло. Наши навыки выплавления из метала нового оружия и инструментов - это настоящее искуство!";
+	if (BaseClass >= Job_Thief) close;	// Custom expanded class check.
+	next;
+
+	// Third class check - precedes other BaseClass dialogue.
+	if (Class >= Job_Rune_Knight && Class <= Job_Baby_Mechanic2) {
+		mes "[Altiregen]";
+		mes "Вы... Я не знаю вас, но мне кажется вы связаны с нашей гильдией. Ха-ха~";
+		mes "Я прав?";
+		close;
+	}
+
+	if (BaseClass == Job_Novice) {
+		mes "[Altiregen]";
+		if (Sex == 0) {
+			mes "Оо~";
+			mes "какая у нас тут";
+			mes "симпотичная девушка!";
+			mes "Ты тут для того";
+			mes "что бы стать Кузнецом?";
+		}
+		mes "Ты хочешь стать Кузнецом?";
+		next;
+		mes "[Altiregen]";
+		mes "Сперва, тебе надо стать Торговцем прежде чем становится Кузнецом. Иди в город Alberta и научись Торговому делу.";
+		close;
+	}
+	else if (BaseClass == Job_Swordman) {
+		mes "[Altiregen]";
+		mes "М, ты интересуешься выковкой оружия? Мне жаль разочаровывать тебя, но я вобще то несколько занят что бы помогать всяким.";
+		close;
+	}
+	else if (BaseClass == Job_Archer) {
+		mes "[Altiregen]";
+		mes "Оо...";
+		mes "Нам тут нечего тебе предложить. И ты вобще то тоже нам особо ничего не поможешь, если только конечно ты не знаешь секретов ковки...";
+		close;
+	}
+	else if (BaseClass == Job_Mage) {
+		mes "[Altiregen]";
+		mes "О? Что это спелл-кастер тут делает? Я удивлён. Обычно эта тяжёлая грубая работа не привлекает людей вашего интелекта.";
+		close;
+	}
+	else if (BaseClass == Job_Acolyte) {
+		mes "[Altiregen]";
+		mes "О! Я так понимаю Служитель Господа? Ты не мог бы благословить меня перед тем как уйдёшь!";
+		close;
+	}
+	else if (BaseClass == Job_Thief) {
+		mes "[Altiregen]";
+		mes "~кхе~ Извеняюсь...";
+		mes "Но тут правда нет ничего что ты б мог спереть. Ну, Ножи у нас выстовлены позади тебя...";
+		close;
+	}
+	else if (BaseJob == Job_Alchemist) {
+		mes "[Altiregen]";
+		mes "Рассказывай, как в последнее время идёт Фармацевтический бизнесс?";
+		mes "Моё-то кузнецкое дело нынче не развивается.";
+		close;
+	}
+	else if (BaseJob == Job_Blacksmith) {
+		mes "[Altiregen]";
+		mes "О! Давно не виделись.";
+		mes "Ты пришёл от Christopher'а, заказать поставку? В последнее время я не выхожу из-за письменного стола. У меня уже всё тело зудит от желания постучать по наковальне.";
+		close;
+	}
+	else if (BaseJob == Job_Merchant) {
+		if (SkillPoint) {
+			mes "[Altiregen]";
+			mes "Ты не можешь стать Кузнецом пока не раскидаешь все свободные скилл-поинты. Пожалуйста возвращайся когда с умом распределишь скилл-поинты.";
+			close;
+		}
+		if (BSMITH_Q == 0) {
+			mes "[Altiregen]";
+			mes "Почему бы тебе не зарывать свой";
+			mes "талант, делая деньги работая Торговцем";
+			mes "и не присоеденится к Элите... Кузнецам?";
+			mes "Если тебе это интересно, то впиши своё имя в эту анкету";
+			mes "и твой Job Level.";
+			next;
+			switch(select("Заполнить анкету.:А что для этого требуется?:Хм... я подумаю над этим.")) {
+			case 1:
+				if (SkillPoint) {
+					mes "[Altiregen]";
+					mes "Ты не можешь стать Кузнецом пока не раскидаешь все свободные скилл-поинты. Пожалуйста возвращайся когда с умом распределишь скилл-поинты.";
+					close;
+				}
+				else if (JobLevel > 39 && BSMITH_Q == 0) {
+					mes "[Altiregen]";
+					mes "Хммм...";
+					mes "Похоже, что ты";
+					mes "подходишь нам по требованиям";
+					mes "с твоим Job Level'ом.";
+					next;
+					mes "[Altiregen]";
+					mes "Видишь, мы не принемаем каждого встречного в гильдтю. В первую очередь мы принемаем опытных Торговцев, которые действительно хотят стать Кузнецами. Так, посмотрим...";
+					next;
+					mes "^3355FF*Возится в бумагах*^000000";
+					next;
+					mes "[Altiregen]";
+					mes "Хммм...";
+					mes "Один из наших Кузнецов в городе Einbech, ^8E6B23Geschupenschte^000000 обмолвился о том что ему нужна не большая помощь. Первый твой тест на профориентацию будет, помочь ему.";
+					next;
+					set BSMITH_Q,1;
+					setquest 2000;
+					mes "[Altiregen]";
+					mes "Будь осторожен";
+					mes "и удачи!";
+					close;
+				}
+				else if (JobLevel < 40) {
+					mes "[Altiregen]";
+					mes "Хммм, похоже ты не очень-то опытный Торговец. В наши требования входит наличие Job Level 40, увидемся когда подростёшь.";
+					next;
+					mes "[Altiregen]";
+					mes "Мне не удобно отшивать тебя, после того как ты проделал этот тяжёлый путь сюда, но с уставом не поспоришь. Извени что разочаровал тебя, но мы ждём тебя как только ты будешь готов.";
+					close;
+				}
+			case 2:
+				mes "[Altiregen]";
+				mes "Хочешь знать наши требования? Во-первых, твой Job Level Торговца должен быть 40 или выше. Во-вторых, ты должен пройти испытание которое на тебя возложет Гильдия Кузнецов.";
+				next;
+				mes "[Altiregen]";
+				mes "Испытание состоит из нескоьких частей, но ничего невозможного в нём нет. Для того что бы закончить испытание, тебе нужно будет доставить определённые";
+				mes "вещи в разные места по всему миру.";
+				close;
+			case 3:
+				mes "[Altiregen]";
+				mes "Хммм...";
+				mes "Ну что ж, я надеюсь";
+				mes "мы ещё встретемся.";
+				close;
+			}
+		}
+		else if (BSMITH_Q > 0  && BSMITH_Q < 8) {
+			mes "[Altiregen]";
+			mes "Что? Ты ещё здесь?";
+			mes "Иди в город Einbech и найди там человека по имени ^8E6B23Geschupenschte^000000. Помоги ему и когда закончишь там, возвращайся сюда.";
+			close;
+		}
+		else if (BSMITH_Q > 8 && BSMITH_Q < 15) {
+			mes "[Altiregen]";
+			mes "Работёнка которой озадачил тебя ^8E6B23Geschupenschte^000000 была тебе по душе? Он славится своей требовательностью...";
+			close;
+		}
+		else if (BSMITH_Q == 15) {
+			mes "[Altiregen]";
+			mes "Отличная работа!!";
+			mes "Ты прошёл";
+			mes "первое испыта...";
+			next;
+			mes "[Altiregen]";
+			mes "Мм? Ты выглядишь удивлённо.";
+			mes "Пологаю ты не в курсе что у нас не одно испытание. ";
+			mes "Хаха, но не беспокойся, тебе не придётся далеко ходить.";
+			mes "Пожалуйста пройди к гильдийному помошнику в здании, для более детального изучения своего следующего задания.";
+			next;
+			if (select("Мне бы по быстрее уже стать Кузнецом! Эх... ну ладно.:ГрРРррРрРр! Хвать! С меня хватит!") == 1) {
+				set BSMITH_Q,16;
+				changequest 2013,2014;
+				mes "[Altiregen]";
+				mes "Сожелею, но я думаю ты понимаешь? Мы не можем принимать в гильдию каждого встречного!";
+				next;
+				mes "[Altiregen]";
+				mes "Если мы не будим блюсти наши требования, мы не сможем поддерживать репутацию Гильдии Кузнецов!";
+				mes "Мы не можем выставлять гильдию в столь дурном свете! *Кхм* В любом случае, поговори с гильдийным помошником.";
+				close;
+			}
+			mes "[Altiregen]";
+			mes "Ты действительно хочешь отозвать заявляение на вступление в гильдию? Это оскорбительно для гильдии!";
+			mes "Убирайся прочь! С таким нравом, можешь забыть о вступлении а Гильдию Кузнецов!";
+			next;
+			mes "[Altiregen]";
+			mes "Ты ничтожество!";
+			mes "С таким терпением тебе никогда не стать Кузнецом!";
+			close;
+		}
+		else if (BSMITH_Q == 16) {
+			mes "[Altiregen]";
+			mes "Хм, ты ещё не поговорил с помошником гильдии?";
+			mes "Если ещё нет, то тебе стоит сделать это как только так сразу.";
+			close;
+		}
+		else if (BSMITH_Q == 17 && countitem(1005) > 0 && JobLevel > 39) {
+			mes "[Altiregen]";
+			if (ismounting()) {
+				mes "Прояви уважение, слезь с коня.";
+				close;
+			}
+			mes "Превосходно, я могу с уверенностью сказать ты ПРИНЯТ. Теперь я могу даровать тебе, произведение искуства - наше ремесла.";
+			if (checkquest(2015) != -1) {
+				changequest 2015,2016;
+			}
+			next;
+			set .@joblvl,JobLevel;
+			callfunc "Job_Change",Job_Blacksmith;
+			callfunc "F_ClearJobVar";		// clears all job variables for the current player
+			mes "[Altiregen]";
+			mes "Всегда помни, что мы создатели и художники металов. Будь остороже, не оступись и не упади в пропасть эгоизма и жадности.";
+			next;
+			delitem 1005,1; //Hammer_Of_Blacksmith
+			completequest 2016;
+			mes "[Altiregen]";
+			mes "Вот не большой";
+			mes "подарок что б отметить";
+			mes "начало твоей жизни";
+			mes "в качестве Кузнеца.";
+			mes "Поздравляю!!!";
+			if (.@joblvl > 48)
+				getitem 999,30; //Steel
+			else 
+				getitem 999,5; //Steel
+			close;
+		}
+	}
+}
+
+ein_in01,201,27,3	script	Guildsman#alberta	63,{
+	mes "[Geschupenschte]";
+	mes "Эй ты, здарова!";
+	mes "Я ^8E6B23Geschupenschte^000000,";
+	mes "Кузнец который будет испытывать тебя.";
+	mes "Рад познакомиться!";
+	next;
+	if (BaseJob == Job_Merchant) {
+		mes "[Geschupenschte]";
+		mes "Опа опа опа!";
+		mes "Ты Торговец!";
+		mes "Замечательно! Мне как раз";
+		mes "нужна твоя помощь!";
+		next;
+		if (BSMITH_Q == 0) {
+			mes "[Geschupenschte]";
+			mes "Но конечно я";
+			mes "не не против если";
+			mes "ты занят. Можешь";
+			mes "уйти если тебе надо~";
+			next;
+			mes "[Geschupenschte]";
+			mes "Конечно...";
+			mes "Я знаю";
+			mes "что такое";
+			mes "быть занятым~";
+			close;
+		}
+		else if ((BSMITH_Q == 1) || (BSMITH_Q == 2)) {
+			if (BSMITH_Q == 1) {
+				mes "[Geschupenschte]";
+				mes "Я пологаю ты от Гильдии Кузнецов? Они не очень то доверяют людям, зато я могу нанять помошника себе, по этому всегда";
+				mes "всегда есть тот кто мне помогает.";
+				next;
+				mes "[Geschupenschte]";
+				mes "Хмм, в любом случае,";
+				mes "тебя послали сюда что бы помочь, ведт так? Хорошо, у меня есть работёнка для тебя, с которой надо разобраться";
+				mes "прямо сейчас!";
+				next;
+				mes "[Geschupenschte]";
+				mes "Не давно у меня работал один не опытный малёнка, который заказал не те материалы! Это была катастрофа...";
+				next;
+				mes "[Geschupenschte]";
+				mes "Никто не хочет терять деньги по глупой ошибке, как эта. Однако у меня есть более сложная работёнка для тебя.";
+				next;
+				mes "[Geschupenschte]";
+				mes "Я бы хотел убедится что у тебя есть минемальные знания о Торговле. Я задам тебе несколько вопросов если ты не против.";
+				next;
+				set .@selection,select("Ну давай.:Я пожалуй немного подготовлюсь?");
+			}
+			else if (BSMITH_Q == 2) {
+				mes "[Geschupenschte]";
+				mes "Ну что ты";
+				mes "подготовился";
+				mes "на этот раз?";
+				next;
+				mes "[Geschupenschte]";
+				mes "Я полагаю бессмысленно надеяться что кто-то в первый же раз получит высокий бал, так что я дам тебе";
+				mes "не большой перерыв...";
+				next;
+				mes "[Geschupenschte]";
+				mes "Смотри ничего";
+				mes "не пропусти!";
+				mes "Хорошо, начнём";
+				mes "наш тест~";
+				next;
+			}
+			if (.@selection != 2) {
+				if (rand(2)) {
+					mes "[Geschupenschte]";
+					mes "1. Какое из следующих описаний городов не подходит";
+					mes "под его специализацию?";
+					next;
+					if (select("Morroc - Thief Clothes:Alberta - Two Hand Axe:Comodo - Berserk Potion:Alberta - Swordmace") == 4)
+						set .@black_q,.@black_q+10;
+					mes "[Geschupenschte]";
+					mes "2. Каким статусом";
+					mes "осчастливит врага, навык";
+					mes "^8E6B23Hammer Fall^000000 ?";
+					next;
+					if (select("Stun:Blind:Silence:Sleep") == 1)
+						set .@black_q,.@black_q+10;
+					mes "[Geschupenschte]";
+					mes "3. Какой из следующих навыков не может использовать";
+					mes "Торговец?";
+					next;
+					if (select("Vending:Discount:Overcharge:Increase AGI") == 4)
+						set .@black_q,.@black_q+10;
+					mes "[Geschupenschte]";
+					mes "4. Где можно найти магазинчик";
+					mes "в котором продают Blue Gemstones?";
+					next;
+					if (select("Alberta:Morroc:Geffen:Prontera") == 3)
+						set .@black_q,.@black_q+10;
+					mes "[Geschupenschte]";
+					mes "5. Где в Geffen'е";
+					mes "находится";
+					mes "Tool Dealer?";
+					next;
+					if (select("По направлению на 8 часов от центральной башни:По направлению на 11 часов от центральной башни:По направлению на 6 часов от центральной башни:По направлению на 5 часов от центральной башни") == 1)
+						set .@black_q,.@black_q+10;
+					mes "[Geschupenschte]";
+					mes "6. Какое оружие";
+					mes "не может использовать";
+					mes "Торговец?";
+					next;
+					if (select("Stiletto:Ring Pommel Saber:Chain:Bible") == 4)
+						set .@black_q,.@black_q+10;
+					mes "[Geschupenschte]";
+					mes "7. У чего из следующего";
+					mes "замая большая защита?";
+					next;
+					if (select("Panties:Mink Coat:Wooden Mail:Silk Robe") == 2)
+						set .@black_q,.@black_q+10;
+					mes "[Geschupenschte]";
+					mes "8. Для оружия 3-го Уровня,";
+					mes "какой ^8E6B23Безопасный^000000 предел";
+					mes "заточки?";
+					next;
+					if (select("до + 3:до + 4:до + 5:до + 6") == 3)
+						set .@black_q,.@black_q+10;
+					mes "9. Что можно";
+					mes "сделать используя";
+					mes "^8E6B23Trunks^000000 ?";
+					next;
+					if (select("Sakkat:Ghost Bandana:Majestic Goat:Antler") == 1)
+						set .@black_q,.@black_q+10;
+					mes "[Geschupenschte]";
+					mes "10. Самая важная составляющаяя в";
+					mes "профессии Тороговца это...?";
+					next;
+					select("Доверие:Честность:Деньги:Красноречие");
+					set .@black_q,.@black_q+10;
+				}
+				else {
+					mes "[Geschupenschte]";
+					mes "1. Какой из городов не отвечает своей специфики?";
+					next;
+					if (select("Al De Baran - Yggdrasil Leaf:Alberta - Hammer:Comodo - Berserk Potion:Al De Baran - Hammer") == 4)
+						set .@black_q,.@black_q+10;
+					mes "[Geschupenschte]";
+					mes "2. Во сколько оценивают";
+					mes "один Jellopy?";
+					next;
+					if (select("1 Zeny:2 Zeny:3 Zeny:4 Zeny") == 3)
+						set .@black_q,.@black_q+10;
+					mes "[Geschupenschte]";
+					mes "3. Что необходимо";
+					mes "Торговцу, что бы использовать";
+					mes "навык ^8E6B23Vending^000000?";
+					next;
+					if (select("Должна быть Тележка.:Должно быть что-нибудь для продажи.:Должен уметь оброщаться с оружием.:Должна быть одета броня.") == 1)
+						set .@black_q,.@black_q+10;
+					mes "[Geschupenschte]";
+					mes "4. В каком городе";
+					mes "можно сменить профессию";
+					mes "на Торговца?";
+					next;
+					if (select("Alberta:Morroc:Geffen:Prontera") == 1)
+						set .@black_q,.@black_q+10;
+					mes "[Geschupenschte]";
+					mes "5. Где находится";
+					mes "Weapons Dealer";
+					mes "в Morroc'е?";
+					next;
+					if (select("На 7 часов от центра города:На 11 часов от центра города:На 6 часов от центра города:На 5 часов от центра города") == 4)
+						set .@black_q,.@black_q+10;
+					mes "[Geschupenschte]";
+					mes "6. Какое оружие";
+					mes "Торговец не может";
+					mes "использовать?";
+					next;
+					if (select("Main Gauche:Claymore:Chain:Two handed Axe") == 2)
+						set .@black_q,.@black_q+10;
+					mes "[Geschupenschte]";
+					mes "7. Что из нижеописанного";
+					mes "обладает самой большой защитой?";
+					next;
+					if (select("Panties:Mink Coat:Wooden Mail:Silk Robe") == 2)
+						set .@black_q,.@black_q+10;
+					mes "[Geschupenschte]";
+					mes "8. Для оружия 3-го Уровня,";
+					mes "какой ^8E6B23Безопасной^000000 предел";
+					mes "заточки?";
+					next;
+					if (select("up to + 3:up to + 4:up to + 5:up to + 6") == 3)
+						set .@black_q,.@black_q+10;
+					mes "[Geschupenschte]";
+					mes "9. Из какого монстра";
+					mes "не выпадает Iron Ore?";
+					next;
+					if (select("Chon Chon:Steel Chon Chon:Zerom:Anolian") == 4)
+						set .@black_q,.@black_q+10;
+					mes "[Geschupenschte]";
+					mes "10. Самая важная составляющаяя в";
+					mes "профессии Тороговца это...?";
+					next;
+					select("Доверие:Честность:Деньги:Красноречие");
+					set .@black_q,.@black_q+10;
+				}
+				mes "[Geschupenschte]";
+				mes "Ммм. Ты проделал отличную работу!";
+				next;
+				mes "[Geschupenschte]";
+				mes "Так, посмотрим...ты ответил на..." + .@black_q + " балов.";
+				if (.@black_q == 100) {
+					set BSMITH_Q,3;
+					if (checkquest(2001) != -1) {
+						changequest 2001,2002;
+					} else {
+						changequest 2000,2002;
+					}
+					mes "УУууухх~";
+					mes "У тебя не";
+					mes "будет проблем";
+					mes "с таким балом!";
+					next;
+					mes "[Geschupenschte]";
+					mes "Я доверю тебе эту работёнку!";
+					mes "Дай мне не много времени что бы подготовить всё.";
+					mes "Когда ты вернёшься, я уже буду готов!";
+					close;
+				}
+				set BSMITH_Q,2;
+				if (checkquest(2001) == -1) {
+					changequest 2000,2001;
+				}
+				mes ".............";
+				next;
+				mes "[Geschupenschte]";
+				if (BSMITH_Q == 2) {
+					mes "Ну что я могу сказать?";
+					mes "Ты снова провалился?!";
+					mes "Если ты планируешь работать так же как проходишь этот тест, то я тебе вобще никакой работы не доверю...";
+					close;
+				}
+				mes "Хмм...";
+				mes "Самому не верется что я это говорю, но тебе бы под набраться знаний. Тебе никогда не стать";
+				mes "Кузнецом, с таким";
+				mes "балом!";
+				close;
+			}
+			mes "[Geschupenschte]";
+			mes "Конечно я не возрожаю если ты вернёшься позже. Будучи подготовленым к таким бедам.";
+			mes "Без обид...";
+			mes "береги себя~";
+			close;
+		}
+		/*
+		else if (BSMITH_Q == 2) {
+			mes "[Geschupenschte]";
+			mes "Ну что ты";
+			mes "подготовился";
+			mes "на этот раз?";
+			next;
+			mes "[Geschupenschte]";
+			mes "Я полагаю бессмысленно надеяться что кто-то в первый же раз получит высокий бал, так что я дам тебе";
+			mes "не большой перерыв...";
+			next;
+			mes "[Geschupenschte]";
+			mes "Смотри ничего";
+			mes "не пропусти!";
+			mes "Хорошо, начнём";
+			mes "наш тест~";
+			next;
+			goto L_AskQuestions;
+		}
+		*/
+		else if (BSMITH_Q == 3) {
+			mes "[Geschupenschte]";
+			mes "Хмм...";
+			mes "Так, где же был тот";
+			mes "бланк...";
+			next;
+			mes "^3355FF*Перебирает бумаги*";
+			mes "*Шелест бумаги*^000000";
+			next;
+			mes "[Geschupenschte]";
+			mes "Ааа! Вот же он!";
+			mes "Этот заказ";
+			mes "Задержали больше";
+			mes "всего...";
+			mes "Хех хех~";
+			next;
+			mes "[Geschupenschte]";
+			mes "Ну, что б сделать это";
+			mes "тебе понадобится...";
+			next;
+			switch(rand(1,5)) {
+			//Steel, Rotten_Bandage, Blue_Gemstone, Arc_Wand
+			case 1: setarray .@items[0], 999,1, 930,1, 717,2, 1610,1, 4; changequest 2002,2003; break;
+			//Sparkling_Dust, Skel_Bone, Zargon, Gladius
+			case 2: setarray .@items[0], 1001,2, 932,1, 912,1, 1219,1, 5; changequest 2002,2004; break;
+			//Coal, Shell, Boody_Red, Tsurugi
+			case 3: setarray .@items[0], 1003,1, 935,2, 990,2, 1119,1, 6; changequest 2002,2005; break;
+			//Iron_Ore, Eye_Bandage, Blue_Gemstone, Arbalest
+			case 4: setarray .@items[0], 1002,1, 2212,1, 717,2, 1713,1, 7; changequest 2002,2006; break;
+			//Iron, Green_Herb, Animal's_Skin, Ring_Pommel_Saber
+			default: setarray .@items[0], 998,1, 511,1, 919,2, 1122,1, 8; changequest 2002,2007; break;
+			}
+			set BSMITH_Q,.@items[8];
+			mes "[Geschupenschte]";
+			mes "^8E6B23"+.@items[1]+" "+getitemname(.@items[0])+"^000000,";
+			mes "^8E6B23"+.@items[3]+" "+getitemname(.@items[2])+"^000000,";
+			mes "^8E6B23"+.@items[5]+" "+getitemname(.@items[4])+"^000000, и";
+			mes "^8E6B23"+.@items[7]+" "+getitemname(.@items[6])+"^000000, это ты";
+			mes "можешь купить";
+			mes "в обычном магазине.";
+			next;
+			mes "[Geschupenschte]";
+			mes "Собрать эти вещи и будет твоим заданием. Это так же хороший способ для меня, не тратить денег. Я повторю что тебе надо принести мне...";
+			next;
+			mes "[Geschupenschte]";
+			mes "Хорошо~";
+			mes "Удачи в твоей";
+			mes "первой работе!";
+			close;
+		}
+		else if (BSMITH_Q > 3 && BSMITH_Q < 9) {
+			switch(BSMITH_Q) {
+			case 4: setarray .@items[0], 999,1, 930,1, 717,2, 1610,1, 9; break;
+			case 5: setarray .@items[0], 1001,2, 932,1, 912,1, 1219,1, 10; break;
+			case 6: setarray .@items[0], 1003,1, 935,2, 990,2, 1119,1, 11; break;
+			case 7: setarray .@items[0], 1002,1, 2212,1, 717,2, 1713,1, 12; break;
+			case 8: setarray .@items[0], 998,1, 511,1, 919,2, 1122,1, 13; break;
+			}
+			mes "[Geschupenschte]";
+			mes "О, ты вернулся!";
+			mes "Ты принёс";
+			mes "что я всё";
+			mes "просил?";
+			next;
+			if (countitem(.@items[0]) >= .@items[1] && countitem(.@items[2]) >= .@items[3] && countitem(.@items[4]) >= .@items[5] && countitem(.@items[6]) >= .@items[7]) {
+				mes "[Geschupenschte]";
+				mes "Стоп...";
+				mes "Разве я не говорил";
+				mes "тебе принести 3 Steel?";
+				next;
+				mes "[Geschupenschte]";
+				mes "Эх наверное я";
+				mes "забыл. Так, посмотрим...";
+				mes "Да, ты принёс всё что требовалось!";
+				mes "Так, а щас минуточку.";
+				next;
+				mes "[Geschupenschte]";
+				mes "А, и убедись что у тебя ^FF0000не больше одного "+getitemname(.@items[6])+"^000000, тебе действительно нужно только "+getitemname(.@items[6])+" которую ты купил у в обычном магазине.";
+				next;
+				if (select("Оо, щас... секунду?:Я купил то что ты просил.") == 1) {
+					mes "[Geschupenschte]";
+					mes "Лучше будет";
+					mes "если ты положешь в склад";
+					mes "кафры, оставшиеся";
+					mes "материалы.";
+					close;
+				}
+				mes "[Geschupenschte]";
+				mes "Так.";
+				mes "Отлично~!!";
+				next;
+				mes "[Geschupenschte]";
+				mes "^3355FF*Клац...!*^000000";
+				next;
+				mes "[Geschupenschte]";
+				mes "^3355FF*Туц Туц!*^000000";
+				next;
+				delitem .@items[0],.@items[1];
+				delitem .@items[2],.@items[3];
+				delitem .@items[4],.@items[5];
+				delitem .@items[6],.@items[7];
+				set BSMITH_Q,.@items[8];
+				mes "[Geschupenschte]";
+				mes "Ууууухх~~~";
+				mes "Готово...";
+				switch(BSMITH_Q) {
+				case 9:
+					mes "Так, теперь отнеси это ^8E6B23Baisulist^000000 в город Geffen Королевства Рун-Мидгард. Просто доставь это и принеси мне квитанцию.";
+					getitem 1610,1; //Arc_Wand
+					if (checkquest(2003) != -1) {
+						changequest 2003,2008;
+					}
+					next;
+					mes "[Geschupenschte]";
+					mes "Хмм...?";
+					mes "Что это такое?";
+					mes "Что-то не то с этим";
+					mes "Arc Wand! Вот, смотри";
+					mes "возле рукоятки...";
+					next;
+					mes "^3355FFНадпись на рукоятке:";
+					mes "'Super Arc Wand";
+					mes "of Geschupenschte";
+					mes "Mark 2.' It does seem";
+					mes "to have a completely";
+					mes "different feel.^000000";
+					next;
+					mes "[Geschupenschte]";
+					mes "Не важно, доставь его";
+					mes "^8E6B23Baisulist^000000 в город Geffen Королевства Рун-Мидгард,";
+					break;
+				case 10:
+					mes "Так, теперь отнеси это ^8E6B23Wickebine^000000 в город Morroc Королевства Рун-Мидгард. Просто доставь это и принеси мне квитанцию.";
+					getitem 1219,1; //Gladius
+					if (checkquest(2004) != -1) {
+						changequest 2004,2009;
+					}
+					next;
+					mes "[Geschupenschte]";
+					mes "Хмм...?";
+					mes "Что это такое?";
+					mes "Что-то не то с этим";
+					mes "Gladius! Вот, смотри";
+					mes "возле рукоятки...";
+					next;
+					mes "^3355FFНадпись на рукоятке:";
+					mes "'Super Gladius";
+					mes "of Geschupenschte";
+					mes "Mark 2.' It does seem";
+					mes "to have a completely";
+					mes "different feel.^000000";
+					next;
+					mes "[Geschupenschte]";
+					mes "Не важно, доставь его";
+					mes "^8E6B23Wickebine^000000 в город Morroc Королевства Рун-Мидгард,";
+					break;
+				case 11:
+					mes "Так, теперь отнеси это ^8E6B23Krongast^000000 в город Lighthalzen. Просто доставь это и принеси мне квитанцию.";
+					getitem 1119,1; //Tsurugi
+					if (checkquest(2005) != -1) {
+						changequest 2005,2010;
+					}
+					next;
+					mes "[Geschupenschte]";
+					mes "Хмм...?";
+					mes "Что это такое?";
+					mes "Что-то не то с этим";
+					mes "Tsurugi! Вот, смотри";
+					mes "на лезвие...";
+					next;
+					mes "^3355FFНадпись на лезвие:";
+					mes "'Fine-edged";
+					mes "Geschupenschte";
+					mes "Tsurugi Special.'";
+					mes "It does seem to feel";
+					mes "completely different";
+					mes "than normal Tsurugis...^000000";
+					next;
+					mes "[Geschupenschte]";
+					mes "Не важно, доставь его";
+					mes "^8E6B23Krongast^000000 в город Lighthalzen";
+					break;
+				case 12:
+					mes "Так, теперь отнеси это ^8E6B23Talpiz^000000 в город Payon Королевства Рун-Мидгард. Просто доставь это и принеси мне квитанцию.";
+					getitem 1713,1; //Arbalest
+					if (checkquest(2006) != -1) {
+						changequest 2006,2011;
+					}
+					next;
+					mes "[Geschupenschte]";
+					mes "Хмм...?";
+					mes "Что это такое?";
+					mes "Что-то не то с этим";
+					mes "Arbalest! Вот, смотри";
+					mes "на древке...";
+					next;
+					mes "^3355FFНадпись на дрвеке:";
+					mes "Geschupenschte";
+					mes "Arbalest Luxury Edition.";
+					mes "It does seem more luxurious";
+					mes "than regular Arbalests.^000000";
+					next;
+					mes "[Geschupenschte]";
+					mes "Не важно, доставь его";
+					mes "^8E6B23Talpiz^000000 в город Payon Королевства Рун-Мидгард,";
+					break;
+				case 13:
+					mes "Так, теперь отнеси это ^8E6B23Bismarc^000000 в город Hugel. Просто доставь это и принеси мне квитанцию.";
+					getitem 1122,1; //Ring_Pommel_Saber
+					if (checkquest(2007) != -1) {
+						changequest 2007,2012;
+					}
+					next;
+					mes "[Geschupenschte]";
+					mes "Хмм...?";
+					mes "Что это такое?";
+					mes "Что-то не то с этим";
+					mes "Ring Pommel Saber!";
+					mes "Вот, смотри";
+					mes "на рукоятке...";
+					next;
+					mes "^3355FFНадпись на рукоятке:";
+					mes "'Green Herbal";
+					mes "Ring Pommel Saber";
+					mes "of Geschupenschte";
+					mes "Mark 2.' It does seem";
+					mes "to have a completely";
+					mes "different feel.^000000";
+					next;
+					mes "[Geschupenschte]";
+					mes "Целебная сила Зелёных Растений, которой пропитан этот меч, может быть очень полезной! Ты можешь спасти кого-то от медленной и мучительной смерти вызванной ядом, просто уколов больного!";
+					next;
+					mes "[Geschupenschte]";
+					mes "Не важно, доставь его";
+					mes "^8E6B23Bismarc^000000 в город Hugel";
+				}
+				mes "and don't forget";
+				mes "the receipt!";
+				close;
+			}
+			else {
+				mes "[Geschupenschte]";
+				mes "Ты ещё не принёс";
+				mes "все материалы.";
+				mes "Тебе всё надо что...";
+				mes "повторять дважды? Принеси мне...";
+				next;
+				mes "[Geschupenschte]";
+				mes "^8E6B23"+.@items[1]+" "+getitemname(.@items[0])+"^000000,";
+				mes "^8E6B23"+.@items[3]+" "+getitemname(.@items[2])+"^000000,";
+				mes "^8E6B23"+.@items[5]+" "+getitemname(.@items[4])+"^000000, и";
+				mes "^8E6B23"+.@items[7]+" "+getitemname(.@items[6])+"^000000, это ты";
+				mes "можешь купить";
+				mes "в обычном магазине.";
+				next;
+				mes "[Geschupenschte]";
+				mes "И теперь не возвращайся";
+				mes "пока не будешь уверен что";
+				mes "собрал всё. Запомни,";
+				mes "это испытание! Тебе не стать";
+				mes "Кузнецом если ты будешь";
+				mes "размазнёй!";
+				close;
+			}
+		}
+		else if (BSMITH_Q > 8 && BSMITH_Q < 14) {
+			mes "[Geschupenschte]";
+			mes "Ну чё ты ещё";
+			mes " тут делаешь?";
+			mes "Быстро доставь";
+			mes "посылку~!";
+			mes "Забыл куда тебя";
+			mes "послали?";
+			next;
+			mes "[Geschupenschte]";
+			if (BSMITH_Q == 9) {
+				mes "Тебе в Geffen, на";
+				mes "11 часов от центра города, найдёшь ^8E6B23Baisulist^000000. И не забудь квитанцию.";
+			}
+			else if (BSMITH_Q == 10) {
+				mes "Найди изготовителя Swordmace'ов,";
+				mes "его зовут, ^8E6B23Wickebine^000000 в городе Morroc. И не забудь квитанцию.";
+			}
+			else if (BSMITH_Q == 11) {
+				mes "Тебе в Lighthalzen, на 6 часов от центра города, там найдёшь ^8E6B23Krongast^000000, он возле оружейного магазина. И не забудь квитанцию.";
+			}
+			else if (BSMITH_Q == 12) {
+				mes "Тебе в Payon, на 5 часов от центра города, там найдёшь ^8E6B23Talpiz^000000. И не забудь квитанцию.";
+			}
+			else {
+				mes "Тебе в Hugel, на 1 час от центра города, там найдёшь ^8E6B23Bismarc^000000 возле дережабля. И не забудь квитанцию.";
+			}
+			close;
+		}
+		else if (BSMITH_Q == 14) {
+			mes "[Geschupenschte]";
+			mes "Хммм...?";
+			mes "Ты уже";
+			mes "закончил с";
+			mes "доставкой?";
+			mes "Так, посмотрим на квитанцию~";
+			next;
+			if (select("Да конечно, вот она.:Ээм Квитанция?...где то она...") == 1) {
+				if (countitem(1073) > 0) {
+					set BSMITH_Q,15;
+					delitem 1073,1; //Merchant_Voucher_1
+					if (checkquest(2008) != -1) {
+						changequest 2008,2013;
+					}
+					else if (checkquest(2009) != -1) {
+						changequest 2009,2013;
+					}
+					else if (checkquest(2010) != -1) {
+						changequest 2010,2013;
+					}
+					else if (checkquest(2011) != -1) {
+						changequest 2011,2013;
+					}
+					else {
+						changequest 2012,2013;
+					}
+					mes "[Geschupenschte]";
+					mes "Так так так~";
+					mes "Ну замечательно!";
+					mes "Ты действительно";
+					mes "классный Торговец!";
+					next;
+					mes "[Geschupenschte]";
+					mes "Хорошая работа!";
+					mes "Возвращайся к ^8E6B23Altiregen^000000 в городе Einbroch, это парень который принемал у тебя анкету на вступления в ряды Кузнецов.";
+					next;
+					mes "[Geschupenschte]";
+					mes "Ты доказал что";
+					mes "будешь великим Кузнецом!";
+					close;
+				}
+				set BSMITH_Q,3;
+				mes "[Geschupenschte]";
+				mes "Ты...";
+				mes "Ты хочешь сказать";
+				mes "что у тебя нет квитанции?";
+				mes "Что...?!";
+				next;
+				mes "[Geschupenschte]";
+				mes "Накладная это";
+				mes "лучший твой друг в доставке!";
+				mes "Это неоходимо для твоей работы!";
+				mes "Тебе придётся начать";
+				mes "испытание снова!";
+				close;
+			}
+			mes "[Geschupenschte]";
+			mes "Возвращайся конда";
+			mes "найдёшь квитанцию~";
+			mes "Ты ведь не забыл";
+			mes "взять квитанцию.";
+			mes "Ведь так...?";
+			close;
+		}
+		else if (BSMITH_Q == 15) {
+			mes "[Geschupenschte]";
+			mes "Спасибо";
+			mes "тебе больше";
+			mes "за помощь.";
+			mes "Возвращайся в Einbroch";
+			mes "к ^8E6B23Altiregen^000000!";
+			close;
+		}
+		mes "[Geschupenschte]";
+		mes "Хммм...?";
+		mes "Ты уже закончил";
+		mes "испытание у меня!";
+		mes "Нечему удивляться, мне";
+		mes "сейчас помощь не нужна.";
+		close;
+	}
+	else {
+		mes "[Geschupenschte]";
+		mes "Быть";
+		mes "Кузнецом - это по ";
+		mes "настоящему здорово!";
+		mes "Ты так не думаешь?";
+		mes "Бугогага!!";
+		close;
+	}
+}
+
+geffen,46,164,1	script	Baisulist#BLS	69,{
+	if (BSMITH_Q == 9 && countitem(1610) > 0) {
+		mes "[Baisulist]";
+		mes "О, привет!";
+		mes "Ты";
+		mes "принёс мой";
+		mes "Arc Wand?";
+		next;
+		mes "[Baisulist]";
+		mes "Уверен что это то что я заказывал? Я имею ввижу, если он поддержаный";
+		mes "То мне он такой не нужен.";
+		next;
+		if (select("Ой, ну я по баловался им маленько...:Уверен, ты посмотри как сверкает!") == 1) {
+			mes "[Baisulist]";
+			mes "Ну...";
+			mes "Я могу подождать";
+			mes "ещё немного.";
+			mes "По живее доставь";
+			mes "то что я заказывал~";
+			close;
+		}
+		mes "[Baisulist]";
+		mes "Ты...";
+		mes "ты точно уверен?";
+		set BSMITH_Q,14;
+		delitem 1610,1; //Arc_Wand
+		next;
+		mes "[Baisulist]";
+		mes "Спасибо огромное что проделал такой огромный путь сюда. Ох уж этот Geschupenschte, тресни уме когда увидишь, за то что заставил меня так долго ждать...";
+		next;
+		mes "[Baisulist]";
+		mes "Ой постой";
+		mes "ещё секунду";
+		mes "давай я дам тебе квитанцию~";
+		next;
+		getitem 1073,1; //Merchant_Voucher_1
+		mes "[Baisulist]";
+		mes "Вот держи.";
+		mes "Ещё раз спасибо!";
+		mes "Ну, удачи...~";
+		mapannounce "geffen","Эй, " +strcharinfo(0)+ ", ещё раз спасибо, за доставку~",bc_map;
+		close;
+	}
+	else if (BSMITH_Q == 14) {
+		mes "[Baisulist]";
+		mes "Ещё раз";
+		mes "спасибо";
+		mes "за доставку~";
+		close;
+	}
+	else {
+		mes "[Baisulist]";
+		mes "Ох...";
+		mes "Давненько я";
+		mes "не был в городе";
+		mes "Alberta.";
+		next;
+		mes "[Baisulist]";
+		mes "Я заказывал там кое-что";
+		mes "но с того момента прошло,";
+		mes "много времени, а зака так и";
+		mes "не доставили...";
+		next;
+		mes "[Baisulist]";
+		mes "Я удивлён...";
+		mes "Что Гильдия Кузнецов";
+		mes "такая не пунктуальная? Я раньше был о них иного мнения...";
+		next;
+		mes "[Baisulist]";
+		mes "Когда я наконец получу";
+		mes "мой специальный Arc Wand?";
+		close;
+	}
+}
+
+morocc,27,112,4	script	Wickebine#BLS	725,{
+	if (BSMITH_Q == 10 && countitem(1219) > 0) {
+		cutin "Job_Black_hucke01",2;
+		mes "[Wickebine]";
+		mes "...!";
+		mes "It's here!";
+		next;
+		mes "[Wickebine]";
+		mes "This is what I ordered, right?";
+		mes "I don't want any used or old Gladius that you might have!";
+		next;
+		if (select("Whoops, not that one.:I guarantee you it is new.") == 1) {
+			cutin "Job_Black_hucke03",2;
+			mes "[Wickebine]";
+			mes "Ооох...!";
+			mes "По торопись";
+			mes "с доставкой Gladius'a~";
+			next;
+			mes "- Похоже она расстроена. -";
+			close2;
+			cutin "Job_Black_hucke03",255;
+			end;
+		}
+		cutin "Job_Black_hucke02",2;
+		mes "[Wickebine]";
+		mes "Ха ха ха!";
+		mes "Наконецто! А ну...";
+		mes "Дай ка я";
+		mes "гляну!";
+		next;
+		mes "- Она выглядит очень счастливой. -";
+		next;
+		set BSMITH_Q,14;
+		delitem 1219,1; //Gladius
+		cutin "Job_Black_hucke01",2;
+		mes "[Wickebine]";
+		mes "Ты из Einbroch'а";
+		mes "из Гильдии Кузнецов?";
+		mes "Передай от меня Geschupenschte!";
+		next;
+		cutin "Job_Black_hucke03",2;
+		mes "[Wickebine]";
+		mes "'^660000Ты опоздал!";
+		mes "Тебе хоть известно как долго";
+		mes "мне пришлось ждать?!^000000'";
+		next;
+		cutin "Job_Black_hucke02",2;
+		mes "[Wickebine]";
+		mes "Но это так же и";
+		mes "работа высочайшего мастерства.";
+		mes "Передай ему, что я довольна качеством товара.";
+		next;
+		getitem 1073,1; //Merchant_Voucher_1
+		emotion e_lv;
+		mes "[Wickebine]";
+		mes "Вот квитанция.";
+		mes "Думаю ты проделал";
+		mes "отличную работу.";
+		mapannounce "morocc","Спасибо за доставку, " + strcharinfo(0) + "~!",bc_map;
+		close2;
+		cutin "Job_Black_hucke02",255;
+		end;
+	}
+	else if (BSMITH_Q == 14) {
+		emotion e_lv;
+		cutin "Job_Black_hucke02",2;
+		mes "[Wickebine]";
+		mes "Спасибо за доставку.";
+		close2;
+		cutin "Job_Black_hucke02",255;
+		end;
+	}
+	else {
+		cutin "Job_Black_hucke03",2;
+		mes "[Wickebine]";
+		mes "...";
+		next;
+		mes "[Wickemine]";
+		mes "...";
+		mes "......";
+		next;
+		mes "[Wickmine]";
+		mes "Опаздывает.";
+		mes "Опаздывает,";
+		mes "опаздывает,";
+		mes "опаздывает~!";
+		next;
+		mes "[Wickebine]";
+		mes "Как долго ждать Geschupenschte? Обычно Геффенская Гильдия Кузнецов пунктуальна...";
+		next;
+		emotion e_lv;
+		mes "[Wickebine]";
+		mes "Оооохх...";
+		mes "Это очень";
+		mes "разочаровывающе...";
+		close2;
+		cutin "Job_Black_hucke03",255;
+		end;
+	}
+}
+
+lighthalzen,209,80,4	script	Krongast#BLS	734,{
+	if (BSMITH_Q == 11 && countitem(1119) > 0) {
+		mes "[Krongast]";
+		mes "Оооохххх~";
+		mes "Он тут?";
+		mes "Очешь хорошо.";
+		mes "Дай-ка мне взглянуть.";
+		next;
+		mes "[Krongast]";
+		mes "Так ты уверен что это тот меч,";
+		mes "который я заказыва, да? Мне он не нужен если им уже пользовались.";
+		next;
+		if (select("Ой, а я им немного по махал!:Ты чё? Он только что выкован.") == 1) {
+			mes "[Krongast]";
+			mes "Ххххмммм!";
+			mes "Пожалуйста, принеси";
+			mes "тот меч которвй я заказал!";
+			mes "Я и так ждал его";
+			mes "очень долго, хватит с меня...";
+			close;
+		}
+		mes "[Krongast]";
+		mes "Ты дважды проверил?";
+		mes "Хорошо, тогда давай его!";
+		next;
+		set BSMITH_Q,14;
+		delitem 1119,1; //Tsurugi
+		mes "[Krongast]";
+		mes "Ох ох...";
+		mes "Хороооош.";
+		mes "Намного лучше чем";
+		mes "моих ожиданий.";
+		next;
+		mes "[Krongast]";
+		mes "С этим мечём...";
+		mes "Мои специальные приёмы будут ещё более мощьными! Я даже думаю что он идеальный для моей быстрой техники! Я люблю его!";
+		next;
+		mes "[Krongast]";
+		mes "Так, а теперь.";
+		mes "Щас я дам тебе";
+		mes "квитанцию.";
+		next;
+		getitem 1073,1; //Merchant_Voucher_1
+		mes "[Krongast]";
+		mes "Вот она,";
+		mes "твоя квитанция.";
+		mes "Спасибо за";
+		mes "работу!";
+		mapannounce "lighthalzen",strcharinfo(0)+"... Спасибо за доставку.",bc_map;
+		close;
+	}
+	else if (BSMITH_Q == 14) {
+		mes "[Krongast]";
+		mes "Спасибо";
+		mes "за доставку.";
+		close;
+	}
+	else {
+		mes "[Krongast]";
+		mes "...";
+		next;
+		mes "[Krongast]";
+		mes "...";
+		mes "......";
+		next;
+		mes "[Krongast]";
+		mes "Когда меч который";
+		mes "я заказывал, наконец доставят?";
+		mes "Мне нужно проверить с ним мой сильнейший навык, ^2F4F4FFine Edge^000000.";
+		next;
+		mes "[Krongast]";
+		mes "Ооооххх!";
+		mes "Мне нужен";
+		mes "именно тот меч!";
+		close;
+	}
+}
+
+payon,214,79,4	script	Talpiz#BLS	59,{
+	if (BSMITH_Q == 12 && countitem(1713) > 0) {
+		mes "[Talpiz]";
+		mes "Оу~";
+		mes "Она наконец тут?";
+		mes "Послыка которую я заказывал?";
+		next;
+		mes "[Talpiz]";
+		mes "Мм, это то что я заказывал, да? Мне не нужен по пользованый Арбалет.";
+		next;
+		if (select("Ой, а я пострелял с него мальца.:Я уверен, он новый.") == 1) {
+			mes "[Talpiz]";
+			mes "Хмммм.";
+			mes "Пожалуйста поторопись";
+			mes "и принеси мне, то";
+			mes "что я заказывал.";
+			mes "Я и так уже слишком";
+			mes "долго жду...";
+			close;
+		}
+		mes "[Talpiz]";
+		mes "Ну так что что? Ты уверен?";
+		mes "Дай, я лучше сам взгляну...";
+		next;
+		set BSMITH_Q,14;
+		delitem 1713,1; //Arbalest
+		mes "[Talpiz]";
+		mes "*Уууу Ваааууу*";
+		mes "Вобще классно!!";
+		next;
+		mes "[Talpiz]";
+		mes "Вот что значит качество ручной работы. Мне нравится как тут поставлен прицел! Мне он правда очень очень нравится~";
+		next;
+		mes "[Talpiz]";
+		mes "Спасибо!";
+		mes "Такого-то качества,";
+		mes "я могу продать его за высокую цену даже после использования!";
+		next;
+		getitem 1073,1; //Merchant_Voucher_1
+		mes "[Talpiz]";
+		mes "Вот!";
+		mes "Возьми пожалуйста,";
+		mes "твоя квитанция.";
+		mes "Я действительно ценю";
+		mes "тяжёлый труд.";
+		mapannounce "payon","Спасибо, " +strcharinfo(0)+ ", за доставку. Каждый раз глядя на него, он мне только больще нравится~",bc_map;
+		close;
+	}
+	else if (BSMITH_Q == 14) {
+		mes "[Talpiz]";
+		mes "Действительно,";
+		mes "Я не могу нарадоваться.";
+		mes "Это самая";
+		mes "качественная работа~!";
+		close;
+	}
+	else {
+		mes "[Talpiz]";
+		mes "Кхем...";
+		mes "Ну и когда мой";
+		mes "заказ доставят?";
+		next;
+		mes "[Talpiz]";
+		mes "Арбалет, ручной работы";
+		mes "с качественно сделаным прицелом. Только один человек может сделать нечто подобное...";
+		next;
+		mes "[Talpiz]";
+		mes "Ооооххх...";
+		mes "Это ожидание";
+		mes "просто невыносимо!";
+		close;
+	}
+}
+
+hugel,168,183,1	script	Bismarc#BLS	118,{
+	if (BSMITH_Q == 13 && countitem(1122) > 0) {
+		mes "[Bismarc]";
+		mes "Слава богу...";
+		mes "Ты послан";
+		mes "ангелами...?";
+		mes "Это Ring Pommel Saber";
+		mes "Мой заказ? Он моя единственная надежда...";
+		next;
+		mes "[Bismarc]";
+		mes "^666666*Кхееек*^000000 Это то что я заказывал, верно? Мне нужен особенный,";
+		mes "выкованный, что бы остановить этот яд...";
+		next;
+		if (select("Ой, да это так... мой Ring Pommel Saber.:Я уверен, это тот самый.") == 1) {
+			mes "[Bismarc]";
+			mes "Нееееет...";
+			mes "Быстро...!";
+			mes "Мне нужен тот";
+			mes "меч для этого";
+			mes "про...тиво...ядие!";
+			next;
+			mes "^3355FFПохоже";
+			mes "он медленно отдаёт концы...!";
+			mes "Тебе лучше поторопиться.^000000";
+			close;
+		}
+		mes "[Bismarc]";
+		mes "^666666*Кхек*^000000";
+		mes "Дай его...!";
+		mes "Пожаааалуйста!";
+		next;
+		set BSMITH_Q,14;
+		delitem 1122,1; //Ring_Pommel_Saber
+		mes "^3355FFBismarc уколол";
+		mes "себя, несколько раз,";
+		mes "этим Ring Pommel Saber";
+		mes "который был пропитам";
+		mes "силой Зелёных Растений.^000000";
+		next;
+		mes "[Bismarc]";
+		mes "^666666*Кхек*^000000";
+		mes "*Чхи чхи*";
+		next;
+		mes "[Bismarc]";
+		mes "Пожалуйста...";
+		mes "Помоги мне подняться.";
+		mes "В моём теле";
+		mes "всё ещё";
+		mes "есть яд...";
+		next;
+		mes "[Bismarc]";
+		mes "АААаахх!!";
+		mes "Жжжёёт!";
+		next;
+		mes "[Bismarc]";
+		mes "*Чхи чхи*";
+		mes "*Фуф* Хорошо,";
+		mes "Я чувствую";
+		mes "противоядие действует.";
+		mes "То что надо.";
+		next;
+		getitem 1073,1; //Merchant_Voucher_1
+		mes "[Bismarc]";
+		mes "Вот";
+		mes "держи свою квитанцию.";
+		mes "Бери же...!";
+		mes "Она твоё!";
+		mapannounce "hugel","Спасибо, " +strcharinfo(0)+ ", за доставку. Ты спас мне жизнь...",bc_map;
+		close;
+	}
+	else if (BSMITH_Q == 14) {
+		mes "[Bismarc]";
+		mes "Спасибо.";
+		mes "Ты спас мне";
+		mes "жизнь...";
+		close;
+	}
+	else {
+		mes "[Bismarc]";
+		mes "^666666*Кхе*^000000";
+		mes "^666666*Хек хек*^000000";
+		mes "Когда м-мой";
+		mes "заказ прибудет...?";
+		next;
+		mes "[Bismarc]";
+		mes "Яд в моём теле";
+		mes "... боль...";
+		mes "мучительна... господи...";
+		next;
+		mes "[Bismarc]";
+		mes "Когда...";
+		mes "противоядие будет,";
+		mes "принесёшь его?!";
+		close;
+	}
+}
+
+ein_in01,24,41,5	script	Blacksmith Guildsman#moc	726,{
+	if (BSMITH_Q == 16) {
+		emotion e_hmm;
+		mes "[Mitehmaeeuh]";
+		mes "Аа, так ты один из тех кто хочет стать Кузнецом?";
+		mes "Хорошо, хе хе.";
+		mes "Как ты понял из своего предыдущего испытания, мгновнно в Кузнеца ты не превратишься.";
+		next;
+		mes "[Mitehmaeeuh]";
+		mes "Что ты честно знаешь о ковке? Готов к тому что б я задал тебе несколько вопросов?";
+		next;
+		if (select("Да:Мм, давай не сейчас~") == 1) {
+			mes "[Mitehmaeeuh]";
+			mes "Ладно...";
+			mes "Мой тест простенький.";
+			mes "Я задам пять вопросов.";
+			mes "Если ты ошибёшься слишком много,";
+			mes "то провалишь. Ну и конечно я";
+			mes "не буду подсказывать тебе в чём ты ошибся.";
+			next;
+			set .@blackss_te,0;
+			mes "[Mitehmaeeuh]";
+			mes "Пожалуйста слушай";
+			mes "и отвечай обдуманно...";
+			next;
+			switch(rand(1,3)) {
+			case 1:
+				mes "[Mitehmaeeuh]";
+				mes "1. Какой навык";
+				mes "необходимо выучить,";
+				mes "для навыка ^8E6B23Discount^000000?";
+				next;
+				if (select("Level 3 Push Cart:Item Appraisal:Level 10 Mammonite:Level 3 Enlarge Weight") == 4)
+					set .@blackss_te,.@blackss_te+20;
+				mes "[Mitehmaeeuh]";
+				mes "2. Когда ты бьёшь";
+				mes "навыком ^8E6B23Hammerfall^000000,";
+				mes "какой статус может";
+				mes "наложится на врага?";
+				next;
+				if (select("Stun:Blindness:Chaos:Silence") == 1)
+					set .@blackss_te,.@blackss_te+20;
+				mes "[Mitehmaeeuh]";
+				mes "3. Сколько Zeny тратится";
+				mes "при использовании";
+				mes "навыка Mammonite?";
+				mes "(Level 10 Mammonite)";
+				next;
+				if (select("900 Zeny:1000 Zeny:2000 Zeny:100,000 Zeny") == 2)
+					set .@blackss_te,.@blackss_te+20;
+				mes "[Mitehmaeeuh]";
+				mes "4. Какой";
+				mes "процент скидки";
+				mes "при полном знании";
+				mes "^8E6B23Discount^000000?";
+				next;
+				if (select("21 % :22 % :23 % :24 % ") == 4)
+					set .@blackss_te,.@blackss_te+20;
+				mes "[Mitehmaeeuh]";
+				mes "5. Какой максимальный";
+				mes "процент наценки на";
+				mes "вещи продаваемые";
+				mes "NPCу после полного изучения";
+				mes "навыка ^8E6B23Overcharge^000000?";
+				next;
+				if (select("21 % :22 % :23 % :24 % ") == 3)
+					set .@blackss_te,.@blackss_te+20;
+				break;
+			case 2:
+				mes "[Mitehmaeeuh]";
+				mes "1. Из кого";
+				mes "выпадает";
+				mes "Steel?";
+				next;
+				if (select("Zerom:Chon Chon:Skel Worker:Requiem") == 3)
+					set .@blackss_te,.@blackss_te+20;
+				mes "[Mitehmaeeuh]";
+				mes "2. Какой камень";
+				mes "можно сделать из";
+				mes "Red Blood'ов?";
+				next;
+				if (select("Flame Heart:Rough Wind:Great Nature:Mystic Frozen") == 1)
+					set .@blackss_te,.@blackss_te+20;
+				mes "[Mitehmaeeuh]";
+				mes "3. Каких камней";
+				mes "больше всего";
+				mes "у тебя на складе Кафры?";
+				next;
+				select("Wind of Verdure:Red Blood:Green Live:Crystal Blue");
+					set .@blackss_te,.@blackss_te+20;
+				mes "[Mitehmaeeuh]";
+				mes "4. Так,";
+				mes "какой из следующих";
+				mes "элементов будет";
+				mes "наиболее уязвим к";
+				mes "оружию Ветра?";
+				next;
+				if (select("Fire Property:Water Property:Earth Property:Wind Property") == 2)
+					set .@blackss_te,.@blackss_te+20;
+				mes "[Mitehmaeeuh]";
+				mes "5. Сколько Iron Ore";
+				mes "нужно что бы сделать";
+				mes "1 Steel?";
+				next;
+				if (select("5 Iron Ore :4 Iron Ore:3 Iron Ore:6 Iron Ore") == 1)
+					set .@blackss_te,.@blackss_te+20;
+				break;
+			case 3:
+				mes "[Mitehmaeeuh]";
+				mes "1. Что ты обычно делаешь";
+				mes "встретив на улице";
+				mes "случайного прохожего?";
+				next;
+				switch(select("Спрашиваю что им надо?.:Быстро предлогаю сделку.:Игнорирую их.:Даю вещи и убегаю.")) {
+				case 1:
+				case 2:
+					set .@blackss_te,.@blackss_te+20;
+					break;
+				default:
+					break;
+				}
+				mes "[Mitehmaeeuh]";
+				mes "2. В каком поселении";
+				mes "ты можешь изучить навыки";
+				mes "^8E6B23Crazy Uproar^000000 и";
+				mes "^8E6B23Change Cart^000000?";
+				next;
+				if (select("Al De Baran:Alberta:Morroc:Izlude") == 2)
+					set .@blackss_te,.@blackss_te+20;
+				mes "[Mitehmaeeuh]";
+				mes "3. От центра города Einbroch,";
+				mes "В каком направлении Гильдия Кузнецов?";
+				next;
+				if (select("На 11 часов:На 5 часов:На 7 часов:На 12 часов") == 2)
+					set .@blackss_te,.@blackss_te+20;
+				mes "[Mitehmaeeuh]";
+				mes "4. В каком городе можно";
+				mes "встретить больше всего";
+				mes "Кузнецов?";
+				next;
+				if (select("Prontera:Morroc:Alberta:Einbroch") == 4)
+					set .@blackss_te,.@blackss_te+20;
+				mes "[Mitehmaeeuh]";
+				mes "5. Какой из следующих";
+				mes "показателей влияет";
+				mes "на навыки";
+				mes "Ковки?";
+				next;
+				if (select("STR :DEX:AGI :VIT ") == 2)
+					set .@blackss_te,.@blackss_te+20;
+				break;
+			}
+			mes "[Mitehmaeeuh]";
+			mes "Ох...";
+			mes "Ты закончил";
+			mes "нервотрёпку. Теперь посмотрим...";
+			next;
+			mes "[Mitehmaeeuh]";
+			mes "Ты набрал";
+			mes ""+ .@blackss_te +" баллов...";
+			if (.@blackss_te > 70) {
+				mes "Очень неплохо!";
+				mes "Поздравляю!";
+				mes "Ты прошёл!";
+				next;
+				mes "[Mitehmaeeuh]";
+				mes "Однако, не спеши радоваться. Жизнь Кузнеца, это тебе не пикник. В доказательство этому, ты прошёл испытания, я даю тебе этот Hammer of Blacksmith.";
+				set BSMITH_Q,17;
+				getitem 1005,1; //Hammer_Of_Blacksmith
+				changequest 2014,2015;
+				next;
+				mes "[Mitehmaeeuh]";
+				mes "Возьми этот Hammer";
+				mes "of Blacksmith и возвращайся в Altiregen. Хорошо? Желаю тебе всего самого лучшего!";
+				close;
+			}
+			mes "Ты провалился! Тебе лучше подучиться прежде чем вернуться сюда.";
+			next;
+			mes "[Mitehmaeeuh]";
+			mes "С твоими знаниями и теорией, ты только навредишь себе держа молот!";
+			close;
+		}
+		mes "[Mitehmaeeuh]";
+		mes "Что ж, хорошо.";
+		mes "Пожалуйста подготовься";
+		mes "и мы продолжим";
+		mes "как только ты будешь готов...";
+		close;
+	}
+	else if (BSMITH_Q == 17) {
+		emotion e_hmm;
+		mes "[Mitehmaeeuh]";
+		mes "Да, ты только что прошёл тест на профессию Кузнеца~";
+		next;
+		mes "[Mitehmaeeuh]";
+		mes "Почему бы тебе не сходить к Mr.Altiregen?";
+		next;
+		mes "[Mitehmaeeuh]";
+		mes "Не забудь захватить Hammer of Blacksmith когда пойдёшь к нему!";
+		next;
+		mes "[Mitehmaeeuh]";
+		mes "А, и не забудь проверить нет ли у тебя не распределённых скилл-поинтов~";
+		close;
+	}
+	else {
+		emotion e_hmm;
+		mes "[Mitehmaeeuh]";
+		mes "Я имел дело с жарой когда был в Morroc'е,";
+		mes "и теперь мне приходится иметь дело с дымом в Einbroch'е!";
+		next;
+		mes "[Mitehmaeeuh]";
+		mes "Но я должен согласиться, это лучшее место для Кузнеца, тут материала для ковки, в изобилии, нас снабжают высокотехничными инструментами.";
+		next;
+		mes "[Mitehmaeeuh]";
+		mes "Мы Кузнецы, делаем всё на что способны что бы ковать лучшее из лучших оружий.";
+		next;
+		mes "[Mitehmaeeuh]";
+		mes "Мы в ответе за него, своей честью!";
+		close;
+	}
+}
+
+geffen_in,109,170,3	script	Blacksmith Guildsman#gef	726,{
+	mes "[Blacksmith Guildsman]";
+	mes "Добрый день, ты тут что б попасть в Гильдию Кузнецов?";
+	next;
+	mes "[Blacksmith Guildsman]";
+	mes "Спасибо что проделал такой дальний путь что б посетить нас. Но к сожелению должен тебя разочаровать, Гильдия Кузнецов переехала в ^3131FF'Einbroch' в Schwaltzvalt Republic^000000.";
+	next;
+	mes "[Blacksmith Guildsman]";
+	mes "Ты можешь отправиться в Schwaltzvalt Republic на дережабле.";
+	mes "Ты можещь добраться Телепортом до города Izlude, а там уже сядешь на дережабль.";
+	mes "Хочешь попасть в Izlude прямо сейчас?";
+	next;
+	switch(select("Как попасть в Einbroch:Да!:Нет, спасибо.")) {
+	case 1:
+		mes "[Blacksmith Guildsman]";
+		mes "Ой, ты ещё ниразу не летал на дережабле?";
+		next;
+		mes "[Blacksmith Guildsman]";
+		mes "В отличии от Королевства Rune-Midgarts, в Республике Schwalitzvalt используются дережабли что бы путишевствовать по городам.";
+		next;
+		mes "[Blacksmith Guildsman]";
+		mes "В городе ^3131FF'Izlude'^000000, ты можешь сесть на ^3131FF'международный дережабль'^000000 который летает городам ^3131FFIzlude и Juno в Республике Schwaltzvalt^000000.";
+		next;
+		mes "[Blacksmith Guildsman]";
+		mes "Садись на дережабль и лети в Juno. Потом из Juno, тебе надо пересесть на ^3131FFрегиональный дережабль^000000 до города Einbroch.";
+		mes "Запомни, тебе ^3131FFНЕ надо выходить из аэропорта^000000 для того что бы пересесть с международного, на региональный дережабль.";
+		next;
+		mes "[Blacksmith Guildsman]";
+		mes "Звучит может и сложно, но ты всё поймёшь когда окажешься в аэропорту.";
+		mes "Когда будешь в Гильдие Кузнецов, передавай наилучшие пожелания моим коллегам!";
+		close;
+	case 2:
+		if (Zeny < 600) {
+			mes "[Blacksmith Guildsman]";
+			mes "Извени но у тебя нет 600 Zeny .";
+			close;
+		}
+		set Zeny, Zeny-600;
+		warp "izlude",94,103;
+		end;
+	case 3:
+		mes "[Blacksmith Guildsman]";
+		mes "Береги себя!";
+		close;
+	}
+}
