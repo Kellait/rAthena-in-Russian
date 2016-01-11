@@ -15,7 +15,7 @@
 //= 1.4 Moved Alberta NPC to pre-re/re paths. [Euphy]
 //===== Translated into Russian:==============================
 //= 09.07.2008 в процессе перевода. [mad_max]
-//= 06.01.2016 Актуализация и продолжение перевода Fenrir
+//= 06.01.2016 Актуализация и продолжение перевода. [Fenrir]
 //============================================================
 
 // Amatsu Transportation
@@ -480,51 +480,38 @@ amatsu,274,178,7	script	Veterinarian#ama	735,{
 	next;
 	if (select("Какой ужас!:Ты наверно шутишь.") == 1) {
 		mes "[Sakura Seiichi]";
-		mes "Kuhuhu... They could be...";
-		mes "By the way, do you want";
-		mes "make a bet on it...?";
+		mes "Ку-ух... Они могут быть...";
+		mes "Кстати, вы хотите сделать ставку на него...?";
 		next;
 		emotion e_dots;
 		mes "[Sakura Seiichi]";
-		mes "If I..........";
+		mes "Если я..........";
 		mes "............";
 		mes ".........";
 		next;
-		mes "^3355FFHis voice was getting lower";
-		mes "and lower as the wind blew.";
-		mes "Finally, I couldn't even hear his voice. I can't even recall what he was trying to tell me...^000000";
+		mes "^3355FFЕго голос становился все тише и тише, как ветер.";
+		mes "И в скоре, я не мог различить его. Я даже не могу вспомнить, что он пытался сказать мне...^000000";
 		close;
 	}
 	mes "[Sakura Seiichi]";
-	mes "I can't help it if you think that way. But one day, you too could be buried underneath...";
+	mes "Ничего не могу с собой поделать. Но в один прекрасный день вы тоже будете похоронены под...";
 	next;
 	emotion e_dots;
 	mes "[Sakura Seiichi]";
-	mes "Haha... Hahaha.....";
+	mes "Хаха... Хахаха.....";
 	mes "...............";
 	mes "...........";
 	next;
-	mes "^3355FFHis laugh was getting lower";
-	mes "and lower as the wind blew.";
-	mes "Finally, I couldn't even hear anything. I can't even recall what he was trying to tell me...^000000";
+	mes "^3355FFЕго голос становился все тише и тише, как ветер..";
+	mes "И в скоре, я не мог различить его. Я даже не могу вспомнить, что он пытался сказать мне...^000000";
 	close;
 }
 	
 amatsu,262,197,1	script	Legendary Tree	111,{
 	if (jap_tree == 1) {
-		mes "^3355FFAs she mentioned, this tree";
-		mes "seems to be a famous place";
-		mes "for proposing lovers.";
-		mes "There were several carved symbols";
-		mes "of hearts and initials of lovers";
-		mes "on the bark.^000000";
+		mes "^3355FFПо её словам это популярное место для тех кто делает предложение. На коре вырезано несколько символов сердца и инициалы.^000000";
 		next;
-		mes "^3355FFBesides proposals, people";
-		mes "gather under this tree when";
-		mes "they discuss important";
-		mes "matters. I could listen to";
-		mes "all kinds of stories";
-		mes "in this magnificent place.^000000";
+		mes "^3355FFКроме того, здесь часто собираются обсудить серьёзные вопросы. Находясь здесь я мог бы слушать разнообразные истории.^000000";
 		close;
 	}
 	else if (jap_tree == 2) {

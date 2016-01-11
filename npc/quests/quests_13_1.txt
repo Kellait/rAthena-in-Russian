@@ -181,7 +181,7 @@ prt_castle,121,51,3	script	Советник Альянса#prt	752,{
 	close;
 }
 
-prt_castle,117,51,5	script	Представитель Альянса#prt	754,{
+prt_castle,117,51,5	script	Member of Alliance#prt	754,{
 	if ((ep13_ryu == 12) || (ep13_ryu == 13)) {
 		mes "[Member of Alliance]";
 		mes "If we have absolute power, we wouldn't have to get along with Schwartzvald and Arunafeltz.";
