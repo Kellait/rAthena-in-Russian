@@ -13,12 +13,14 @@
 //= 1.1 Some little optimization here and there. [Masao]
 //= 1.2 Optimized. [Euphy]
 //============================================================
+//= Translated en -> ru [Akaineko] 
+//============================================================
 
-moc_para01,36,38,3	script	Mission [11 - 25]#Tuto	857,{
+moc_para01,36,38,3	script	Задания [11 - 25]#Tuto	857,{
 	if (countitem(6219) < 1) {
-		mes "- You need to have an -";
-		mes "- ^4d4dff'Eden Group Mark'^000000 -";
-		mes "- to receive these missions. -";
+		mes "^4d4dff- Чтобы участвовать в этих -^000000";
+		mes "^4d4dff- заданиях, Вам нужен значок -^000000";
+		mes "^4d4dff- Компании Эдем. -^000000";
 		close;
 	}
 	for(set .@i,11124; .@i<11134; set .@i,.@i+1)
@@ -26,69 +28,67 @@ moc_para01,36,38,3	script	Mission [11 - 25]#Tuto	857,{
 	for(set .@i,11114; .@i<11123; set .@i,.@i+1) {
 		set .@j, checkquest(.@i,HUNTING);
 		if (.@j == 2) {
-			mes " - You must collect your - ";
-			mes " - reward before starting - ";
-			mes " - a new mission. - ";
+			mes " - Вам нужно сдать отчёт о - ";
+			mes " - проделанной работе, прежде - ";
+			mes " - чем браться за новое дело. - ";
 			mes " ";
-			mes " - Manager : Spike - ";
+			mes " - Ответственный : Спайк - ";
 			close;
 		}
 		else if (.@j >= 0) {
-			mes " - You can only request - ";
-			mes " - one mission at a time. - ";
+			mes " - Вы можете иметь в активе - ";
+			mes " - только одно задание. - ";
 			mes " ";
-			mes " - Manager : Spike - ";
+			mes " - Ответственный : Спайк - ";
 			close;
 		}
 	}
 	if (BaseLevel < 11) {
-		mes " - There are no tasks - ";
-		mes " - open for you right now. - ";
+		mes " - На данный момент для Вас нет заданий. - ";
 		close;
 	}
 	if (BaseLevel > 25) {
-		mes " - These missions are too - ";
-		mes " - easy for your caliber - ";
-		mes " - search for a more level - ";
-		mes " - appropriate mission. - ";
+		mes " - Эти задания для Вас - ";
+		mes " - слишком просты. Поищите - ";
+		mes " - что-нибудь более подходящее. - ";
 		close;
 	}
-	mes " - Mission bulletin board -";
-	mes " - for beginners. -";
+	mes " - Доска заданий -";
+	mes " - для новичков. -";
 	mes " ";
-	mes " - Manager : Spike -";
+	mes " - Ответственный : Спайк -";
 	next;
-	switch(select("Hornet Hunting:Condor Hunting:Grasshopper's Leg:Worm Tail Hunting:Spore Hunting:Pest Control:Muka Hunting:Familiar Hunting:Collect Feathers:Collect Poison Spores:Cancel")) {
-		case 1: callsub L_Quest,11114,"Hornet Hunting"," - Hunt 10 ^4d4dff'Hornets'^000000 - "," - northwest of Prontera. - ";
-		case 2: callsub L_Quest,11115,"Condor Hunting"," - Hunt 20 ^4d4dff'Condors'^000000 - "," - south of Morroc. - ";
-		case 3: callsub L_Quest,11116,"Grasshopper's Leg"," - Hunt 10 ^4d4dff'Rockers'^000000 - "," - southwest of Prontera and - "," - bring 10 ^4d4dffGrasshopper's Legs^000000. - ";
-		case 4: callsub L_Quest,11117,"Worm Tail Hunting"," - Hunt 20 ^4d4dff'Worm Tails'^000000 - "," - southeast of Payon.- ";
-		case 5: callsub L_Quest,11118,"Spore Hunting"," - Hunt 30 ^4d4dff'Spores'^000000 - "," - around Payon. - ";
-		case 6: callsub L_Quest,11119,"Pest Control"," - Hunt 20 ^4d4dffThief Bug Eggs^000000 - "," - in the Prontera Culvert - "," - and bring 10 ^4d4dffChrysalis^000000. - ";
-		case 7: callsub L_Quest,11120,"Muka Hunting"," - Hunt 20 ^4d4dff'Muka'^000000 - "," - south of Prontera. - ";
-		case 8: callsub L_Quest,11121,"Familiar Hunting"," - Hunt 20 ^4d4dffFamiliar^000000 - "," - in the Culvert Sewers - "," - west of Prontera. - ";
-		case 9: callsub L_Quest,11122,"Collect Feathers"," - Hunt 30 ^4d4dff'Peco Pecos'^000000 - "," - south of Prontera. - ";
-		case 10: callsub L_Quest,11123,"Collect Poison Spores"," - Hunt 30 ^4d4dffPoison Spores^000000 - "," - inside the Geffen Tower and - "," - bring 5 ^4d4dffPoison Spores^000000. - ";
-		case 11: mes " - Stop reading the bulletin board. - "; close;
+	switch(select("Охота на пчёл:Охота на кондоров:Лапки кузнечиков:Охота на хвостов:Поиски спор:Контроль паразитов:Охота на мук:Охота на летучих мышей:Сбор перьев:Сбор ядовитых спор:Отмена")) {
+		case 1: callsub L_Quest,11114,"Охота на пчёл"," - Победить 10 пчёл (^4d4dff'ornet^000000) - "," - к северо-западу от Пронтеры. - ";
+		case 2: callsub L_Quest,11115,"Охота на кондоров"," - Победить 20 кондоров (^4d4dffCondor^000000) - "," - к югу от Моррока. - ";
+		case 3: callsub L_Quest,11116,"Лапки кузнечиков"," - Победить 10 кузнечиков (^4d4dffRocker^000000) - "," - к юго-западу от Пронтеры и - "," - принести 10 лапок кузнечика (^4d4dffGrasshopper's Leg^000000). - ";
+		case 4: callsub L_Quest,11117,"Охота на хвостов"," - Победить 20 хвостов (^4d4dffWorm Tail^000000) - "," - к юго-востоку от Пайона.- ";
+		case 5: callsub L_Quest,11118,"Поиски спор"," - Победить 30 спор (^4d4dffSpore^000000) - "," - в окрестностях Пайона. - ";
+		case 6: callsub L_Quest,11119,"Контроль паразитов"," - Победить 20 тараканьих яиц (^4d4dffThief Bug Egg^000000) - "," - в канализации Пронтеры - "," - и принести 10 личинок (^4d4dffChrysalis^000000). - ";
+		case 7: callsub L_Quest,11120,"Охота на мук"," - Победить 20 мук (^4d4dffMuk^000000) - "," - к югу от Пронтеры. - ";
+		case 8: callsub L_Quest,11121,"Охота на летучих мышей"," - Победить 20 фамильяров (^4d4dffFamiliar^000000) - "," - в канализации Пронтеры - "," - к востоку от Пронтеры. - ";
+		case 9: callsub L_Quest,11122,"Сбор перьев"," - Победить 30 пеко-пеко (^4d4dffPeco Peco^000000) - "," - к югу от Пронтеры. - ";
+		case 10: callsub L_Quest,11123,"Сбор ядовитых спор"," - Победить 30 ядовитых спор (^4d4dffPoison Spore^000000) - "," - в Геффенской Башне - "," - принести 5 ядовитых спор (^4d4dffPoison Spore^000000). - ";
+		case 11: mes " - Вы закончили. - "; close;
 	}
 	end;
 L_Quest:
 	if (checkquest(getarg(0),PLAYTIME) == 1) {
-		mes " - Mission ^4d4dff"+getarg(1)+"^000000 - ";
-		mes " - is already finished for today. - ";
+		mes " - Задание ^4d4dff''"+getarg(1)+"''^000000 - ";
+		mes " - на сегодня выполнено. - ";
 		mes " ";
-		mes " - Manager : Spike - ";
+		mes " - Ответственный : Спайк - ";
 		close;
 	}
-	mes " - Mission '"+getarg(1)+"' - ";
+	mes " - Задание: ''"+getarg(1)+"'' - ";
 	for(set .@i,2; .@i<getargcount(); set .@i,.@i+1)
 		mes getarg(.@i);
 	mes " ";
-	mes " - Manager : Spike - ";
+	mes " - Ответственный : Спайк - ";
 	next;
-	if(select("I will do this mission.:Look for other missions.") == 2) {
-		mes " - Let's search for -";
-		mes " - other missions. - ";
+	if(select("Я этим займусь.:Поискать другое.") == 2) {
+		mes " - Попробуем найти -";
+		mes " - другое задание. - ";
 		close;
 	}
 	for(set .@i,2; .@i<getargcount(); set .@i,.@i+1)
@@ -99,52 +99,50 @@ L_Quest:
 	close;
 }
 
-moc_para01,32,30,6	script	Spike	914,{
+moc_para01,32,30,6	script	Спайк	914,{
 	for(set .@i,11114; .@i<11124; set .@i,.@i+1) {
 		set .@j, checkquest(.@i,HUNTING);
 		if (.@j == 2) switch(.@i) {
-			case 11114: callsub L_Quest,.@i,"Hornet Hunting",900;
-			case 11115: callsub L_Quest,.@i,"Condor Hunting",1800;
-			case 11116: callsub L_Quest,.@i,"Grasshopper's Leg",1400,940,10;
-			case 11117: callsub L_Quest,.@i,"Worm Tail Hunting",2600;
-			case 11118: callsub L_Quest,.@i,"Spore Hunting",3900;
-			case 11119: callsub L_Quest,.@i,"Extirpate Insects",2900,915,10;
-			case 11120: callsub L_Quest,.@i,"Muka Hunting",3200;
-			case 11121: callsub L_Quest,.@i,"Familiar Hunting",3200;
-			case 11122: callsub L_Quest,.@i,"Collect Feathers",5400;
-			case 11123: callsub L_Quest,.@i,"Collect Poison Spores",6000,7033,5;
+			case 11114: callsub L_Quest,.@i,"Охота на пчёл",900;
+			case 11115: callsub L_Quest,.@i,"Охота на кондоров",1800;
+			case 11116: callsub L_Quest,.@i,"Лапки кузнечиков",1400,940,10;
+			case 11117: callsub L_Quest,.@i,"Охота на хвостов",2600;
+			case 11118: callsub L_Quest,.@i,"Поиски спор",3900;
+			case 11119: callsub L_Quest,.@i,"Контроль паразитов",2900,915,10;
+			case 11120: callsub L_Quest,.@i,"Охота на мук",3200;
+			case 11121: callsub L_Quest,.@i,"Охота на летучих мышей",3200;
+			case 11122: callsub L_Quest,.@i,"Сбор перьев",5400;
+			case 11123: callsub L_Quest,.@i,"Сбор ядовитых спор",6000,7033,5;
 		}
 		else if (.@j >= 0) {
-			mes "[Spike]";
-			mes "You haven't finished your mission yet.";
-			mes "Keep up the good work. You are almost done.";
+			mes "[Спайк]";
+			mes "Ты ещё не завершил"+(Sex?"":"а")+" задание. Не опускай рук, осталось немного.";
 			close;
 		}
 	}
-	mes "[Spike]";
-	mes "Are you looking for a job?";
-	mes "We always have lots of work to do.";
+	mes "[Спайк]";
+	mes "Ищешь, чем бы заняться? У нас всегда найдётся работа..";
 	next;
-	mes "[Spike]";
-	mes "Why don't you look around and find some interesting tasks?";
+	mes "[Спайк]";
+	mes "Осмотрись, и ты наверняка найдёшь уйму всего интересного.";
 	close;
 L_Quest:
 	if (checkquest(getarg(0),HUNTING) == 2) {
 		if (getarg(3,0))
 			if (countitem(getarg(3)) < getarg(4)) {
-				mes "[Spike]";
-				mes "You don't have enough "+getitemname(getarg(3))+".";
-				mes "You need to bring "+getarg(4)+" "+getitemname(getarg(3))+".";
+				mes "[Спайк]";
+				mes "У тебя недостаточно "+getitemname(getarg(3))+".";
+				mes "Тебе нужно "+getarg(4)+" "+getitemname(getarg(3))+".";
 				close;
 			}
-		mes "[Spike]";
-		mes "Hmm... let me see~";
-		mes "You have completed the '"+getarg(1)+"' mission.";
+		mes "[Спайк]";
+		mes "Хмм... Ну-ка ~";
+		mes "Ты выполнил"+(Sex?"":"а")+" задание ''"+getarg(1)+"''.";
 		next;
-		mes "[Spike]";
-		mes "Good work~!!";
-		mes "Our client is so happy with your work. He will appreciate what you have done.";
-		mes "Please help us again. Thanks!";
+		mes "[Спайк]";
+		mes "Прекрасно ~!!";
+		mes "Заказчик будет тобой очень доволен. Он высоко ценит труды.";
+		mes "Мы будем рады принять твою помощь в следующий раз!";
 		if (getarg(3,0)) delitem getarg(3),getarg(4);
 		erasequest getarg(0);
 		setquest getarg(0)+10;
