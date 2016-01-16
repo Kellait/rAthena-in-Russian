@@ -15,7 +15,7 @@
 //= 1.4 Moved Alberta NPC to pre-re/re paths. [Euphy]
 //===== Translated into Russian:==============================
 //= 09.07.2008 в процессе перевода. [mad_max]
-//= 06.01.2016 Актуализация и продолжение перевода. [Fenrir]
+//= Актуализация и завершение перевода. [Fenrir]
 //============================================================
 
 // Amatsu Transportation
@@ -457,21 +457,21 @@ amatsu,283,203,1	script	Bonubonu#ama2	111,{
 	close;
 }
 	
-amatsu,274,178,7	script	Veterinarian#ama	735,{
+amatsu,274,178,7	script	Ветеринар#ama	735,{
 	set jap_tree,4;
-	mes "[Sakura Seiichi]";
+	mes "[Сакура Сейичи]";
 	mes "Ах... Не паникуйте, я не человек";
 	mes "со странностями. Я обычный";
 	mes "ветеринар. Моя работа,";
 	mes "лечить больных животных.";
 	mes " ";
 	next;
-	mes "[Sakura Seiichi]";
+	mes "[Сакура Сейичи]";
 	mes "К стати... Вы знаете?";
 	mes "Легенду о вишневом дереве";
 	mes "на холме...Я думаю вы уже слышали о ней...";
 	next;
-	mes "[Sakura Seiichi]";
+	mes "[Сакура Сейичи]";
 	mes "Это дерево таит в себе секрет";
 	mes "сохранения красоты.";
 	mes "Секрет заключается...";
@@ -479,12 +479,12 @@ amatsu,274,178,7	script	Veterinarian#ama	735,{
 	mes "под деревом...";
 	next;
 	if (select("Какой ужас!:Ты наверно шутишь.") == 1) {
-		mes "[Sakura Seiichi]";
+		mes "[Сакура Сейичи]";
 		mes "Ку-ух... Они могут быть...";
 		mes "Кстати, вы хотите сделать ставку на него...?";
 		next;
 		emotion e_dots;
-		mes "[Sakura Seiichi]";
+		mes "[Сакура Сейичи]";
 		mes "Если я..........";
 		mes "............";
 		mes ".........";
@@ -493,11 +493,11 @@ amatsu,274,178,7	script	Veterinarian#ama	735,{
 		mes "И в скоре, я не мог различить его. Я даже не могу вспомнить, что он пытался сказать мне...^000000";
 		close;
 	}
-	mes "[Sakura Seiichi]";
+	mes "[Сакура Сейичи]";
 	mes "Ничего не могу с собой поделать. Но в один прекрасный день вы тоже будете похоронены под...";
 	next;
 	emotion e_dots;
-	mes "[Sakura Seiichi]";
+	mes "[Сакура Сейичи]";
 	mes "Хаха... Хахаха.....";
 	mes "...............";
 	mes "...........";
@@ -515,64 +515,33 @@ amatsu,262,197,1	script	Legendary Tree	111,{
 		close;
 	}
 	else if (jap_tree == 2) {
-		mes "^3355FFThe legendary play, 'White Dryad'.....";
-		mes "I never heard about that title but";
-		mes "it sounds familiar.";
-		mes "Nymph of cherry tree... What would";
-		mes "be her position in the play?^000000";
+		mes "^3355FFЛегендарный спектакль, 'White Dryad'.....";
+		mes "Я никогда не слышал такого названия, но звучит знакомо.";
+		mes "Нимфа вишневого дерева... Какова её роль в спектакле?^000000";
 		next;
 		if (Sex) {
-			mes "^3355FFI would like to find";
-			mes "a person who is talented";
-			mes "in acting and help her until";
-			mes "she performs the play. However,";
-			mes "it seems to be easier said than done.^000000";
+			mes "^3355FFЯ бы хотел найти человека который гениально исполнит роль.";
+			mes "Так или иначе, проще сказать чем сделать.^000000";
 			close;
 		}
-		mes "^3355FFI might have talent in";
-		mes "acting which hasn't been discovered yet. I thought, 'If I dress up, I should perform as the 'White Dryad...'^000000";
+		mes "^3355FFЯ могла бы быть лучше исполнительницей 'White Dryad...'^000000";
 		close;
 	}
 	else if (jap_tree == 3) {
-		mes "^3355FFUnlike other cherry trees,";
-		mes "this tree has a strong fragnance.";
-		mes "I just fell into a relaxed";
-		mes "mood. The fragnance eased";
-		mes "my burdens and I felt";
-		mes "very comfortable.^000000";
+		mes "^3355FFВ отличие от других вишневых деревьев, это дерево имеет сильный аромат. Я просто разлёгся под ним полностью расслабившись. Аромат упакоил меня, все тревогои развеялись.^000000";
 		next;
-		mes "^3355FFIt was just for a few moments";
-		mes "but I could forget the";
-		mes "burdens of life. I wish to";
-		mes "come back again and";
-		mes "sit under this tree...^000000";
+		mes "^3355FFЭто было недолго. Но я запомнил это место и много раз возвращался что бы отдохнуть от тягот жизни.^000000";
 		close;
 	}
 	else if (jap_tree == 4) {
-		mes "^3355FFThis strong fragnance";
-		mes "is making me dizzy. Not like";
-		mes "other cherry trees, this tree's";
-		mes "shimmering white petals";
-		mes "felt strange.^000000";
+		mes "^3355FFОт этого сильного аромата у меня кружится голова. Мерцающие, белые лепестки этого дерева завораживают.^000000";
 		next;
-		mes "^3355FFIt feels as if my soul is";
-		mes "being drained if I stay here";
-		mes "longer. After a glimpse of";
-		mes "the cherry tree, I thought to";
-		mes "mayself, 'I must get out of here quickly.'^000000";
+		mes "^3355FFНо иногда мне кажется что моя душа истощается и кажется что если астанусь тут немного дольше то уже никогда отсюда не уйду.^000000";
 		close;
 	}
-	mes "^3355FFThere was a cherry tree";
-	mes "on the hill. It doesn't look";
-	mes "like the other trees.";
-	mes "This tree seems to have";
-	mes "a long history...^000000";
+	mes "^3355FFВишнёвое дерево на холме. Оно отличается от дургих диревьев. Оно имеет долгую историю.^000000";
 	next;
-	mes "^3355FFAre there any people";
-	mes "who live here? I took";
-	mes "a look around and found";
-	mes "someone down the hill.";
-	mes "I better ask her about this tree.^000000";
+	mes "^3355FFЕсть здесь местные жители? Я огляделся и увиде кого-то внизу склона. Лучше я спрошу её про это дерево.^000000";
 	close;
 }
 
