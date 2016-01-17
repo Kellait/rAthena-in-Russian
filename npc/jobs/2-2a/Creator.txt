@@ -18,7 +18,7 @@
 //============================================================ 
 
 valkyrie,53,50,3	script	Biochemist#Valkyrie	122,{
-	if (ADVJOB == 0 || Upper != 1) {
+	if (ADVJOB == 0 || Upper != 1)&&(Class != Job_Creator) {
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {
 			mes "[Биохимик]";
@@ -76,7 +76,7 @@ valkyrie,53,50,3	script	Biochemist#Valkyrie	122,{
 		close;
 	}
 	else {
-		if (Class == Job_Creator && MISC_QUEST & 64 && getskilllv("AM_BIOETHICS") == 0) {
+		if (Class == Job_Creator && bioeth == 13 && getskilllv("AM_BIOETHICS") == 0) {
 			mes "[Биохимик]";
 			mes "Ах, не затем ли ты приш" + (Sex?"ёл":"ла") + ",";
 			mes "чтобы восстановить свои";
