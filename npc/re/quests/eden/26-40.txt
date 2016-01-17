@@ -13,18 +13,20 @@
 //= 1.1 Some little optimization here and there. [Masao]
 //= 1.2 Optimized. [Euphy]
 //============================================================
+//= Translated en -> ru [Akaineko] 
+//============================================================
 
-moc_para01,38,38,3	script	Mission [26 - 40]	857,{
+moc_para01,38,38,3	script	Задания [26 - 40]	857,{
 	if (countitem(6219) < 1) {
-		mes "You are not a qualified member. You can not use the bulletin board.";
+		mes "Вы не состоите в группе Эдем и потому не можете брать заданий.";
 		close;
 	}
-	mes "[26 ~ 40 Lv. Mission Board]";
-	mes "- Many missions are -";
-	mes "- on the bulletin board. -";
+	mes "[Доска заданий 26 ~ 40 уровней]";
+	mes "- На доске множество -";
+	mes "- разнообразных заданий. -";
 	next;
 	if ((BaseLevel < 26) || (BaseLevel > 40)) {
-		mes "Your level is not qualified. You can not use the bulletin board.";
+		mes "Ваш уровень не подходит для этих заданий.";
 		close;
 	}
 	switch(select("Hunting Mission:Delivery Mission:Gathering Mission:Escort Mission")) {

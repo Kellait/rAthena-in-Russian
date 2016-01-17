@@ -1725,8 +1725,8 @@ moc_para01,112,96,5	script	Administrator Michael	4_M_RUSMAN1,{
 	}
 S_Upgrade:
 	mes "[ћихаил]";
-	mes "I see.";
-	mes "I will ^4d4dffUpgrade "+ getarg(0) +"^000000.";
+	mes "ясно.";
+	mes "^4d4dff"+ getarg(0) +" подвергнетс€ улучшению^000000.";
 	mes "Are you sure?";
 	next;
 	switch (select("Yes I am.:No wait.")) {
