@@ -29,102 +29,99 @@ moc_para01,38,38,3	script	Задания [26 - 40]	857,{
 		mes "Ваш уровень не подходит для этих заданий.";
 		close;
 	}
-	switch(select("Hunting Mission:Delivery Mission:Gathering Mission:Escort Mission")) {
+	switch(select("Охота:Доставка:Сбор:Сопровождение")) {
 	case 1:
-		mes "[Hunting Mission Board]";
-		mes "- Hunting Mission details -";
-		mes "- are on the board. -";
+		mes "[Охота]";
+		mes "- На доске множество заданий. -";
 		next;
-		switch(select("Hunting Poison Spore:Hunting Smokie:Hunting Elder Willow(Above Lv.30):Hunting Coco(Above Lv.35):Hunting Thara Frog(Above Lv.38)")) {
-			case 1: callsub L_Quest,8266,0,"Hunting Poison Spore","Sponiac","Geffen","Hunt 10 Poison Spores";
-			case 2: callsub L_Quest,8267,0,"Hunting Smokie","Sponiac","Geffen","Hunt 10 Smokies";
-			case 3: callsub L_Quest,8268,30,"Hunting Elder Willow","Sponiac","Geffen","Hunt 10 Elder Willows";
-			case 4: callsub L_Quest,8269,35,"Hunting Coco","Sponiac","Geffen","Hunt 10 Cocos";
-			case 5: callsub L_Quest,8270,38,"Hunting Thara Frog","Sponiac","Geffen","Hunt 10 Thara Frogs";
+		switch(select("Охота на ядовитых спор:Охота на енотов:Охота на древних пеньков (30+):Охота на белок (35+):Охота на лягушек Тара (38+)")) {
+			case 1: callsub L_Quest,8266,0,"Охота на ядовитых спор","Спониак","Геффен","Победить 10 ядовитых спор (^1111ff"+getmonsterinfo(1077,MOB_NAME)+"^000000)";
+			case 2: callsub L_Quest,8267,0,"Охота на енотов","Спониак","Геффен","Победить 10 енотов Смоки (^1111ff"+getmonsterinfo(1056,MOB_NAME)+"^000000)";
+			case 3: callsub L_Quest,8268,30,"Охота на древних пеньков","Спониак","Геффен","Победить 10 древних пеньков (^1111ff"+getmonsterinfo(1033,MOB_NAME)+"^000000)";
+			case 4: callsub L_Quest,8269,35,"Охота на белок","Спониак","Геффен","Победить 10 белок Коко (^1111ff"+getmonsterinfo(1104,MOB_NAME)+"^000000)";
+			case 5: callsub L_Quest,8270,38,"Охота на лягушек Тара","Спониак","Геффен","Победить 10 лягушек Тара (^1111ff"+getmonsterinfo(1034,MOB_NAME)+"^000000)";
 		}
 	case 2:
-		mes "[Delivery Mission Board]";
-		mes "- Delivery Mission details -";
-		mes "- are on the board. -";
+		mes "[Доставка]";
+		mes "- На доске множество заданий. -";
 		next;
-		switch(select("Deliver an Insecticide:Deliver Honey:Deliver Blanket(Above Lv.35)")) {
-			case 1: callsub L_Quest,8271,0,"Deliver an Insecticide","Dieshin Man","Morroc Ruins","Get an 'Insecticide' from Dieshin Man and deliver it south east of Payon";
-			case 2: callsub L_Quest,8272,0,"Deliver Honey","Dieshin Man","Morroc Ruins","Get 'Honey' from Dieshin Man and deliver it west of St. Capitolina Abbey";
-			case 3: callsub L_Quest,8273,35,"Deliver Blanket","Dieshin Man","Morroc Ruins","Get Blankets from Dieshin Man and deliver to the field south of Lutie";
+		switch(select("Доставка инсектицида:Доставка мёда:Доставка одеял (35+)")) {
+			case 1: callsub L_Quest,8271,0,"Доставка инсектицида","Дайшин Ман","Моррокский оазис","Получить от Дайшин Мана инсектицид и доставить его на юго-восток от Пайона";
+			case 2: callsub L_Quest,8272,0,"Доставка мёда","Дайшин Ман","Моррокский оазис","Получить от Дайшин Мана мёд и доставить его к западу от аббатства св. Капитолины";
+			case 3: callsub L_Quest,8273,35,"Доставка одеял","Дайшин Ман","Моррокский оазис","Получить от Дайшин Мана пачку одеял и доставить их к южному пригороду Люти";
 		}
 	case 3:
-		mes "[Gathering Mission Board]";
-		mes "- Gathering Mission details -";
-		mes "- are on the board. -";
+		mes "[Сбор]";
+		mes "- На доске множество заданий. -";
 		next;
-		switch(select("Gather Bones:Gather Animal Skins:Gather Peelings(Above Lv.30):Gather Tails(Above Lv.32):Gather Cookies(Above Lv.35):Gather Mustaches(Above Lv.35)")) {
-			case 1: callsub L_Quest,8274,0,"Gather Bones","Dashia","Payon","Gather '10 Skel-Bones' and give them to Dashia";
-			case 2: callsub L_Quest,8275,0,"Gather Animal Skins","Dashia","Payon","Gather '10 Bear's Footskins' and '5 Animal Skins' and give them to Dashia";
-			case 3: callsub L_Quest,8276,30,"Gather Peelings","Dashia","Payon","Gather '20 Worm Peelings' and '20 Garlets' and give them to Dashia";
-			case 4: callsub L_Quest,8277,32,"Gather Tails","Dashia","Payon","Gather '10 Yoyo Tails', '10 Acorns' and '10 Raccon Leafs' and give them to Dashia";
-			case 5: callsub L_Quest,8278,35,"Gather Cookies","Dashia","Payon","Gather '5 Well-baked Cookies' and '1 Piece of Cake' and give them to Dashia";
-			case 6: callsub L_Quest,8279,35,"Gather Mustaches","Dashia","Payon","Gather '5 Mole Whiskers' and '3 Mole Claws' and give them to Dashia";
+		switch(select("Сбор костей:Сбор шкур:Сбор панцирей (30+):Сбор хвостов (32+):Сбор печенек (35+):Сбор усов (35+)")) {
+			case 1: callsub L_Quest,8274,0,"Сбор костей","Даша","Пайон","Собрать 10 костей (^1111ff"+getitemname(932)+"^000000) и доставить их Даше";
+			case 2: callsub L_Quest,8275,0,"Сбор шкур","Даша","Пайон","Собрать 10 медвежьих лап (^1111ff"+getitemname(948)+"^000000) и 5 шкур животных (^1111ff"+getitemname(919)+"^000000) и доставить их Даше";
+			case 3: callsub L_Quest,8276,30,"Сбор панцирей","Даша","Пайон","Собрать 20 панцирей жуков (^1111ff"+getitemname(955)+"^000000) и 20 гарлетов (^1111ff"+getitemname(910)+"^000000) и доставить их Даше";
+			case 4: callsub L_Quest,8277,32,"Сбор хвостов","Даша","Пайон","Собрать 10 обезьяньих хвостиков (^1111ff"+getitemname(942)+"^000000), 10 желудей (^1111ff"+getitemname(1026)+"^000000) и 10 листьев енота (^1111ff"+getitemname(945)+"^000000) и доставить их Даше";
+			case 5: callsub L_Quest,8278,35,"Сбор печенек","Даша","Пайон","Собрать 5 печенек (^1111ff"+getitemname(538)+"^000000) и 1 кусок торта (^1111ff"+getitemname(539)+"^000000) и доставить их Даше";
+			case 6: callsub L_Quest,8279,35,"Сбор усов","Даша","Пайон","Собрать 5 кротовьих усов (^1111ff"+getitemname(1017)+"^000000) и 5 кротовьих когтей (^1111ff"+getitemname(1018)+"^000000) и доставить их Даше";
 		}
 	case 4:
-		mes "[Escort Mission Board]";
-		mes "There are currently no Escort Missions registered on the board.";
+		mes "[Сопровождение]";
+		mes "На данный момент заданий этой категории нет.";
 		close;
 	}
 	end;
 L_Quest:
 	//QuestID,ReqLvl,Quest,Client,Loc,Desc
 	if (BaseLevel < getarg(1,26)) {
-		mes "Your level doesn't meet the requirements. You can't take the '"+getarg(2)+"' mission.";
+		mes "Ваш уровень не соответствует требованиям. Вы не можете взять задание ''"+getarg(2)+"''.";
 		close;
 	}
 	mes "["+getarg(2)+" !!]";
-	mes "Client : "+getarg(3);
-	mes "Client Location : "+getarg(4);
-	mes "Requested Mission : "+getarg(5);
+	mes "Заказчик : "+getarg(3);
+	mes "Местонахождение заказчика : "+getarg(4);
+	mes "Задание : "+getarg(5)+".";
 	mes " ";
-	mes "Will you accept this mission?";
+	mes "Вы принимаете это задание?";
 	next;
-	if(select("No, I won't accept it.:Yes, I will accept it.") == 1) {
-		mes "You have declined the "+getarg(2)+" mission.";
+	if(select("Нет, не принимаю.:Да, принимаю.") == 1) {
+		mes "Вы отказались от задания ''"+getarg(2)+"''.";
 		close;
 	}
-	if (checkquest(getarg(0)) > -1) mes "You are already doing this mission.";
+	if (checkquest(getarg(0)) > -1) mes "Вы уже приняли его.";
 	else {
 		setquest getarg(0);
-		mes "You have accepted the "+getarg(2)+" mission.";
+		mes "Вы приняли задание ''"+getarg(2)+"''.";
 	}
-	mes "You can get a reward from the client after you finish the mission.";
+	mes "После успешного завершения задания заказчик вознаградит Вас.";
 	next;
-	mes "For more details, please press 'Alt + U', to get more information from the Quest Window.";
+	mes "Чтобы посмотреть детали задания в окне заданий, нажмите [Alt + U].";
 	close;
 }
 
-geffen,103,42,5	script	Sponiac	99,{
+geffen,103,42,5	script	Спониак	99,{
 	if (checkweight(1201,1) == 0 || (MaxWeight - Weight) < 3500) {
-		mes "[Sponiac]";
+		mes "[Спониак]";
 		mes "Why are you carrying so many items?";
 		mes "Are you in a training course or something?";
 		close;
 	}
-	mes "[Sponiac]";
+	mes "[Спониак]";
 	mes "Lu~lu~lu~lu~";
 	mes "Lu~ Huh?";
 	next;
-	mes "[Sponiac]";
+	mes "[Спониак]";
 	mes "Wow, you must be a beginner, right?";
 	mes "What an innocent face! Ha~ hahaha.";
 	emotion e_gg;
 	next;
-	mes "[Sponiac]";
+	mes "[Спониак]";
 	mes "Why don't you do some hunting outside instead of walking around and wasting your time?";
 	next;
 	if(select("I am about to leave now.:I've got a Hunting Mission.") == 1) {
-		mes "[Sponiac]";
+		mes "[Спониак]";
 		mes "Oh, well. Then, go figure.";
 		mes "Bye~ bye.";
 		close;
 	}
-	mes "[Sponiac]";
+	mes "[Спониак]";
 	mes "Oh, you are from the Eden Group?";
 	mes "What mission do you have?";
 	next;
@@ -140,40 +137,40 @@ L_Quest:
 	//QuestID,Quest,BExp,JExp,PotionAmt,Desc
 	if (checkquest(getarg(0)) == 1) {
 		if (checkquest(getarg(0),HUNTING) == 2) {
-			mes "[Sponiac]";
+			mes "[Спониак]";
 			mes getarg(1)+"!";
 			mes "Wow, I didn't expect you would do that mission. I was just about to give up. But you did good job. I appreciate it!";
 			next;
-			mes "[Sponiac]";
+			mes "[Спониак]";
 			mes "Well, I requested the mission and you did an excellent job.";
 			mes "I will give you a reward as I promised.";
 			next;
-			mes "[Sponiac]";
+			mes "[Спониак]";
 			mes "Here it is. Thank you very much. God bless you!";
 			getitem 569,getarg(4); //Novice_Potion
 			getexp getarg(2),getarg(3);
 			erasequest getarg(0);
 			close;
 		}
-		mes "[Sponiac]";
+		mes "[Спониак]";
 		mes "Oh, you are right.";
 		next;
-		mes "[Sponiac]";
+		mes "[Спониак]";
 		mes "But, you haven't done the mission yet. Why did you come to me now? You haven't completed the mission!";
 		mes "I will give you a reward if you complete the mission. Ok? Are we good?";
 		next;
-		mes "[Sponiac]";
+		mes "[Спониак]";
 		mes getarg(5);
 		mes "You can check the world map by pressing 'ctrl + ~' key.";
 		next;
-		mes "[Sponiac]";
+		mes "[Спониак]";
 		mes "Anyway, I will be here waiting for you. Please come back when you finish the mission!";
 		close;
 	}
-	mes "[Sponiac]";
+	mes "[Спониак]";
 	mes "Huh? Are you sure? Something is wrong...";
 	next;
-	mes "[Sponiac]";
+	mes "[Спониак]";
 	mes "It is weird.";
 	mes "Please check your Quest Window by pressing 'alt + u'.";
 	close;
@@ -486,7 +483,7 @@ payon,179,66,3	script	Dashia	931,{
 	mes "Oh, you are from the Eden Group?";
 	mes "What mission do you have?";
 	next;
-	switch(select("Gather Bones:Gather Animal Skin:Gather Peelings:Gather Tails:Gather Cookies:Gather Mustaches")) {
+	switch(select("Сбор Bones:Сбор Animal Skin:Сбор Peelings:Сбор Tails:Сбор Cookies:Сбор Mustaches")) {
 	case 1:
 		callsub L_Quest,8274;
 		if (countitem(932) > 9) {
