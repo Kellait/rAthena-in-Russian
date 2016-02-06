@@ -46,9 +46,9 @@ moc_para01,38,38,3	script	Задания [26 - 40]	857,{
 		mes "- На доске множество заданий. -";
 		next;
 		switch(select("Доставка инсектицида:Доставка мёда:Доставка одеял (35+)")) {
-			case 1: callsub L_Quest,8271,0,"Доставка инсектицида","Дайшин Ман","Моррокский оазис","Получить от Дайшин Мана инсектицид и доставить его на юго-восток от Пайона";
-			case 2: callsub L_Quest,8272,0,"Доставка мёда","Дайшин Ман","Моррокский оазис","Получить от Дайшин Мана мёд и доставить его к западу от аббатства св. Капитолины";
-			case 3: callsub L_Quest,8273,35,"Доставка одеял","Дайшин Ман","Моррокский оазис","Получить от Дайшин Мана пачку одеял и доставить их к южному пригороду Люти";
+			case 1: callsub L_Quest,8271,0,"Доставка инсектицида","Человек из Дайшин","Моррокский оазис","Получить от Человек из Дайшина инсектицид и доставить его на юго-восток от Пайона";
+			case 2: callsub L_Quest,8272,0,"Доставка мёда","Человек из Дайшин","Моррокский оазис","Получить от Человек из Дайшина мёд и доставить его к западу от аббатства св. Капитолины";
+			case 3: callsub L_Quest,8273,35,"Доставка одеял","Человек из Дайшин","Моррокский оазис","Получить от Человек из Дайшина пачку одеял и доставить их к южному пригороду Люти";
 		}
 	case 3:
 		mes "[Сбор]";
@@ -99,38 +99,36 @@ L_Quest:
 geffen,103,42,5	script	Спониак	99,{
 	if (checkweight(1201,1) == 0 || (MaxWeight - Weight) < 3500) {
 		mes "[Спониак]";
-		mes "Why are you carrying so many items?";
-		mes "Are you in a training course or something?";
+		mes "Зачем ты с собой так много всего таскаешь? Тренируешься, что ли?";
 		close;
 	}
 	mes "[Спониак]";
-	mes "Lu~lu~lu~lu~";
-	mes "Lu~ Huh?";
+	mes "Лу~лу~лу~лу~";
+	mes "Лу~ М?";
 	next;
 	mes "[Спониак]";
-	mes "Wow, you must be a beginner, right?";
-	mes "What an innocent face! Ha~ hahaha.";
+	mes "Ага, ты наверное новичок! Ууу, сама невинность! Ха-ха-ха~";
 	emotion e_gg;
 	next;
 	mes "[Спониак]";
-	mes "Why don't you do some hunting outside instead of walking around and wasting your time?";
+	mes "Предпочитаешь баклуши бить, а не охотиться и тренироваться, а?";
 	next;
-	if(select("I am about to leave now.:I've got a Hunting Mission.") == 1) {
+	if(select("Уже ухожу.:У меня задание.") == 1) {
 		mes "[Спониак]";
-		mes "Oh, well. Then, go figure.";
-		mes "Bye~ bye.";
+		mes "М, ну-ну, давай.";
+		mes "Пока~ пока...";
 		close;
 	}
 	mes "[Спониак]";
-	mes "Oh, you are from the Eden Group?";
-	mes "What mission do you have?";
+	mes "Ага, ты из группы ''Эдем''?";
+	mes "Какое задание было?";
 	next;
-	switch(select("Hunting Poison Spore:Hunting Smokie:Hunting Elder Willow:Hunting Coco:Hunting Thara Frog")) {
-		case 1: callsub L_Quest,8266,"Hunting Poison Spore",1000,0,100,"You can find Poison Spores on the Geffen Dungeon 1F or northeast of Prontera. There are other spots but I'll leave it up to you to find out.";
-		case 2: callsub L_Quest,8267,"Hunting Smokie",1000,0,100,"You can find Smokies northeast and northwest of Geffen. Oh, also the field east of Ayotaya is good spot to find them.";
-		case 3: callsub L_Quest,8268,"Hunting Elder Willow",1000,100,110,"You can find Elder Willows northeast of Geffen, east of payon and southwest of Prontera.";
-		case 4: callsub L_Quest,8269,"Hunting Coco",1000,200,150,"You can find Cocos around the east of Payon, southwest of Prontera and the field east of Ayotaya.";
-		case 5: callsub L_Quest,8270,"Hunting Thara Frog",1500,300,200,"You can find Thara Frogs in the Cave east of Comodo or on Turtle Island.";
+	switch(select("Охота на ядовитых спор:Охота на енотов:Охота на древних пеньков:Охота на белок:Охота на лягушек Тара")) {
+		case 1: callsub L_Quest,8266,"Охота на ядовитых спор",1000,0,100,"Ядовитых спор можно найти на первом этаже Геффенского подземелья или к северо-востоку от Пронтеры. Есть и другие места, но я не буду тебе подсказывать.";
+		case 2: callsub L_Quest,8267,"Охота на енотов",1000,0,100,"Еноты Смоки живут к северо-востоку и к северо-западу от Геффена. А, и ещё неплохое место их обитания -- регион к западу от Айотайи.";
+		case 3: callsub L_Quest,8268,"Охота на древних пеньков",1000,100,110,"Древние пеньки обитают в регионах к северо-востоку от Геффена, к востоку от Пайона и в юго-западных окрестностях Пронтеры.";
+		case 4: callsub L_Quest,8269,"Охота на белок",1000,200,150,"Белки Коко живут в восточных окрестностях Пайона, в юго-западных окрестностях Пронтеры и к западу от Айотайи.";
+		case 5: callsub L_Quest,8270,"Охота на лягушек Тара",1500,300,200,"Лягушек Тара ты найдёшь в сети пещер восточнее города Комодо или на Черепашьем острове.";
 	}
 	end;
 L_Quest:
@@ -139,71 +137,70 @@ L_Quest:
 		if (checkquest(getarg(0),HUNTING) == 2) {
 			mes "[Спониак]";
 			mes getarg(1)+"!";
-			mes "Wow, I didn't expect you would do that mission. I was just about to give up. But you did good job. I appreciate it!";
+			mes "Ух ты, не думал, что ты справишься. Хотел уже идти отменять задание. Но ты проделал"+(Sex?"":"а")+" отличную работу. Молодец!";
 			next;
 			mes "[Спониак]";
-			mes "Well, I requested the mission and you did an excellent job.";
-			mes "I will give you a reward as I promised.";
+			mes "Что ж, я подал запрос и ты превосходно выполнил"+(Sex?"":"а")+" его.";
+			mes "Как я и обещал, с меня награда.";
 			next;
 			mes "[Спониак]";
-			mes "Here it is. Thank you very much. God bless you!";
+			mes "Вот, держи. Большое тебе спасибо. Благослови тебя Бог!";
 			getitem 569,getarg(4); //Novice_Potion
 			getexp getarg(2),getarg(3);
 			erasequest getarg(0);
 			close;
 		}
 		mes "[Спониак]";
-		mes "Oh, you are right.";
+		mes "Да, действительно.";
 		next;
 		mes "[Спониак]";
-		mes "But, you haven't done the mission yet. Why did you come to me now? You haven't completed the mission!";
-		mes "I will give you a reward if you complete the mission. Ok? Are we good?";
+		mes "Но твоя работа ещё не закончена. Зачем же ты ко мне сейчас приш"+(Sex?"ёл":"ла")+" с несделанным заданием?";
+		mes "Я награжу тебя, но только когда ты выполнишь задание. Понимаешь?";
 		next;
 		mes "[Спониак]";
 		mes getarg(5);
-		mes "You can check the world map by pressing 'ctrl + ~' key.";
+		mes "Ты всегда можешь открыть карту Мира клавишами [ctrl + ~].";
 		next;
 		mes "[Спониак]";
-		mes "Anyway, I will be here waiting for you. Please come back when you finish the mission!";
+		mes "Жду тебя здесь. Возвращайся с победой!";
 		close;
 	}
 	mes "[Спониак]";
-	mes "Huh? Are you sure? Something is wrong...";
+	mes "Хм? Ты уверен"+(Sex?"":"а")+"? По-моему, что-то тут не так...";
 	next;
 	mes "[Спониак]";
-	mes "It is weird.";
-	mes "Please check your Quest Window by pressing 'alt + u'.";
+	mes "Странно.";
+	mes "Проверь свой журнал заданий, [alt + U].";
 	close;
 }
 
-moc_ruins,173,55,3	script	Dieshin Man	89,{
+moc_ruins,173,55,3	script	Человек из Дайшин	89,{
 	if (checkweight(1201,1) == 0 || (MaxWeight - Weight) < 3500) {
-		mes "[Dieshin Man]";
-		mes "Why are you carrying so many items?";
-		mes "Are you in a training course or something?";
+		mes "[Человек из Дайшин]";
+		mes "Зачем тебе столько груза? Тренируешься, что ли?";
 		close;
 	}
-	mes "[Dieshin Man]";
-	mes "Hu hu~~ we are delivery men~";
-	mes "We are faster than any flight~!";
+	mes "[Человек из Дайшин]";
+	mes "Ху ху~~ мы курьеры~";
+	mes "мы быстрее ветра~!";
 	next;
-	mes "[Dieshin Man]";
-	mes "Welcome~ welcome!";
-	mes "We are the fastest delivery company, Dieshin Corperation.";
+	mes "[Человек из Дайшин]";
+	mes "Привет~ привет!";
+	mes "Мы самая быстрая курьерская служба, Компания ''Дайшин''.";
 	next;
-	mes "[Dieshin Man]";
-	mes "How can I help you?";
+	mes "[Человек из Дайшин]";
+	mes "Чем могу помочь?";
 	next;
-	if(select("I don't need help.:I've got a Delivery Mission.") == 1) {
-		mes "[Dieshin Man]";
-		mes "Oh, well. Then, go figure. Bye~!";
+	if(select("Мне не нужна помощь.:У меня задание на доставку.") == 1) {
+		mes "[Человек из Дайшин]";
+		mes "Ху ху, тогда счастливо~!";
 		close;
 	}
-	mes "[Dieshin Man]";
-	mes "Oh, you are from the Eden Group?";
-	mes "What mission do you have?";
+	mes "[Человек из Дайшин]";
+	mes "О, ты из группы ''Эдем''?";
+	mes "Какое у тебя задание?";
 	next;
-	switch(select("Deliver an Insecticide.:Deliver Honey.:Deliver Blankets.")) {
+	switch(select("Доставка инсектицида.:Доставка мёда.:Доставка одеял.")) {
 		case 1: callsub L_Quest,8271;
 		case 2: callsub L_Quest,8272;
 		case 3: callsub L_Quest,8273;
@@ -211,279 +208,264 @@ moc_ruins,173,55,3	script	Dieshin Man	89,{
 	end;
 L_Quest:
 	if (checkquest(getarg(0)) != 1) {
-		mes "[Dieshin Man]";
-		mes "Huh? Are you sure? Something is wrong...";
+		mes "[Человек из Дайшин]";
+		mes "Ху? Точно? Что-то тут не так...";
 		next;
-		mes "[Dieshin Man]";
-		mes "It is weird.";
-		mes "Please check your Quest Window by pressing 'alt + u'.";
+		mes "[Человек из Дайшин]";
+		mes "Странно.";
+		mes "Уточни в окне заданий, [alt + U].";
 		close;
 	}
 	if (countitem(6218) > 0) {
-		mes "[Dieshin Man]";
-		mes "Wait, but you already have a delivery box.";
+		mes "[Человек из Дайшин]";
+		mes "Погоди, а это что?";
 		next;
-		mes "[Dieshin Man]";
-		mes "We can't allow you to deliver two boxes at once. So, please finish your delivery first.";
+		mes "[Человек из Дайшин]";
+		mes "Мы не выдаём несколько посылок. Сначала доставь эту.";
 		next;
-		mes "[Dieshin Man]";
-		mes "If you forgot where to deliver, then please check Quest Window by pressing 'alt + u'.";
+		mes "[Человек из Дайшин]";
+		mes "Если забыл"+(Sex?"":"а")+", что куда, посмотри в окне заданий, [alt + U].";
 		close;
 	}
 	switch(getarg(0)) {
 	case 8271:
-		mes "[Dieshin Man]";
-		mes "Ah ha! I got it!";
-		mes "The insecticide? It must be the Zoologist on the southeast of Payon who ordered the Insecticide.";
+		mes "[Человек из Дайшин]";
+		mes "Ах ха! Ясно!";
+		mes "Инсектицид! Его заказал этот зоолог, он поселился к юго-востоку от Пайона.";
 		break;
 	case 8272:
-		mes "[Dieshin Man]";
-		mes "Ah ha! I got it!";
-		mes "Honey? It must be the Entomologist at the west of St. Capitolina Abbey, wich is northeast of Prontera who ordered the Honey.";
+		mes "[Человек из Дайшин]";
+		mes "Ах ха! Ясно!";
+		mes "Мёд! Это тот энтомолог, он живёт к западу от аббатства св. Капитолины, это на северо-восток от Пронтеры.";
 		break;
 	case 8273:
-		mes "[Dieshin Man]";
-		mes "Oh, Right!";
-		mes "The blankets! It must be the biologist in the south of Lutie field who ordered the blankets.";
+		mes "[Человек из Дайшин]";
+		mes "Ясно!";
+		mes "Одеяла! Они для того биолога, он живёт на юге пригорода Люти.";
 		next;
-		mes "[Dieshin Man]";
-		mes "You can can go to Lutie by asking Mr. Claus in the northeastern part of Al De Baran.";
+		mes "[Человек из Дайшин]";
+		mes "В Люти можно попасть, если договориться с мистером Клаусом, он обычно бывает где-то в северо-восточной части Альдебарана.";
 		break;
 	}
 	next;
-	mes "[Dieshin Man]";
-	mes "Dieshin's cooperation motive is to give the fastest and credited delivery. So please deliver it now without any delay.";
+	mes "[Человек из Дайшин]";
+	mes "Компания Дайшин предоставляет самую быструю и надёжную службу доставки. Поэтому не задерживайся.";
 	next;
-	mes "[Dieshin Man]";
-	mes "If you forgot where to make the delivery, then please check the Quest Window by pressing 'alt + u'.";
+	mes "[Человек из Дайшин]";
+	mes "Если забудешь, куда что везти, смотри в окне заданий [alt + U].";
 	getitem 6218,1; //Disin_Delivery_Box
 	close;
 }
 
 pay_fild07,83,89,7	script	Zoologist	89,{
 	if (checkweight(1201,1) == 0 || (MaxWeight - Weight) < 3500) {
-		mes "[Zoologist]";
-		mes "Why are you carrying so many items?";
-		mes "Are you in a training course or something?";
+		mes "[Зоолог]";
+		mes "Зачем ты столько всего с собой носишь? Тренируешься, что ли?";
 		close;
 	}
-	mes "[Zoologist]";
-	mes "Have you heard of a monster named Bigfoot?";
-	mes "It looks like a bear with red fur and has a 'X' shape scar on his shoulder.";
+	mes "[Зоолог]";
+	mes "Слышал"+(Sex?"":"а")+" ли ты о чудище под названием Бигфут? Или, по-научному, "+getmonsterinfo(1060,MOB_NAME)+"? Он выглядит как тёмно-рыжий медведь с Х-образным шрамом на плече.";
 	next;
-	mes "[Zoologist]";
-	mes "According to the recent research, flies and Bigfoot monsters have a symbiotic relationship.";
+	mes "[Зоолог]";
+	mes "Согласно последним исследованиям, мухи и бигфуты являются симбионтами.";
 	next;
-	mes "[Zoologist]";
-	mes "I am currently studying about it and try to prove the theory. So I plan to kill the flies around Bigfoot and observe his reaction.";
+	mes "[Зоолог]";
+	mes "Я занимаюсь изучением этого вопроса и доказательством теории симбиоза. Поэтому было решено провести эксперимент: убить мух вокруг особи бигфута и наблюдать её дальнейшую реакцию.";
 	next;
-	if(select("...I am not interested.:Here is the Insecticide.") == 1) {
-		mes "[Zoologist]";
-		mes "Oh, I need an Insecticide to continue the study.";
+	if(select("...Я тут ни при чём.:Вот инсектицид.") == 1) {
+		mes "[Зоолог]";
+		mes "Эх, для продолжения исследований мне нужен только инсектицид.";
 		close;
 	}
 	if (checkquest(8271) != 1) {
-		mes "[Zoologist]";
-		mes "Huh?";
-		mes "You are not Dieshin's delivery man?";
+		mes "[Зоолог]";
+		mes "Хм?";
+		mes "Ты не из компании ''Дайшин''?";
 		next;
-		mes "[Zoologist]";
-		mes "I am waiting for a special delivery.";
+		mes "[Зоолог]";
+		mes "Я тут жду одной доставки...";
 		close;
 	}
 	if (countitem(6218) > 0) {
-		mes "[Zoologist]";
-		mes "Oh ho! Yes! That one!";
+		mes "[Зоолог]";
+		mes "Ох хо! Да! Он самый!";
 		next;
-		mes "[Zoologist]";
-		mes "That is the Insecticide that I ordered! You were sent by Dieshin right?";
+		mes "[Зоолог]";
+		mes "Точно тот, что я заказывал! Ты от Дайшин, да?";
 		next;
-		mes "[Zoologist]";
-		mes "I have been waiting for this!";
-		mes "Give it to me!";
+		mes "[Зоолог]";
+		mes "Как я ждал! Ну, давай его сюда!";
 		next;
-		mes "[Zoologist]";
-		mes "It arrived much faster than I thought. I want to test it right away!";
+		mes "[Зоолог]";
+		mes "Доставили гораздо раньше, чем можно было ожидать. Протестирую прямо сейчас!";
 		next;
-		mes "[Zoologist]";
-		mes "Well done. Good Job! Thank you so much! Here is a little gift for you.";
+		mes "[Зоолог]";
+		mes "Спасибо за работу! Вот небольшое вознаграждение.";
 		delitem 6218,1; //Disin_Delivery_Box
 		erasequest 8271;
 		getitem 569,100; //Novice_Potion
 		getexp 1000,0;
 		close;
 	}
-	mes "[Zoologist]";
-	mes "I appreciate your kindness.";
-	mes "But, what did you bring?";
+	mes "[Зоолог]";
+	mes "Я очень ценю твою доброту... Но что это?";
 	next;
-	mes "[Zoologist]";
-	mes "Hmm, I thought that Dieshin was fast and accurate, but you brought me an empty box. How disappointing.";
+	mes "[Зоолог]";
+	mes "Хмм, я-то думал, компания ''Дайшин'' надёжная и быстрая, а ты прин"+(Sex?"ёс":"есла")+" мне пустую коробку. Я прямо разочарован.";
 	next;
-	mes "[Zoologist]";
-	mes "Please bring my order. Dieshin will give you my product.";
+	mes "[Зоолог]";
+	mes "Пожалуйста, привези мой заказ, Дайшин тебе его выдаст.";
 	close;
 }
 
 prt_fild03,30,254,3	script	Entomologist	83,{
 	if (checkweight(1201,1) == 0 || (MaxWeight - Weight) < 3500) {
-		mes "[Entomologist]";
-		mes "Why are you carrying so many items?";
-		mes "Are you in a training course or something?";
+		mes "[Энтомолог]";
+		mes "Зачем ты таскаешь с собой столько всего? Тренируешься, что ли?";
 		close;
 	}
-	mes "[Entomologist]";
-	mes "Have you heard about the Horn monster?";
-	mes "It's shaped like an insect with black sleek skin and it has a giant horn it's head.";
+	mes "[Энтомолог]";
+	mes "Слышал"+(Sex?"":"а")+" ли ты когда-нибудь о жуке-рогаче, который по-научному называется ''"+getmonsterinfo(1128,MOB_NAME)+"''? Это насекомое с тёмным гладким, округлым панцирем и большими рогообразными выростами в головной части.";
 	next;
-	mes "[Entomologist]";
-	mes "Recent research came out and showed that this monster can be tamed and trained by Honey.";
+	mes "[Энтомолог]";
+	mes "Поступили сведения, что эти жуки реагируют на мёд таким образом, что их можно тренировать или даже приручить.";
 	next;
-	mes "[Entomologist]";
-	mes "I am currently studying about it and trying to prove the theory. So I plan to set a Honey trap on the places he usually passes and observe his reaction.";
+	mes "[Энтомолог]";
+	mes "Я занимаюсь исследованием этого вопроса и, по возможности, хочу подтвердить эту теорию. Мой план прост: на стандартном маршруте нескольких особей поставить ловушку с мёдом и пронаблюдать их реакции.";
 	next;
-	if(select("...I am not interested.:Here is the Honey.") == 1) {
-		mes "[Entomologist]";
-		mes "Oh, I need Honey to continue the study.";
+	if(select("...Без меня.:Вот ваш мёд.") == 1) {
+		mes "[Энтомолог]";
+		mes "Ох, но для продолжения исследований мне понадобится мёд...";
 		close;
 	}
 	if (checkquest(8272) != 1) {
-		mes "[Entomologist]";
-		mes "Huh?";
-		mes "You are not Dieshin's delivery man?";
+		mes "[Энтомолог]";
+		mes "Хм?";
+		mes "Вы не из компании ''Дайшин''?";
 		next;
-		mes "[Entomologist]";
-		mes "I am waiting for a special delivery.";
+		mes "[Зоолог]";
+		mes "Я тут жду одной доставки...";
 		close;
 	}
 	if (countitem(6218) > 0) {
-		mes "[Entomologist]";
-		mes "Oh ho! Yes! That one!";
+		mes "[Энтомолог]";
+		mes "Ох хо! Да! Он самый!";
 		next;
-		mes "[Entomologist]";
-		mes "That is the Honey that I ordered! You were sent by Dieshin right?";
+		mes "[Зоолог]";
+		mes "Точно тот, что я заказывал! Ты от Дайшин, да?";
 		next;
-		mes "[Entomologist]";
-		mes "I have been waiting for this!";
-		mes "Give it to me!";
+		mes "[Зоолог]";
+		mes "Как я ждал! Ну, давай его сюда!";
 		next;
-		mes "[Entomologist]";
-		mes "It arrived much faster than I thought. I want to test it right away!";
+		mes "[Зоолог]";
+		mes "Доставили гораздо раньше, чем можно было ожидать. Прямо сейчас и начну!";
 		next;
-		mes "[Entomologist]";
-		mes "Well done. Good Job! Thank you so much! Here is a little gift for you.";
+		mes "[Зоолог]";
+		mes "Спасибо за работу! Вот небольшое вознаграждение.";
 		delitem 6218,1; //Disin_Delivery_Box
 		erasequest 8272;
 		getitem 569,100; //Novice_Potion
 		getexp 1000,0;
 		close;
 	}
-	mes "[Entomologist]";
-	mes "I appreciate your kindness.";
-	mes "But, what did you bring?";
+	mes "[Энтомолог]";
+	mes "Я очень ценю твою доброту... Но что это?";
 	next;
-	mes "[Entomologist]";
-	mes "Hmm, I thought that Dieshin was fast and accurate, but you brought me an empty box. How disappointing.";
+	mes "[Зоолог]";
+	mes "Хмм, я-то думал, компания ''Дайшин'' надёжная и быстрая, а ты прин"+(Sex?"ёс":"есла")+" мне пустую коробку. Я прямо разочарован.";
 	next;
-	mes "[Entomologist]";
-	mes "Please bring my order. Dieshin will give you my product.";
+	mes "[Зоолог]";
+	mes "Пожалуйста, привези мой заказ, Дайшин тебе его выдаст.";
 	close;
 }
 
 xmas_fild01,92,57,3	script	Biologist	97,{
 	if (checkweight(1201,1) == 0 || (MaxWeight - Weight) < 3500) {
-		mes "[Biologist]";
-		mes "Why are you carrying so many items?";
-		mes "Are you in a training course or something?";
+		mes "[Биолог]";
+		mes "Зачем тебе с собой столько всего? У тебя же сумка лопнет, если в неё банку положить.";
 		close;
 	}
-	mes "[Biologist]";
-	mes "Have you heard about the Marin monster?";
-	mes "It does look like the usual poring, but it has unique characteristic.";
+	mes "[Биолог]";
+	mes "Приходилось ли тебе слышать о монстре марине? По-научному они так и называются: ''"+getmonsterinfo(1242,MOB_NAME)+"''. Выглядит оно как поринг, но имеет некоторые примечательные особенности.";
 	next;
-	mes "[Biologist]";
-	mes "Porings steal items if they see them on the ground. However, Marin has no interest in dropped items. So I was wondering, how come Marin doesn't pay attention to gathering items even though they are the same kind of monster as Porings.";
+	mes "[Биолог]";
+	mes "В частности, поринги собирают всё, что находят, в то время как марины не проявляют интереса к предметам на земле. Меня это весьма заинтересовало: как марины пришли к этому, если они близкие родственники порингов?";
 	next;
-	mes "[Biologist]";
-	mes "But, this place is freaking cold.";
+	mes "[Биолог]";
+	mes "Но здесь просто дубак.";
 	next;
-	if(select("...I am not interested.:Here are the blankets.") == 1) {
-		mes "[Biologist]";
-		mes "Huh, whatever. But be careful! It's very slippery here.";
+	if(select("...Мне всё равно.:Вот ваши одеяла.") == 1) {
+		mes "[Биолог]";
+		mes "Будь осторож+(Sex?"ен":"на")+", здесь бывает скользко.";
 		close;
 	}
 	if (checkquest(8273) != 1) {
-		mes "[Biologist]";
-		mes "Huh?";
-		mes "You are not Dieshin's delivery man?";
+		mes "[Биолог]";
+		mes "Хм? Ты разве не курьер Дайшин?";
 		next;
-		mes "[Biologist]";
-		mes "I am waiting for a special delivery.";
+		mes "[Биолог]";
+		mes "Я жду от них доставки.";
 		close;
 	}
 	if (countitem(6218) > 0) {
-		mes "[Biologist]";
-		mes "Oh ho! Yes! That one!";
+		mes "[Биолог]";
+		mes "Ох хо! Наконец-то!";
 		next;
-		mes "[Biologist]";
-		mes "Those are the Blankets that I ordered! You were sent by Dieshin right?";
+		mes "[Биолог]";
+		mes "Они самые! Вот так Дайшин, ай да молодцы!";
 		next;
-		mes "[Biologist]";
-		mes "I have been waiting for this!";
-		mes "Give it to me!";
+		mes "[Биолог]";
+		mes "Дождался таки! Давай их сюда!";
 		next;
-		mes "[Biologist]";
-		mes "It arrived much faster than I thought. I want to test them right away!";
+		mes "[Биолог]";
+		mes "Не так уж долго я и ждал, надо заметить. Ну же, надо немедленно пустить их в дело!";
 		next;
-		mes "[Biologist]";
-		mes "Well done. Good Job! Thank you so much! Here is a little gift for you.";
+		mes "[Биолог]";
+		mes "Отличная работа. Молодец! Вот тебе небольшое вознаграждение.";
 		delitem 6218,1; //Disin_Delivery_Box
 		erasequest 8273;
 		getitem 569,100; //Novice_Potion
 		getexp 1000,0;
 		close;
 	}
-	mes "[Biologist]";
-	mes "I appreciate your kindness.";
-	mes "But, what did you bring?";
+	mes "[Биолог]";
+	mes "Я очень ценю твою доброту... Но что это?";
 	next;
-	mes "[Biologist]";
-	mes "Hmm, I thought that Dieshin was fast and accurate, but you brought me an empty box. How disappointing.";
+	mes "[Зоолог]";
+	mes "Хмм, я-то думал, компания ''Дайшин'' надёжная и быстрая, а ты прин"+(Sex?"ёс":"есла")+" мне пустую коробку. Я прямо разочарован.";
 	next;
-	mes "[Biologist]";
-	mes "Please bring my order. Dieshin will give you my product.";
+	mes "[Зоолог]";
+	mes "Пожалуйста, привези мой заказ, Дайшин тебе его выдаст.";
 	close;
 }
 
 payon,179,66,3	script	Dashia	931,{
 	if (checkweight(1201,1) == 0 || (MaxWeight - Weight) < 3500) {
-		mes "[Dashia]";
-		mes "Why are you carrying so many items?";
-		mes "Are you in a training course or something?";
+		mes "[Даша]";
+		mes "Ты носишь с собой столько барахла? Зачем, тренируешься что ли?";
 		close;
 	}
-	mes "[Dashia]";
-	mes "Here is some hair~ a broken clock~!";
+	mes "[Даша]";
+	mes "А вот кому шерсть!~ Сломанные часы!~";
 	next;
-	mes "[Dashia]";
-	mes "Broken clock..? Hu hu..";
+	mes "[Даша]";
+	mes "Часы сломанные... ху ху...";
 	next;
-	mes "[Dashia]";
-	mes "Hey~! Dude! You look like a very rich adventurer.";
+	mes "[Даша]";
+	mes "Эй! +(Sex?"Братишка":"Сестрёнка")+"! Ты сегодня богатенький буратино?";
 	next;
-	if(select("I am a poor adventurer.:I have a gathering mission.") == 1) {
-		mes "[Dashia]";
-		mes "Really? Hmm, oh right. You don't look sophisticated.";
+	if(select("Я бедненький буратино.:Я собрал+(Sex?"":"а")+" для тебя кое-что.") == 1) {
+		mes "[Даша]";
+		mes "Правда? Хмм, ну, ладно... Не шаришь похоже.";
 		next;
-		mes "[Dashia]";
-		mes "You are a poor adventurer~! Good luck!";
+		mes "[Даша]";
+		mes "Ты - бедненький буратино. Пока!";
 		close;
 	}
-	mes "[Dashia]";
-	mes "Oh, you are from the Eden Group?";
-	mes "What mission do you have?";
+	mes "[Даша]";
+	mes "О, ты из Группы Эдем! Каким было задание?";
 	next;
-	switch(select("Сбор Bones:Сбор Animal Skin:Сбор Peelings:Сбор Tails:Сбор Cookies:Сбор Mustaches")) {
+	switch(select("Сбор костей:Сбор шкур:Сбор панцирей:Сбор хвостов:Сбор печенек:Сбор усов")) {
 	case 1:
 		callsub L_Quest,8274;
 		if (countitem(932) > 9) {
@@ -494,18 +476,17 @@ payon,179,66,3	script	Dashia	931,{
 			erasequest 8274;
 			close;
 		}
-		mes "[Dashia]";
-		mes "I can see that you have a gathering mission.";
-		mes "But, where are the Skel-Bones?";
+		mes "[Даша]";
+		mes "Вижу, задание у тебя и вправду было. Но это разве сбор костей?";
 		next;
-		mes "[Dashia]";
-		mes "You haven't done the mission yet. Why did you come back here?";
+		mes "[Даша]";
+		mes "Своё задание ты ещё не выполнил+(Sex?"":"а")+", зачем было возвращаться?";
 		next;
-		mes "[Dashia]";
-		mes "You don't have enough 'Skel-Bones'... You can find it when you hunt Skeletons.";
+		mes "[Даша]";
+		mes "Нужно больше костей (^1111ff"+getitemname(932)+"^000000). Поищи их у монстров-скелетов.";
 		next;
-		mes "[Dashia]";
-		mes "To find Skeletons, you better check Payon Dungeon 1F, which is located in Archer Village, north of Payon.";
+		mes "[Даша]";
+		mes "Скелеты обитают, например, в пещерах под деревней лучников, к северу от Пайона.";
 		break;
 	case 2:
 		callsub L_Quest,8275;
@@ -518,19 +499,18 @@ payon,179,66,3	script	Dashia	931,{
 			erasequest 8275;
 			close;
 		}
-		mes "[Dashia]";
-		mes "I can see that you have a gathering mission.";
-		mes "But, where is the Bear's Footskins and Animal Skins?";
+		mes "[Даша]";
+		mes "Вижу, задание у тебя и вправду было. Но это разве сбор шкур?";
 		next;
-		mes "[Dashia]";
-		mes "You haven't done the mission yet. Why did you come back here?";
+		mes "[Даша]";
+		mes "Своё задание ты не выполнил+(Sex?"":"а")+". Зачем было ко мне приходить?";
 		next;
-		mes "[Dashia]";
-		mes "You have to bring 10 Bear's Footskins' and '5 Animal Skins!";
-		mes "You can find Bear's Footskin from Bigfoot and Animal Skin from Animals.";
+		mes "[Даша]";
+		mes "Ты долж+(Sex?"ен":"на")+" принести мне 10 медвежьих лап (^1111ff"+getitemname(948)+"^000000) и 5 звериных шкурок!;
+		mes "Медвежьи лапы добываются с бигфутов, звериные шкурки - со всяких зверей.";
 		next;
-		mes "[Dashia]";
-		mes "Bigfoot is around the north of Geffen field or the southeast of Payon field.";
+		mes "[Даша]";
+		mes "Бигфуты живут в окрестностях северных пригородов Геффена и к юго-востоку от Пайона.";
 		break;
 	case 3:
 		callsub L_Quest,8276;
@@ -543,20 +523,19 @@ payon,179,66,3	script	Dashia	931,{
 			erasequest 8276;
 			close;
 		}
-		mes "[Dashia]";
-		mes "I can see that you have a gathering mission.";
-		mes "But, where are the Worm Peelings and Garlets?";
+		mes "[Даша]";
+		mes "Вижу, задание у тебя и вправду было. Но это разве сбор панцирей?";
 		next;
-		mes "[Dashia]";
-		mes "You have to bring '20 Worm Peelings' and '20 Garlets' to complete the mission.";
+		mes "[Даша]";
+		mes "Тебе нужно принести мне 20 панцирей(^1111ff"+getitemname(955)+"^000000) и 20 гарлетов (^1111ff"+getitemname(910)+"^000000).";
 		next;
-		mes "[Dashia]";
+		mes "[Даша]";
 		mes "You can get those items from 'Piere', 'Andre', 'Deniro', 'Vitata', 'Thief Bug', 'Female Thief Bug' and 'Male Thief Bug'.";
 		next;
-		mes "[Dashia]";
+		mes "[Даша]";
 		mes "'Piere', 'Andre', 'Deniro' and 'Vitata' are in Ant Hell which is located near the Saint Darmain Fortress soutwest of Morroc.";
 		next;
-		mes "[Dashia]";
+		mes "[Даша]";
 		mes "'Thief Bug', 'Female Thief Bug' and 'Male Thief Bug' are int he Prontere Culvert. To get there, you need to be a volunteer of the Prontera Culvert's punitive force.";
 		break;
 	case 4:
@@ -571,21 +550,21 @@ payon,179,66,3	script	Dashia	931,{
 			erasequest 8277;
 			close;
 		}
-		mes "[Dashia]";
+		mes "[Даша]";
 		mes "I can see that you have a gathering mission.";
 		mes "But, where are the Yoyo Tails, Acorns and Raccoon Leafs?";
 		next;
-		mes "[Dashia]";
+		mes "[Даша]";
 		mes "You haven't done the mission yet. Why did you come back here?";
 		mes "You have to bring '10 Yoyo Tails,' '10 Acorns' and '10 Raccoon Leafs' to complete the mission.";
 		next;
-		mes "[Dashia]";
+		mes "[Даша]";
 		mes "You can get Yoyo Tails from 'Yoyo's', Acorn from 'Coco's' and Raccoon Leaf from 'Smokies'.";
 		next;
-		mes "[Dashia]";
+		mes "[Даша]";
 		mes "You can find them easily around fields, but the field east of Ayothya is the best spot for hunting all 3 monsters.";
 		next;
-		mes "[Dashia]";
+		mes "[Даша]";
 		mes "To get to Ayotaya, you better go to 'Aibakthing' in Alberta and pay his fare.";
 		break;
 	case 5:
@@ -599,19 +578,19 @@ payon,179,66,3	script	Dashia	931,{
 			erasequest 8278;
 			close;
 		}
-		mes "[Dashia]";
+		mes "[Даша]";
 		mes "I can see that you have a gathering mission.";
 		mes "But, where are the Well-baked Cookies and the Piece of Cake?";
 		next;
-		mes "[Dashia]";
+		mes "[Даша]";
 		mes "You haven't done the mission yet. Why did you come back here?";
 		mes "You have to bring '5 Well-baked Cookies' and '1 Piece of Cake' to complete the mission.";
 		next;
-		mes "[Dashia]";
+		mes "[Даша]";
 		mes "You can get Well-baked Cookie from 'Cookies' who wears red or green shirts.";
 		mes "For getting Piece of Cake, you should look for 'Mystcases'.";
 		next;
-		mes "[Dashia]";
+		mes "[Даша]";
 		mes "Both monsters canbe found in the Toy Factory Warehouse or Toy Monitoring Room. To get there, ask Mr. Claus in the northeastern part of Al De Baran.";
 		break;
 	case 6:
@@ -625,46 +604,46 @@ payon,179,66,3	script	Dashia	931,{
 			erasequest 8279;
 			close;
 		}
-		mes "[Dashia]";
+		mes "[Даша]";
 		mes "I can see that you have a gathering mission.";
 		mes "But, where are the Mole Whiskerss and Mole Claws??";
 		next;
-		mes "[Dashia]";
+		mes "[Даша]";
 		mes "You haven't done the mission yet. Why did you come back here?";
 		mes "You have to bring '5 Mole Whiskers' and '3 Mole Claws' to complete the mission.";
 		next;
-		mes "[Dashia]";
+		mes "[Даша]";
 		mes "You can get those items from 'Martins'.";
 		mes "Martins can be found in the Mjolnir Dead Pit, but the second floor is dangerous, so be careful!";
 		next;
-		mes "[Dashia]";
+		mes "[Даша]";
 		mes "To get there, ask a Kafra Employee in Geffen, they can warp you there.";
 		break;
 	}
 	next;
-	mes "[Dashia]";
+	mes "[Даша]";
 	mes "Anyway, I will be here waiting for you. Please come back when you finish the mission!";
 	close;
 L_Quest:
 	if (checkquest(getarg(0)) != 1) {
-		mes "[Dashia]";
+		mes "[Даша]";
 		mes "Huh? Are you sure? Something is wrong...";
 		next;
-		mes "[Dashia]";
+		mes "[Даша]";
 		mes "It is weird.";
 		mes "Please check your Quest Window by pressing 'alt + u'.";
 		close;
 	}
 	return;
 L_Reward:
-	mes "[Dashia]";
+	mes "[Даша]";
 	mes "Wow~ you did an excellent job!";
 	next;
-	mes "[Dashia]";
+	mes "[Даша]";
 	mes "Thank you very much. God bless you!";
 	emotion e_heh;
 	next;
-	mes "[Dashia]";
+	mes "[Даша]";
 	mes "Ha~! Ha~!";
 	mes "I will give you a reward as promised.";
 	return;
