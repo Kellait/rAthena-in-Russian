@@ -360,7 +360,7 @@ prt_castle,164,32,1	script	Man in Anguish	733,{
 			mes "Дай я взгляну";
 			mes "на твоё лицо.";
 			next;
-			if(getequipid(EQI_ACC_L) != 2608 && getequipid(EQI_ACC_R) != 2608) {
+            if(getequipid(EQI_ACC_L) != 2608 && getequipid(EQI_ACC_R) != 2608) {
 				mes "[Murnak Mijoul]";
 				mes "Хмм. Ты хочешь стать Крестоносцем, но не носишь Rosary? Я не хочу иметь с тобой дела, если ты не соблюдаешь наши обычаи.";
 				close;
@@ -401,7 +401,7 @@ prt_castle,164,32,1	script	Man in Anguish	733,{
 			mes "Я позволю тебе пробывать столько раз, сколько ты захочешь. Но если провал повторится много раз, наверное что-то не так с твоим";
 			mes "состоянием разума.";
 			next;
-			if(getequipid(EQI_ACC_L) != 2608 && getequipid(EQI_ACC_R) != 2608) {
+            if(getequipid(EQI_ACC_L) != 2608 && getequipid(EQI_ACC_R) != 2608) {
 				mes "[Murnak Mijoul]";
 				mes "Стой...";
 				mes "Где ты оставил свой Rosary? Ты не должен позвоять ему пылится где-нибудь. Всё-таки мы ведь войны света.";
@@ -887,7 +887,7 @@ prt_castle,35,151,5	script	Patron Knight	751,{
 		}
 		next;
 		if (select("Я готов.:Дай мне немного времени на подготовку.") == 1) {
-			if(getequipid(EQI_ACC_L) != 2608 && getequipid(EQI_ACC_R) != 2608) {
+            if(getequipid(EQI_ACC_L) != 2608 && getequipid(EQI_ACC_R) != 2608) {
 				mes "[Bliant Piyord]";
 				mes "Секундочку, ты не одел свой Rosary. Как Крестоносец, ты должен постоянно носить Rosary.";
 				next;
