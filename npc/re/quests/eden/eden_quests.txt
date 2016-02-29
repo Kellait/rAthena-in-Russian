@@ -1436,27 +1436,27 @@ iz_dun04,43,46,3	script	Eden Member Callandiva	745,{
 }
 
 moc_para01,112,96,5	script	Administrator Michael	4_M_RUSMAN1,{
-	mes "[Михаил]";
+	mes "[Михаэль]";
 	mes "Что привело вас сюда?";
 	next;
 	switch (select("Хочу получить снаряжение:Что здесь находится?:Улучшить экипировку")) {
-		mes "[Михаил]";
+		mes "[Михаэль]";
 	case 1:
 		if (para_suv01 == 11) {
 			mes "Вы завершили тренинг первой ступени. Вам полагаются следующие элементы формы: головной убор, доспех, накидка и обувь. ^4d4dffСначала проверьте наличие свободного места в инвентаре.^000000";
 			next;
 			if (select("Дайте проверить:Места достаточно") == 1) {
-				mes "[Михаил]";
+				mes "[Михаэль]";
 				mes "Разумеется, я вас не тороплю.";
 				close;
 			}
-			mes "[Михаил]";
+			mes "[Михаэль]";
 			mes "Два предмета, ^4d4dffголовной убор и плащ^000000, предоставляются только единожды. Поэтому относитесь к ним бережно.";
 			next;
-			mes "[Михаил]";
+			mes "[Михаэль]";
 			mes "Обувь и доспех будут выданы максимального уровня качества, в зависимости от вашего прогресса в тренингах.";
 			next;
-			mes "[Михаил]";
+			mes "[Михаэль]";
 			mes "Группы ''Эдем'' шляпа, одна.";
 			mes "Группы ''Эдем'' доспех I, один.";
 			mes "Группы ''Эдем'' сапоги I, одна пара.";
@@ -1469,33 +1469,33 @@ moc_para01,112,96,5	script	Administrator Michael	4_M_RUSMAN1,{
 			getitem 2456,1; //Para_Team_Boots1
 			getitem 15009,1; //Para_Team_Uniform1
 			next;
-			mes "[Михаил]";
+			mes "[Михаэль]";
 			mes "Всё правильно? Это снаряжение предназначено быть дешёвым и доступным, оно удобно, но только до какой-то степени.";
 			next;
-			mes "[Михаил]";
+			mes "[Михаэль]";
 			mes "Оно создано специально для группы.";
 		}
 		else if (para_suv01 == 22) {
 			mes "Так как вы закончили курс тренингов второй ступени, наряду с базовым комплектом снаряжения вам предоставляется оружие.";
 			next;
-			mes "[Михаил]";
+			mes "[Михаэль]";
 			mes "Мы подобрали для каждого класса подходящий вид оружия. Разумеется, мы можем обеспечить отнюдь не все классы.";
 			next;
-			mes "[Михаил]";
+			mes "[Михаэль]";
 			mes "Невозможно производить бесплатно абсолютно любое оружие, как вы считаете?";
 			next;
-			mes "[Михаил]";
+			mes "[Михаэль]";
 			mes "Вам положено: одна единица оружия, обуви и доспеха. Всего три вещи. Тем, кто не может пользоваться некоторыми вещами, мы стараемся предлагать альтернативу.";
 			next;
-			mes "[Михаил]";
+			mes "[Михаэль]";
 			mes "^4d4dffЧтобы точно получить эти вещи, проверьте, хватит ли в вашем инвентаре места.^000000";
 			next;
 			if (select("Я освобожу место.:Места достаточно.") == 1) {
-				mes "[Михаил]";
+				mes "[Михаэль]";
 				mes "Пожалуйста.";
 				close;
 			}
-			mes "[Михаил]";
+			mes "[Михаэль]";
 			if (Class == Job_Swordman || Class == Job_Swordman_High || Class == Job_Knight || Class == Job_Crusader) {
 				callsub S_Select,"Мы можем выдать или одноручный, или двуручный меч.",
 					1192,getitemname(1192),"Двуручный меч","АТК 162","",//P_Slayer1
@@ -1529,7 +1529,7 @@ moc_para01,112,96,5	script	Administrator Michael	4_M_RUSMAN1,{
 			}
 			mes "Так-так... Вы получите комплект обуви и накидку.";
 			next;
-			mes "[Михаил]";
+			mes "[Михаэль]";
 			para_suv01 = 23;
 			getitem 13050,1; //P_Dagger1
 			getitem 2457,1; //Para_Team_Boots2
@@ -1540,31 +1540,31 @@ moc_para01,112,96,5	script	Administrator Michael	4_M_RUSMAN1,{
 				getitem 2560,1; //Para_Team_Manteau
 				para_suv02 = 2;
 				next;
-				mes "[Михаил]";
+				mes "[Михаэль]";
 				mes "Проверьте, всё ли правильно.";
 				close;
 			}
 			para_suv02 = 2;
 			mes "Оружие, форма и обувь, всего три единицы. Так как нам ничего не известно об оружии, однозначно подходящем вашему классу, вы получите кинжал. Проверьте, пожалуйста, всё ли правильно.";
 			next;
-			mes "[Михаил]";
+			mes "[Михаэль]";
 			mes "Надеюсь, всё это сослужит вам добрую службу.";
 		}
 		else if (para_suv01 == 37) {
 			mes "Вы завершили последнюю ступень тренингов. Теперь вы можете получить новое оружие.";
 			next;
-			mes "[Михаил]";
+			mes "[Михаэль]";
 			mes "У нас есть форма и оружие более высокого качества. Да, оружие сделано с расчётом на первые профессии, не удивляйтесь, если в будущем оно вам не подойдёт.";
 			next;
-			mes "[Михаил]";
+			mes "[Михаэль]";
 			mes "^4d4dffПроверьте, хватит ли у вас места в инвентаре, чтобы получить всё, что полагается.^000000";
 			next;
 			if (select("Я вернусь.:Места достаточно.") == 1) {
-				mes "[Михаил]";
+				mes "[Михаэль]";
 				mes "Пожалуйста.";
 				close;
 			}
-			mes "[Михаил]";
+			mes "[Михаэль]";
 			if (Class == Job_Swordman || Class == Job_Swordman_High || Class == Job_Knight || Class == Job_Crusader) {
 				callsub S_Select,"Мы можем выдать одноручный или двуручный меч.",
 					13424,getitemname(13424),"Одноручный меч","АТК 170","",///P_Sabre2
@@ -1601,21 +1601,21 @@ moc_para01,112,96,5	script	Administrator Michael	4_M_RUSMAN1,{
 			para_suv01 = 38;
 			getitem 2458,1; //Para_Team_Boots3
 			getitem 15011,1; //Para_Team_Uniform3
-			mes "[Михаил]";
+			mes "[Михаэль]";
 			if (para_suv02 == 0) {
 				mes "У меня нет записей о выдаче вам снаряжения ранее, поэтому вам также будет выдан головной убор и плащ.";
 				para_suv02 = 3;
 				getitem 5583,1; //Para_Team_Hat
 				getitem 2560,1; //Para_Team_Manteau
 				next;
-				mes "[Михаил]";
+				mes "[Михаэль]";
 				mes "Проверьте, всё ли правильно.";
 				close;
 			}
 			para_suv02 = 3;
 			mes "Доспех и обувь, итого две единицы. Проверьте, всё верно?";
 			next;
-			mes "[Михаил]";
+			mes "[Михаэль]";
 			mes "Надеюсь, всё это сослужит вам добрую службу.";
 		}
 		else {
@@ -1623,26 +1623,26 @@ moc_para01,112,96,5	script	Administrator Michael	4_M_RUSMAN1,{
 			mes "...";
 			mes "...хммммм.";
 			next;
-			mes "[Михаил]";
+			mes "[Михаэль]";
 			mes "Прошу прощения, но я не могу найти записей, подтверждающих, что вы должны что-то получить. Вы уверены?";
 		}
 		close;
 	case 2:
 		mes "Здесь хранится снаряжение, оружие и материалы, созданные для группы ''Эдем''.";
 		next;
-		mes "[Михаил]";
+		mes "[Михаэль]";
 		mes "Здесь хватит на целую армию. Сейчас в обращении лишь малая часть, а всё остальное -- на случай чего-то серьёзного вроде Моррока.";
 		next;
-		mes "[Михаил]";
+		mes "[Михаэль]";
 		mes "Только, пожалуйста, ничего не трогайте.";
 		next;
-		mes "[Михаил]";
+		mes "[Михаэль]";
 		mes "Любая оплошность будет стоить мне как минимум затрещины от Рике.";
 		close;
 	case 3:
 		mes "Вы хотите улучшить экипировку. Мы предлагаем улучшение только головного убора.";
 		next;
-		mes "[Михаил]";
+		mes "[Михаэль]";
 		if (para_suv02 == 3) {
 			if (countitem(5583) > 0) {
 				disable_items;
@@ -1656,10 +1656,10 @@ moc_para01,112,96,5	script	Administrator Michael	4_M_RUSMAN1,{
 				case 5: callsub S_Upgrade,"DEX",4721;
 				case 6: callsub S_Upgrade,"LUK",4751;
 				case 7:
-					mes "[Михаил]";
+					mes "[Михаэль]";
 					mes "Но почему? Хуже не станет. В любом случае, мы выдаём только один головной убор.";
 					next;
-					mes "[Михаил]";
+					mes "[Михаэль]";
 					mes "Что вы будете с ним делать -- решать Вам.";
 					close;
 				}
@@ -1672,36 +1672,36 @@ moc_para01,112,96,5	script	Administrator Michael	4_M_RUSMAN1,{
 			mes "Согласно вот этим записям:";
 			mes +strcharinfo(0)+": улучш.";
 			next;
-			mes "[Михаил]";
+			mes "[Михаэль]";
 			mes "Мы предлагаем только одно улучшение. К сожалению, второе сделать нельзя.";
 			close;
 		}
 		mes "Вы ещё не завершили третью ступень. Улучшение головного убора производится только после выдачи формы и снаряжения третьей ступени.";
 		mes "Upgrading your Hat is a special service.";
 		next;
-		mes "[Михаил]";
+		mes "[Михаэль]";
 		mes "Сожалею, но ничем не могу помочь.";
 		close;
 	}
 S_Upgrade:
-	mes "[Михаил]";
+	mes "[Михаэль]";
 	mes "Ясно.";
 	mes "^4d4dff"+ getarg(0) +" подвергнется улучшению^000000.";
 	mes "Делаем?";
 	next;
 	switch (select("Да.:Нет, стойте.")) {
 	case 1:
-		mes "[Михаил]";
+		mes "[Михаэль]";
 		mes "Начинаю улучшение.";
 		next;
-		mes "[Михаил]";
+		mes "[Михаэль]";
 		mes "Пожалуйста.";
 		para_suv02 = 4;
 		delitem 5583,1;
 		getitem2 5583,1,1,0,0,0,0,0,getarg(1);
 		close;
 	case 2:
-		mes "[Михаил]";
+		mes "[Михаэль]";
 		mes "Вы передумали?";
 		close;
 	}
@@ -1716,7 +1716,7 @@ S_Select:
 		mes "Вот они:";
 	}
 	next;
-	mes "[Михаил]";
+	mes "[Михаэль]";
 	for ( .@i = 1; .@i < .@total_arg; .@i += 5 ) {
 		set .@menu$, .@menu$ + getarg(.@i+1) + ":";
 		mes getarg(.@i+1)+": "+ getarg(.@i+2) +". "+ getarg(.@i+3) +".";
@@ -1726,7 +1726,7 @@ S_Select:
 	else
 		mes "Всё это оружие второго уровня, требуемый уровень "+ (para_suv01 == 22 ? "26" : "40") +".";
 	next;
-	mes "[Михаил]";
+	mes "[Михаэль]";
 	mes "Его также нельзя ни передать, ни заточить.";
 	next;
 	//			callsub S_Select,"We have one and Two-handed swords",
@@ -1734,14 +1734,14 @@ S_Select:
 			//		1193,"Eden Slayer II","Two-handed sword","АТК 185","";//P_Slayer2
 	if (.@total_arg < 7) {
 		.@i = 1;
-		mes "[Михаил]";
+		mes "[Михаэль]";
 		mes "Вы получите "+ getarg(.@i+1) +".";
 		next;
-		mes "[Михаил]";
+		mes "[Михаэль]";
 	}
 	else {
 		.@i = (select(.@menu$) -1) *5 +1;
-		mes "[Михаил]";
+		mes "[Михаэль]";
 		mes "Вы выбрали "+ getarg(.@i+1) +".";
 	}
 	if (para_suv01 == 22) {
@@ -1759,17 +1759,17 @@ S_Select:
 		para_suv01 = 38;
 	}
 	getitem getarg(.@i),1;
-	mes "[Михаил]";
+	mes "[Михаэль]";
 	if (para_suv02 == 0) {
 		mes "На вас нет записей о предварительном получении снаряжения, поэтому вам также полагается головной убор и плащ.";
-		getitem 5583,1;// Para_Team_Hat
-		getitem 2560,1;// Para_Team_Manteau
+		getitem 18514,1;// Para_Team_Hat2
+		getitem 2571,1;	// Para_Team_Manteau2
 		if (para_suv01 == 22)
 			para_suv02 = 2;
 		else
 			para_suv02 = 3;
 		next;
-		mes "[Михаил]";
+		mes "[Михаэль]";
 		mes "Относитесь к этим вещам бережно.";
 	}
 	else {
@@ -1780,7 +1780,7 @@ S_Select:
 		mes getarg(.@i+2)+", форма и обувь, всего три единицы.";
 		mes "Проверьте, пожалуйста.";
 		next;
-		mes "[Михаил]";
+		mes "[Михаэль]";
 		mes "Надеюсь, они будут вам полезны.";
 		mes getarg(.@i+4);
 	}
@@ -2035,7 +2035,7 @@ moc_para01,179,44,3	script	Chef	820,{
 		mes "Видел"+(Sex?"":"а")+" задания? А ну-ка... Ты до сих пор не зарегистрировал"+(Sex?"ся":"ась")+" в группе? А что так?";
 		next;
 		mes "[Повар]";
-		mes "Мы обслуживаем всех, неважно, в группе ты или нет. Уверен, у нас получился самый лучший ресторан!";
+		mes "Мы обслуживаем всех, неважно, принадлежишь ты к Группе ты или нет. Уверен, у нас получился самый лучший ресторан!";
 		close;
 	}
 }
@@ -2142,45 +2142,37 @@ moc_para01,23,35,5	script	Instructor Ur#2nd01	4_M_KNIGHT_BLACK,{
 		mes "Ты знаешь, где находится склад оружия? Зайди вон в ту большую синюю дверь и пройди по коридору до конца. Там спроси кузнеца, он выдаст тебе новое снаряжение.";
 		next;
 		mes "[Инструктор Ур]";
-		mes "And the 2nd stage training and missions start at level 70, so come back then.";
-		mes "Don't forget, I'll be waiting for you.";
+		mes "И возвращайся, когда будешь 70-го уровня, тогда сможешь участвовать в новых тренингах. Не забудь, я буду ждать.";
 		para_2nd01 = 6;
 		para_2nd02 = 1;
 		erasequest 7218;// Report to Instructor Ur
 	}
 	else if (para_2nd01 == 6) {
 		if (BaseLevel > 69) {
-			mes "Hey, buddy~";
-			mes "What's going on?";
+			mes "Хэй, +(Sex?"приятель":"подруга")+"!";
+			mes "Как дела?";
 			next;
-			switch( select( "I want to start training.", "I'm just visiting." ) ) {
+			switch( select( "Да вот, хочу на тренировку.", "Просто поболтать заш"+(Sex?"ёл":"ла")+"." ) ) {
 				mes "[Инструктор Ур]";
 			case 1:
-				mes "Hmm... You have a good form!";
-				mes "Let me see....";
-				mes "Which location would suit you...?";
+				mes "Хмм... А ты в неплохой форме!";
+				mes "Дай-ка подумать... Какая локация тебе подойдёт..?";
 				next;
 				mes "[Инструктор Ур]";
 				if (BaseLevel < 80) {
-					mes "Ah, this place should be good!";
-					mes "Do you know where Glast Heim is?";
-					mes "If it wasn't for that terrible accident, Glast Heim would still be";
-					mes "the capital of Rune Midgard, not Prontera.";
+					mes "Ага, вот отличное место! Знаешь, где находится Гластхейм? Если б не та старая история, быть ему столицей Рун-Мидгарда вместо Пронтеры.";
 					next;
 					mes "[Инструктор Ур]";
-					mes "Anyways, that ancient castle is now full of undead monsters .";
-					mes "It's especially bad around the Abbey in the south.";
+					mes "А теперь этот прекрасный древний замок полон чудовищной нежити. Особенно плохо дело с бывшей церковью в южной части города.";
 					next;
 					mes "[Инструктор Ур]";
-					mes "All of those undead monsters come from the underground graveyard";
-					mes "Well... I guess you don't have to go all the way into the graveyard...";
+					mes "Вся эта нежить прёт из-под земли, из захоронений. Но я надеюсь, что тебе не придётся спускаться прямо туда...";
 					next;
 					mes "[Инструктор Ур]";
-					mes "Once you get to the Abbey you'll see our unit member stationed in front of the entrance.";
-					mes "Follow his instructions to help clear out that area.";
+					mes "Когда прибудешь к церкви, увидишь нашего человека. Помоги зачистить область, следуя его инструкциям.";
 					next;
 					mes "[Инструктор Ур]";
-					mes "Please come back alive.";
+					mes "Удачного путешествия.";
 					para_2nd01 = 7;
 					setquest 7219;// Advanced Training at Glast Heim
 				}
@@ -2190,46 +2182,35 @@ moc_para01,23,35,5	script	Instructor Ur#2nd01	4_M_KNIGHT_BLACK,{
 					callsub S_Quest89100;
 				close;
 			case 2:
-				mes "Really? At your level, I think you can easily complete the top class missions..";
-				mes "I'll be here if you change your mind.";
+				mes "Серьёзно? А с твоим-то уровнем мог+(Sex?"":"ла")+" бы легко пройти наши последние курсы... Ну, если передумаешь, ты знаешь, где меня найти.";
 				close;
 			}
 		}
 		else {
-			mes "2nd stage training missions start at level 70.";
-			mes "I'll see you then.";
-			mes "Did you pick up the necessary equipment from the storage?";
-			mes "Hahaha!";
+			mes "К тренингам второй ступени допускаем с 70-го базового уровня. Тогда и увидимся. Не забудь забрать положенное снаряжение со склада, хахаха~";
 		}
 	}
 	else if (para_2nd01 == 10) {
-		mes "Oh! You're here!";
-		mes "I just got a message from Johan.";
-		mes "I think he's not telling me something, but I can't figure out what that is.";
+		mes "О! Ты вернул"+(Sex?"ся":"ась")+"! Я только что получил сообщение от Джохана. Мне кажется, он что-то умалчивает, но что и зачем, мне не ясно.";
 		next;
 		mes "[Инструктор Ур]";
-		mes "Anyways, good job. I'm glad you're not hurt";
-		mes "The Blacksmith BK said he'll reinforce your weapon.";
+		mes "В любом случае, ты хорошо потрудил"+(Sex?"ся":"ась")+". Рад, что с тобой всё в порядке. Кузнец говорил, что готов доработать твоё оружие.";
 		next;
 		callsub S_Para2;
 		mes "[Инструктор Ур]";
-		mes "You know where the Blacksmith is at right??";
-		mes "Go out through the blue door, to the end of the hallway.";
-		mes "BK is a great blacksmith, he'll make your weapon stronger.";
-		mes "What are you waiting for?";
+		mes "Знаешь, как найти кузнеца, да? За вон той синей дверью в конце коридора направо. Викей отличный кузнец, сделает всё в лучшем виде.";
 		para_2nd01 = 11;// Report to Instructor Ur
 		erasequest 7222;
 	}
 	else if (para_2nd01 == 11) {
 		if (BaseLevel > 79) {
-			mes "Ah, ever so improving "+ strcharinfo(0) +"?";
-			mes "To what do I owe this pleasure?";
+			mes "А, наш"+(Sex?"":"а")+" вечно развивающ"+(Sex?"ийся":"аяся")+" "+ strcharinfo(0) +"?";
+			mes "Чем я заслужил такую честь?";
 			next;
-			switch( select( "I came for more training.", "I'm just visiting." ) ) {
+			switch( select( "Я приш"+(Sex?"ёл":"ла")+" продолжить тренировки.", "Просто хотелось увидеться." ) ) {
 				mes "[Инструктор Ур]";
 			case 1:
-				mes "Hmm... You have a good form!";
-				mes "Let me see....";
+				mes "Хмм... Ты всё так же в отличной форме! Посмотрим....";
 				next;
 				mes "[Инструктор Ур]";
 				if (BaseLevel < 90)
@@ -2238,196 +2219,148 @@ moc_para01,23,35,5	script	Instructor Ur#2nd01	4_M_KNIGHT_BLACK,{
 					callsub S_Quest89100;
 				close;
 			case 2:
-				mes "Really? At your level, I think you can easily complete the top class missions..";
-				mes "I'll be here if you change your mind.";
+				mes "Ну да? На твоём-то уровне ты наши самые сложные миссии будешь как орешки щёлкать... Я б на твоём месте подумал, прежде чем отказываться.";
 				close;
 			}
 		}
 		else {
-			mes "3rd stage training starts at level 80.";
-			mes "I'll see you then.";
-			mes "Oh, if you haven't reinforced your weapon yet, go talk to BK.";
+			mes "Третья ступень моего курса тренингов начинается с 80-го уровня. Тогда и увидимся. И, да, не забудь улучшить оружие, за этим обращайся к Викею.";
 		}
 	}
 	else if (para_2nd01 == 15) {
-		mes "Ah, you've come.";
-		mes "I just received a message from Kiren.";
-		mes "How was he? He didn't throw a tantrum for waking him up?";
-		mes "I wouldn't be surprised if he did";
+		mes "С возвращением. Только что получил весточку от Кирэн. Как она там? Тантрум нескоро? А то я бы не удивился.";
 		next;
 		mes "[Инструктор Ур]";
-		mes "Anyways, good job. I'm glad you're not hurt.";
-		mes "The Blacksmith BK said he'll reinforce your weapon.";
+		mes "Отличная работа, молодец. Рад видеть, что ты жив"+(Sex?"":"а")+"-здоров"+(Sex?"":"а")+". Кузнец Викей сказал, что готов улучшить твоё оружие.";
 		next;
 		callsub S_Para2;
 		mes "[Инструктор Ур]";
-		mes "You know where the Blacksmith is at right??";
-		mes "Go out through the blue door, to the end of the hallway.";
-		mes "BK is a great blacksmith, he'll make your weapon stronger.";
-		mes "What are you waiting for?";
+		mes "Знаешь, где его найти, да? Вон та синяя дверь, за ней прямо до конца коридора и направо. Викей отличный кузнец, можешь не сомневаться, сделает всё в лучшем виде!";
 		erasequest 7228;// Report to Instructor Ur
 		para_2nd01 = 16;
 	}
 	else if (para_2nd01 == 16) {
 		if (BaseLevel > 89) {
-			mes "It's nice to see you still strong!";
-			mes "What brings you today?";
+			mes "Приятно видеть, что ты по-прежнему в хорошей форме! Что привело?";
 			next;
-			if (select( "I want to continue training.", "I'm just visiting." ) == 2) {
+			if (select( "Хочу продолжить тренировки.", "Приш"+(Sex?"ёл":"ла")+" повидаться." ) == 2) {
 				mes "[Инструктор Ур]";
-				mes "Really? At your level, I think you can easily complete the top class missions..";
-				mes "I'll be here if you change your mind.";
+				mes "Да? Знаешь, на твоём-то уровне я б наши трениги уже как орешки щёлкал... Ну, если передумаешь, ты знаешь, где меня найти.";
 				close;
 			}
 			mes "[Инструктор Ур]";
 			callsub S_Quest89100;
 		}
 		else {
-			mes "4th stage training starts at level 90.";
-			mes "I'll see you then.";
-			mes "Oh, if you haven't reinforced your weapon yet, go talk to BK.";
+			mes "Четвёртый уровень моего курса стартует на 90-м уровне. Жду тебя как только, так сразу! И, да, не забудь, Викей собирался улучшить тебе оружие.";
 		}
 	}
 	else if (para_2nd01 == 20) {
-		mes "Congratulations on completing all training stages!";
-		mes "That took quite a bit of time huh?";
-		mes "The Blacksmith BK said he'll reinforce your weapon.";
+		mes "Поздравляю с завершением курса тренингов! Не много времени у тебя всё это заняло, да. Кузнец Викей готов улучшить твоё оружие.";
 		next;
 		callsub S_Para2;
 		mes "[Инструктор Ур]";
-		mes "You know where the Blacksmith is at right??";
-		mes "Go out through the blue door, to the end of the hallway.";
-		mes "BK is a great blacksmith, he'll make your weapon stronger.";
+		mes "Знаешь, где его найти, да? Вон та синяя дверь, за ней прямо до конца коридора и направо. Викей отличный кузнец.";
 		next;
 		mes "[Инструктор Ур]";
-		mes "Good job!";
+		mes "Ты молодец!";
 		para_2nd01 = 30;
 		erasequest 7232;//Report to Instructor Ur
 	}
 	else if (para_2nd01 == 29) {
-		mes "Congratulations on completing all training stages!";
-		mes "How was the Expedition? From the looks of it, it must've been pretty tough.";
+		mes "Поздравляю с завершением тренировочного курса! Как там Экспедиция? Я смотрю, нелегко им.";
 		next;
 		mes "[Инструктор Ур]";
-		mes "Good job..";
-		mes "The Blacksmith BK said he'll reinforce your weapon.";
+		mes "Отичная работа.";
+		mes "Кузнец Викей сказал, что готов улучшить твоё оружие.";
 		next;
 		callsub S_Para2;
 		mes "[Инструктор Ур]";
-		mes "You know where the Blacksmith is at right??";
-		mes "Go out through the blue door, to the end of the hallway.";
-		mes "BK is a great blacksmith, he'll make your weapon stronger.";
+		mes "Знаешь, где его найти, да? Вон та синяя дверь, за ней прямо до конца коридора и направо. Викей отличный кузнец, тебе повезло!";
 		next;
 		mes "[Инструктор Ур]";
-		mes "By the way, it looked like Michael had something to tell you as well";
-		mes "Go talk to him, he's at the weapon storage as well.";
-		mes "Go ahead.";
+		mes "Кстати, похоже, Михаэль имел тебе что-то сказать, иди, найди его, он должен быть тоже на складе.";
+		mes "Иди.";
 		para_2nd01 = 30;
 		erasequest 7237;// Report to Instructor Ur
 	}
 	else if (para_2nd01 == 30) {
-		mes "Good job.";
-		mes "Oh, if you haven't reinforced your weapon yet, go talk to BK.";
+		mes "Отличная работа. О, да ты ещё не позаботил"+(Sex?"ся":"ась")+" об улучшении оружия. Иди поговори с кузнецом Викеем.";
 		next;
 		mes "[Инструктор Ур]";
-		mes "Also, sometimes Michael needs help, so if you have time try to help him out.";
-		mes "I'm sure he'll reward you for your time.";
+		mes "А ещё - Михаэлю часто нужна помощь, попробуй ему помочь. Уверен, он наградит тебя чем-нибудь полезным.";
 	}
 	else if (para_2nd01 < 5)
-		callsub S_Direction,"Comodo";
+		callsub S_Direction,"Комодо";
 	else if (para_2nd01 < 10)
-		callsub S_Direction,"Glast Heim Castle";
+		callsub S_Direction,"Гластхейм";
 	else if (para_2nd01 < 15)
-		callsub S_Direction,"Einbroch";
+		callsub S_Direction,"Эйнброх";
 	else if (para_2nd01 < 20)
-		callsub S_Direction,"Ice Dungeon";
+		callsub S_Direction,"Ледяные пещеры";
 	else if (para_2nd01 < 29) {
-		mes "You have to travel very far to get to the ^4d4dffRune Midgard Expedition Camp^000000!";
-		mes "If you want to stay there then earn your keep by doing missions. Got it?";
+		mes "Тебе нужно добраться до ^4d4dffлагеря Мидгардской экспедиции^000000!";
+		mes "Хочешь быть частью Группы -- заслужи своё место. Сечёшь?";
 	}
 	close;
 S_Para2:
 	if (para_2nd02 == 0) {
 		mes "[Инструктор Ур]";
-		mes "I just realized... this was your first mission, wasn't it?";
-		mes "You must not have gotten the basic equipments yet, right?";
-		mes "Pick them up at the weapon storage.";
-		mes "Ask the Blacksmith Michael and he'll give you the equipment.";
+		mes "Я только что осознал... Это же твоя первая миссия, да? У тебя же ещё нет базового снаряжения Группы. Иди, получи его на складе. Обратись к Михаэлю и он всё выдаст.";
 		para_2nd02 = 1;
 		next;
 	}
 	return;
 S_Direction:
-	mes "So, have you been in ^4d4dff"+ getarg(0) +"^000000 yet?";
-	mes "Didn't I tell you to go there?";
-	mes "Go there first and then come back to me. Okay?";
+	mes "Ну что, удалось ли тебе повидать ^4d4dff"+ getarg(0) +"^000000?";
+	mes "Разве я не направлял тебя туда? Съезди сначала туда, а потом возвращайся. Хорошо?";
 	return;
 
 S_Quest7990:
-	mes "Hmm.. Not bad ...";
-	mes "You must be getting a hang of this..";
-	mes "Let's go with a simple mission this time";
+	mes "Хмм... Скучаешь? Предлагаю начать с простой миссии. ";
 	next;
 	mes "[Инструктор Ур]";
-	mes "There is a industrial city called Einbroch.";
-	mes "You've heard of it? It's a city clouded with pollution.";
-	mes "You'll appreciate the environment here so much more after visiting that city...";
-	mes "We should all be thankful.";
+	mes "Есть такой город Эйнброх, город производств и загрязнения окружающей среды. Только побывав там, можно по-настоящему оценить чистоту мидгартской природы... Нам следует ценить её.";
 	next;
 	mes "[Инструктор Ур]";
-	mes "Anyways, go out to the field south of Einbroch and you'll see the Dispatched Instructor.";
-	mes "I'm sure he'll recognize you first.";
-	mes "Don't forget to bring the Eden Group badge.";
+	mes "Доберись до южного пригорода Эйнброха и найди инструктора. Я уверен, он тебя не пропустит. И не забудь значок.";
 	next;
 	mes "[Инструктор Ур]";
-	mes "The city's pollution is unbearable";
-	mes "But the surrounding fields are relatively clean...";
-	mes "This should be pretty easy for you.";
+	mes "В городе абсолютно нечем дышать, а вот в округе пока что жить можно... Справишься.";
 	para_2nd01 = 12;
 	setquest 7223;// Advanced Training in Einbroch
 	return;
 
 S_Quest89100:
 	if (BaseLevel < 100) {
-		mes "Uh-huh....";
-		mes "Hmm...";
-		mes "You seem like a cool-headed person. What do you think about the ice caves?";
+		mes "Ух-хуух...";
+		mes "Хмм...";
+		mes "Ты производишь впечатление довольно хладнокровного человека. Что думаешь о Ледяных пещерах?";
 		next;
 		mes "[Инструктор Ур]";
-		mes "North of the city of Rachel is a cave filled with ice.";
-		mes "Find the Dispatched Instructor there.";
+		mes "Далеко на севере от города Рашель есть пещеры изо льда. Найди там инструктора Группы.";
 		para_2nd01 = 17;
 		setquest 7229;// Advanced Training in Ice Dungeon
 	}
 	else {
-		mes "Well, well...";
-		mes "I don't even know where to send you now.";
-		mes "I'm sure you are familiar with most places around here";
+		mes "Так, так...";
+		mes "Не знаю даже, куда тебя направить. Уверен, ты видел"+(Sex?"":"а")+" всё на свете... ";
 		next;
 		mes "[Инструктор Ур]";
-		mes "Then, should I send you somewhere farther this time?";
-		mes "There is a cat hand agent here.";
-		mes "Do you see him over there?";
+		mes "Тогда мне остаётся послать тебя в места более отдалённые. Туда, где делами заправляют агенты кошачьей лапы. Не встретишься ли ты с одним из них?";
 		next;
 		mes "[Инструктор Ур]";
-		mes "Through him, you can get to Ash Vacuum pretty easily .";
-		mes "Since there is a Expedition Camp there...";
+		mes "С его посредничеством тебе будет просто добраться до Пепельного Разлома. Там сейчас стоит лагерем экспедиция...";
 		next;
 		mes "[Инструктор Ур]";
-		mes "All you have to do is find the Eden Group agent there.";
-		mes "Tell him I sent you, and he'll give you instructions.";
-		mes "You can explore the new world";
-		mes "It's like a vacation isn't it?";
+		mes "Тебе нужно будет найти там агента группы ''Эдем''. Скажи ему, что тебя послал я, и он даст дальнейшие инструкции. Тебе представится возможность изучить новый мир. Звучит почти как отпуск, да?";
 		next;
 		mes "[Инструктор Ур]";
-		mes "Hahaha!";
-		mes ".. Maybe I'll go instead of sending you.";
-		mes "Anyways, their names are Ma~ something... I don't know.";
+		mes "Хахаха!";
+		mes "...Пойти что ли самому вместо тебя. Уже даже имя агента забыл. Ма...что-то-там.";
 		next;
 		mes "[Инструктор Ур]";
-		mes "So, the mission, once again, is finding our agent at the Midgard Expedition Camp.";
-		mes "Isn't this the easiest mission you've ever had?";
-		mes "Don't forget my present when you come back~!";
+		mes "Итак, задача опять связаться с нашим человеком, теперь в лагере экспедиции. Простейшая задача! И не забудь зайти ко мне за подарком, как вернёшься~!";
 		para_2nd01 = 22;
 		setquest 7233;// Advanced Training at Ash Vacuum
 	}
