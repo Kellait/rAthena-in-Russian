@@ -1670,14 +1670,13 @@ moc_para01,112,96,5	script	Administrator Michael	4_M_RUSMAN1,{
 		if (para_suv02 == 4) {
 			mes "Мм, Вы, кажется, уже пользовались улучшением?";
 			mes "Согласно вот этим записям:";
-			mes +strcharinfo(0)+": улучш.";
+			mes "''"+strcharinfo(0)+": улучш.''";
 			next;
 			mes "[Михаэль]";
 			mes "Мы предлагаем только одно улучшение. К сожалению, второе сделать нельзя.";
 			close;
 		}
 		mes "Вы ещё не завершили третью ступень. Улучшение головного убора производится только после выдачи формы и снаряжения третьей ступени.";
-		mes "Upgrading your Hat is a special service.";
 		next;
 		mes "[Михаэль]";
 		mes "Сожалею, но ничем не могу помочь.";
@@ -1692,7 +1691,7 @@ S_Upgrade:
 	switch (select("Да.:Нет, стойте.")) {
 	case 1:
 		mes "[Михаэль]";
-		mes "Начинаю улучшение.";
+		mes "Поехали!";
 		next;
 		mes "[Михаэль]";
 		mes "Пожалуйста.";
@@ -1762,8 +1761,8 @@ S_Select:
 	mes "[Михаэль]";
 	if (para_suv02 == 0) {
 		mes "На вас нет записей о предварительном получении снаряжения, поэтому вам также полагается головной убор и плащ.";
-		getitem 18514,1;// Para_Team_Hat2
-		getitem 2571,1;	// Para_Team_Manteau2
+		getitem 5583,1;// Para_Team_Hat
++		getitem 2560,1;// Para_Team_Manteau
 		if (para_suv01 == 22)
 			para_suv02 = 2;
 		else
@@ -2279,7 +2278,7 @@ moc_para01,23,35,5	script	Instructor Ur#2nd01	4_M_KNIGHT_BLACK,{
 		mes "Знаешь, где его найти, да? Вон та синяя дверь, за ней прямо до конца коридора и направо. Викей отличный кузнец, тебе повезло!";
 		next;
 		mes "[Инструктор Ур]";
-		mes "Кстати, похоже, Михаэль имел тебе что-то сказать, иди, найди его, он должен быть тоже на складе.";
+		mes "Кстати, похоже, Михаэль имел тебе что-то сказать, иди, найди его, он должен быть там же.";
 		mes "Иди.";
 		para_2nd01 = 30;
 		erasequest 7237;// Report to Instructor Ur
@@ -2288,7 +2287,7 @@ moc_para01,23,35,5	script	Instructor Ur#2nd01	4_M_KNIGHT_BLACK,{
 		mes "Отличная работа. О, да ты ещё не позаботил"+(Sex?"ся":"ась")+" об улучшении оружия. Иди поговори с кузнецом Викеем.";
 		next;
 		mes "[Инструктор Ур]";
-		mes "А ещё - Михаэлю часто нужна помощь, попробуй ему помочь. Уверен, он наградит тебя чем-нибудь полезным.";
+		mes "А ещё - Михаэлю часто нужна помощь, попробуй к нему обратиться. Уверен, он наградит тебя чем-нибудь полезным.";
 	}
 	else if (para_2nd01 < 5)
 		callsub S_Direction,"Комодо";
@@ -2347,10 +2346,10 @@ S_Quest89100:
 		mes "Не знаю даже, куда тебя направить. Уверен, ты видел"+(Sex?"":"а")+" всё на свете... ";
 		next;
 		mes "[Инструктор Ур]";
-		mes "Тогда мне остаётся послать тебя в места более отдалённые. Туда, где делами заправляют агенты кошачьей лапы. Не встретишься ли ты с одним из них?";
+		mes "Тогда мне остаётся послать тебя в места более отдалённые. Туда, где делами заправляют агенты кошачьей лапы. Наверняка видел"+(Sex?"":"а")+" их у нас?";
 		next;
 		mes "[Инструктор Ур]";
-		mes "С его посредничеством тебе будет просто добраться до Пепельного Разлома. Там сейчас стоит лагерем экспедиция...";
+		mes "С их посредничеством тебе будет просто добраться до Пепельного Разлома. Там сейчас стоит лагерем экспедиция...";
 		next;
 		mes "[Инструктор Ур]";
 		mes "Тебе нужно будет найти там агента группы ''Эдем''. Скажи ему, что тебя послал я, и он даст дальнейшие инструкции. Тебе представится возможность изучить новый мир. Звучит почти как отпуск, да?";
@@ -2370,131 +2369,105 @@ S_Quest89100:
 //--60~69
 // comodo,173,354,5	script	Dispatched Instructor#2nd02	1_M_JOBTESTER,{
 comodo,173,354,5	script	Dispatched Instructor#02	1_M_JOBTESTER,{
-	mes "[Romeo]";
+	mes "[Ромео]";
 	if (para_2nd01 < 1) {
-		mes "How are you?";
-		mes "Comodo has the best weather in the whole world.";
-		mes "Even during the winter, Comodo has great weather.";
+		mes "Как поживаешь?";
+		mes "В Комодо лучший в мире климат. Даже зимой здесь хорошая погода.";
 		next;
-		mes "[Romeo]";
-		mes "Do you know why?";
-		mes "Comodo is surrounded by the ocean and caves.";
-		mes "Seasonal changes don't make any difference in the temperature here.";
+		mes "[Ромео]";
+		mes "А знаешь, почему?";
+		mes "Комодо окружёнают океан и пещеры. Сезонные перепады температур здесь не так заметны.";
 		next;
-		mes "[Romeo]";
-		mes "Take it easy here.";
-		mes "This area is a place for relaxation.";
+		mes "[Ромео]";
+		mes "Идеальное место для того, чтобы со спокойной совестью расслабиться и отдохнуть.";
 	}
 	else if (para_2nd01 == 1) {
-		mes "How are you?";
-		mes "You were sent here by Instructor Ur right?";
-		mes "Did you come here for a quest?";
+		mes "Как поживаешь?";
+		mes "Тебя прислал инструктор Ур, да? Ты прибыл"+(Sex?"":"а")+", чтобы получить задание?";
 		next;
-		mes "[Romeo]";
-		mes "I don't know if this will fit you well";
-		mes "Why don't you just try it.";
+		mes "[Ромео]";
+		mes "Не знаю, подойдёт ли тебе мой курс, но почему бы просто не попробовать.";
 		next;
-		mes "[Romeo]";
-		mes "The thing about this cave is that, many monsters are created from stones.";
-		mes "If you stay cautious, they shouldn't be too threatning...";
+		mes "[Ромео]";
+		mes "Фишка этой пещеры в том, что многие монстры здесь созданы из камня. Если быть внимательным, они не составят большой опасности...";
 		next;
-		mes "[Romeo]";
-		mes "But most of them have range attacks..";
-		mes "And sometimes a really strong one roams around.";
+		mes "[Ромео]";
+		mes "Но многие имеют возможность атаковать издалека. А иногда встречаются особо сильные.";
 		next;
-		mes "[Romeo]";
-		mes "Well... this is the reason why you train right?";
-		mes "Let's try taking on one of the big monsters";
+		mes "[Ромео]";
+		mes "Поэтому ты и здесь, не так ли? Поговорим об одном из сильных монстров.";
 		next;
-		mes "[Romeo]";
-		mes "'They are called 'Stalactic Golem'.";
-		mes "Try defeating some of them.";
-		mes "Not too difficult, right?";
+		mes "[Ромео]";
+		mes "Это сталактитовые големы, или, по-научному, ''^111199"+getmonsterinfo(1278,MOB_NAME)+"^000000''.";
+		mes "Попробуй для начала побить одного такого голема. Не самая сложная задача?";
 		para_2nd01 = 2;
 		erasequest 7214;
 		setquest 7215;
 	}
 	else if (para_2nd01 == 2) {
 		if (checkquest(7215,HUNTING) == 2) {
-			mes "So, how good of an explorer are you now?";
-			mes "You've fought these before, so clearing this cave should be possible.";
+			mes "Ну, как тебе жизнь исследователя? Зачистить пещеру, учитывая, что ты уже сражал"+(Sex?"ся":"ась")+" с такими големами раньше, должно быть вполне выполнимо.";
 			next;
-			mes "[Romeo]";
-			mes "As I said before, since Komodo is a city inside a cave..";
-			mes "Access to the outside world is mostly done through the east entrance, but...";
+			mes "[Ромео]";
+			mes "Как я уже говорил, город Комодо, по сути, находится внутри пещеры... Главный подход к городу проходит через восточную часть пещер, однако...";
 			next;
-			mes "[Romeo]";
-			mes "Let's try going out through the north.";
-			mes "There should be things you can hunt out there.";
+			mes "[Ромео]";
+			mes "Давай попробуем пробраться на север. Там могут оказаться интересные для охоты места.";
 			next;
-			mes "[Romeo]";
-			mes "And instead of just walking out,";
-			mes "Let's kill about 10 Stalactic Golems on the way out.";
+			mes "[Ромео]";
+			mes "А чтобы не чувствовать себя совсем уж глупо, давай охотиться на големов. По десятке на каждого должно хватить, чтобы расчистить путь.";
 			next;
-			mes "[Romeo]";
-			mes "So that, travelers coming from the north can safely walk through.";
-			mes "Remember, 10 Stalactic Golems. Then come to the other side of northern part of the cave";
+			mes "[Ромео]";
+			mes "Чтобы следующим путникам после нас было проще пользоваться этим выходом. Запомни, 10 големов. А потом подходи к выходу из пещер.";
 			next;
-			mes "[Romeo]";
-			mes "I'll be waiting outside.";
+			mes "[Ромео]";
+			mes "Встретимся снаружи.";
 			para_2nd01 = 3;
 			getexp 10000,10000;
 			erasequest 7215;// Stalactic Golem Hunt
 			setquest 7216;// More Golem Hunting
 		}
 		else {
-			mes "As a test of the difficulty of this cave";
-			mes "Go defeat 3 Stalactic Golems.";
-			mes "Watch out for other monsters as well.";
+			mes "В качестве проверки тебе нужно победить 3 големов. И не забывай, в пещерах не только големы встречаются.";
 			next;
-			mes "[Romeo]";
-			mes "Let me help you recover if you are tired.";
+			mes "[Ромео]";
+			mes "Я помогу тебе отдохнуть, если нужно.";
 			npcskill "AL_HEAL",10,99,60;
 			percentheal 0,100;
 		}
 	}
 	else if (para_2nd01 == 3) {
-		mes "You must go through this cave to the outside.";
-		mes "Don't forget to defeat the Stalactic Golems you run into on the way.";
+		mes "Тебе нужно найти северный выход из пещер. Не забудь достойно встречать големов на пути.";
 	}
 	else {
-		mes "I always give the same test to the trainees that come here..";
-		mes "I've never seen anyone pass it so perfectly like you did.";
+		mes "Всегда даю этот тест курсантам и ещё не встречал никого, кто справился бы настолько же идеально, как и ты.";
 	}
 	close;
 }
 
 um_fild01,34,280,5	script	Instructor Romeo#2nd02	1_M_JOBTESTER,{
-	mes "[Romeo]";
+	mes "[Ромео]";
 	if (para_2nd01 < 2) {
-		mes "If you were sent from the Eden Group for training, wait for me at the town.";
-		mes "I'm waiting for a different trainee right now.";
+		mes "Если ты от эдемовцев на тренинг, то дождись меня в городе. У меня сейчас встреча с курсантом.";
 	}
 	else if (para_2nd01 == 2) {
-		mes "No no.. Not here.";
-		mes "I'm waiting for a different trainee right now.";
-		mes "Go back.";
+		mes "Нет, нет... Не то место. У меня сейчас встреча с другим курсантом.";
 	}
 	else if (para_2nd01 == 3) {
 		if (checkquest(7216,HUNTING) == 2) {
-			mes "Ah, I see you didn't get lost.";
-			mes "Your skills at defeating those Stalactic Golems were better than I expected.";
-			mes "Just means you've improved that much.";
+			mes "Ага, вижу, ты не потерял"+(Sex?"ся":"ась")+". Способности к уничтожению големов у тебя впечатляющие, лучше, чем я ожидал поначалу. Похоже, тебе не привыкать к тяжёлой работе, в том числе и работе над собой.";
 			next;
-			mes "[Romeo]";
-			mes "Now look around here";
-			mes "We're in a dense forest now.";
-			mes "There are Dryads and Wootans here...";
+			mes "[Ромео]";
+			mes "Взгляни вокруг. Теперь нас окружает непролазная чаща. Это дом для дриад и вутанов...";
 			next;
-			mes "[Romeo]";
-			mes "Next task is to clearing this area of monsters.";
-			mes "Bring me the following from the monsters.";
+			mes "[Ромео]";
+			mes "Итак. Следующее задание -- зачистить эту местность от чудовищ. Принеси с них следующие трофеи.";
 			next;
-			mes "[Romeo]";
-			mes "5 Wootan Fighter's Shoulderguard";
-			mes "7 Dryad's Sharp Leaf";
+			mes "[Ромео]";
+			mes "5 вутанских наплечников (^111188"+getitemname(7196)+"^000000),";
+			mes "7 остролистов с дриад (^111188"+getitemname(7100)+"^000000).";
 			next;
-			mes "[Romeo]";
+			mes "[Ромео]";
 			mes "This is the last test.";
 			mes "Good luck.";
 			para_2nd01 = 4;
@@ -2503,24 +2476,20 @@ um_fild01,34,280,5	script	Instructor Romeo#2nd02	1_M_JOBTESTER,{
 			getexp 10000,10000;
 		}
 		else {
-			mes "I see you didn't get lost.";
-			mes "But you didn't defeat enough Stalactic Golems..";
-			mes "Go back and defeat them.";
+			mes "Вижу, тебе удалось выбраться на волю. Но как же големы? Помнишь, мы договаривались, что побьём по 10? Даю тебе ещё один шанс.";
 			next;
-			mes "[Romeo]";
-			mes "I'll help you recover if you are tired.";
+			mes "[Ромео]";
+			mes "Если устал"+(Sex?"":"а")+", я помогу восстановить силы.";
 			npcskill "AL_HEAL",10,99,60;
 			percentheal 0,100;
 		}
 	}
 	else if (para_2nd01 == 4) {
 		if (countitem(7196) > 4 && countitem(7100) > 6) {// Shoulder_Protection, Sharp_Leaf
-			mes "You really got these by defeating the monsters?";
-			mes "I believe you. I want to get out of here anyways.";
+			mes "Правда, с монстров добыл"+(Sex?"":"а")+"? Ладно, я тебе верю. Самому уже свалить охота.";
 			next;
-			mes "[Romeo]";
-			mes "There are no more training tasks here.";
-			mes "Go back and report to Ur.";
+			mes "[Ромео]";
+			mes "Больше заданий не будет. Возвращайся, доложись Уру.";
 			delitem 7196,5;
 			delitem 7100,7;
 			para_2nd01 = 5;
@@ -2529,23 +2498,22 @@ um_fild01,34,280,5	script	Instructor Romeo#2nd02	1_M_JOBTESTER,{
 			getexp 10000,10000;
 		}
 		else {
-			mes "Didn't I already tell you the last task?";
-			mes "Defeat the monsters in this forest, and bring me the items I asked for.";
+			mes "Я ж вроде тебе последнее задание обьяснил? Разобраться с лесными монстрами и принести трофеи, которые я сказал.";
 			next;
-			mes "[Romeo]";
-			mes "5 Wootan Fighter's Shoulderguard";
-			mes "7 Dryad's Sharp Leaf";
-			mes "You must bring me those to pass this test.";
+			mes "[Ромео]";
+			mes "5 вутанских наплечников (^111188"+getitemname(7196)+"^000000),";
+			mes "7 дриадьих остролистов (^111188"+getitemname(7100)+"^000000).";
+			mes "Без них тест сданным считаться не будет.";
 			next;
-			mes "[Romeo]";
-			mes "I'll help you recover if you are tired.";
+			mes "[Ромео]";
+			mes "Я помогу тебе отдохнуть, если устал"+(Sex?"":"а")+".";
 			npcskill "AL_HEAL",10,99,60;
 			percentheal 0,100;
 		}
 	}
 	else {
-		mes "Ugh, It's way too hot here.";
-		mes "You can leave now.";
+		mes "Ухх, ну и жарень тут.";
+		mes "Ты можешь идти.";
 	}
 	close;
 }
@@ -2553,129 +2521,106 @@ um_fild01,34,280,5	script	Instructor Romeo#2nd02	1_M_JOBTESTER,{
 //--70~79
 // glast_01,195,131,5	script	Dispatched Instructor#2nd03	4_F_SISTER,{
 glast_01,195,131,5	script	Dispatched Instructor#03	4_F_SISTER,{
-	mes "[Johan]";
+	mes "[Йоханна]";
 	if (para_2nd01 < 7) {
-		mes "Ah~ So bored.";
-		mes "You're not the one Ur sent, are you?";
-		mes "Oh~ That's okay.";
+		mes "Аах~ Скучно тут. ";
+		mes "Не тебя ли случайно послал Ур? Нет?";
+		mes "Ох~ жалко.";
 		next;
-		mes "[Johan]";
-		mes "This is Glast Heim Abbey.";
-		mes "Be careful, there are a lot of lost souls around here.";
+		mes "[Йоханна]";
+		mes "Это гластхеймский монастырь. Будь осторожнее, тут рыщет множество заблудших душ.";
 	}
 	else if (para_2nd01 == 7) {
-		mes "Oh oh!!";
-		mes "You're finally here!";
-		mes "I asked Ur to send someone to help me here!";
+		mes "Ох-хо!!";
+		mes "Наконец-то!";
+		mes "Я просила Ура прислать кого-нибудь мне в помощь!";
 		next;
-		select("What? I came for training..");
-		mes "[Johan]";
-		mes "No no, that's the same thing!";
-		mes "Your training mission is to help me clear out this Abbey!";
+		select("Что? Я приш"+(Sex?"ёл":"ла")+" на тренинг...");
+		mes "[Йоханна]";
+		mes "Это он и есть! Твоя задача в том, чтобы помочь мне с зачисткой монастыря!";
 		next;
-		mes "[Johan]";
-		mes "Phew... It's been so tough.";
-		mes "I can't run in by myself, but then Gargoyles attack me out here..";
-		mes "Hahaha...";
+		mes "[Йоханна]";
+		mes "Уф... Я так устала. Одной мне не справиться, даже здесь меня атакуют гаргульи...";
+		mes "Хахаха...";
 		next;
-		mes "[Johan]";
-		mes "This abbey is our responsibilty.";
-		mes "Just like other monasteries, this one has an underground graveryad as well, but..";
+		mes "[Йоханна]";
+		mes "Этот монастырь в нашей зоне ответственности. Как и в других монастырях, здесь есть подземное кладбище, но..";
 		next;
-		mes "[Johan]";
-		mes "As you well know, this castle... is not at a normal state.";
-		mes "I think that's causing these souls from being able to rest in peace.";
+		mes "[Йоханна]";
+		mes "Как тебе прекрасно известно, этот замок... в ненормальном состоянии. Я думаю, в этом причина того, что все эти души не могут найти покой.";
 		next;
-		mes "[Johan]";
-		mes "Let's defeat the ones around here first, since going underground may be too much for just us.";
-		mes "I'll be testing how skilled you are as well...";
+		mes "[Йоханна]";
+		mes "Давай попробуем сразиться с теми, что поблизости. Чтобы лезть глубже, наших сил явно недостаточно.";
+		mes "Это будет проверкой твоих сил...";
 		next;
-		mes "[Johan]";
-		mes "First target are the Wraiths.";
-		mes "You can tell them apart by their strange laugh.";
-		mes "They look like demons, but we can't tell for sure...";
+		mes "[Йоханна]";
+		mes "Первая цель: ^111199"+getmonsterinfo(1192,MOB_NAME)+"^000000.";
+		mes "Их легко отличить по жуткому смеху. Они выглядят как демоны, но кто знает...";
 		next;
-		mes "[Johan]";
-		mes "Defeat 20 Wraiths.";
-		mes "I'll assist you from here!";
+		mes "[Йоханна]";
+		mes "Расправься с 20 этими монстрами. Я буду помогать отсюда!";
 		para_2nd01 = 8;
 		erasequest 7219;// Advanced Training at Glast Heim
 		setquest 7220;// Wraith Hunt
 	}
 	else if (para_2nd01 == 8) {
 		if (checkquest(7220,HUNTING) == 2) {
-			mes "Oh~ You are pretty strong!";
-			mes "I'm so glad that someone strong like you came.";
-			mes "I wouldn't have last long here by myself.";
+			mes "Ох~ Ты просто чудо! Как здорово, что обещанное подкрепление оказалось таким сильным. Больше мне не придётся умирать от одиночества!";
 			next;
-			mes "[Johan]";
-			mes "By the way, did you see those other monsters besides the Wraiths?";
-			mes "They are the corrupted souls of priests.";
-			mes "They are called 'Evil Druid' as well.";
+			mes "[Йоханна]";
+			mes "Ты, наверное, обратил"+(Sex?"":"а")+" внимание на других монстров? Это искажённые духи священнослужителей. Они ещё называются злыми друидами.";
 			next;
-			mes "[Johan]";
-			mes "Let's take care of these Evil Druids this time.";
-			mes "10 of them.";
-			mes "You can do it right?";
-			mes "I believe in you!";
+			mes "[Йоханна]";
+			mes "Пришло время нам и о них позаботиться. О 10 из них. Ты же можешь? Я в тебя верю!";
 			para_2nd01 = 9;
 			erasequest 7220;// Wraith Hunt
 			setquest 7221;// Evil Druid hunt
 			getexp 20000,20000;
 		}
 		else {
-			mes "20 Wraiths!";
-			mes "I'll watch your back!.";
-			mes "... Of.. Course.. I'll fight too!";
+			mes "20 монстров!";
+			mes "Я тебя прикрою! Берегись!";
 			npcskill "AL_HEAL",10,99,60;
 			percentheal 0,100;
 		}
 	}
 	else if (para_2nd01 == 9) {
 		if (checkquest(7221,HUNTING) == 2) {
-			mes "...Oh you're back!";
-			mes "(Johan Opens the door and checks)";
+			mes "...Ты вернул"+(Sex?"ся":"ась")+"!";
+			mes "(приоткрывает дверь и заглядывает туда)";
 			mes "....!";
-			mes "Okay!!";
+			mes "Отлично!!";
 			next;
-			mes "[Johan]";
-			mes "Thank you! I really appreciate it!";
-			mes "I think I can enter without any worries now!";
-			mes "I hope those evil souls left it alone..";
+			mes "[Йоханна]";
+			mes "Спасибо тебе! Ты мне очень помог"+(Sex?"":"ла")+"! Думаю, я теперь смогу без проблем войти внутрь. Надеюсь, злые духи оставили это место...";
 			next;
-			mes "[Johan]";
-			mes "Hehe, I'll put in a good word to Ur!";
-			mes "You're a valient and skilled exorcist!";
+			mes "[Йоханна]";
+			mes "Хехе, я замолвлю слвечко перед Уром! Ты отличный экзорцист!";
 			next;
-			mes "[Johan]";
-			mes "You can go back to Eden now";
-			mes "I'll stay and clean up the rest, hehe";
+			mes "[Йоханна]";
+			mes "Можешь возвращаться в штаб, а я закончу здесь, хехе...";
 			para_2nd01 = 10;
 			erasequest 7221;// Evil Druid hunt
 			setquest 7222;// Report to Instructor Ur
 			getexp 20000,20000;
 		}
 		else {
-			mes "10 Evil Druids!";
-			mes "I'll watch your back, like last time.";
-			mes "... Of... Course... I'll fight them too!";
+			mes "10 злых друидов!";
+			mes "Я тебя прикрою, как тогда!";
 			npcskill "AL_HEAL",10,99,60;
 			percentheal 0,100;
 		}
 	}
 	else if (para_2nd01 == 10) {
-		mes "Go back and report to Ur.";
-		mes "That Glast Heim Abbey is clear now.";
-		mes "I need to stay and look for something... Good bye.";
+		mes "Возвращайся в штаб и отчитайся Уру о выполнении миссии. Гластхеймский монастырь очищен. А меня ждёт кое-что ещё... До встречи.";
 	}
 	else {
-		mes "Ugh, I still haven't found the thing I lost.";
-		mes "Hmm... I may need to wait for the next trainee before I can start looking again... Eep!";
+		mes "Умф, не везёт мне с поисками потеряшек. Хмм... Возможно, стоит дождаться следующего курсанта, чтобы продолжать поиски... Ой!";
 		next;
-		mes "[Johan]";
-		mes "Uh... You didn't hear that did you?";
-		mes "Hahahahahahaha!!!";
-		mes "Hahahahaha!!";
+		mes "[Йоханна]";
+		mes "Э... Как хорошо, что Вы ничего не расслышали, правда?";
+		mes "Хахахахаха!!!";
+		mes "Хахахаха!!";
 	}
 	close;
 }
