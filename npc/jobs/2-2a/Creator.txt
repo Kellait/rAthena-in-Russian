@@ -6,19 +6,19 @@
 //===== Current Version: ===================================== 
 //= 1.3
 //===== Compatible With: ===================================== 
-//= rAthena Project
+//= rAthena 1.0 +
 //===== Description: ========================================= 
 //= Advance Class jobchanger after kRO Normals.
 //===== Additional Comments: ================================= 
-//= 1.1 Made all into functions, additional checks, etc. [Lupus]
-//= 1.2 Made numbers into constants. [Vicious]
+//= v1.1 Made all into functions, additional checks, etc. [Lupus]
+//= v1.2 Made numbers into constants. [Vicious]
 //= 1.3 Now saves/restores all the quest skills [Lupus]
-//============================================================ 
+//============================================================
 //= Translated en -> ru [Akaineko]
 //============================================================ 
 
 valkyrie,53,50,3	script	Biochemist#Valkyrie	122,{
-	if (ADVJOB == 0 || Upper != 1)&&(Class != Job_Creator) {
+	if (ADVJOB == 0 || Upper != 1) {
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {
 			mes "[Биохимик]";
@@ -103,7 +103,7 @@ valkyrie,53,50,3	script	Biochemist#Valkyrie	122,{
 				mes "использовать их ";
 				mes "в правильных целях...";
 				next;
-				skill "AM_BIOETHICS",1,SKILL_PERM;
+				skill 238,1,0;
 				mes "[Биохимик]";
 				mes "Открой глаза...";
 				mes "Теперь, когда ты ";
