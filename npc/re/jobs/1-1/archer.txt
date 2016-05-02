@@ -25,7 +25,7 @@ payon_in02,64,71,4	script	Archer Guildsman#archer	85,{
 			mes "и был перерожден.";
 			mes "Это так круто!";
 			next;
-			if (getskilllv("NV_BASIC") < 9) {
+			if (!callfunc("F_CanChangeJob")) {
 				mes "[Archer Guildsman]";
 				mes "Брр...";
 				mes "Лучше бы тебе изучить основные навыки перед тем как стать лучником.";
@@ -74,7 +74,7 @@ payon_in02,64,71,4	script	Archer Guildsman#archer	85,{
 		}else{
 			mes "Звать тебя... "+strcharinfo(0)+". Так?";
 			next;
-			if (getskilllv("NV_BASIC") < 9) {
+			if (!callfunc("F_CanChangeJob")) {
 				mes "[Archer Guildsman]";
 				mes "Брр...";
 				mes "Лучше бы тебе изучить основные навыки перед тем как стать лучником.";

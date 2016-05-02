@@ -19,7 +19,7 @@ moc_prydb1,39,129,2	script	Thief Guide#thief	69,{
 				mes "[Thief Guide]";
 				mes "Ммм? Я тебя знаю? У тебя случайно нет двойника?";
 				next;
-				if (getskilllv("NV_BASIC") < 9) {
+				if (!callfunc("F_CanChangeJob")) {
 					mes "[Thief Guide]";
 					mes "Тебе следует подтянуть свои основные навыки.";
 					mes "Возвращайся как будешь готов.";
@@ -134,7 +134,7 @@ moc_prydb1,39,129,2	script	Thief Guide#thief	69,{
 	mes "Хорошо, называй своё имя.";
 	mes ""+strcharinfo(0)+". "+strcharinfo(0)+", верно?";
 	next;
-	if (getskilllv("NV_BASIC") < 9) {
+	if (!callfunc("F_CanChangeJob")) {
 		mes "[Thief Guildsman]";
 		mes "Тебе следует подтянуть свои основные навыки.";
 		mes "Возвращайся как будешь готов.";

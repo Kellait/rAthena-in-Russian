@@ -23,7 +23,7 @@ geffen_in,164,124,4	script	Mage Guildsman#mage	123,{
 				mes "[Член Гильдии Магов]";
 				mes "А, должно быть, ты переродил" + (Sex?"ся":"ась") + ". Что ж, я рад твоему возвращению.";
 				next;
-				if (getskilllv("NV_BASIC") < 9) {
+			if (!callfunc("F_CanChangeJob")) {
 					mes "[Член Гильдии Магов]";
 					mes "Прости, я думаю, что ты ещё не готов" + (Sex?"":"а") + " изучать магию. Почему бы тебе сначала не закончить обучение базовым навыкам?";
 					next;
@@ -85,7 +85,7 @@ geffen_in,164,124,4	script	Mage Guildsman#mage	123,{
 				close;
 			}
 			mes "[Член Гильдии Магов]";
-			if (getskilllv("NV_BASIC") < 9) {
+			if (!callfunc("F_CanChangeJob")) {
 				mes "Ох, друг, твои базовые умения недостаточно развиты.";
 				mes "Иди и доучи Basic Skill.";
 				close;

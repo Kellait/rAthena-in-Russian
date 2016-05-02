@@ -21,7 +21,7 @@ prt_church,184,41,4	script	Cleric#aco	60,{
 				mes "Сдаётся мне, ты уже бывал тут.";
 				mes "Должно быть, много чего умел до встречи с Валгаллой.";
 				next;
-				if (getskilllv("NV_BASIC") < 9) {
+				if (!callfunc("F_CanChangeJob")) {
 					mes "[Father Mareusis]";
 					mes "Но ты ещё не готов стать послушником. Изучи-ка основные навыки.";
 					next;
@@ -72,7 +72,7 @@ prt_church,184,41,4	script	Cleric#aco	60,{
 			mes "Тебе правда охота стать рабом Божьим?";
 			mes "Ну давай глянем, готов ты или нет... Ммм...";
 			next;
-			if (getskilllv("NV_BASIC") < 9) {
+			if (!callfunc("F_CanChangeJob")) {
 				mes "[Father Mareusis]";
 				mes "Госпади! Да ты ещё основные навыки не изучил?! Истреби ещё немного порингов и возвращайся как будешь готов!";
 				close;

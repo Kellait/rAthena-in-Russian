@@ -24,7 +24,7 @@ izlude_in,74,172,4	script	Swordman#swd	119,{
 			mes "[Мечник]";
 			mes "Я вижу, ты хочешь повторить путь Мечника! Однажды привыкнув размахивать мечом, уже не можешь жить без этого!!";
 			next;
-			if (getskilllv("NV_BASIC") < 9) {
+			if (!callfunc("F_CanChangeJob")) {
 				mes "[Мечник]";
 				mes "Хм? А, чтобы стать Мечником, тебе нужно овладеть основными навыками.";
 				next;
@@ -93,7 +93,7 @@ izlude_in,74,172,4	script	Swordman#swd	119,{
 			}
 			close;
 		}else{
-			if (getskilllv("NV_BASIC") < 9) {
+			if (!callfunc("F_CanChangeJob")) {
 				mes "Сожалею, что приходится говорить тебе это, но чтобы стать Мечником, тебе нужно достичь ^4A4AFF10 профессионального уровня^000000";
 				mes "и иметь ^4A4AFFBasic Skill 9 уровня^000000.";
 				next;

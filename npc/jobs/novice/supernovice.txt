@@ -143,7 +143,7 @@ aldeba_in,223,167,3	script	Tzerero#sn	709,{
 		next;
 		switch(select("Принять предложение.:Отклонить предложение.:Прислушаться.")) {
 		case 1:
-			if (getskilllv("NV_BASIC") < 9) {
+			if (!callfunc("F_CanChangeJob")) {
 				mes "[Tzerero]";
 				mes "Хмм...Действительно ли ты";
 				mes "понимаешь ценность";

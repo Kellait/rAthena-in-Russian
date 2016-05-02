@@ -25,7 +25,7 @@ alberta_in,53,43,6	script	Merchant#mer	86,{
 			mes "Ё...";
 			mes "Ты побывал" + (Sex?"":"а") + " в Вальхалле?! Ты проделал" + (Sex?"":"а") + " далёкий путь...";
 			next;
-			if (getskilllv("NV_BASIC") < 9) {
+			if (!callfunc("F_CanChangeJob")) {
 				mes "[Шеф Мансуу]";
 				mes "Хммм...";
 				mes "Похоже, ты ещё не готов" + (Sex?"":"а") + " стать Торговцем снова. Закончи изучение базовых умений Новичка. .";
@@ -75,7 +75,7 @@ alberta_in,53,43,6	script	Merchant#mer	86,{
 		}else{
 			mes "Хочешь стать Торговцем? Хм...";
 			next;
-			if (getskilllv("NV_BASIC") < 9) {
+			if (!callfunc("F_CanChangeJob")) {
 				mes "[Гилдсмен Мансуу]";
 				mes "Если хочешь стать Торговцем, тебе нужно выучить Basic Skill полностью или распределить все свободные очки умений.";
 				next;

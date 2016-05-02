@@ -47,7 +47,7 @@ function	script	F_CoolEventCorp	{
 		break;
 	case 2:
 		mes "[Сотрудник Компании 'За горизонт']";
-		if(basicskillcheck() && getskilllv("NV_BASIC") < 6){
+		if(!callfunc("F_CanOpenStorage")){
 			mes "Извините, но, чтобы пользоваться ";
 			mes "складом, вам нужно обладать ";
 			mes "Базовым навыком хотя бы шестого ";
