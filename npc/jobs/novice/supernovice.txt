@@ -24,7 +24,7 @@
 //============================================================
 
 aldeba_in,223,167,3	script	Tzerero#sn	709,{
-	if (Class == Job_SuperNovice || Class == Job_Super_Baby || Class == Job_Super_Novice_E || Class == Job_Super_Baby_E) {
+	if (BaseJob == Job_Super_Novice) {
 		mes "[Tzerero]";
 		mes "Я верю, что тебе нравится";
 		mes "жизнь Супер-Новичка. Ах,";
@@ -62,7 +62,7 @@ aldeba_in,223,167,3	script	Tzerero#sn	709,{
 		completequest 6010;
 		callfunc "F_ClearJobVar";
 		getitem 2339,1; //G_Strings
-		if (Upper==0) jobchange Job_SuperNovice;
+		if (Upper==0) jobchange Job_Super_Novice;
 		if (Upper==2) jobchange Job_Super_Baby;
 		mes "[Tzerero]";
 		mes "Хаха! Попал" + (Sex?"ся":"ась") + "!";
@@ -275,7 +275,7 @@ aldeba_in,223,167,3	script	Tzerero#sn	709,{
 		}
 	}
 	else {
-		if (Class == Job_SuperNovice || Class == Job_Super_Baby || Class == Job_Super_Novice_E || Class == Job_Super_Baby_E) {
+		if (BaseJob == Job_Super_Novice) {
 			mes "[Tzerero]";
 			mes "Как тебе нравится жизнь";
 			mes "простого Супер-Новичка?";
@@ -331,7 +331,7 @@ aldeba_in,216,169,5	script	Esseray#sn	86,{
 		mes "Да ты силён, брат! Я не сомневался что ты достигнешь таких высот.";
 		close;
 	}
-	if (Class == Job_SuperNovice || Class == Job_Super_Baby) {
+	if (BaseJob == Job_Super_Novice) {
 		if (checkre(0))
 			callfunc "Esseray_Ex";
 		mes "[Esseray]";
@@ -380,7 +380,7 @@ aldeba_in,216,169,5	script	Esseray#sn	86,{
 }
 
 aldebaran,54,238,5	script	Kafra Employee#sn	117,{
-	if (Class == Job_SuperNovice || Class == Job_Super_Baby || Class == Job_Super_Novice_E || Class == Job_Super_Baby_E) {
+	if (BaseJob == Job_Super_Novice) {
 		mes "[Kafra Employee]";
 		if (Sex )
 			mes "Здравствуйте, мистер Супер-Новичок~";
