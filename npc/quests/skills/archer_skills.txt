@@ -154,7 +154,7 @@ payon,103,63,3	script	Jason	88,3,3,{
 	mes "Чего хочет мир от такого одинокого парня как я?";
 	close;
 
-OnTouch:
+OnTouch_:
 	mes "[???]";
 	mes "Аррррррр...";
 	close;

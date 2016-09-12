@@ -972,7 +972,7 @@ payon_in02,21,31,1	script	Hunter#htnGM2	59,{
 }
 
 job_hunte,178,32,1	script	Guide#hnt	107,5,2,{
-OnTouch:
+OnTouch_:
 	if (HNTR_Q == 12) {
 		mes "[Guide]";
 		mes "Добро пожаловать на тренировочную базу охотников, твой экзамен начнется, как только ты попадешь в следующую комнату...";
@@ -1209,7 +1209,7 @@ OnTimer197000:
 }
 
 job_hunte,93,101,1	script	Switch#hnt	723,1,1,{
-OnTouch:
+OnTouch_:
 	mes "^3355FF Используй три кнопки на переключатиле. ^000000";
 	set HNTR_Q,15;
 	next;
@@ -1255,7 +1255,7 @@ OnInit:
 	disablenpc "exit#hnttest";
 	end;
 
-OnTouch:
+OnTouch_:
 	donpcevent "Manager#hnt::OnReset";
 	donpcevent "Waiting Room#hnt::OnStart";
 	set HNTR_Q,16;
@@ -1271,7 +1271,7 @@ OnTouch:
 // Hunter Job test traps.
 //============================================================ 
 job_hunte,52,140,0	script	1-1::HntTrap	-1,0,1,{
-OnTouch:
+OnTouch_:
 	switch(rand(200)) {
 	default:
 	case 1: mapannounce "job_hunte",strcharinfo(0) + ", не заметил ловушку, тест провален.",bc_map; break;
@@ -1640,7 +1640,7 @@ job_hunte,64,93,0	duplicate(HntTrap)	57-2	-1,0,0
 job_hunte,65,92,0	duplicate(HntTrap)	57-3	-1,0,0
 
 job_hunte,65,93,0	script	57-4::HntTrap2	-1,{
-OnTouch:
+OnTouch_:
 	mapannounce "job_hunte",strcharinfo(0) + ", провалился, вернись на исходную позицию!",bc_map;
 	set HNTR_Q,13;
 	warp "job_hunte",176,22;

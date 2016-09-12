@@ -1259,7 +1259,7 @@ OnInit:
 	disablenpc "Room of Water#Failed";
 	end;
 
-OnTouch:
+OnTouch_:
 	mapannounce "job_wiz",strcharinfo(0)+" не добил" + (Sex?"ся":"ась") + " успеха.",bc_map;
 	warp "geffen",120,110;
 	end;
@@ -1442,7 +1442,7 @@ OnInit:
 	disablenpc "Room of Earth#Failed";
 	end;
 
-OnTouch:
+OnTouch_:
 	mapannounce "job_wiz",strcharinfo(0) + " потерпел" + (Sex?"":"а") + " неудачу.",bc_map;//ЁЁЁ
 	warp "geffen",120,110;
 	end;
@@ -1626,7 +1626,7 @@ OnInit:
 	disablenpc "Room of Fire#Failed";
 	end;
 
-OnTouch:
+OnTouch_:
 	warp "geffen",120,110;
 	end;
 }

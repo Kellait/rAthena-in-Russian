@@ -1105,7 +1105,7 @@ OnMyMobDead:
 }
 
 job_prist,24,44,0	script	Zombie Info	-1,1,1,{
-OnTouch:
+OnTouch_:
 	if (BaseJob == Job_Priest) {
 		mes "[Отец Петер]";
 		mes "С прибытием Свщенника на испытание даётся пять минут. Продвигайся не спеша и помогай своему другу.";
@@ -1133,7 +1133,7 @@ OnInit:
 	disablenpc "Zombie1_1";
 	end;
 
-OnTouch:
+OnTouch_:
 	if (BaseJob == Job_Acolyte) {
 		donpcevent "Zombie_Generator#prst::Onm1";
 		donpcevent "Zombie1_1::OnDisable";
@@ -1154,7 +1154,7 @@ OnInit:
 	disablenpc "Zombie2_1";
 	end;
 
-OnTouch:
+OnTouch_:
 	if (BaseJob == Job_Acolyte) {
 		donpcevent "Zombie_Generator#prst::Onm2";
 		donpcevent "Zombie2_1::OnDisable";
@@ -1175,7 +1175,7 @@ OnInit:
 	disablenpc "Zombie3_1";
 	end;
 
-OnTouch:
+OnTouch_:
 	if (BaseJob == Job_Acolyte) {
 		donpcevent "Zombie_Generator#prst::Onm3";
 		donpcevent "Zombie3_1::OnDisable";
@@ -1196,7 +1196,7 @@ OnInit:
 	disablenpc "Zombie4_1";
 	end;
 
-OnTouch:
+OnTouch_:
 	if (BaseJob == Job_Acolyte) {
 		donpcevent "Zombie_Generator#prst::Onm4";
 		donpcevent "Zombie4_1::OnDisable";
@@ -1216,7 +1216,7 @@ OnInit:
 	disablenpc "Zombie5_1";
 	end;
 
-OnTouch:
+OnTouch_:
 	if (BaseJob == Job_Acolyte) {
 		donpcevent "Zombie_Generator#prst::Onm5";
 		donpcevent "Zombie5_1::OnDisable";
@@ -1232,7 +1232,7 @@ OnDisable:
 }
 
 job_prist,24,109,4	script	prst1_1	45,3,3,{
-OnTouch:
+OnTouch_:
 	set .@mobs,getvariableofnpc(.MyMobs,"Zombie_Generator#prst");
 	if (BaseJob == Job_Priest) warp "job_prist",168,17;
 	else if (BaseClass == Job_Acolyte && .@mobs < 1) {
@@ -1248,7 +1248,7 @@ OnTouch:
 // 3rd Test
 //==========================================================
 job_prist,168,45,4	script	Deviruchi#prst	1109,8,1,{
-OnTouch:
+OnTouch_:
 	if (BaseJob == Job_Priest) {
 		mes "[Девиручи]";
 		mes "О..?";
@@ -1338,7 +1338,7 @@ OnTouch:
 }
 
 job_prist,168,80,4	script	Doppelganger#prst	1046,8,1,{
-OnTouch:
+OnTouch_:
 	if (BaseJob == Job_Priest) {
 		mes "[Доппельгангер]";
 		mes "Что ты тут делаешь? Ты уже сделал"+(Sex?"":"а")+" свой выбор, назад пути нет... Священник.";
@@ -1396,7 +1396,7 @@ OnTouch:
 }
 
 job_prist,168,115,4	script	Dark Lord#prst	1272,8,1,{
-OnTouch:
+OnTouch_:
 	if (BaseJob == Job_Priest) {
 		mes "[Повелитель тьмы]";
 		mes "^330033Всё тщета, тьма и отчаяние! Те, кто любят тебя, предадут тебя, и всё, что останется -- лишь горе и ярость!^000000";
@@ -1450,7 +1450,7 @@ OnTouch:
 }
 
 job_prist,168,150,4	script	Baphomet#prst	736,8,1,{
-OnTouch:
+OnTouch_:
 	if (BaseJob == Job_Priest) {
 		mes "[Бафомет]";
 		mes "Ненавижу Священников...";
@@ -1506,7 +1506,7 @@ OnTouch:
 }
 
 job_prist,168,180,4	script	prst2_1	45,3,3,{
-OnTouch:
+OnTouch_:
 	if (BaseJob == Job_Priest) warp "job_prist",98,40;
 	else if (BaseClass == Job_Acolyte) {
 		warp "job_prist",98,40;
@@ -1554,7 +1554,7 @@ OnInit:
 	disablenpc "Mummy1_1";
 	end;
 
-OnTouch:
+OnTouch_:
 	if (BaseJob == Job_Acolyte) {
 		donpcevent "Mummy_Generator::Onm1";
 		donpcevent "Mummy1_1::OnDisable";
@@ -1575,7 +1575,7 @@ OnInit:
 	disablenpc "Mummy2_1";
 	end;
 
-OnTouch:
+OnTouch_:
 	if (BaseJob == Job_Acolyte) {
 		donpcevent "Mummy_Generator::Onm2";
 		donpcevent "Mummy2_1::OnDisable";
@@ -1596,7 +1596,7 @@ OnInit:
 	disablenpc "Mummy3_1";
 	end;
 
-OnTouch:
+OnTouch_:
 	if (BaseJob == Job_Acolyte) {
 		donpcevent "Mummy_Generator::Onm3";
 		donpcevent "Mummy3_1::OnDisable";
@@ -1613,7 +1613,7 @@ OnDisable:
 }
 
 job_prist,98,105,4	script	prst3_1	45,3,3,{
-OnTouch:
+OnTouch_:
 	if (BaseJob == Job_Priest) {
 		warp "prt_church",15,36;
 		end; 

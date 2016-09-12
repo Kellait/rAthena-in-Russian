@@ -1153,28 +1153,28 @@ function	script	Guard_13_1	{
 
 lhz_in01,115,250,3	script	Guard#ep13_1-1	899,2,2,{
 	callfunc "Guard_13_1",0,108,252;
-OnTouch:
+OnTouch_:
 	callfunc "Guard_13_1",1,108,252;
 }
 lhz_in01,115,252,3	duplicate(Guard#ep13_1-1)	Guard#ep13_1-2	899,2,2
 
 lhz_in01,147,252,7	script	Guard#ep13_1-3	899,2,2,{
 	callfunc "Guard_13_1",0,152,252;
-OnTouch:
+OnTouch_:
 	callfunc "Guard_13_1",1,152,252;
 }
 lhz_in01,147,250,7	duplicate(Guard#ep13_1-3)	Guard#ep13_1-4	899,2,2
 
 lhz_in01,124,234,5	script	Guard#ep13_1-5	899,2,2,{
 	callfunc "Guard_13_1",0,123,229;
-OnTouch:
+OnTouch_:
 	callfunc "Guard_13_1",1,123,229;
 }
 lhz_in01,121,234,5	duplicate(Guard#ep13_1-5)	Guard#ep13_1-6	899,2,2
 
 lhz_in01,137,234,5	script	Guard#ep13_1-7	899,2,2,{
 	callfunc "Guard_13_1",0,139,228;
-OnTouch:
+OnTouch_:
 	callfunc "Guard_13_1",1,139,228;
 }
 lhz_in01,140,234,5	duplicate(Guard#ep13_1-7)	Guard#ep13_1-8	899,2,2
@@ -3125,7 +3125,7 @@ mid_camp,264,263,4	script	Diego#ep13bs	931,{
 mid_campin,291,128,1	script	#ep13bs	111,1,1,{
 	end;
 
-OnTouch:
+OnTouch_:
 	if (ep13_newbs < 4) {
 		mes "- It's a neat and tidy bed -";
 		mes "- It seems that nobody used it. -";
@@ -4680,7 +4680,7 @@ mid_camp,13,143,5	duplicate(Camp Guard#man1)	Camp Guard#man2	852
 mid_camp,9,215,5	duplicate(Camp Guard#man1)	Camp Guard#man3	852
 
 mid_camp,49,154,0	script	#env_clear	-1,3,3,{
-OnTouch:
+OnTouch_:
 	if (ep13_animal == 7) {
 		enablenpc "Botanist#ep13_1";
 		mes "[Botanist]";
@@ -4772,7 +4772,7 @@ mid_camp,52,148,1	script	Dirt#ep13	844,{
 }
 
 man_fild01,59,261,0	script	#evt_lumis	-1,5,5,{
-OnTouch:
+OnTouch_:
 	if (ep13_animal == 11) {
 		mes "[Rumis Block]";
 		mes "This is it! Come to the small tree in the southeast direction!";
@@ -5012,7 +5012,7 @@ mid_camp,212,237,5	script	Camp Guard Captain#man1	852,{
 // The Tripartite Union's Feud :: ep13_1_rhea
 //============================================================ 
 mid_campin,376,120,0	script	Research Official#ep131	754,3,3,{
-OnTouch:
+OnTouch_:
 	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 3500) {
 		mes "[United Research Official]";
 		mes "How come you've got so much to carry?";
@@ -7490,7 +7490,7 @@ OnDisable:
 	end;
 
 //OnTouch2:
-OnTouch:
+OnTouch_:
 	mes "It is hissing in a low voice.";
 	mes "Sometimes it purrs, too.";
 	mes "It must be in a happy mood.";
@@ -7507,7 +7507,7 @@ OnDisable:
 	end;
 
 //OnTouch2:
-OnTouch:
+OnTouch_:
 	mes "[Taab]";
 	mes "Oh, please don't disturb";
 	mes "it's sleep. It hates that.";
@@ -7528,7 +7528,7 @@ OnDisable:
 	end;
 
 //OnTouch2:
-OnTouch:
+OnTouch_:
 	mes "[Taab]";
 	mes "Oh, please don't get";
 	mes "too close to it or try to";
@@ -11551,7 +11551,7 @@ OnInit:
 
 mid_camp,205,312,0	script	#moc2_talkevent01	-1,1,1,{
 //OnTouch2:
-OnTouch:
+OnTouch_:
 	if (mao_morocc2 == 11) {
 		mes "[Mr. Kidd]";
 		mes "" + strcharinfo(0) + "? " + strcharinfo(0) + "?!";
@@ -12008,7 +12008,7 @@ morocc,43,108,5	script	Sharp-Looking Boy#dan_07	82,{
 }
 
 morocc,45,110,0	script	que_job01#01	45,2,2,{
-OnTouch:
+OnTouch_:
 	if (BaseClass == Job_Assassin) {
 		warp "que_job01",9,94;
 		end;
@@ -12235,7 +12235,7 @@ que_job01,82,95,3	script	Bar Master#moc2_01	46,{
 }
 
 que_job01,80,77,0	script	que_job01#04	45,2,2,{
-OnTouch:
+OnTouch_:
 	if (BaseClass == Job_Assassin || mao_request > 0 || mao_morocc2 > 4) {
 		warp "que_job01",61,50;
 		end;
@@ -12443,7 +12443,7 @@ OnReset:
 	set $@moc_mao_room1,0; //Global Variable
 	end;
 
-OnTouch:
+OnTouch_:
 	mes "[Tao]";
 	if (prt_curse == 24) {
 		if ($@moc_mao_room1 == 0) {
@@ -12543,13 +12543,13 @@ OnEnable:
 	enablenpc "#room1_warp13";
 	end;
 
-OnTouch:
+OnTouch_:
 	warp "que_job01",52,50;
 	end;
 }
 
 que_job01,11,4,0	script	que_job01#room1_out	45,1,1,{
-OnTouch:
+OnTouch_:
 	warp "que_job01",52,50;
 	donpcevent " #room1timer::OnStop";
 	end;
@@ -12603,7 +12603,7 @@ OnReset:
 	set $@moc_mao_room2,0; //Global Variable
 	end;
 
-OnTouch:
+OnTouch_:
 	if ((mao_morocc2 > 4) && (mao_morocc2 < 10)) {
 		if ($@moc_mao_room2 == 0) {
 			set $@moc_mao_room2,1; //Global Variable
@@ -12726,7 +12726,7 @@ OnEnable:
 	enablenpc "#room2_1_warp";
 	end;
 
-OnTouch:
+OnTouch_:
 	warp "que_job01",52,50;
 	end;
 }
@@ -12741,20 +12741,20 @@ OnEnable:
 	enablenpc "#room2_2_warp";
 	end;
 
-OnTouch:
+OnTouch_:
 	warp "que_job01",52,50;
 	end;
 }
 
 que_job01,80,27,0	script	que_job01#room2_1_out	45,1,1,{
-OnTouch:
+OnTouch_:
 	warp "que_job01",52,50;
 	donpcevent " #room2timer::OnStop";
 	end;
 }
 
 que_job01,144,61,0	script	que_job01#room2_2_out	45,1,1,{
-OnTouch:
+OnTouch_:
 	warp "que_job01",52,50;
 	donpcevent " #room2timer::OnStop";
 	end;
@@ -13417,7 +13417,7 @@ hu_fild04,235,103,0	script	Heap of Earth#mao2_01	844,4,4,{
 	}
 
 //OnTouch2:
-OnTouch:
+OnTouch_:
 	if (mao_morocc2 == 7) {
 		specialeffect EF_LEVEL99_4;
 	}
@@ -13464,7 +13464,7 @@ OnStop:
 	stopnpctimer;
 	end;
 
-OnTouch:
+OnTouch_:
 	if (mao_morocc2 == 10) {
 		disablenpc "#moc2_event_on";
 		donpcevent "#moc2_event01::OnEnable";
@@ -13521,7 +13521,7 @@ OnEnable:
 	enablenpc "#moc2_event01";
 	end;
 
-OnTouch:
+OnTouch_:
 	soundeffect "wander_man_move.wav",1;
 	sc_start sc_blind,600000,0;
 	mes "As soon as you touched the crystal,";
@@ -13754,7 +13754,7 @@ que_dan02,13,6,0	warp	#moc_que_dan02-fild09	1,1,yuno_fild09,234,129
 
 que_dan02,21,37,0	script	#moc2_b1_gate	-1,1,1,{
 //OnTouch2:
-OnTouch:
+OnTouch_:
 	if (mao_morocc2 == 17) {
 		mes "- You find a side door that leads to the basement.";
 		mes "A faint light is shining through the hinges.";

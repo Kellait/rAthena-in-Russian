@@ -23,6 +23,7 @@
 //= Коррекция [Vorp]
 //= Коррекцияперевода [mad_max] (MistiQ Group © 2008)
 //= Актуализация Fenrir
+//= Часть перевода Lepricon
 //============================================================ 
 
 alberta,97,51,0	script	Фабиан	84,{
@@ -293,128 +294,128 @@ alberta,195,151,2	script	Пол	4_M_04,{
 alberta,190,173,4	script	Phelix	4_M_03,{
 	mes "[Phelix]";
 	if ((MaxWeight - Weight) < 10000) {
-		mes "Wait a moment!!";
-		mes "You have brought too many things!";
-		mes "You cannot accept any more items!";
-		mes "Please reduce the amount of items,";
-		mes "then come see me again.";
+		mes "Погоди минутку!!";
+		mes "ты принес с собой много вещей!";
+		mes "Ты не можешь взять с собой больше!";
+		mes "Пожалуйста, уменьши количество вещей,";
+		mes "и тогда возвращайся ко мне.";
 		close;
 	}
 	if (@event_zelopy == 0) {
-		mes "The hell are you doing here?";
-		mes "There is nothing you can get for free on this ship, if you want somethin', work for it!!";
+		mes "Что ты тут делаешь?";
+		mes "Ты ничего просто так не получишь на этом корабле. Если хочешь, тебе нужно работать для этого!!";
 		next;
-		mes "[Phelix]";
-		mes "Hmm, so why don't you bring me 10 jellopies and I will give 1 potion. How's that sound?";
-		mes "Or if that's too hard for your pansy ass, 3 jellopies for 1 Carrot.";
+		mes "[Феликс]";
+		mes "Хмм, Почему бы тебе не принести мне 10 Желлопи и я дам тебе взамен одно зелье. Как тебе такое?";
+		mes "или это сложно для тебя, 3 Желлопи за 1 морковку.";
 		next;
-		mes "[Phelix]";
-		mes "If you're interested in my offer, get me the stuff I mentioned.";
+		mes "[Феликс]";
+		mes "Если ты заинтересован в этом, принеси мне то, о чем я тебе говорил.";
 		@event_zelopy = 1;
 		close;
 	}
-	mes "Hmm.. you want to exchange jellopies for Red Potions or some Carrots eh? Well.. which one?";
+	mes "Хмм.. Ты хочешь обменять Желлопи на красные зелья или морковку? Так какое из них?";
 	next;
-	switch(select("Red Potions please.","Carrots please.")) {
+	switch(select("Красное зелье.","Морковку.")) {
 	case 1:
-		mes "[Phelix]";
-		mes "Alright...";
-		mes "Let's see";
-		mes "what'cha got...";
+		mes "[Феликс]";
+		mes "Отлично...";
+		mes "давай посмотрим";
+		mes "что у тебя есть...";
 		next;
 		mes "[Phelix]";
 		if (countitem(909) < 10) {
-			mes "Hey! Weren't you listening?. I said 10 jellopies for 1 Red Potion.. are ya deaf?";
+			mes "Эй! ты не слушал?. Я сказал 10 Желлопи за 1 красное зелье.. ты глухой?";
 			close;
 		} else {
 			.@max = countitem(909)/10;
-			mes "Hmm, not bad...";
-			mes "How many potions";
-			mes "do you want to get?";
+			mes "Хм, неплохо...";
+			mes "сколько зелья";
+			mes "ты хочешь получить?";
 			next;
-			switch(select("As many as I can, please.","I want this many.","Never mind, I like my jellopy.")) {
+			switch(select("столько, сколько я смогу.","Я хочу.","Не бери в голову, мне нравятся мои Желлопи.")) {
 			case 1:
 				delitem 909,.@max*10;// Jellopy
 				getitem 501,.@max;// Red_Potion
 				break;
 			case 2:
-				mes "[Phelix]";
-				mes "I'm not giving you more then 100 at a time so don't bother, OK? If you don't want any, just say '0'.";
-				mes "Right now, the most you can get is " + .@max + " but remember, 100 at most, you want to break my back?.";
+				mes "[Феликс]";
+				mes "Но я не могу дать тебе больше 100 штук за один раз. Ладно? Если тебя это не устраивает, просто напиши '0'.";
+				mes "На данный момент ты можешь получить " + .@max + " но помни, не больше 100 штук, или ты хочешь сломать мой позвоночник?.";
 				input .@amount;
 				next;
-				mes "[Phelix]";
+				mes "[Феликс]";
 				if (.@amount <= 0) {
-					mes "Much obliged, come again anytime.";
+					mes "Приходи обратно в любое время.";
 					close;
 				}
 				if (.@amount > 100) {
-					mes "Hey, what'd I say? 100 at a time at most, you're trying to kill me aren't you!";
+					mes "Эй, ты слышал что я сказал. 100 штук за раз, или ты хочешь моей смерти!";
 					close;
 				}
 				if (countitem(909) < .@amount*10) {
-					mes "Hmm, it looks like you don't have enough. Go get more jellopies if you want anything else from me.";
+					mes "Хм, мне кажется у тебя недостаточно вещей. Иди достань еще Желлопи, если что-то хочешь от меня.";
 					close;
 				}
 				delitem 909,.@amount*10;// Jellopy
 				getitem 501,.@amount;// Red_Potion
 				break;
 			case 3:
-				mes "[Phelix]";
-				mes "No problem,";
-				mes "see you next time.";
+				mes "[Феликс]";
+				mes "без проблем,";
+				mes "увидимся в следующий раз.";
 				close;
 			}
-			mes "[Phelix]";
-			mes "There you go! As I promised. Don't go suckin' them all down at once.";
+			mes "[Феликс]";
+			mes "Держи! как я и обещал. Только не пей их все за раз.";
 			close;
 		}
 	case 2:
-		mes "[Phelix]";
-		mes "Alright, let's see what ya got...";
+		mes "[Феликс]";
+		mes "итак, давай посмотрим что у тебя есть...";
 		next;
-		mes "[Phelix]";
+		mes "[Феликс]";
 		if (countitem(909) < 3) {
-			mes "Hmm, look pansy ass, I said 3 jellopies for 1 Carrot.. got it?";
+			mes "Хм, смотри, я сказал 3 Желлопи за 1 морковку.. Понял?";
 			close;
 		}
 		.@max = countitem(909)/3;
-		mes "Not too bad pansy...";
-		mes "How many do you want?";
+		mes "Неплохо так...";
+		mes "Сколько ты хочешь?";
 		next;
-		switch(select("As many as I can get, please","I want this many.","Never mind, I like my jellopy.")) {
+		switch(select("столько, сколько я смогу.","Я хочу.","Не бери в голову, мне нравятся мои Желлопи.")) {
 		case 1:
 			delitem 909,.@max*3;// Jellopy
 			getitem 515,.@max;// Carrot
 			break;
 		case 2:
-			mes "[Phelix]";
-			mes "Right I'm not giving you more then 100 at a time so don't bother, okay? If you don't want any, just say '0'.";
+			mes "[Феликс]";
+			mes "Но я не могу дать тебе больше 100 штук за один раз. Ладно? Если тебя это не устраивает, просто напиши '0'.";
 			input .@amount;
 			next;
-			mes "[Phelix]";
+			mes "[Феликс]";
 			if (.@amount == 0) {
-				mes "Alright then, see you next time.";
+				mes "Ладно, увидимся в следующий раз.";
 				close;
 			}
 			if (.@amount > 100) {
-				mes "Hey pansy ass, I said 100 at most, no more then that! I'm not going to break my back for the likes of you!";
+				mes "Эй, я сказал 100 штук это максимум. я не буду ломать свою спину из-за таких как ты.";
 				close;
 			}
 			if (countitem(909) < .@amount*3) {
-				mes "Seems you don't have enough. Go get some more if you want anything else.";
+				mes "Видимо у тебя недостаточно вещей. Иди и набей для меня.";
 				close;
 			}
 			delitem 909,.@amount*3;// Jellopy
 			getitem 515,.@amount;// Carrot
 			break;
 		case 3:
-			mes "[Phelix]";
-			mes "Catch'ya later.";
+			mes "[Феликс]";
+			mes "Увидимся позже.";
 			close;
 		}
-		mes "[Phelix]";
-		mes "There you go~! As I promised. Try not to stuff yer face.";
+		mes "[Феликс]";
+		mes "Держи, как я и обещал.";
 		close;
 	}
 }
