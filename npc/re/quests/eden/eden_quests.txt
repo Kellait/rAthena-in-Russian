@@ -2747,81 +2747,63 @@ ein_fild08,172,359,3	script	Dispatched Instructor#04	4_M_4THPRIN1,{
 ice_dun01,154,13,5	script	Dispatched Instructor#05	4_F_JOB_BLACKSMITH,{
 	mes "[Наоми]";
 	if (para_2nd01 <= 17) {
-		mes "It's more than that~";
-		mes "Now where did the time go~";
-		mes "I thought you said you sent me~!";
+		mes "Этот больше... Тот меньше. Ой, как незаметно проходит время!";
 		next;
 		mes "[Наоми]";
 		if (para_2nd01 < 17) {
-			mes "What is it? You'll help me. Is that right?";
-			mes "No, you don't have to do that.";
-			mes "I'm waiting for someone scheduled to help me.";
+			mes "Что тебе нужно? Ты приш"+(Sex?"ёл":"ла")+" мне на помощь? Ох, нет, похоже, что нет. Ты не тот, кто должен мне помочь.";
 			close;
 		}
-		mes "And you are?";
-		mes "Oh, you were sent here by Ur?";
-		mes "I don't know how long I've been waiting here in the snow.";
+		mes "А ты..? Ох, ты от Ура? Не знаю, сколько я уже жду среди этих льдов.";
 		next;
 		mes "[Наоми]";
-		mes "This is the ice dungeon of the northern plains.";
-		mes "Nothing like a cave that's cold the entire year.";
+		mes "Это ледяное подземелье северных равнин. Ничего особенного помимо пещер, не оттаивающих круглый год.";
 		next;
 		mes "[Наоми]";
-		mes "So this is where the people of Rachel go for their ice supply.";
-		mes "But, this area is crawling with dangerous monsters.";
+		mes "Это и есть место, где рашельцы добывают лёд. Но здесь есть не только лёд, здесь живут опасные чудовища.";
 		next;
 		mes "[Наоми]";
-		mes "One of those monsters is known as a Siroma.";
-		mes "They should be a good challenge for you.";
+		mes "Например, сиромы. Они должны быть для тебя хорошей тренировкой. ";
 		next;
 		mes "[Наоми]";
-		mes "Okay, then go in the cave and find those Siroma.";
-		mes "It's cold in there but this job has to be done.";
+		mes "Ну, иди в пещеры и найди этих сиром. Там, конечно, холодно, но эту работу должен кто-то сделать.";
 		next;
 		mes "[Наоми]";
-		mes "OH, sometimes";
-		mes "You be careful in there.";
-		mes "Well, good luck~!";
+		mes "Будь внимател"+(Sex?"ен":"ьна")+"! Удачи~";
 		para_2nd01 = 18;
 		erasequest 7229;// Advanced Training in Ice Dungeon
 		setquest 7230;// Siroma hunting
 	}
 	else if (para_2nd01 == 18) {
 		if (checkquest(7230,HUNTING) == 2) {
-			mes "Ah... It's over...";
-			mes "Good!";
-			mes "Your skills have been verified.";
+			mes "Ах... Уже закончил"+(Sex?"":"а")+"?...";
+			mes "Отлично!";
+			mes "Ты нам подходишь.";
 			next;
 			mes "[Наоми]";
-			mes "Now, what have I happened to do next.";
-			mes "Those Siromas seem to be growing at a faster rate.";
-			mes "As before go and hunt 30 more Siromas and bring me some materials.";
+			mes "Далее.";
+			mes "Эти сиромы удивительно быстро размножаются. Тебе нужно убить ещё 30 штук и принести мне кое-что.";
 			next;
 			mes "[Наоми]";
-			mes "And get this... Well...";
-			mes "Please listen carefully";
-			mes "30 Ice Cubic";
-			mes "1 Sweet Sauce";
-			mes "1 Milk";
+			mes "Это...";
+			mes "Слушай внимательно.";
+			mes "30 кусков льда (^111199"+getitemname(7066)+"^000000),";
+			mes "1 сладкий соус (^111199"+getitemname(7453)+"^000000) и";
+			mes "1 бутылка молока (^111199"+getitemname(519)+"^000000).";
 			next;
 			mes "[Наоми]";
-			mes "I'm not just doing this for myself you know.";
-			mes "I'm doing this for everyone.";
+			mes "Не думай, что это только мне нужно. Это для всех.";
 			next;
 			mes "[Наоми]";
-			mes "That's the last of it anyways.";
-			mes "So hunt those Siromas and get the materials.";
-			mes "We understand each other?";
+			mes "Это последнее задание. Так что постарайся убить сиром и заполучить ингредиенты. Мы друг друга поняли?";
 			next;
-			select("What about you?");
+			select("А как же ты?");
 			mes "[Наоми]";
-			mes "Me? Well of course... I'm going to stand guard here.";
-			mes "I... I'm a busy person!";
-			mes "Besides this is training so who are you to ask me what about me?";
+			mes "Я? Ну, в общем-то... Я буду охранять вход. У меня... у меня дел полно! И вообще, это тренировочный курс, ты мне начальник, что ли?";
 			next;
 			mes "[Наоми]";
-			mes "Go now!";
-			mes "Those Siromas are going to just get rowdier by the minute.";
+			mes "Приступай же!";
+			mes "Эти сиромы вот-вот нас сожрут.";
 			para_2nd01 = 19;
 			erasequest 7230;// Siroma hunting
 			setquest 7231;// Hunting and Gathering
@@ -2830,39 +2812,37 @@ ice_dun01,154,13,5	script	Dispatched Instructor#05	4_F_JOB_BLACKSMITH,{
 			percentheal 0,100;
 		}
 		else {
-			mes "The biggest stumbling block is dealing with the Siromas.";
-			mes "Have you hunted 30 yet?";
+			mes "Работа с сиромами -- самая большая часть курса.";
+			mes "Уже справил"+(Sex?"ся":"ась")+" со своими тридцатью?";
 			next;
 			mes "[Наоми]";
-			mes "Oh, you want help recovering your HP/SP huh?";
-			mes "You'll get nothing from me~!";
-			mes "What challenge would that be if I did that?";
+			mes "О, хочешь, чтобы я вот так просто восстановила тебе силы?";
+			mes "Не дождёшься~!";
+			mes "Это же не спортивно!";
 		}
 	}
 	else if (para_2nd01 == 19) {
 		if (checkquest(7231,HUNTING) == 2 && countitem(7066) > 29 && countitem(7453) > 0 && countitem(519) > 0) {// Ice_Piece, Sweet_Sauce, Milk
-			mes "Ohh!";
-			mes "You've brought everything.";
-			mes "Okay, so just one last thing...!";
+			mes "О!";
+			mes "Ты прин"+(Sex?"ёс":"есла")+" всё, что требовалось. ";
+			mes "Отлично, теперь последнее..!";
 			next;
-			select("...... Look");
+			select("...... Послушай");
 			mes "[Наоми]";
-			mes "Yes, yes? Why not?";
+			mes "Да, а что? Почему нет?";
 			mes "...";
-			mes "Oh, that's right! I'm supposed to give you something.";
-			mes "You've done enough, I know.";
+			mes "О, точно. Я должна дать тебе кое-что. Ты сделал"+(Sex?"":"а")+" достаточно, я знаю.";
 			next;
 			mes "[Наоми]";
-			mes "I'll inform Instructor Ur.";
-			mes "A few more stages left to go so don't worry!";
+			mes "Я проинформирую инструктора Ура. Не беспокойся, наверняка у него есть для тебя следующее задание!";
 			next;
 			mes "[Наоми]";
-			mes "Oh and congratulations!";
-			mes "This is the last training stage prepared!";
+			mes "О, и -- поздравляю!";
+			mes "Это была последняя ступень моего курса!";
 			next;
 			mes "[Наоми]";
-			mes "I guess I should do some of this myself~";
-			mes "Muahaha~";
+			mes "Когда-нибудь мне и самой хотелось бы пройти какой-нибудь курс~";
+			mes "Аххахах~";
 			delitem 7066,30;
 			delitem 7453,1;
 			delitem 519,1;
@@ -2872,97 +2852,93 @@ ice_dun01,154,13,5	script	Dispatched Instructor#05	4_F_JOB_BLACKSMITH,{
 			getexp 40000,40000;
 		}
 		else {
-			mes "Have you finished hunting the 30 Siroma yet?";
-			mes "You've already done it once so this shouldn't be difficult...";
+			mes "Уже справил"+(Sex?"ся":"ась")+" с сиромами?";
+			mes "Ты доелаешь это не в первый раз, теперь должно быть проще...";
 			next;
 			mes "[Наоми]";
-			mes "And don't forget the 30 Ice Cubic, 1 Sweet Sauce, and 1 Milk.";
+			mes "И не забудь про материалы: 30 кусочков льда (^111199"+getitemname(7066)+"^000000), 1 порция сладкого соуса (^111199"+getitemname(7453)+"^000000), and 1 (^111199"+getitemname(519)+"^000000).";
 		}
 	}
 	else if (para_2nd01 == 20) {
-		mes "Were you there yet?";
-		mes "Other people have come and go since you've been here last.";
-		mes "Now I don't have to get the materials myself.";
+		mes "Уже вернул"+(Sex?"ся":"ась")+"?";
+		mes "Здесь уже побывало столько разных людей.";
+		mes "Теперь мне не нужно добывать материалы самой.";
 		next;
 		mes "[Наоми]";
-		mes "Report back to Instructor Ur and report that the job is done.";
-		mes "Don't procrastinate.";
+		mes "Сходи к инструктору Уру и отчитайся о выполненной работе.";
+		mes "Хватит прокрастинировать.";
 	}
 	else
-		mes "Alas, is there anywhere where the buildup of ice caps is more than here?";
+		mes "Интересно, встречаются ли ещё где-нибудь в Мире такие ледяные образования?";
 	close;
 }
 
 // mid_camp,212,229,3	script	Dispatched Instructor#2nd02	4_F_HUWOMAN,{
 mid_camp,212,229,3	script	Dispatched Instructor#06	4_F_HUWOMAN,{
-	mes "[Margaret]";
+	mes "[Маргарет]";
 	if (para_2nd01 < 22) {
-		mes "Oh, sorry.";
-		mes "I don't know much about the life of an adventurer.";
-		mes "I'm just a member of Eden Group...";
+		mes "Ох, прошу прощения. Я немного знаю о жизни авантюриста. Я же просто сотрудница Группы Эдем...";
 	}
 	else if (para_2nd01 == 22) {
-		mes "The proof that you have there.";
-		mes "You're here in paradise.";
-		mes "Instructor Ur sent you?";
+		mes "Чувствуй себя как в раю. Ты от инструктора Ура?";
 		next;
-		if (select( "Yes.", "No." ) == 2) {
-			mes "[Margaret]";
-			mes "Oh, my mistake.";
+		if (select( "Да.", "Нет." ) == 2) {
+			mes "[Маргарет]";
+			mes "Ох, прошу прощения, я ошиблась.";
 			close;
 		}
-		mes "[Margaret]";
-		mes "How do you do?";
-		mes "Oh, so you're here for the training from Instructor Ur.";
+		mes "[Маргарет]";
+		mes "Здравствуй. Полагаю, ты здесь с целью пройти обучение от инструктора Ура.";
 		next;
-		mes "[Margaret]";
-		mes "Ok, I'm in a bit of a situation right now so I asked Instructor Ur to use his missions to help.";
+		mes "[Маргарет]";
+		mes "Хорошо, у меня сейчас небольшие трудности, поэтому я попросила инструктора Ура построить миссию так, чтобы у меня была возможность получить помощь.";
 		next;
-		select("A situation?");
-		mes "[Margaret]";
-		mes "Yes, ";
-		mes "Find Mine and do what he asks you.";
+		select("Трудности?");
+		mes "[Маргарет]";
+		mes "Да...";
+		mes "Найди, пожалуйста, Мина и сделай, что он попросит.";
 		next;
-		mes "[Margaret]";
-		mes "We dispatched him to do something and he hasn't done it yet so I'm guessing he's either chickened out or failed.";
+		mes "[Маргарет]";
+		mes "Мы разместили его для выполнения определённой задачи, но он до сих пор не вернулся, я вот думаю -- сбежал, что ли, или просто облажался?";
 		next;
-		mes "[Margaret]";
-		mes "So can you find him out there in Splendide Field?";
+		mes "[Маргарет]";
+		mes "Можешь поискать его в цветущих землях?";
 		next;
-		mes "[Margaret]";
-		mes "Find him and figure out what the heck he's up to please.";
+		mes "[Маргарет]";
+		mes "Найди его и спроси, что за фигню он творит, пожалуйста.";
 		para_2nd01 = 23;
 		erasequest 7233;//  Advanced Training at Ash Vacuum
 		setquest 7234;// Margaret's favor
 	}
 	else if (para_2nd01 < 27) {
-		mes "Can you find those two brothers?";
-		mes "Find out what's up with them.";
+		mes "Можешь найти этих братьев? Узнай, что с ними, пожалуйста.";
 	}
 	else if (para_2nd01 == 27) {
-		mes "So what's up?!";
+		mes "Ну, что?!";
 		next;
-		mes "- You tell her about Meeru and Mine. -";
+		mes "- Вы рассказываете -";
+		mes "- о Миру и Мине. -";
 		next;
-		mes "[Margaret]";
-		mes "Yeah? Oh what?";
-		mes "This is not really...";
-		mes "Ok I'll go deal with them.";
+		mes "[Маргарет]";
+		mes "Да?.. ";
+		mes "Да ладно? ";
+		mes "Да фигня это всё...";
+		mes "Ладно, я сама пойду с ними разберусь.";
 		next;
-		mes "[Margaret]";
-		mes "Well, whatever the Nepenthes and Pinguicula proof has been collected.";
+		mes "[Маргарет]";
+		mes "Так или иначе, доказательства о пингвикулах и непентесах собраны.";
 		next;
-		mes "[Margaret]";
-		mes "Your training is done so go back and talk to Instructor Ur.";
+		mes "[Маргарет]";
+		mes "Твоё обучение завершено, можешь возвращаться к инструктору Уру.";
 		para_2nd01 = 29;
 		erasequest 7234;// Margaret's favor
 		setquest 7237;// Report to Instructor Ur
 	}
 	else if (para_2nd01 == 29) {
-		mes "Well, whatever the Nepenthes and Pinguicula proof has been collected.";
+		mes "Так или иначе, доказательства о пингвикулах и непентесах собраны.";
 		next;
-		mes "[Margaret]";
-		mes "Your training is done so go back and talk to Instructor Ur.";
+		mes "[Маргарет]";
+		mes "Твоё обучение завершено, можешь возвращаться к инструктору Уру.";
 	}
 	else
 		mes "........";
@@ -2971,175 +2947,172 @@ mid_camp,212,229,3	script	Dispatched Instructor#06	4_F_HUWOMAN,{
 
 // man_fild01,43,234,3	script	Dispatched Instructor#2nd02	4_DST_SOLDIER,{
 man_fild01,43,234,3	script	Dispatched Instructor#07	4_DST_SOLDIER,{
-	mes "[Meeru]";
+	mes "[Миру]";
 	if (para_2nd01 < 23) {
-		mes "You think I'll lose!";
+		mes "Думаешь, я проиграю!";
 		mes "...?";
-		mes "All of them... Who're you?!";
-		mes "Mine is a stooge?";
-		mes "He sent you to watch me!?";
+		mes "Они все... А ты кто?!";
+		mes "Это всё Мин?";
+		mes "Он послал тебя подглядывать за мной!?";
 		next;
-		mes "[Meeru]";
-		mes "What? Isn't that it?";
+		mes "[Миру]";
+		mes "А что? Разве нет??";
 		mes "... ...";
-		mes "Mine didn't send you did he?";
+		mes "Мин тебя не посылал?";
 	}
 	else if (para_2nd01 == 23) {
-		mes "You think I'll lose!";
+		mes "Думаешь, я проиграю!";
 		mes "...?";
-		mes "All of them... Who're you?!";
-		mes "Mine is a stooge?";
-		mes "He sent you to watch me!?";
+		mes "Они все... А ты кто?!";
+		mes "Это всё Мин?";
+		mes "Он послал тебя подглядывать за мной!?";
 		next;
-		mes "[Meeru]";
-		mes "What? Isn't that it?";
+		mes "[Миру]";
+		mes "А что? Разве нет??";
 		mes "... ...";
-		mes "Mine didn't send you did he?";
-		mes "So why are you here?";
+		mes "Мин тебя не посылал?";
+		mes "Тогда что ты тут забыл"+(Sex?"":"а")+"?";
 		next;
-		select("Margaret sent me");
-		mes "[Meeru]";
-		mes "Ah, Margaret!";
-		mes "Mine and Margaret are always trying to mess with me because of my win-!";
-		mes "Gosh...";
+		select("Я от Маргарет.");
+		mes "[Миру]";
+		mes "А, Маргарет!";
+		mes "И Мин, и Маргарет теперь от меня не отстанут, я же выиграл!";
+		mes "Ё-моё...";
 		next;
-		select( "What happened?", "What do you win?" );
-		mes "[Meeru]";
-		mes "It all started with them bickering.";
-		mes "Margaret was asked to scout for both of us. It's like what you're doing now.";
+		select( "Что произошло?", "Что ты выиграл?" );
+		mes "[Миру]";
+		mes "Началось всё с их перепалки. Маргарет сказали организовать разведку местности и взять нас двоих. Это как раз то, чем ты сейчас занимаешься.";
 		next;
-		mes "[Meeru]";
-		mes "Mine said that he was strong enough to defeat any monster.";
-		mes "So I insisted that he go to either East or West of the camp and show me.";
+		mes "[Миру]";
+		mes "Мин сказал, что настолько крут, что любого монстра победит. Ну я и настоял, чтобы он пошёл и показал мне, как он это сделает, мне всё равно, куда, на запад или на восток из лагеря.";
 		next;
-		mes "[Meeru]";
-		mes "Mine made an idle threat and huffed and puffed but didn't do anything.";
+		mes "[Миру]";
+		mes "Ну, Мин и засидку организовал, и попыхтел, и посопел, ну и ничего.";
 		next;
-		mes "[Meeru]";
-		mes "Basically, Margaret didn't believe him and challenged him to kill 1 Nepenthes.";
+		mes "[Миру]";
+		mes "Маргарет, естественно, мне не поверила и сказала без останков непентеса не возвращаться.";
 		next;
-		mes "[Meeru]";
-		mes "So anyways now I'm charged with asking people to go and hunt 1 Nepenthes because of that bickering incident.";
+		mes "[Миру]";
+		mes "Так что теперь после всего этого я тут сижу и долг исполняю -- прошу людей пойти и убить непентесину (1 ^4d4dff"+getmonsterinfo(,MOB_NAME)+"^000000).";
 		next;
-		mes "[Meeru]";
-		mes "It's really not that difficult to hunt 1 so just go to the field East of here and kill one of them.";
+		mes "[Миру]";
+		mes "Не самое трудное дело, цветочек срезать, так что пойди и сделай это, тебе из лагеря на восток.";
 		para_2nd01 = 24;
 		setquest 7235;// Nepenthes Hunt
 	}
 	else if (para_2nd01 == 24) {
 		if (checkquest(7235,HUNTING) == 2) {
-			mes "Hmm yes I saw.";
-			mes "I knew I should've asked you to hunt more than 1.";
+			mes "Хмм, да, вижу.";
+			mes "Я знал, что надо было просить тебя убить больше одной.";
 			next;
-			mes "[Meeru]";
-			mes "Anyways you've proven that you're stronger than Mine ever made himself out to be.";
+			mes "[Миру]";
+			mes "В любом случае, ты доказал"+(Sex?"":"а")+", что ты гораздо круче Мина, даже того, чем он пытается казаться.";
 			next;
-			mes "[Meeru]";
-			mes "Well anyways here's a small reward.";
+			mes "[Миру]";
+			mes "Ну и награда небольшая вот.";
 			next;
-			mes "[Meeru]";
-			mes "I'll just be here making sure other people hunt the Nepenthes. I might ask them to hunt more than 1 who knows.";
+			mes "[Миру]";
+			mes "А я тут посижу, других попрошу убить одну непентесину. А может, и не одну.";
 			para_2nd01 = 25;
 			erasequest 7235;// Nepenthes Hunt
-			getexp 50000,50000;;
+			getexp 50000,50000;
 		}
 		else {
-			mes "Is hunting the Nepenthes too much for you?";
-			mes "You seem a bit flushed.";
-			mes "Fine I'll heal you!";
+			mes "Что, непентесы тебе не по зубам?";
+			mes "Что-то ты не в ракурсе.";
+			mes "Ладно, лови!";
 			npcskill "AL_HEAL",10,99,60;
 			percentheal 0,100;
 		}
 	}
 	else if (para_2nd01 == 25)
-		mes "I'll just be here making sure other people hunt the Nepenthes. I might ask them to hunt more than 1 who knows.";
+		mes "Я тут посижу, других попрошу убить одну непентесину. А может, и не одну.";
 	else {
-		mes "Something wrong?";
-		mes "Did you have trouble with that Nepenthes...";
-		mes ".........hyuk huk.";
+		mes "Что-то не так?";
+		mes "Проблемы с непентесами?..";
+		mes ".........хмк хмк...";
 	}
 	close;
 }
 
 // spl_fild02,377,149,3	script	Dispatched Instructor#2nd02	4_M_DST_MASTER,{
 spl_fild02,377,149,3	script	Dispatched Instructor#08	4_M_DST_MASTER,{
-	mes "[Mine]";
+	mes "[Мин]";
 	if (para_2nd01 < 25) {
-		mes "Oh cruel world.";
+		mes "О жестокий мир.";
 		mes "...";
-		mes "Way to go passing by.";
-		mes "What a fiasco this has turned out to be";
+		mes "Обитель страданья.";
+		mes "Каким фиаско всё обернулось...";
 	}
 	else if (para_2nd01 == 25) {
-		mes "Oh cruel world...";
+		mes "О жестокий мир...";
 		mes "...";
-		mes "Who are you?";
+		mes "Кто вы?";
 		next;
-		if (select( "Margaret sent me.", "Yeah I'm here..." ) == 1) {
-			mes "[Mine]";
-			mes "Eh? Who!";
-			mes "I see. Is it that time already?";
-			mes "This has been difficult.";
-			mes "I'm in a crisis here!";
+		if (select( "Я от Маргарет.", "Да я вот..." ) == 1) {
+			mes "[Мин]";
+			mes "М? Маргарет?!";
+			mes "Ясно. Время уже пришло?";
+			mes "Это было трудно.";
+			mes "У меня кризис!";
 		}
 		else {
-			mes "[Mine]";
-			mes "Oh so you're not here by your own will eh?";
-			mes "So why even bother coming?";
+			mes "[Мин]";
+			mes "Вы здесь явно не по своей воле, не правда ли?";
+			mes "А иначе зачем было бы утруждать себя?";
 			next;
-			mes "[Mine]";
-			mes "You didn't want to be here right?";
-			mes "Margaret sent you instead of someone else I bet.";
-			mes "Whatever, anyway I'm in a crisis here!";
+			mes "[Мин]";
+			mes "Вам не по душе здесь находиться?";
+			mes "Полагаю, вас направил сюда ни кто иной, как Маргарет.";
+			mes "Впрочем, так или иначе, а у меня кризис!";
 		}
 		next;
-		mes "[Mine]";
-		mes "Ok I don't want to admit it but you gotta help me out here.";
+		mes "[Мин]";
+		mes "Хорошо, как ни неприятно признавать это, но мне потребуется ваша помощь.";
 		next;
-		mes "[Mine]";
-		mes "Ok just because I was complaining doesn't mean they have to send me here!";
+		mes "[Мин]";
+		mes "Но тот факт, что я жаловался, вовсе не означает, что меня отправили сюда по принуждению!";
 		next;
-		mes "[Mine]";
-		mes "I mean they've asked for too much of a simple person like myself.";
+		mes "[Мин]";
+		mes "Я имею в виду, от меня, такого простого человека, просто потребовали слишком многого.";
 		next;
-		mes "[Mine]";
-		mes "Ok here's the deal.";
-		mes "I'm supposed to hunt those Pinguiculas. Just 5 of 'em.";
-		mes "But you'll do that for me yeah?";
+		mes "[Мин]";
+		mes "Итак, к делу. Мне назначено охотиться на пингвикул. Не менее пяти.";
+		mes "Но вы же сделаете это для меня, не правда ли?";
 		next;
-		mes "[Mine]";
-		mes "I promise you I'll give you something good.";
-		mes "Thanks.";
+		mes "[Мин]";
+		mes "Я обещаю, вы получите кое-что за работу.";
+		mes "Благодарю.";
 		para_2nd01 = 26;
 		setquest 7236;// Pinguicula Hunt
 	}
 	else if (para_2nd01 == 26) {
 		if (checkquest(7236,HUNTING) == 2) {
-			mes "Excellent!";
-			mes "Now I can go back to the camp and...";
+			mes "Прекрасно!";
+			mes "Я теперь могу вернуться в лагерь и...";
 			next;
-			mes "[Mine]";
-			mes "I mean, can you tell Margaret that it's all done?";
+			mes "[Мин]";
+			mes "То есть, не могли бы вы передать Маргарет, что работа сделана?";
 			next;
-			mes "[Mine]";
-			mes "Oh don't worry she won't mind. I'll just go back to doing what I was doing. Here's your reward.";
+			mes "[Мин]";
+			mes "Не волнуйтесь, ей всё равно, кем. А я просто вернусь к тому, что я делал. Вот ваша награда.";
 			para_2nd01 = 27;
 			erasequest 7236;// Pinguicula Hunt
 			getexp 50000,50000;;
 		}
 		else {
-			mes "Come on 5 Pinguicula.";
-			mes "Really how did you get here then?";
+			mes "Ну же, пять пингвикул (5 ^4d4dff"+getmonsterinfo(,MOB_NAME)+"^000000).";
+			mes "Как вам тогда удалось сюда добраться?";
 			next;
-			mes "[Mine]";
-			mes "You're not lying about being a real adventurer are you?";
+			mes "[Мин]";
+			mes "Вы же не лгали насчёт того, что вы авантюрист, правда?";
 			npcskill "AL_HEAL",10,99,60;
 			percentheal 0,100;
 		}
 	}
 	else if (para_2nd01 == 27) {
-		mes "Margaret gets everything she wants back at the camp.";
-		mes "Don't you worry, I'm going back soon.";
+		mes "В лагере у Маргарет есть всё, что душа пожелает.";
+		mes "Не волнуйтесь, я тоже скоро отправлюсь обратно.";
 	}
 	else
 		mes ".........";
@@ -3148,38 +3121,35 @@ spl_fild02,377,149,3	script	Dispatched Instructor#08	4_M_DST_MASTER,{
 
 moc_para01,111,83,3	script	Blacksmith Thorn#2nd10	2_M_OLDBLSMITH,{
 	if (checkweight(2571,5) == 0) {
-		mes "- You have too many items in your inventory to continue -";
+		mes "- У вас слишком много груза - ";
 		close;
 	}
-	mes "[Thorn]";
+	mes "[Торн]";
 	if (countitem(6219) < 1) {// Para_Team_Mark
-		mes "Hmm, are you a member of Eden Group?";
-		mes "You need to be one of our members to use my services.";
+		mes "Хмм, являетесь ли вы членом Группы ''Эдем''?";
+		mes "Ничем не могу помочь.";
 		close;
 	}
-	mes "What's going on?";
+	mes "Чем могу помочь?";
 	next;
-	switch( select( "Strengthen Equipment", "Personal Request", "Give me new equipment." ) ) {
-		mes "[Thorn]";
+	switch( select( "Усилить снаряжение", "Личные просьбы", "Выдайте мне новые вещи" ) ) {
+		mes "[Торн]";
 	case 1:
 		if (para_2nd01 < 6) {
-			mes "Hmm equipment strengthening.";
-			mes "I don't exactly do that for just anyone.";
-			mes "The first step is at least a higher degree of training so have you done the Eden Group training yet?";
+			mes "Хмм, усиление снаряжения. Это дело не для кого попало. Сначала должен быть пройден высший тренировочный курс, хотя бы один. Вы его сделали, "+(Sex?"юноша":"барышня")+"?";
 			next;
-			mes "[Thorn]";
-			mes "You have not awakened yet.";
-			mes "First do the missions set forth by Instructor Ur and I'll help you strengthen your equipment.";
+			mes "[Торн]";
+			mes "Похоже, что нет. Вы недостаточно пробуждены. Сначала выполните миссии, которые разработал для вас инструктор Ур, и я возьмусь за усиление вашего снаряжения.";
 			next;
-			mes "[Thorn]";
-			mes "I won't help you unless you do that first!";
+			mes "[Торн]";
+			mes "Не раньше!";
 		}
 		else if (para_2nd04 == 3) {
-			mes "Strengthen your equipment eh?";
-			mes "I'll strengthen the new Eden Group equipment for you by giving it a random stat boost.";
+			mes "Усилить вам снаряжение, а?";
+			mes "Хорошо. Снаряжение усиливается добавлением случайного повышения какой-либо характеристики.";
 			next;
-			mes "[Thorn]";
-			mes "So what equipment do you want to enhance?";
+			mes "[Торн]";
+			mes "Итак, что именно вы хотите улучшить?";///Line 3152 = 84%
 			next;
 			switch( select( "Eden Group Manteau II", "Eden Group Armor IV", "Eden Group Boots IV" ) ) {
 				case 1: callsub S_Enchant,2571,"Manteau";// Para_Team_Manteau2
@@ -3190,7 +3160,7 @@ moc_para01,111,83,3	script	Blacksmith Thorn#2nd10	2_M_OLDBLSMITH,{
 		else {
 			mes "I will strengthen your equipment after you've done a personal request of mine.";
 			next;
-			mes "[Thorn]";
+			mes "[Торн]";
 			mes "I just want to be sure that you're worthy of using my services.";
 		}
 		close;
@@ -3199,18 +3169,18 @@ moc_para01,111,83,3	script	Blacksmith Thorn#2nd10	2_M_OLDBLSMITH,{
 			mes "Have you started the request of Instructor Ur?";
 			mes "I'm lending my services to those who are worthy.";
 			next;
-			mes "[Thorn]";
+			mes "[Торн]";
 			mes "Besides, you won't have the equipment that I can enhance until you do those missions.";
 		}
 		else if (para_2nd04 == 0) {
 			mes "Glad you're here.";
 			mes "As a blacksmith I am in need of Iron materials constantly.";
 			next;
-			mes "[Thorn]";
+			mes "[Торн]";
 			mes "Of course there will be a reward eventually...";
 			mes "So...";
 			next;
-			mes "[Thorn]";
+			mes "[Торн]";
 			if (BaseLevel < 80) {
 				mes "Bring me some materials.";
 				mes "I need 20 Iron Ore, and 10 Iron.";
@@ -3223,7 +3193,7 @@ moc_para01,111,83,3	script	Blacksmith Thorn#2nd10	2_M_OLDBLSMITH,{
 			mes "It shouldn't be hard to get these can you bring them right away?";
 			next;
 			switch( select( "Sure thing.", "I don't want to." ) ) {
-				mes "[Thorn]";
+				mes "[Торн]";
 			case 1:
 				mes "I appreciate it.";
 				mes "So take your time and I'll be waiting.";
@@ -3255,11 +3225,11 @@ moc_para01,111,83,3	script	Blacksmith Thorn#2nd10	2_M_OLDBLSMITH,{
 				mes "You've brought me the best quality materials.";
 				mes "Good.";
 				next;
-				mes "[Thorn]";
+				mes "[Торн]";
 				mes "I can always use more Iron materials.";
 				mes "Instead of a normal reward I'll give you an advanced equipment.";
 				next;
-				mes "[Thorn]";
+				mes "[Торн]";
 				mes "If at any time you think you have equipment that you need to strengthen come by me again.";
 				delitem .@item[0],.@amount[0];
 				if (.@countitem[1])
@@ -3278,7 +3248,7 @@ moc_para01,111,83,3	script	Blacksmith Thorn#2nd10	2_M_OLDBLSMITH,{
 			mes "That's enough for today.";
 			mes "For now, ask me to strengthen your equipment and I'll do it for you.";
 			next;
-			mes "[Thorn]";
+			mes "[Торн]";
 			mes "If you have one of these bring them to me.";
 			mes "Eden Group Manteau II, Eden Group Armor IV, Eden Group Boots IV.";
 		}
@@ -3305,16 +3275,16 @@ moc_para01,111,83,3	script	Blacksmith Thorn#2nd10	2_M_OLDBLSMITH,{
 			mes "Okay, I'll give you equipment.";
 			mes "I'll give you good armor and equipment that you'll be proud of.";
 			next;
-			mes "[Thorn]";
+			mes "[Торн]";
 			mes "So now, ^4d4dffmake sure that you have enough free inventory space.^000000";
 			next;
 			if (select( "Let me organize my inventory.", "I have free space." ) == 1) {
-				mes "[Thorn]";
+				mes "[Торн]";
 				mes "You do that.";
 				mes "Free up your inventory so that you can get the weapons, boots, and all the other equipment.";
 				close;
 			}
-			mes "[Thorn]";
+			mes "[Торн]";
 			if (BaseJob == Job_Knight || BaseJob == Job_Crusader) {
 				callsub L_Select,"One-handed sword, two-handed sword or spear.",
 					1197,"Eden Group Slayer III","Two-handed Sword, Attack 200",
@@ -3382,7 +3352,7 @@ moc_para01,111,83,3	script	Blacksmith Thorn#2nd10	2_M_OLDBLSMITH,{
 				mes "Hmm, you are eligible to receive equipment.";
 				mes "Yeah I understand that.";
 				next;
-				mes "[Thorn]";
+				mes "[Торн]";
 				mes "Hmm something went wrong though. I'm not sure what...";
 				close;
 			}
@@ -3398,14 +3368,14 @@ moc_para01,111,83,3	script	Blacksmith Thorn#2nd10	2_M_OLDBLSMITH,{
 			mes "You can strengthen the equipment that I gave you.";
 			mes "Weapons Expert BK is at Eden Group Headquarters and he can do that for you.";
 			next;
-			mes "[Thorn]";
+			mes "[Торн]";
 			mes "So go to him and he can make your equipment stronger.";
 		}
 		else {
 			mes "Have you gotten your gear yet?";
 			mes "I can give you the gear but I can't strengthen it for you.";
 			next;
-			mes "[Thorn]";
+			mes "[Торн]";
 			mes "Your armor can be strengthened by someone else.";
 			mes "I wish I could but I can't.";
 		}
@@ -3425,7 +3395,7 @@ L_Select:
 	getitem getarg(.@i),1;
 	return;
 S_Enchant:
-	mes "[Thorn]";
+	mes "[Торн]";
 	if (countitem(getarg(0)) > 0) {
 		// .@1st = rand(1,12);
 		// .@2nd = rand(1,12);
@@ -3476,7 +3446,7 @@ S_Enchant:
 		mes "You sure you want me to enhance this?";
 		next;
 		switch( select( "I changed my mind.", "Yes, enhance it." ) ) {
-			mes "[Thorn]";
+			mes "[Торн]";
 		case 1:
 			mes "You sure you don't want to enhance it?";
 			mes "It's your choice.";
@@ -3493,7 +3463,7 @@ S_Enchant:
 			// setquest 7241;// Errands for Thorn timer
 			changequest 7240,7241;
 			getitem2 getarg(0),1,1,0,0,0,0,.@1st,.@2nd;						
-			mes "[Thorn]";
+			mes "[Торн]";
 			mes "Ok, seems that the enhancement went well.";
 			mes "If you don't like the result then you can come back again tomorrow.";
 			close;
