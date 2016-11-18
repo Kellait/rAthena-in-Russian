@@ -16,13 +16,15 @@
 //= 1.6 Kagerou/Oboro support (Class -> BaseClass) [Euphy]
 //= 2.0 Updated Instructor Ur's quests. [Capuche]
 //= 2.1 Updated Blacksmith Thorn and Weapons Expert NPC. [Capuche]
+//= 2.2 Added support to Para_Team_Mark_ in Eden Group. [Ragno]
+//= 2.3 Added use of F_HasEdenGroupMark function. [Ragno]
 //============================================================
 //= Translated en -> ru [Akaineko]
 //============================================================
 
 moc_para01,25,35,4	script	Instructor Boya#para01	4_M_KNIGHT_GOLD,{
 	mes "[Бойя]";
-	if (countitem(6219) < 1) {
+	if (!callfunc("F_HasEdenGroupMark")) {
 		mes "Ты не член моей группы? У меня нет дел с чужаками. Хочешь чего-то -- вступи в ''Эдем''.";
 		next;
 		mes "[Бойя]";
@@ -684,8 +686,8 @@ moc_fild11,180,253,5	script	Talking Dog#para03	972,{
 	}
 	mes "Слушай, я говорящая собака, никакой не волк. Правда, это не родная моя шкура...";
 	next;
-	if (countitem(6219) > 0) {
-		mes "[Говорящий пёс]";
+	if (callfunc("F_HasEdenGroupMark")) {		
+	mes "[Говорящий пёс]";
 		mes "Ты член Райского уголка?";
 		mes "Рад тебя видеть. Я тоже в их группе.";
 		mes "Береги себя.";
@@ -855,8 +857,8 @@ prt_sewb1,131,262,3	script	Timid Cat#para04	422,{
 
 pay_arche,41,136,3	script	Eden Member Karl#para05	904,{
 	if (para_suv01 < 13) {
-		if (countitem(6219) > 0) {
-			mes "[Карл]";
+		if (callfunc("F_HasEdenGroupMark")) {			
+		mes "[Карл]";
 			mes "Привет, как жизнь?";
 			mes "Рад тебя видеть~";
 			mes "На охоту идёшь?";
@@ -973,8 +975,8 @@ pay_arche,41,136,3	script	Eden Member Karl#para05	904,{
 
 anthell01,29,264,5	script	Eden Member Cloud#para06	899,{
 	if (para_suv01 < 17) {
-		if (countitem(6219) > 0) {
-			mes "[Клауд]";
+		if (callfunc("F_HasEdenGroupMark")) {			
+		mes "[Клауд]";
 			mes "Ой. Вы член группы ''Эдем'', как и я. Что вам здесь нужно? Ищете опасности?";
 			next;
 			mes "[Клауд]";
@@ -1120,8 +1122,8 @@ anthell01,29,264,5	script	Eden Member Cloud#para06	899,{
 
 in_orcs01,38,175,3	script	Eden Member Hooksha	803,{
 	if (para_suv01 < 24) {
-		if (countitem(6219) > 0) {
-			mes "[Хукша]";
+		if (callfunc("F_HasEdenGroupMark")) {			
+		mes "[Хукша]";
 			mes "Невероятно, что же привело тебя сюда? М... Ты же не на третью ступень приш"+(Sex?"ёл":"ла")+"? Нет? Йуххуу~ Зашибись~";
 			next;
 			mes "[Хукша]";
@@ -1330,8 +1332,8 @@ in_orcs01,38,175,3	script	Eden Member Hooksha	803,{
 
 iz_dun04,43,46,3	script	Eden Member Callandiva	745,{
 	if (para_suv01 < 33) {
-		if (countitem(6219) > 0) {
-			mes "[Калландива]";
+		if (callfunc("F_HasEdenGroupMark")) {			
+		mes "[Калландива]";
 			mes "Как тебе удалось забраться так глубоко в подводную страну? О, это значок нашей группы. Ты наверняка курсант!";
 			next;
 			mes "[Калландива]";
@@ -1846,8 +1848,8 @@ moc_para01,179,44,3	script	Chef	820,{
 			mes "[Повар]";
 			mes "Еда категории ''A''? Ким-дак-сун, классический обед простого цивила.";
 			next;
-			if (countitem(6219) > 0) {
-				if (Zeny > 2699) {
+			if (callfunc("F_HasEdenGroupMark")) {				
+			if (Zeny > 2699) {
 					mes "[Повар]";
 					mes "Пожалуйста, приятного аппетита.";
 					next;
@@ -1882,8 +1884,8 @@ moc_para01,179,44,3	script	Chef	820,{
 			mes "[Повар]";
 			mes "Еда категории ''Б''? Горячий суп на мясном бульоне с овощами, пришедший к нам из холодных северных краёв.";
 			next;
-			if (countitem(6219) > 0) {
-				if (Zeny > 3599) {
+			if (callfunc("F_HasEdenGroupMark")) {				
+			if (Zeny > 3599) {
 					mes "[Повар]";
 					mes "Пожалуйста, приятного аппетита.";
 					next;
@@ -1914,8 +1916,8 @@ moc_para01,179,44,3	script	Chef	820,{
 			mes "Эта еда стоит 4 000 зен, сколько раз мне ещё повторить?";
 			close;
 		case 4:
-			if (countitem(6219) > 0) {
-				if (Zeny > 4499) {
+			if (callfunc("F_HasEdenGroupMark")) {				
+			if (Zeny > 4499) {
 					mes "[Повар]";
 					mes "Пожалуйста, приятного аппетита.";
 					next;
@@ -1954,8 +1956,8 @@ moc_para01,179,44,3	script	Chef	820,{
 			close;
 		}
 	case 2:
-		if (countitem(6219) > 0) {
-			mes "[Повар]";
+		if (callfunc("F_HasEdenGroupMark")) {			
+		mes "[Повар]";
 			mes "Чаще всего работу нужно делать самому. Но это бывает непросто, да? Помощь бы пригодилась. Вот так у нас и появляется куча заданий.";
 			next;
 			mes "[Повар]";
@@ -2041,8 +2043,8 @@ moc_para01,179,44,3	script	Chef	820,{
 
 moc_para01,23,35,5	script	Instructor Ur#2nd01	4_M_KNIGHT_BLACK,{
 	mes "[Инструктор Ур]";
-	if (countitem(6219) < 1) {// Para_Team_Mark
-		mes "Привет!";
+	if (!callfunc("F_HasEdenGroupMark")) {		
+	mes "Привет!";
 		mes "Я смотрю, ты не состоишь в нашей группе? Не хочешь присоединиться?";
 		next;
 		mes "[Инструктор Ур]";
@@ -2902,7 +2904,7 @@ mid_camp,212,229,3	script	Dispatched Instructor#06	4_F_HUWOMAN,{
 		mes "Мы разместили его для выполнения определённой задачи, но он до сих пор не вернулся, я вот думаю -- сбежал, что ли, или просто облажался?";
 		next;
 		mes "[Маргарет]";
-		mes "Можешь поискать его в заснеженных землях?";
+		mes "Можешь поискать его в снежных землях?";
 		next;
 		mes "[Маргарет]";
 		mes "Найди его и спроси, что за фигню он творит, пожалуйста.";
@@ -3125,7 +3127,7 @@ moc_para01,111,83,3	script	Blacksmith Thorn#2nd10	2_M_OLDBLSMITH,{
 		close;
 	}
 	mes "[Торн]";
-	if (countitem(6219) < 1) {// Para_Team_Mark
+	if (!callfunc("F_HasEdenGroupMark")) {		
 		mes "Хмм, являетесь ли вы членом Группы ''Эдем''?";
 		mes "Ничем не могу помочь.";
 		close;
@@ -3497,12 +3499,12 @@ moc_para01,112,79,3	script	Weapons Expert BK#2nd11	4_M_REPAIR,{
 		"Группы ''Эдем'' фуума сюрикен I";
 	mes "[BK]";
 	mes "Что происходит?";
-	mes "Ни за что!";
+	mes "Ни за что?!";
 	next;
 	if (select( "Улучшить оружие.", "Что?" ) == 2) {
 		mes "[BK]";
-		mes "Да-да?";
-		mes "Спрашиваете, что я об этом знаю?";
+		mes "Да?";
+		mes "Спрашиваете, что я знаю об этом?";
 		next;
 		select("...??");
 		mes "[BK]";
@@ -3551,7 +3553,7 @@ moc_para01,112,79,3	script	Weapons Expert BK#2nd11	4_M_REPAIR,{
 				}
 				mes "[BK]";
 				mes .@string$;
-				mes "Поехали!";
+				mes "Ну вот, взгляни.";
 				para_2nd03 = 1 + .@add;
 				next;
 				specialeffect EF_REPAIRWEAPON;
@@ -3560,7 +3562,6 @@ moc_para01,112,79,3	script	Weapons Expert BK#2nd11	4_M_REPAIR,{
 				delitem .@wplist[.@s],1;
 				getitem2 .@wplist[.@s],1,1,0,0,0,0,0,.@card;
 				mes "[BK]";
-				mes "Ну вот, взгляни.";
 				mes "Просто великолепно, правда?";
 				mes "Знаю, знаю, я крутой!";
 			}
