@@ -1760,9 +1760,9 @@ S_Select:
 	getitem getarg(.@i),1;
 	mes "[Михаэль]";
 	if (para_suv02 == 0) {
-		mes "На вас нет записей о предварительном получении снаряжения, поэтому вам также полагается головной убор и плащ.";
+		mes "На ваше имя нет записей о предварительном получении снаряжения, поэтому вам также полагается головной убор и плащ.";
 		getitem 5583,1;// Para_Team_Hat
-+		getitem 2560,1;// Para_Team_Manteau
+		getitem 2560,1;// Para_Team_Manteau
 		if (para_suv01 == 22)
 			para_suv02 = 2;
 		else
@@ -2148,7 +2148,7 @@ moc_para01,23,35,5	script	Instructor Ur#2nd01	4_M_KNIGHT_BLACK,{
 	}
 	else if (para_2nd01 == 6) {
 		if (BaseLevel > 69) {
-			mes "Хэй, +(Sex?"приятель":"подруга")+"!";
+			mes "Хэй, "+(Sex?"приятель":"подруга")+"!";
 			mes "Как дела?";
 			next;
 			switch( select( "Да вот, хочу на тренировку.", "Просто поболтать заш"+(Sex?"ёл":"ла")+"." ) ) {
@@ -2181,7 +2181,7 @@ moc_para01,23,35,5	script	Instructor Ur#2nd01	4_M_KNIGHT_BLACK,{
 					callsub S_Quest89100;
 				close;
 			case 2:
-				mes "Серьёзно? А с твоим-то уровнем мог+(Sex?"":"ла")+" бы легко пройти наши последние курсы... Ну, если передумаешь, ты знаешь, где меня найти.";
+				mes "Серьёзно? А с твоим-то уровнем мог"+(Sex?"":"ла")+" бы легко пройти наши последние курсы... Ну, если передумаешь, ты знаешь, где меня найти.";
 				close;
 			}
 		}
@@ -2896,13 +2896,13 @@ mid_camp,212,229,3	script	Dispatched Instructor#06	4_F_HUWOMAN,{
 		select("Трудности?");
 		mes "[Маргарет]";
 		mes "Да...";
-		mes "Найди, пожалуйста, Мина и сделай, что он попросит.";
+		mes "Найди, пожалуйста, Миру и сделай, что он попросит.";
 		next;
 		mes "[Маргарет]";
 		mes "Мы разместили его для выполнения определённой задачи, но он до сих пор не вернулся, я вот думаю -- сбежал, что ли, или просто облажался?";
 		next;
 		mes "[Маргарет]";
-		mes "Можешь поискать его в цветущих землях?";
+		mes "Можешь поискать его в заснеженных землях?";
 		next;
 		mes "[Маргарет]";
 		mes "Найди его и спроси, что за фигню он творит, пожалуйста.";
@@ -2993,7 +2993,7 @@ man_fild01,43,234,3	script	Dispatched Instructor#07	4_DST_SOLDIER,{
 		mes "Маргарет, естественно, мне не поверила и сказала без останков непентеса не возвращаться.";
 		next;
 		mes "[Миру]";
-		mes "Так что теперь после всего этого я тут сижу и долг исполняю -- прошу людей пойти и убить непентесину (1 ^4d4dff"+getmonsterinfo(,MOB_NAME)+"^000000).";
+		mes "Так что теперь после всего этого я тут сижу и долг исполняю -- прошу людей пойти и убить непентесину (1 ^4d4dff"+getmonsterinfo(1988,MOB_NAME)+"^000000).";
 		next;
 		mes "[Миру]";
 		mes "Не самое трудное дело, цветочек срезать, так что пойди и сделай это, тебе из лагеря на восток.";
@@ -3101,7 +3101,7 @@ spl_fild02,377,149,3	script	Dispatched Instructor#08	4_M_DST_MASTER,{
 			getexp 50000,50000;;
 		}
 		else {
-			mes "Ну же, пять пингвикул (5 ^4d4dff"+getmonsterinfo(,MOB_NAME)+"^000000).";
+			mes "Ну же, пять пингвикул (5 ^4d4dff"+getmonsterinfo(1995,MOB_NAME)+"^000000).";
 			mes "Как вам тогда удалось сюда добраться?";
 			next;
 			mes "[Мин]";
@@ -3145,64 +3145,64 @@ moc_para01,111,83,3	script	Blacksmith Thorn#2nd10	2_M_OLDBLSMITH,{
 			mes "Не раньше!";
 		}
 		else if (para_2nd04 == 3) {
-			mes "Усилить вам снаряжение, а?";
-			mes "Хорошо. Снаряжение усиливается добавлением случайного повышения какой-либо характеристики.";
+			mes "Усилить снаряжение, а?";
+			mes "Хорошо. Это делается путём случайного повышения какой-либо характеристики.";
 			next;
 			mes "[Торн]";
-			mes "Итак, что именно вы хотите улучшить?";///Line 3152 = 84%
+			mes "Итак, какой именно элемент формы вы хотите улучшить?";
 			next;
-			switch( select( "Eden Group Manteau II", "Eden Group Armor IV", "Eden Group Boots IV" ) ) {
-				case 1: callsub S_Enchant,2571,"Manteau";// Para_Team_Manteau2
-				case 2: callsub S_Enchant,15031,"Armor";// Para_Team_Armor
-				case 3: callsub S_Enchant,2473,"Boots";// Para_Team_Boots4
+			switch( select( "Группы ''Эдем'' плащ II", "Группы ''Эдем'' доспех IV", "Группы ''Эдем'' сапоги IV" ) ) {
+				case 1: callsub S_Enchant,2571,"плащ";// Para_Team_Manteau2
+				case 2: callsub S_Enchant,15031,"доспех";// Para_Team_Armor
+				case 3: callsub S_Enchant,2473,"сапоги";// Para_Team_Boots4
 			}
 		}
 		else {
-			mes "I will strengthen your equipment after you've done a personal request of mine.";
+			mes "Я займусь этим, когда вы сделаете что-нибудь для меня.";
 			next;
 			mes "[Торн]";
-			mes "I just want to be sure that you're worthy of using my services.";
+			mes "Я должен быть уверен, что моя работа попадёт в достойные руки.";
 		}
 		close;
 	case 2:
 		if (para_2nd02 < 2) {
-			mes "Have you started the request of Instructor Ur?";
-			mes "I'm lending my services to those who are worthy.";
+			mes "Получили ли вы задание от инструктора Ура?";
+			mes "Я делаю работу для тех, кто её достоин.";
 			next;
 			mes "[Торн]";
-			mes "Besides, you won't have the equipment that I can enhance until you do those missions.";
+			mes "Кроме того, без выполнения этих заданий вам негде достать экипировку для улучшения.";
 		}
 		else if (para_2nd04 == 0) {
-			mes "Glad you're here.";
-			mes "As a blacksmith I am in need of Iron materials constantly.";
+			mes "О, как хорошо, что вы пришли.";
+			mes "Будучи кузнецом, я всегда нуждаюсь в металлах, особенно в железе.";
 			next;
 			mes "[Торн]";
-			mes "Of course there will be a reward eventually...";
-			mes "So...";
+			mes "Разумеется, с моей стороны награда не заставит себя ждать...";
+			mes "Так что...";
 			next;
 			mes "[Торн]";
 			if (BaseLevel < 80) {
-				mes "Bring me some materials.";
-				mes "I need 20 Iron Ore, and 10 Iron.";
+				mes "Добудьте мне кое-какое сырьё.";
+				mes "Мне нужно 20 шт. железной руды (^111199"+getitemname(1002)+"^000000) и 10 шт. железа (^111199"+getitemname(998)+"^000000).";
 			}
 			else {
-				mes "Bring me some materials.";
-				mes "Bring 20 Used Iron Plate.";
+				mes "Добудьте мне кое-какое сырьё.";
+				mes "20 железных листов (^111199"+getitemname(7319)+"^000000), пожалуйста.";
 				.@add = 1;
 			}
-			mes "It shouldn't be hard to get these can you bring them right away?";
+			mes "Это не должно быть сложно, доставьте, пожалуйста, поскорее.";
 			next;
-			switch( select( "Sure thing.", "I don't want to." ) ) {
+			switch( select( "Конечно.", "Не хочу." ) ) {
 				mes "[Торн]";
 			case 1:
-				mes "I appreciate it.";
-				mes "So take your time and I'll be waiting.";
+				mes "Буду благодарен.";
+				mes "Вы найдёте меня здесь, как всегда.";
 				para_2nd04 = 1 + .@add;
 				setquest (7238 + .@add);// Errands for Thorn (easy/hard)
 				close;
 			case 2:
-				mes "Eh...?";
-				mes "Guess you're too busy to help me.";
+				mes "Э..?";
+				mes "Полагаю, вы слишком заняты.";
 				close;
 			}
 		}
@@ -3211,26 +3211,26 @@ moc_para01,111,83,3	script	Blacksmith Thorn#2nd10	2_M_OLDBLSMITH,{
 				setarray .@item[0],1002,998;// Iron_Ore, Iron
 				setarray .@amount[0],20,10;
 				setarray .@countitem[0],countitem(1002),countitem(998);
-				.@string$ = "I asked you to get 20 Iron Ore, and 10 Iron.";
+				.@string$ = "Я просил 20 шт. железной руды (^111199"+getitemname(1002)+"^000000) и 10 шт. железа (^111199"+getitemname(998)+"^000000).";
 			}
 			else {
 				.@item[0] = 7319;
 				.@amount[0] = 20;
 				.@countitem[0] = countitem(7319);
 				.@add = 1;
-				.@string$ = "I asked you to get 20 Used Iron Plate.";
+				.@string$ = "Я просил 20 железных листов (^111199"+getitemname(7319)+"^000000).";
 			}
 			if (.@countitem[0] >= .@amount[0] && .@countitem[1] >= .@amount[1]) {
-				mes "Let me guess...";
-				mes "You've brought me the best quality materials.";
-				mes "Good.";
+				mes "Посмотрим...";
+				mes "О, это сырьё отменного качества.";
+				mes "Хорошо.";
 				next;
 				mes "[Торн]";
-				mes "I can always use more Iron materials.";
-				mes "Instead of a normal reward I'll give you an advanced equipment.";
+				mes "Железу у меня всегда найдётся применение.";
+				mes "А вам вместо обычной награды я выдам снаряжение наивысшего качества.";
 				next;
 				mes "[Торн]";
-				mes "If at any time you think you have equipment that you need to strengthen come by me again.";
+				mes "И если у вас в руках окажется снаряжение, которое вы захотите улучшить, обращайтесь в любое время.";
 				delitem .@item[0],.@amount[0];
 				if (.@countitem[1])
 					delitem .@item[1],.@amount[1];
@@ -3240,27 +3240,23 @@ moc_para01,111,83,3	script	Blacksmith Thorn#2nd10	2_M_OLDBLSMITH,{
 			}
 			else {
 				mes .@string$;
-				mes "I'm pretty sure that it isn't that difficult to do.";
+				mes "Уверен, это не так трудно.";
 			}
 		}
 		else if (para_2nd04 == 3) {
-			mes "Now, that's it.";
-			mes "That's enough for today.";
-			mes "For now, ask me to strengthen your equipment and I'll do it for you.";
+			mes "На сегодня это всё. Теперь я могу взяться за улучшение вашей экипировки, если нужно.";
 			next;
 			mes "[Торн]";
-			mes "If you have one of these bring them to me.";
-			mes "Eden Group Manteau II, Eden Group Armor IV, Eden Group Boots IV.";
+			mes "Если у вас есть сапоги или доспех группы ''Эдем'' IV ступени или плащ группы ''Эдем'' II ступени -- приносите.";
 		}
 		else if (para_2nd04 == 4) {
 			if (checkquest(7241,PLAYTIME) == 0) {
-				mes "Come back later.";
-				mes "You have to wait for some time first.";
+				mes "Спасибо, но пока мне ничего не нужно. Загляните попозже.";
 			}
 			else {
-				mes "Uh-huh...";
-				mes "What are we going to... oh don't worry.";
-				mes "Come to me later.";
+				mes "Так...";
+				mes "Теперь... ";
+				mes "О, секундочку.";
 				erasequest 7241;// Errands for Thorn timer
 				para_2nd04 = 0;
 			}
@@ -3268,92 +3264,90 @@ moc_para01,111,83,3	script	Blacksmith Thorn#2nd10	2_M_OLDBLSMITH,{
 		close;
 	case 3:
 		if (para_2nd02 < 1) {
-			mes "I'm not permitted to do this by Instructor Ur.";
-			mes "Don't mess with me.";
+			mes "У меня нет разрешения инструктора Ура на это.";
+			mes "Не отвлекайте меня.";
 		}
 		else if (para_2nd02 == 1) {
-			mes "Okay, I'll give you equipment.";
-			mes "I'll give you good armor and equipment that you'll be proud of.";
+			mes "Хорошо. Это будет броня и снаряжение, которой вы будете гордиться.";
 			next;
 			mes "[Торн]";
-			mes "So now, ^4d4dffmake sure that you have enough free inventory space.^000000";
+			mes "Пожалуйста, ^4d4dffпроверьте, что в вашем инвентаре достаточно места^000000.";
 			next;
-			if (select( "Let me organize my inventory.", "I have free space." ) == 1) {
+			if (select( "Дайте мне переложить вещи.", "У меня есть место." ) == 1) {
 				mes "[Торн]";
-				mes "You do that.";
-				mes "Free up your inventory so that you can get the weapons, boots, and all the other equipment.";
+				mes "Конечно.";
+				mes "Освободите место под оружие, сапоги и всё остальное.";
 				close;
 			}
 			mes "[Торн]";
 			if (BaseJob == Job_Knight || BaseJob == Job_Crusader) {
-				callsub L_Select,"One-handed sword, two-handed sword or spear.",
-					1197,"Eden Group Slayer III","Two-handed Sword, Attack 200",
-					13434,"Eden Group Saber III","One-handed Sword, Attack 185",
-					1434,"Eden Group Spear I","One-handed, Attack 165";
+				callsub L_Select,"Одноручный меч, двуручный меч или копьё.",
+					1197,"Группы ''Эдем'' эспадон III","Двуручный меч, АТК 200",
+					13434,"Группы ''Эдем'' меч III","Одноручный меч, АТК 185",
+					1434,"Группы ''Эдем'' копьё I","Одноручное древковое, АТК 165";
 			}
 			else if (BaseJob == Job_Assassin) {
-				callsub L_Select,"You have your choice of dagger or katar.",
-					13066,"Eden Group Dagger III","Dagger, MATK +80, ATK 165",
-					1289,"Eden Group Katar I","Katar, ATK 155";
+				callsub L_Select,"Кинжал или катар.",
+					13066,"Группы ''Эдем'' кинжал III","Кинжал, MATK +80, ATK 165",
+					1289,"Группы ''Эдем'' катар I","Катар, ATK 155";
 			}
 			else if (BaseJob == Job_Rogue || BaseClass == Job_Novice)
 				getitem 13066,1;// P.Dagger III
 			else if (BaseJob == Job_Alchemist || BaseJob == Job_Blacksmith) {
-				callsub L_Select,"Your options are Mace, Saber and Axe.",
-					16014,"Eden Group Mace III","Mace, Attack 172",// P_Mace3
-					13434,"Eden Group Saber III","Sword, Attack 185",//P.Saber III
-					1391,"Eden Group Axe I","Axe, Attack 195"; //P.Two-Handed Axe I
+				callsub L_Select,"Для вас есть дубина, меч и топор.",
+					16014,"Группы ''Эдем'' дубина III","Дубина, АТК 172",// P_Mace3
+					13434,"Группы ''Эдем'' меч III","Одноручный меч, АТК 185",//P.Saber III
+					1391,"Группы ''Эдем'' топор I","Топор, АТК 195"; //P.Two-Handed Axe I
 			}
 			else if (BaseJob == Job_Wizard)
 				getitem 1658,1;// P.Staff III
 			else if (BaseJob == Job_Sage) {
 				callsub L_Select,"",
-					1658,"Eden Group Staff III","Staff, MATK + 170, INT +4, Attack 60", //P.Staff III
-					1583,"Eden Group Dictionary I","Book, MATK +100, Attack 135"; //P.Book I
+					1658,"Группы ''Эдем'' посох III","Посох, MATK + 170, INT +4, АТК 60", //P.Staff III
+					1583,"Группы ''Эдем'' словарь I","Книга, MATK +100, АТК 135"; //P.Book I
 			}
 			else if (BaseJob == Job_Priest) {
 				callsub L_Select,"",
-					1658,"Eden Group Staff III","Staff, MATK + 170, INT +4, Attack 60", //P.Staff III
-					1583,"Eden Group Dictionary I","Book, MATK +100, Attack 135", //P.Book I
-					16014,"Eden Group Mace III","Mace, Attack 172"; //P.Mace III
+					1658,"Группы ''Эдем'' посох III","Посох, MATK + 170, INT +4, АТК 60", //P.Staff III
+					1583,"Группы ''Эдем'' словарь I","Книга, MATK +100, АТК 135", //P.Book I
+					16014,"Группы ''Эдем'' дубина III","Дубина, АТК 172"; //P.Mace III
 			}
 			else if (BaseJob == Job_Monk) {
 				callsub L_Select,"",
-					1831,"Eden Group Knuckles I","Knuckle, Attack 120", //P.Knuckle I
-					16014,"Eden Group Mace III","Mace, Attack 172"; //P.Mace III
+					1831,"Группы ''Эдем'' кастеты I","Кастеты, АТК 120", //P.Knuckle I
+					16014,"Группы ''Эдем'' дубина III","Дубина, АТК 172"; //P.Mace III
 			}
 			else if (BaseJob == Job_Hunter)
 				getitem 18106,1;// P.Bow III
 			else if (BaseJob == Job_Bard) {
 				callsub L_Select,"",
-					18106,"Eden Group Bow III","Bow, Attack 140", //P.Bow III
-					1931,"Eden Group Guitar I","Guitar, Attack 125"; //P.Guitar I
+					18106,"Группы ''Эдем'' лук III","Лук, АТК 140", //P.Bow III
+					1931,"Группы ''Эдем'' гитара I","Музыкальный инструмент, АТК 125"; //P.Guitar I
 			}
 			else if (BaseJob == Job_Dancer) {
 				callsub L_Select,"",
-					18106,"Eden Group Bow III","Bow, Attack 140", //P.Bow III
-					1986,"Eden Group Whip I","Whip, Attack 125"; //P.Tail I
+					18106,"Группы ''Эдем'' лук III","Лук, АТК 140", //P.Bow III
+					1986,"Группы ''Эдем'' кнут I","Кнут, АТК 125"; //P.Tail I
 			}
 			else if (Class == Job_Ninja) {
 				callsub L_Select,"",
-					13066,"Eden Group Dagger III","Dagger, MATK +80, ATK 165", //P.Dagger III
-					13310,"Eden Group Huuma Shuriken I","Huuma Suriken, MATK +50, ATK 170"; //P.Huuma Suriken I
+					13066,"Группы ''Эдем'' кинжал III","Кинжал, MATK +80, ATK 165", //P.Dagger III
+					13310,"Группы ''Эдем'' фуума сюрикен I","Фуума сюрикен, MATK +50, ATK 170"; //P.Huuma Suriken I
 			}
 			else if (Class == Job_Star_Gladiator)
 				getitem 1583,1; //P.Book I
 			else if (Class == Job_Soul_Linker) {
 				callsub L_Select,"",
-					13066,"Eden Group Dagger III","Dagger, MATK +80, ATK 165", //P.Dagger III
-					1658,"Eden Group Staff III","Staff, MATK +170, INT +4, ATK 60"; //P.Staff III
+					13066,"Группы ''Эдем'' кинжал III","Кинжал, MATK +80, ATK 165", //P.Dagger III
+					1658,"Группы ''Эдем'' посох III","Посох, MATK +170, INT +4, ATK 60"; //P.Staff III
 			}
 			else if (Class == Job_Gunslinger)
 				getitem 13114,1; //P.Revolver III
 			else {
-				mes "Hmm, you are eligible to receive equipment.";
-				mes "Yeah I understand that.";
+				mes "Да, вы подходите для получения снаряжения, это точно...";
 				next;
 				mes "[Торн]";
-				mes "Hmm something went wrong though. I'm not sure what...";
+				mes "Хм. Что-то пошло не так. Не уверен, что именно...";
 				close;
 			}
 			para_2nd02 = 2;
@@ -3361,37 +3355,34 @@ moc_para01,111,83,3	script	Blacksmith Thorn#2nd10	2_M_OLDBLSMITH,{
 			getitem 2571,1;// Paradise Mantle II
 			getitem 2473,1;// Paradise Boots IV
 			getitem 15031,1;// Paradise Uniform IV
-			mes "Here's your equipment.";
-			mes "I'll also give you the other gear that comes along with this set.";
+			mes "Пожалуйста, вот ваше снаряжение и всё, что к нему прилагается.";
 		}
 		else if (para_2nd02 == 2) {
-			mes "You can strengthen the equipment that I gave you.";
-			mes "Weapons Expert BK is at Eden Group Headquarters and he can do that for you.";
+			mes "То снаряжение, которое вы получили у меня, можно улучшить. Обращайтесь к эксперту по вооружению Викею, он вам поможет.";
 			next;
 			mes "[Торн]";
-			mes "So go to him and he can make your equipment stronger.";
+			mes "Он настоящий специалист, может раскрыть потенциал практически любого оружия.";
 		}
 		else {
-			mes "Have you gotten your gear yet?";
-			mes "I can give you the gear but I can't strengthen it for you.";
+			mes "Уже получили своё снаряжение?";
+			mes "Я могу что-то выдать, но вот улучшить -- это не ко мне.";
 			next;
 			mes "[Торн]";
-			mes "Your armor can be strengthened by someone else.";
-			mes "I wish I could but I can't.";
+			mes "Хотел бы, да не могу.";
 		}
 	}
 	close;
 L_Select:
-	mes "Choose a weapon.";
+	mes "Выберите оружие.";
 	mes getarg(0);
-	mes "Choose from the following.";
+	mes "Варианты такие:";
 	for ( .@i = 1; .@i < getargcount(); .@i += 3 ) {
 		set .@menu$, .@menu$ + getarg(.@i+1) + ":";
 		mes getarg(.@i+1)+" : "+ getarg(.@i+2);
 	}
 	next;
 	.@i = (select(.@menu$) -1) *3 +1;
-	mes "[Toren]";
+	mes "[Торн]";
 	getitem getarg(.@i),1;
 	return;
 S_Enchant:
@@ -3440,20 +3431,19 @@ S_Enchant:
 			4741;// Vitality2
 		.@1st = .@bonus[ rand(1,12) ];
 		.@2nd = .@bonus[ rand(1,12) ];
-		mes "Eden Group "+ getarg(1) +"?";
-		mes "I understand.";
-		mes "Remember the stats that are enhanced will be random.";
-		mes "You sure you want me to enhance this?";
+		mes "Группы ''Эдем'' "+ getarg(1) +"?";
+		mes "Понял.";
+		mes "Напоминаю, что характеристики будут случайными.";
+		mes "Уверены?";
 		next;
-		switch( select( "I changed my mind.", "Yes, enhance it." ) ) {
+		switch( select( "Я передумал"+(Sex?"":"а")+".", "Да, улучшаем." ) ) {
 			mes "[Торн]";
 		case 1:
-			mes "You sure you don't want to enhance it?";
-			mes "It's your choice.";
+			mes "Уверены, что не хотите улучшить свою экипировку? Это ваш выбор.";
 			close;
 		case 2:
-			mes "I understand.";
-			mes "Let's begin the enhancement.";
+			mes "Хорошо.";
+			mes "Начнём.";
 			next;
 			specialeffect EF_REPAIRWEAPON;
 			progressbar "ffff00",3;
@@ -3464,13 +3454,12 @@ S_Enchant:
 			changequest 7240,7241;
 			getitem2 getarg(0),1,1,0,0,0,0,.@1st,.@2nd;						
 			mes "[Торн]";
-			mes "Ok, seems that the enhancement went well.";
-			mes "If you don't like the result then you can come back again tomorrow.";
+			mes "Отлично, процесс прошёл успешно. Если результат вам не подойдёт, приходите завтра.";
 			close;
 		}
 	}
-	mes "Hmm... Don't you have the "+ getarg(1) +"?";
-	mes "I don't think you have it with you.";
+	mes "Хмм... У вас разве не с собой "+ getarg(1) +"?";
+	mes "Похоже, что нет.";
 	close;
 }
 
@@ -3491,29 +3480,29 @@ moc_para01,112,79,3	script	Weapons Expert BK#2nd11	4_M_REPAIR,{
 		13114,	// P_Revolver3
 		1831,	// P_Knuckle1
 		13310;	// P_Huuma_Shuriken1
-	.@menu$ = "Eden Group Slayer III:" +
-		"Eden Group Saber III:" +
-		"Eden Group Dagger III:" +
-		"Eden Group Katar I:" +
-		"Eden Group Axe I:" +
-		"Eden Group Spear I:" +
-		"Eden Group Staff III:" +
-		"Eden Group Mace III:" +
-		"Eden Group Bow III:" +
-		"Eden Group Dictionary I:" +
-		"Eden Group Guitar I:" +
-		"Eden Group Whip I:" +
-		"Eden Group Revolver III:" +
-		"Eden Group Knuckles I:" +
-		"Eden Group Huuma Shuriken I";
+	.@menu$ = "Группы ''Эдем'' меч III:" +
+		"Группы ''Эдем'' эспадон III:" +
+		"Группы ''Эдем'' кинжал III:" +
+		"Группы ''Эдем'' катар I:" +
+		"Группы ''Эдем'' топор I:" +
+		"Группы ''Эдем'' копьё I:" +
+		"Группы ''Эдем'' посох III:" +
+		"Группы ''Эдем'' дубина III:" +
+		"Группы ''Эдем'' лук III:" +
+		"Группы ''Эдем'' словарь I:" +
+		"Группы ''Эдем'' гитара I:" +
+		"Группы ''Эдем'' кнут I:" +
+		"Группы ''Эдем'' револьвер III:" +
+		"Группы ''Эдем'' кастеты I:" +
+		"Группы ''Эдем'' фуума сюрикен I";
 	mes "[BK]";
-	mes "What's happening?";
-	mes "No way?!";
+	mes "Что происходит?";
+	mes "Ни за что!";
 	next;
-	if (select( "Enhancing weapons.", "What?" ) == 2) {
+	if (select( "Улучшить оружие.", "Что?" ) == 2) {
 		mes "[BK]";
-		mes "Yeah?";
-		mes "Are you asking me what I know?";
+		mes "Да-да?";
+		mes "Спрашиваете, что я об этом знаю?";
 		next;
 		select("...??");
 		mes "[BK]";
@@ -3521,49 +3510,48 @@ moc_para01,112,79,3	script	Weapons Expert BK#2nd11	4_M_REPAIR,{
 		close;
 	}
 	mes "[BK]";
-	mes "Ah, you're here to enhance your gear.";
-	mes "Okay, shall we?";
+	mes "А, ты по делу.";
+	mes "Так...";
 	next;
 	mes "[BK]";
 	if (para_2nd02 < 2) {
-		mes "You have to have the equipment first in order for me to do anything.";
-		mes "Didn't you get anything from Thorn yet?";
+		mes "Чтобы я смог что-то для тебя сделать, у тебя должно быть то, с чем я должен это сделать.";
+		mes "Ты от Торна ничего не получал"+(Sex?"":"а")+"?";
 	}
 	else if (para_2nd02 == 2) {
 		if (para_2nd01 < 11) {
-			mes "Hmm, no.";
-			mes "I don't have permission from Instructor Ur.";
-			mes "You have to finish your training.";
+			mes "Хмм, нет.";
+			mes "Инструктор Ур не разрешил. Сначала заверши курсы.";
 			next;
 			mes "[BK]";
-			mes "Once you do that I can help you.";
-			mes "Until then I won't talk to you.";
+			mes "Когда закончишь -- тогда я смогу тебе помочь.";
+			mes "До того, считай, я тебя не видел.";
 		}
 		else {
-			mes "Okay, what weapon do you want to enhance?";
+			mes "Хорошо, что улучшаем?";
 			next;
 			.@s = select(.@menu$) -1;
 			mes "[BK]";
 			if (countitem(.@wplist[.@s]) > 0) {
-				mes "Ok for the first reinforcement.";
-				mes "ATK + 3% or MATK + 3%?";
-				mes "I'll give you the option to grant this effect on the selected gear.";
+				mes "Хорошо, для первого раза --";
+				mes "ATK + 3% или MATK + 3%?";
+				mes "Могу усилить или так, или так.";
 				next;
 				mes "[BK]";
-				mes "You can't change your mind after so choose wisely.";
+				mes "Потом уже не передумаешь, так что хорошенько прикинь, что тебе лучше.";
 				next;
 				if (select( "ATK +3%","MATK +3%" ) == 1) {
-					.@string$ = "Ok, you've chosen to raise physical attack.";
+					.@string$ = "Ага, значит, физатаку поднимаем.";
 					.@card = 4767;
 				}
 				else {
-					.@string$ = "Ok, you've chosen to raise magical attack.";
+					.@string$ = "Ага, значит, магатаку поднимаем.";
 					.@card = 4806;
 					.@add = 1;
 				}
 				mes "[BK]";
 				mes .@string$;
-				mes "Would you look at that. Your weapon will now be stronger.";
+				mes "Поехали!";
 				para_2nd03 = 1 + .@add;
 				next;
 				specialeffect EF_REPAIRWEAPON;
@@ -3572,56 +3560,57 @@ moc_para01,112,79,3	script	Weapons Expert BK#2nd11	4_M_REPAIR,{
 				delitem .@wplist[.@s],1;
 				getitem2 .@wplist[.@s],1,1,0,0,0,0,0,.@card;
 				mes "[BK]";
-				mes "Isn't it magnificent?";
-				mes "I know, I know, I'm pretty amazing!";
+				mes "Ну вот, взгляни.";
+				mes "Просто великолепно, правда?";
+				mes "Знаю, знаю, я крутой!";
 			}
 			else {
-				mes "Are you kidding me?";
-				mes "You don't seem to have that weapon in your possession.";
+				mes "Смеёшься?";
+				mes "У тебя с собой его нет.";
 			}
 		}
 	}
 	else if (para_2nd02 == 3) {
 		if (para_2nd01 < 16) {
-			mes "Hmm, I'm not sure you're ready.";
-			mes "All 3 steps of Instructor Ur's missions have to be completed first.";
+			mes "Хмм, не уверен, что ты вообще готов"+(Sex?"":"а")+".";
+			mes "Сначала тебе нужно пройти все три этапа тренировок от инструктора Ура.";
 			next;
 			mes "[BK]";
-			mes "You get what I'm saying?";
-			mes "Finish the third mission from Instructor Ur.";
+			mes "Понял"+(Sex?"":"а")+"?";
+			mes "Закончи третью миссию от Ура.";
 		}
 		else {
-			mes "Good. So you previously received an addition to Atk or Matk.";
-			mes "For this option you can choose from Brute, Plant, Fish, Dragon, Increased Heal.";
+			mes "Хорошо. Значит, ты уже получал"+(Sex?"":"а")+" усиление атаки. В этот раз выбирай:";
+			mes "звери, растения, насекомые, рыбы, драконы... или лечение.";
 			next;
 			mes "[BK]";
-			mes "Once you've chosen you can't change your mind again.";
-			mes "But your weapon will increase damage to the type of enhancement you pick.";
+			mes "Ну, и тут тоже, однажды выбрав, не передумаешь.";
+			mes "Оружие будет специализировано против выбранной расы и будет наносить ей больше повреждений.";
 			next;
 			mes "[BK]";
-			mes "Basically I will add a random monster card with the property type that you choose.";
-			mes "Good luck!";
+			mes "Я добавлю эффект, аналогичный карте против этой расы.";
+			mes "Удачи!";
 			next;
-			switch( select( "Brute Type", "Plant Type", "Insect Type", "Fish Type", "Dragon Type", "Increased Heal" ) ) {
+			switch( select( "Звери", "Растения", "Насекомые", "Рыбы", "Драконы", "Улучшенное лечение" ) ) {
 			case 1:
 				setarray .@arg[0],4060,4472,111;// Goblin_Card, Bradium_Goram_Card
-				.@type$ = "Brute";
+				.@type$ = "звери";
 				break;
 			case 2:
 				setarray .@arg[0],4068,4470,121;// Scorpion_Card, Nepenthes_Card
-				.@type$ = "Plant";
+				.@type$ = "растения";
 				break;
 			case 3:
 				setarray .@arg[0],4063,4476,131;// Caramel_Card, Pinguicula_Card
-				.@type$ = "Insect";
+				.@type$ = "насекомые";
 				break;
 			case 4:
 				setarray .@arg[0],4080,4469,141;// Flora_Card, Naga_Card
-				.@type$ = "Fish";
+				.@type$ = "рыбы";
 				break;
 			case 5:
 				setarray .@arg[0],4118,4471,151;// Petit_Card, Egg_Of_Draco_Card
-				.@type$ = "Dragon";
+				.@type$ = "драконы";
 				break;
 			case 6:
 				setarray .@arg[0],4805,4805,161;// Heal_Amount2
@@ -3630,9 +3619,9 @@ moc_para01,112,79,3	script	Weapons Expert BK#2nd11	4_M_REPAIR,{
 			for ( .@i = 0; .@i < 15; .@i++ ) {
 				if (countitem(.@wplist[.@i]) > 0) {
 					if (.@arg[0] == 4805)
-						mes "Good. Your weapon will now increase Heal effectiveness.";
+						mes "Отлично. Твоё оружие специализировано для лечения.";
 					else
-						mes "Good. Your weapon will increase attacks to "+ .@type$ +" type monsters.";
+						mes "Отлично. Теперь от твоего оружия будут особенно страдать "+ .@type$ +".";
 					next;
 					specialeffect EF_REPAIRWEAPON;
 					progressbar "ffff00",3;
@@ -3647,38 +3636,34 @@ moc_para01,112,79,3	script	Weapons Expert BK#2nd11	4_M_REPAIR,{
 						getitem2 .@wplist[.@i],1,1,0,0,0,0,.@arg[1],4806;
 					}
 					mes "[BK]";
-					mes "Isn't it magnificent?";
-					mes "I know, I know, I'm pretty amazing!";
+					mes "Правда, круто?";
+					mes "Знаю, знаю, я просто офигенен!";
 					close;
 				}
 			}
-			mes "Sorry, but it doesn't seem like you have a weapon that can be enhanced.";
-			mes "How did this happen?";
+			mes "Ээ, извини, что-то не нахожу у тебя подходящего оружия.";
+			mes "Как это могло случиться?";
 			close;
 		}
 	}
 	else if (para_2nd02 == 4) {
 		if (para_2nd01 < 30) {
-			mes "Instructor Ur has a lot of training missions doesn't he?";
-			mes "There's only one more stage.";
-			mes "Reach the final stage of training.";
+			mes "У инструктора Ура реально много тренировочных миссий, а? А тебе всего одна ступенька осталась. Давай, доберись до конца.";
 		}
 		else {
-			mes "Okay, this is the last step.";
-			mes "I will make your weapon even more enhanced.";
+			mes "Отлично, последний этап усиления оружия.";
 			next;
 			mes "[BK]";
-			mes "The card added from the previous step will be doubled.";
-			mes "And if you have a healing weapon it will increase it's healing efficiency.";
-			mes "You understand?";
+			mes "Получишь вторую карту, такую же, как на предыдущем этапе. Ну, или повышение эффективности лечения.";
+			mes "Есть вопросы?";
 			next;
 			mes "[BK]";
-			mes "Ok what weapon did you have now?";
+			mes "Давай сюда оружие.";
 			next;
 			.@s = select(.@menu$) -1;
 			mes "[BK]";
 			if (countitem(.@wplist[.@s]) > 0) {
-				mes "Doubling the strength of your bonus stat.";
+				mes "Так, сейчас удвоим силу этой характеристики.";
 				next;
 				specialeffect EF_REPAIRWEAPON;
 				progressbar "ffff00",3;
@@ -3709,27 +3694,25 @@ moc_para01,112,79,3	script	Weapons Expert BK#2nd11	4_M_REPAIR,{
 				else if (para_2nd03 == 261)
 					getitem2 .@wplist[.@s],1,1,0,0,0,4805,4805,4806;// Heal_Amount2, Heal_Amount2, Matk3
 				mes "[BK]";
-				mes "Isn't it magnificent?";
-				mes "I know, I know, I'm pretty amazing!";
+				mes "Ну как? Прекрасно? Я ведь великолепен!";
 			}
 			else {
-				mes "Hey, you think I'm joking?";
-				mes "Do you have the weapons or not?";
+				mes "Эй, думаешь, я тут шутки шучу?";
+				mes "Прин"+(Sex?"ёс":"есла")+" оружие или нет?";
 			}
 		}
 	}
 	else if (para_2nd02 > 4) {
-		mes "How do you like your enhanced weapon?";
-		mes "Hopefully it has helped you.";
+		mes "Нравится усиленное оружие? Надеюсь, от него есть польза.";
 		next;
 		mes "[BK]";
-		mes "I've given you the peak of your weapon's efficiency.";
-		mes "Weapons aren't the only things that need strength, though, don't you agree?";
+		mes "Я выдал пик его эффективности. ";
+		mes "Но хорошее оружие -- это не только качество предмета, не так ли? ";
 		next;
 		mes "[BK]";
-		mes "Come on admit it.";
-		mes "Thorn gave inspiration and I intend on providing strong equipment, that's how to live life.";
-		mes "Hahahaha!";
+		mes "Признай! ";
+		mes "Без меня у этой идеи небыло бы виртуозного воплощения, а без Торна -- вдохновения. Это как и всё остальное в жизни.";
+		mes "Хахахахаха!";
 	}
 	close;
 }
