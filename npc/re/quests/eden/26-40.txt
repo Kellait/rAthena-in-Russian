@@ -3,7 +3,7 @@
 //===== By: ==================================================
 //= L0ne_W0lf
 //===== Current Version: =====================================
-//= 1.2
+//= 1.4
 //===== Compatible With: =====================================
 //= rAthena Project
 //===== Description: =========================================
@@ -12,12 +12,14 @@
 //= 1.0 First Version.
 //= 1.1 Some little optimization here and there. [Masao]
 //= 1.2 Optimized. [Euphy]
+//= 1.3 Added support to Para_Team_Mark_ in Eden Group. [Ragno]
+//= 1.4 Added use of F_HasEdenGroupMark function. [Ragno]
 //============================================================
 //= Translated en -> ru [Akaineko] 
 //============================================================
 
 moc_para01,38,38,3	script	Задания [26 - 40]	857,{
-	if (countitem(6219) < 1) {
+	if (!callfunc("F_HasEdenGroupMark")) {
 		mes "Вы не состоите в группе ''Эдем'' и потому не можете брать заданий.";
 		close;
 	}
@@ -70,11 +72,12 @@ moc_para01,38,38,3	script	Задания [26 - 40]	857,{
 	end;
 L_Quest:
 	//QuestID,ReqLvl,Quest,Client,Loc,Desc
+	.@string$ = getarg(2);
 	if (BaseLevel < getarg(1,26)) {
 		mes "Ваш уровень не соответствует требованиям. Вы не можете взять задание ''"+getarg(2)+"''.";
 		close;
 	}
-	mes "["+getarg(2)+" !!]";
+	mes "["+ .@string$ +" !!]";
 	mes "Заказчик : "+getarg(3);
 	mes "Местонахождение заказчика : "+getarg(4);
 	mes "Задание : "+getarg(5)+".";
@@ -82,13 +85,13 @@ L_Quest:
 	mes "Вы принимаете это задание?";
 	next;
 	if(select("Нет, не принимаю.:Да, принимаю.") == 1) {
-		mes "Вы отказались от задания ''"+getarg(2)+"''.";
+		mes "Вы отказались от задания ''"+ .@string$ +"''.";
 		close;
 	}
 	if (checkquest(getarg(0)) > -1) mes "Вы уже приняли его.";
 	else {
 		setquest getarg(0);
-		mes "Вы приняли задание ''"+getarg(2)+"''.";
+		mes "Вы приняли задание ''"+ .@string$ +"''.";
 	}
 	mes "После успешного завершения задания заказчик вознаградит Вас.";
 	next;
@@ -133,8 +136,9 @@ geffen,103,42,5	script	Спониак	99,{
 	end;
 L_Quest:
 	//QuestID,Quest,BExp,JExp,PotionAmt,Desc
-	if (checkquest(getarg(0)) == 1) {
-		if (checkquest(getarg(0),HUNTING) == 2) {
+	.@quest_id = getarg(0);
+	if (checkquest(.@quest_id) == 1) {
+		if (checkquest(.@quest_id,HUNTING) == 2) {
 			mes "[Спониак]";
 			mes getarg(1)+"!";
 			mes "Ух ты, не думал, что ты справишься. Хотел уже идти отменять задание. Но ты проделал"+(Sex?"":"а")+" отличную работу. Молодец!";
@@ -147,7 +151,7 @@ L_Quest:
 			mes "Вот, держи. Большое тебе спасибо. Благослови тебя Бог!";
 			getitem 569,getarg(4); //Novice_Potion
 			getexp getarg(2),getarg(3);
-			erasequest getarg(0);
+			erasequest .@quest_id;
 			close;
 		}
 		mes "[Спониак]";
@@ -170,7 +174,7 @@ L_Quest:
 	next;
 	mes "[Спониак]";
 	mes "Странно.";
-	mes "Проверь свой журнал заданий, [alt + U].";
+	mes "Проверь свой журнал заданий, [alt + Г].";
 	close;
 }
 
