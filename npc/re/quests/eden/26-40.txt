@@ -18,7 +18,7 @@
 
 moc_para01,38,38,3	script	Задания [26 - 40]	857,{
 	if (countitem(6219) < 1) {
-		mes "Вы не состоите в группе Эдем и потому не можете брать заданий.";
+		mes "Вы не состоите в группе ''Эдем'' и потому не можете брать заданий.";
 		close;
 	}
 	mes "[Доска заданий 26 ~ 40 уровней]";
@@ -92,7 +92,7 @@ L_Quest:
 	}
 	mes "После успешного завершения задания заказчик вознаградит Вас.";
 	next;
-	mes "Чтобы посмотреть детали задания в окне заданий, нажмите [Alt + U].";
+	mes "Чтобы посмотреть подробности в окне заданий, нажмите [Alt + Г].";
 	close;
 }
 
@@ -125,7 +125,7 @@ geffen,103,42,5	script	Спониак	99,{
 	next;
 	switch(select("Охота на ядовитых спор:Охота на енотов:Охота на древних пеньков:Охота на белок:Охота на лягушек Тара")) {
 		case 1: callsub L_Quest,8266,"Охота на ядовитых спор",1000,0,100,"Ядовитых спор можно найти на первом этаже Геффенского подземелья или к северо-востоку от Пронтеры. Есть и другие места, но я не буду тебе подсказывать.";
-		case 2: callsub L_Quest,8267,"Охота на енотов",1000,0,100,"Еноты Смоки живут к северо-востоку и к северо-западу от Геффена. А, и ещё неплохое место их обитания -- регион к западу от Айотайи.";
+		case 2: callsub L_Quest,8267,"Охота на енотов",1000,0,100,"Еноты Смоки живут к северо-востоку и к северо-западу от Геффена. А, и ещё неплохое место их обитания -- регион к востоку от Айотайи.";
 		case 3: callsub L_Quest,8268,"Охота на древних пеньков",1000,100,110,"Древние пеньки обитают в регионах к северо-востоку от Геффена, к востоку от Пайона и в юго-западных окрестностях Пронтеры.";
 		case 4: callsub L_Quest,8269,"Охота на белок",1000,200,150,"Белки Коко живут в восточных окрестностях Пайона, в юго-западных окрестностях Пронтеры и к западу от Айотайи.";
 		case 5: callsub L_Quest,8270,"Охота на лягушек Тара",1500,300,200,"Лягушек Тара ты найдёшь в сети пещер восточнее города Комодо или на Черепашьем острове.";
@@ -463,7 +463,7 @@ payon,179,66,3	script	Dashia	931,{
 		close;
 	}
 	mes "[Даша]";
-	mes "О, ты из Группы Эдем! Каким было задание?";
+	mes "О, ты из Группы Эдем! Какое было задание?";
 	next;
 	switch(select("Сбор костей:Сбор шкур:Сбор панцирей:Сбор хвостов:Сбор печенек:Сбор усов")) {
 	case 1:
@@ -480,7 +480,7 @@ payon,179,66,3	script	Dashia	931,{
 		mes "Вижу, задание у тебя и вправду было. Но это разве сбор костей?";
 		next;
 		mes "[Даша]";
-		mes "Своё задание ты ещё не выполнил+(Sex?"":"а")+", зачем было возвращаться?";
+		mes "Своё задание ты ещё не выполнил"+(Sex?"":"а")+", зачем было возвращаться?";
 		next;
 		mes "[Даша]";
 		mes "Нужно больше костей (^1111ff"+getitemname(932)+"^000000). Поищи их у монстров-скелетов.";
@@ -500,17 +500,17 @@ payon,179,66,3	script	Dashia	931,{
 			close;
 		}
 		mes "[Даша]";
-		mes "Вижу, задание у тебя и вправду было. Но это разве сбор шкур?";
+		mes "Вижу, задание у тебя и вправду было. Но это разве был сбор шкур?";
 		next;
 		mes "[Даша]";
-		mes "Своё задание ты не выполнил+(Sex?"":"а")+". Зачем было ко мне приходить?";
+		mes "Своё задание ты не выполнил"+(Sex?"":"а")+". Зачем было ко мне приходить?";
 		next;
 		mes "[Даша]";
-		mes "Ты долж+(Sex?"ен":"на")+" принести мне 10 медвежьих лап (^1111ff"+getitemname(948)+"^000000) и 5 звериных шкурок!;
-		mes "Медвежьи лапы добываются с бигфутов, звериные шкурки - со всяких зверей.";
+		mes "Ты долж"+(Sex?"ен":"на")+" принести мне 10 медвежьих лап (^1111ff"+getitemname(948)+"^000000) и 5 звериных шкурок!;
+		mes "Медвежьи лапы добываются с бигфутов, звериные шкурки -- со всяких других зверей.";
 		next;
 		mes "[Даша]";
-		mes "Бигфуты живут в окрестностях северных пригородов Геффена и к юго-востоку от Пайона.";
+		mes "Бигфуты живут в северных окрестностях Геффена и к юго-востоку от Пайона.";
 		break;
 	case 3:
 		callsub L_Quest,8276;
@@ -530,13 +530,13 @@ payon,179,66,3	script	Dashia	931,{
 		mes "Тебе нужно принести мне 20 панцирей(^1111ff"+getitemname(955)+"^000000) и 20 гарлетов (^1111ff"+getitemname(910)+"^000000).";
 		next;
 		mes "[Даша]";
-		mes "You can get those items from 'Piere', 'Andre', 'Deniro', 'Vitata', 'Thief Bug', 'Female Thief Bug' and 'Male Thief Bug'.";
+		mes "Их можно добыть с муравьёв и тараканов.";
 		next;
 		mes "[Даша]";
-		mes "'Piere', 'Andre', 'Deniro' and 'Vitata' are in Ant Hell which is located near the Saint Darmain Fortress soutwest of Morroc.";
+		mes "Муравьи: ^4d4dff"+getmonsterinfo(1160,MOB_NAME)+"^000000, ^4d4dff"+getmonsterinfo(1095,MOB_NAME)+"^000000, ^4d4dff"+getmonsterinfo(1105,MOB_NAME)+"^000000 и ^4d4dff"+getmonsterinfo(1176,MOB_NAME)+"^000000, живут в своих муравьиных ходах под землёй в окрестностях крепости Сан-Дарман к юго-западу от Моррока.";
 		next;
 		mes "[Даша]";
-		mes "'Thief Bug', 'Female Thief Bug' and 'Male Thief Bug' are int he Prontere Culvert. To get there, you need to be a volunteer of the Prontera Culvert's punitive force.";
+		mes "Тараканы: ^4d4dff"+getmonsterinfo(1051,MOB_NAME)+"^000000, ^4d4dff"+getmonsterinfo(1053,MOB_NAME)+"^000000 и ^4d4dff"+getmonsterinfo(1054,MOB_NAME)+"^000000, их полно в пронтерской канализации, чтобы туда попасть, тебе нужно подписаться волонтёром на очистку.";
 		break;
 	case 4:
 		callsub L_Quest,8277;
@@ -551,21 +551,21 @@ payon,179,66,3	script	Dashia	931,{
 			close;
 		}
 		mes "[Даша]";
-		mes "I can see that you have a gathering mission.";
-		mes "But, where are the Yoyo Tails, Acorns and Raccoon Leafs?";
+		mes "Вижу, у тебя действительно было задание.";
+		mes "Ну и где хвосты, жёлуди, листья?";
 		next;
 		mes "[Даша]";
-		mes "You haven't done the mission yet. Why did you come back here?";
-		mes "You have to bring '10 Yoyo Tails,' '10 Acorns' and '10 Raccoon Leafs' to complete the mission.";
+		mes "Если задание не выполнил"+(Sex?"":"а")+", зачем было вообще приходить?";
+		mes "Тебе нужно принести 10 обезьяньих хвостиков (^1111ff"+getitemname(942)+"^000000), 10 желудей (^1111ff"+getitemname(1026)+"^000000) и 10 листьев енота (^1111ff"+getitemname(945)+"^000000).";
 		next;
 		mes "[Даша]";
-		mes "You can get Yoyo Tails from 'Yoyo's', Acorn from 'Coco's' and Raccoon Leaf from 'Smokies'.";
+		mes "Хвлстики добываются с обезьянок йойо (^4d4dff"+getmonsterinfo(1057,MOB_NAME)+"^000000), жёлуди -- с белок коко (^4d4dff"+getmonsterinfo(1104,MOB_NAME)+"^000000), а листья -- с енотов смоки (^4d4dff"+getmonsterinfo(1056,MOB_NAME)+"^000000).";
 		next;
 		mes "[Даша]";
-		mes "You can find them easily around fields, but the field east of Ayothya is the best spot for hunting all 3 monsters.";
+		mes "Они живут повсюду вокруг Пайона, но самое удобное место для охоты на всех троих -- восточный пригород Айотайи.";
 		next;
 		mes "[Даша]";
-		mes "To get to Ayotaya, you better go to 'Aibakthing' in Alberta and pay his fare.";
+		mes "В Айотаю можно попасть на корабле из порта Альберты.";
 		break;
 	case 5:
 		callsub L_Quest,8278;
@@ -579,19 +579,19 @@ payon,179,66,3	script	Dashia	931,{
 			close;
 		}
 		mes "[Даша]";
-		mes "I can see that you have a gathering mission.";
-		mes "But, where are the Well-baked Cookies and the Piece of Cake?";
+		mes "Вижу, у тебя действительно было задание.";
+		mes "Ну и где печенье и торт?";
 		next;
 		mes "[Даша]";
-		mes "You haven't done the mission yet. Why did you come back here?";
-		mes "You have to bring '5 Well-baked Cookies' and '1 Piece of Cake' to complete the mission.";
+		mes "Если задание не выполнил"+(Sex?"":"а")+", зачем было вообще приходить?";
+		mes "Тебе нужно принести 5 печенек (^1111ff"+getitemname(538)+"^000000) и 1 кусок торта (^1111ff"+getitemname(539)+"^000000).";
 		next;
 		mes "[Даша]";
-		mes "You can get Well-baked Cookie from 'Cookies' who wears red or green shirts.";
-		mes "For getting Piece of Cake, you should look for 'Mystcases'.";
+		mes "Печенье можно достать у монстров ^4d4dff"+getmonsterinfo(1275,MOB_NAME)+"^000000, они носят красные или зелёные колпаки.";
+		mes "Тортики -- у монстров, похожих на коробки с подарками -- ^4d4dff"+getmonsterinfo(1249,MOB_NAME)+"^000000.";
 		next;
 		mes "[Даша]";
-		mes "Both monsters canbe found in the Toy Factory Warehouse or Toy Monitoring Room. To get there, ask Mr. Claus in the northeastern part of Al De Baran.";
+		mes "Эти монстры обитают на игрушечной фабрике в Люти, туда можно добраться через мистера Клауса, ищи его в северо-восточной части Альдебарана.";
 		break;
 	case 6:
 		callsub L_Quest,8279;
@@ -605,46 +605,46 @@ payon,179,66,3	script	Dashia	931,{
 			close;
 		}
 		mes "[Даша]";
-		mes "I can see that you have a gathering mission.";
-		mes "But, where are the Mole Whiskerss and Mole Claws??";
+		mes "Вижу, у тебя действительно было задание.";
+		mes "Ну и где усы, где когти?";
 		next;
 		mes "[Даша]";
-		mes "You haven't done the mission yet. Why did you come back here?";
-		mes "You have to bring '5 Mole Whiskers' and '3 Mole Claws' to complete the mission.";
+		mes "Если задание не выполнил"+(Sex?"":"а")+", зачем было вообще приходить?";
+		mes "Тебе нужно принести 5 кротовьих усов (^1111ff"+getitemname(1017)+"^000000) и 5 кротовьих когтей (^1111ff"+getitemname(1018)+"^000000).";
 		next;
 		mes "[Даша]";
-		mes "You can get those items from 'Martins'.";
-		mes "Martins can be found in the Mjolnir Dead Pit, but the second floor is dangerous, so be careful!";
+		mes "Эти материалы добываются с кротов (^4d4dff"+getmonsterinfo(1145,MOB_NAME)+"^000000).";
+		mes "Они живут в шахтах на Мьёлльнире, но на втором этаже опасно, будь осторож"+(Sex?"ен":"на")+"!";
 		next;
 		mes "[Даша]";
-		mes "To get there, ask a Kafra Employee in Geffen, they can warp you there.";
+		mes "Чтобы добраться в шахты, обратись к кафре в Геффене.";
 		break;
 	}
 	next;
 	mes "[Даша]";
-	mes "Anyway, I will be here waiting for you. Please come back when you finish the mission!";
+	mes "Короче, жду тебя. До встречи!";
 	close;
 L_Quest:
 	if (checkquest(getarg(0)) != 1) {
 		mes "[Даша]";
-		mes "Huh? Are you sure? Something is wrong...";
+		mes "Хм? Точно? Что-то не так...";
 		next;
 		mes "[Даша]";
-		mes "It is weird.";
-		mes "Please check your Quest Window by pressing 'alt + u'.";
+		mes "Странно.";
+		mes "Проверь окно заданий [alt + Г].";
 		close;
 	}
 	return;
 L_Reward:
 	mes "[Даша]";
-	mes "Wow~ you did an excellent job!";
+	mes "Ух ты~ Прекрасная работа! Молодец!";
 	next;
 	mes "[Даша]";
-	mes "Thank you very much. God bless you!";
+	mes "Спасибо большое. Благослови тебя Бог!";
 	emotion e_heh;
 	next;
 	mes "[Даша]";
-	mes "Ha~! Ha~!";
-	mes "I will give you a reward as promised.";
+	mes "Ха~! Ха~!";
+	mes "Как и обещала, награда за мной.";
 	return;
 }
