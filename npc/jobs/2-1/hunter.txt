@@ -746,7 +746,7 @@ payon_in03,131,7,3	script	Hunter#htnGM	59,{
 		mes "Ух ты! Ты вернулся так быстро?!";
 		mes "Хорошая работа. Вот. Этот амулет докажет, что ты прошел квест.";
 		set HNTR_Q,17;
-		savepoint "payon",104,99;
+		savepoint "payon",104,99,1,1;
 		getitem 1007,1; //Penetration
 		changequest 4012,4013;
 		next;
@@ -938,7 +938,7 @@ payon_in02,21,31,1	script	Hunter#htnGM2	59,{
 		mes "Ух ты! Ты вернулся так быстро?!";
 		mes "Хорошая работа. Вот. Этот амулет докажет, что ты прошел квест.";
 		set HNTR_Q,17;
-		savepoint "payon",104,99;
+		savepoint "payon",104,99,1,1;
 		getitem 1007,1; //Penetration
 		next;
 		mes "[Hunter Guildmaster]";
@@ -988,7 +988,7 @@ OnTouch_:
 		next;
 		mes "[Guide]";
 		mes "Надеюсь ты взял лук и стрелы? Это всетаки задание для лучников.";
-		savepoint "job_hunte",176,22;
+		savepoint "job_hunte",176,22,1,1;
 		close;
 	}
 	else if (HNTR_Q > 12 && HNTR_Q < 16) {
@@ -1014,7 +1014,7 @@ OnTouch_:
 			// donpcevent "Waiting Room#hnt::OnStart";
 			close2;
 			set HNTR_Q,13;
-			savepoint "payon",104,99;
+			savepoint "payon",104,99,1,1;
 			warp "payon_in02",21,27;
 		}
 	}
@@ -1022,7 +1022,7 @@ OnTouch_:
 		mes "[Guide]";
 		mes "Эй! Кто тебя сюда впустил?";
 		close2;
-		savepoint "payon",104,99;
+		savepoint "payon",104,99,1,1;
 		warp "payon_in02",21,27;
 	}
 	end;
@@ -1260,7 +1260,7 @@ OnTouch_:
 	donpcevent "Waiting Room#hnt::OnStart";
 	set HNTR_Q,16;
 	changequest 4011,4012;
-	savepoint "payon",104,99;
+	savepoint "payon",104,99,1,1;
 	if (rand(2))
 		warp "payon_in02",21,27;
 	else

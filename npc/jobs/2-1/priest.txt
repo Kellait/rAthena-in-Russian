@@ -1645,7 +1645,7 @@ function	script	F_FatherRub	{
 			mes "[Отец Рубалкабара]";
 			mes "Что ж, тебя ждёт новая цель в священном походе. Спокойных тебе дорог.";
 			close2;
-			savepoint "prt_fild03",361,255;
+			savepoint "prt_fild03",361,255,1,1;
 			set PRIEST_Q,2;
 			end;
 		}
@@ -1684,7 +1684,7 @@ function	script	F_MotherMart	{
 			mes "[Матушка Матильда]";
 			mes "Что ж... Я буду молиться о счастливом завершении твоего похода.";
 			close2;
-			savepoint "moc_fild07",35,355;
+			savepoint "moc_fild07",35,355,1,1;
 			set PRIEST_Q,3;
 			end;
 		}
@@ -1730,7 +1730,7 @@ function	script	F_FatherYos	{
 			mes "[Отец Йоскэ]";
 			mes "Теперь возвращайся в Церковь. Сим твоё первое Испытание завершено.";
 			close2;
-			savepoint "prt_fild00",206,230;
+			savepoint "prt_fild00",206,230,1,1;
 			set PRIEST_Q,4;
 			end;
 		}

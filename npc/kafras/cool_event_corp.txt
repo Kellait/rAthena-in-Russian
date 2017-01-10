@@ -42,7 +42,7 @@ function	script	F_CoolEventCorp	{
 		mes getarg(1)+".";
 		mes "Спасибо за использование ";
 		mes "наших услуг~";
-		savepoint getarg(2),getarg(3),getarg(4);
+		savepoint getarg(2),getarg(3),getarg(4),1,1;
 		close2;
 		break;
 	case 2:

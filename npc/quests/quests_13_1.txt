@@ -7489,7 +7489,6 @@ OnDisable:
 	disablenpc "Hillsrion#alba01";
 	end;
 
-//OnTouch2:
 OnTouch_:
 	mes "It is hissing in a low voice.";
 	mes "Sometimes it purrs, too.";
@@ -7506,7 +7505,6 @@ OnDisable:
 	disablenpc "Tatacho#alba02";
 	end;
 
-//OnTouch2:
 OnTouch_:
 	mes "[Taab]";
 	mes "Oh, please don't disturb";
@@ -7527,7 +7525,6 @@ OnDisable:
 	disablenpc "Cornus#alba03";
 	end;
 
-//OnTouch2:
 OnTouch_:
 	mes "[Taab]";
 	mes "Oh, please don't get";
@@ -7641,7 +7638,7 @@ function Catwarp;
 		next;
 		switch(select("Save your location:Cancel")) {
 		case 1:
-			savepoint "mid_camp",56,139;
+			savepoint "mid_camp",56,139,1,1;
 			mes "[Cat Hand Agent]";
 			mes "Thank you.";
 			mes "Your location has been saved.";
@@ -7660,7 +7657,7 @@ function Catwarp;
 		next;
 		switch(select("Save your location:Cancel")) {
 		case 1:
-			savepoint "mid_camp",56,139;
+			savepoint "mid_camp",56,139,1,1;
 			mes "[Cat Hand Agent]";
 			mes "Thank you.";
 			mes "Your location has been saved.";
@@ -7679,7 +7676,7 @@ function Catwarp;
 		next;
 		switch(select("Save your location:Use Storage:Cancel")) {
 		case 1:
-			savepoint "mid_camp",56,139;
+			savepoint "mid_camp",56,139,1,1;
 			mes "[Cat Hand Agent]";
 			mes "Thank you.";
 			mes "Your location has been saved.";
@@ -7726,7 +7723,7 @@ function Catwarp;
 		next;
 		switch(select("Save your location:Use Storage:Use Cat Warp (Midgard):Cancel")) {
 		case 1:
-			savepoint "mid_camp",56,139;
+			savepoint "mid_camp",56,139,1,1;
 			mes "[Cat Hand Agent]";
 			mes "Thank you.";
 			mes "Your location has been saved.";
@@ -7848,7 +7845,7 @@ function Catwarp;
 		next;
 		switch(select("Save your location:Use Storage:Use Cat Warp (Midgard):Use Cat Warp (Jottunheim):Cancel")) {
 		case 1:
-			savepoint "mid_camp",56,139;
+			savepoint "mid_camp",56,139,1,1;
 			mes "[Cat Hand Agent]";
 			mes "Thank you.";
 			mes "Your location has been saved.";
@@ -11550,7 +11547,6 @@ OnInit:
 }
 
 mid_camp,205,312,0	script	#moc2_talkevent01	-1,1,1,{
-//OnTouch2:
 OnTouch_:
 	if (mao_morocc2 == 11) {
 		mes "[Mr. Kidd]";
@@ -13416,7 +13412,6 @@ hu_fild04,235,103,0	script	Heap of Earth#mao2_01	844,4,4,{
 		close;
 	}
 
-//OnTouch2:
 OnTouch_:
 	if (mao_morocc2 == 7) {
 		specialeffect EF_LEVEL99_4;
@@ -13753,7 +13748,6 @@ yuno_fild09,234,133,0	warp	#moc2_fild09-que_dan02	1,1,que_dan02,13,10
 que_dan02,13,6,0	warp	#moc_que_dan02-fild09	1,1,yuno_fild09,234,129
 
 que_dan02,21,37,0	script	#moc2_b1_gate	-1,1,1,{
-//OnTouch2:
 OnTouch_:
 	if (mao_morocc2 == 17) {
 		mes "- You find a side door that leads to the basement.";
