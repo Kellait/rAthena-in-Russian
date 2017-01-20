@@ -15,9 +15,9 @@ job_gun,1,1,0	script	Admin1	CLEAR_NPC,{
 	if (callfunc("F_GM_NPC",1854,0) != 1)
 		end;
 	mes "[Time Manager]";
-	mes "What time would you like to return?";
+	mes "Куда ты хотел бы вернуться?";
 	next;
-	switch( select("Cancel:Test monster spawn:Start from beginning:Furnace Zone:Shooting Zone:Complete the test") ) {
+	switch( select("Отмена:Тест про монстров:Начать с начала:Печь:Територия стрельбы:Пройти тест") ) {
 	case 1:
 		close;
 	case 2:
@@ -60,50 +60,50 @@ job_gun,130,146,0	warp	shootingrange#5	3,3,job_gun,120,130
 
 job_gun,165,18,0	script	Furnace Controller#1	CLEAR_NPC,{
 	if (Class != Job_Gunslinger) {
-		mes "Only authorized user can do the operation.";
+		mes "Только авторизованный пользователь может совершитьоперацию.";
 		close;
 	}
 	if (getstatus(SC_MONSTER_TRANSFORM,1) == 3169) {// J_REB_SHECIL1
 		if (isbegin_quest(12342) == 1) {
-			mes "Do you want to dredge the mold up from the furnace?";
+			mes "Вы хотите обработать материалы из печи?";
 			next;
-			if (select("Quit.:Begin.") == 1) {
+			if (select("Остановить.:Начать.") == 1) {
 				mes "Switch to the Standby mode.";
 				close;
 			}
-			mes "Initializing Furnace Controller ZX-3100...";
+			mes "Инициализация печи Контроллер ZX-3100...";
 			disablenpc "Furnace Controller#1";
 			donpcevent "Furnace Controller#2::OnStart";
 			close;
 		}
 	}
-	mes "Not an authorized user. Abort the operation.";
+	mes "Не авторизованным пользователем. Прервать операцию.";
 	close;
 }
 
 job_gun,214,36,0	script	Auto Anvil#1	CLEAR_NPC,{
 	if (Class != Job_Gunslinger) {
-		mes "Only authorized user can do the operation.";
+		mes "Только авторизованный пользователь может инициировать операцию.";
 		close;
 	}
 	if ((countitem(13118) - isequipped(13118)) > 0) {// Tiny_Flame
-		mes "Unauthorized firearm creation has been detected. Report to Manager Elwin.";
+		mes "Обнаружено несанкционированное создание огнестрельного оружия. Доклад менеджера Элвин.";
 		close;
 	}
 	if (getstatus(SC_MONSTER_TRANSFORM,1) == 3169) {
 		if (countitem(6747) < 5) {// Steel_Article_
-			mes "You do not have standard Steel Artifacts.";
+			mes "Вы произвели не стандартный стальной Артефакт.";
 			close;
 		}
 		if (isbegin_quest(12342) == 1) {
-			mes "Do you want to use the auto anvil and shape the standard Steel Artifacts into a firearm?";
+			mes "Вы хотите использовать авто-наковальню для обработки стандартных стальных Артефактов в огнестрельное оружие?";
 			next;
-			if (select("Quit.:Begin.") == 1) {
-				mes "For your safety, please step away from the auto anvil.";
+			if (select("Остановить.:Начать.") == 1) {
+				mes "Для вашей безопасности необходимо отойти от авто-наковальни.";
 				close;
 			}
 			if (rand(1,10) > 6) {
-				mes "You have successfully created a firearm using the auto anvil. ^ff0000Please report before your transformation expires^000000.";
+				mes "Огнестрельное оружие было успешно создано. ^ff0000Необходимо доложить об успехе до окончания времени преобразования^000000.";
 				specialeffect EF_REPAIRWEAPON;
 				getitem 13118,1;// Tiny_Flame
 			}
@@ -115,18 +115,18 @@ job_gun,214,36,0	script	Auto Anvil#1	CLEAR_NPC,{
 			close;
 		}
 	}
-	mes "Not an authorized user. Abort the operation.";
+	mes "Не авторизованный пользователь. Прервать операцию.";
 	close;
 }
 
 job_gun,165,18,0	script	Furnace Controller#2	CLEAR_NPC,{
-	mes "The system is busy dredging a completed mold from the furnace.";
+	mes "Система активирована, заполните форму материалами из печи.";
 	close;
 
 OnStart:
 	enablenpc "Furnace Controller#2";
 	sleep 3000;
-	mapannounce "job_gun","Furnace Controller: Dredging a mold up from the furnace... Workers, stand by at the production line.",bc_map,"0x00ff44";
+	mapannounce "job_gun","Furnace Controller: Дноуглубительные кристаллизатора выброс из печи... Рабочие, оставайтесь на производственной линии.",bc_map,"0x00ff44";
 	sleep 500;
 	for ( .@i = 0; .@i < 30; ++.@i ) {
 		.@eff_rnd = rand(1,100);
@@ -145,7 +145,7 @@ OnStart:
 		sleep 500;
 	}
 	sleep 2000;
-	mapannounce "job_gun","Furnace Controller: Finishing the operation... Entering Standby mode in 15 seconds.",bc_map,"0x00ff44";
+	mapannounce "job_gun","Furnace Controller: Работа завершена... Режим ожидания 15 секунд.",bc_map,"0x00ff44";
 	sleep 15000;
 	disablenpc "Furnace Controller#2";
 	enablenpc "Furnace Controller#1";
@@ -218,34 +218,34 @@ OnTouch:
 	if (Class == Job_Gunslinger && BaseLevel >= 99 && JobLevel >= 70) {
 		if (!isbegin_quest(12340)) {
 			mes "[Suspicious Man]";
-			mes "Finally I've found you, Vagabond Spike! Your neck is mine!";
+			mes "Наконец я нашел тебя, Странник Спайк! Ты в моих руках!";
 			next;
-			select("Say what?");
+			select("Чего-чего?");
 			mes "[Suspicious Man]";
-			mes "*Snort* Don't pretend like you don't know. Look at this poster! You're in it!";
+			mes "*Фыр* Не прикидывайся. Посмотри на этот плакат! Это ты!";
 			next;
-			select("I see the resemblance, but that's not me.");
+			select("Похож, но это не я.");
 			mes "["+strcharinfo(0)+"]";
-			mes "Forget the resemblance. Where did you get that poster? I've never committed a crime.";
+			mes "Забудь про сходство. Откуда ты это взял? Я никогда не совершал преступлений.";
 			next;
 			mes "[Suspicious Man]";
-			mes "I knew you'd try to lie your way out.";
+			mes "Я так и думал, что ты будешь отпираться.";
 			next;
 			mes "[Suspicious Man]";
-			mes "The ^0000ffEinbroch Private Pub^000000 has released that wanted poster. You have many bounty hunters like me on your heels.";
+			mes "Эту листовку повесили в закрытом баре Эйнброха.";
 			next;
 			mes "[Suspicious Man]";
-			mes "I don't care if you're the right one so long as you look it and I can take you dead or alive.";
+			mes "Меня не совершал ты преступление или нет, за тобой идут охотники за головами и я первым возьму тебя живым или мёртвым.";
 		}
 		else {
 			mes "[Suspicious Man]";
-			mes "It's you again! You've got guts to come back here!";
+			mes "Это снова ты! У тебя есть яйца!";
 		}
 		next;
-		if (select("Make a run for it.:Fight him.") == 1)
-			mes "^0000ffI should run for now and think about this later.^000000";
+		if (select("Бежать.:Сопротивляться.") == 1)
+			mes "^0000ffУ меня много работы, подумаю о том что ты сказал позже.^000000";
 		else
-			mes "^0000ffHe's not the only bounty hunter after me, if he's telling the truth. I need time to strategize.^000000";
+			mes "^0000ffЕсли верить его словам, он не единственный охотник за головами. Мне нужно время что бы выработать стратегию дальнейших действий.^000000";
 		close2;
 		if (!isbegin_quest(12340))
 			setquest 12340;
@@ -257,44 +257,44 @@ OnTouch:
 einbroch,54,97,3	script	Bouncer	4_M_REBELLION,{
 	if (BaseClass != Job_Gunslinger) {
 		mes "[Bouncer]";
-		mes "No loitering around the venue.";
+		mes "Нечего тут слоняться.";
 		close;
 	}
 	switch( isbegin_quest(12340) ) {
 	case 0:
 		mes "[Bouncer]";
-		mes "Under construction, can't get in.";
+		mes "Пока идёт строительство, внутрь не попасть.";
 		close;
 	case 1:
 		mes "[Bouncer]";
-		mes "*Gasp* You! I thought you were already captured. Ooh, doesn't matter now. You're my Get Out of Jail Free card!";
+		mes "*Ох* Ты! Я думал тебя уже взяли. Хотя не имеет значения. Ты мог вытащить счастливую карту и выйти из тюрьмы.";
 		next;
-		select("I'm not the criminal you think I am!");
+		select("Я не преступник!");
 		mes "[Bouncer]";
-		mes "You aren't?";
+		mes "Нет?";
 		next;
-		mes "^0000ffThe bouncer examines your face.^000000";
+		mes "^0000ffОхранник всматривается в твоё лицо.^000000";
 		next;
 		mes "[Bouncer]";
-		mes "Hm, you bear a striking resemblance, though you don't look not as menacing as that criminal Spike";
+		mes "Хм, ты поразительно похож, хотя конечно твой взгляд не настолько угрожающий, как у этого бандита Спайка.";
 		next;
-		select("I want to talk to the poster publisher.");
+		select("Я хочу поговорить с автором плаката.");
 		mes "[Bouncer]";
-		mes "Your problem is a bit out of my league. Get in. If I find out you're the real deal all along, I'll see that you'll never see the outside again.";
+		mes "Твои проблемы вне поля моей компетенции. Ты можешь войти, но, если окажется что ты соврал мне. Ты не выйдешь.";
 		close2;
 		warp "job_gun",81,29;
 		end;
 	case 2:
 		mes "[Bouncer]";
-		mes "You're back. Why?";
+		mes "Ты вернулся. Зачем?";
 		next;
-		if (select("I want in.:I was passing by.") == 2) {
+		if (select("Я хочу войти.:Мимо проходил.") == 2) {
 			mes "[Bouncer]";
-			mes "You're silly.";
+			mes "Тупица.";
 			close;
 		}
 		mes "[Bouncer]";
-		mes "Go ahead. Stay out of trouble.";
+		mes "Избегай неприятностей.";
 		close2;
 		warp "job_gun",70,28;
 		end;
@@ -387,7 +387,7 @@ job_gun,86,29,3	script	Kulbertinov	4_M_REBELLION,{
 		mes "[Kulbertinov]";
 		mes "You look like you know how to use a gun. How'd you like to join our ranks? You won't have to worry about other bounty hunters anymore too.";
 		next;
-		if (select("Let me think it over.:I don't think I have a choice.") == 1) {
+		if (select("Мне нужно подумать.:Я не думаю, что у меня есть выбор.") == 1) {
 			mes "[Kulbertinov]";
 			mes "You can think it over and over, but the answer won't change. Just take the offer.";
 		}
